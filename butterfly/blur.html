@@ -1,0 +1,83 @@
+<html>
+<head>
+    <meta name="viewport" content="width=320px, user-scalable=no" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script>
+        var socket = io('http://192.168.0.14:3000');
+        socket.on("range", function(range){
+            console.log("received range:" + range);
+            blur(range);
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            console.log("ready");
+        })
+
+    </script>
+</head>
+<body>
+<style type="text/css">
+    .background-image {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1;
+
+  display: block;
+  background-image: url('http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_527bf56961712_1.JPG');
+  width: 100vh;
+  height: 100vh;
+  transition: all 0.5s;
+
+  -webkit-filter: blur(0px);
+  -moz-filter: blur(0px);
+  -o-filter: blur(0px);
+  -ms-filter: blur(0px);
+  filter: blur(0px);
+}
+
+.content {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.flex {
+    display: flex;
+    height: 100%;
+    align-items:center;
+    justify-content:center;
+    transition: all 1s;
+    -webkit-filter: blur(20px);
+}
+img {
+    display: flex;
+    margin: auto;
+    max-width: 50%;
+}
+</style>
+
+<div class="flex" id="flex">
+<img src="img/logo.png" id="img">    
+</div>
+
+<video controls id="myvideo">
+  <source src="somevideo.webm"></source>
+  <source src="somevideo.mp4"></source>
+</video>
+
+<script type="text/javascript" src="js/blur.js"></script>
+<!--
+<canvas id="canvas" width="600" height="600" style="border:solid black 1px;">
+    Your browser does not support canvas element.
+</canvas>
+-->
+
+
+
+</body>
+</html>

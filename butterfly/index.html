@@ -12,24 +12,42 @@
                 console.log("(index)received from myself");
             } else {
                 console.log("(index) will fire local drop from other:" + JSON.stringify(coords));
-                $('body').ripples("drop", coords.x, coords.y, coords.radius, coords.strength, from)
+                var c = document.getElementsByTagName("canvas")[0]; 
+                var cw = c.width;
+                var ch = c.height;
+                var nx = coords.x * (cw/320);
+                var ny = coords.y * (ch/480);
+
+                $('body').ripples("drop", nx, ny, coords.radius, coords.strength, from)
             }
         });
+        socket.on("range", function(range){
+            console.log("range!");
+        })
         /*
         var coords = {x:1, y:2};
         socket.emit('coords', coords);
         */
     </script>
     <script type="text/javascript" src="js/jquery.ripples.js"></script>
+    <script type="text/javascript" src="js/fs.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             console.log("ready");
+
             $('body').ripples({
                 resolution: 512,
                 dropRadius: 20,
                 perturbance: 0.04,
                 from: navigator.userAgent
             });
+
+            document.addEventListener("keydown", function(e) {
+  if (e.keyCode == 13) {
+    toggleFullScreen();
+  }
+}, false);
+
         })
 
     </script>

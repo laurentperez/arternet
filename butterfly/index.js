@@ -11,7 +11,7 @@ app.use(function(req, res, next) {
 app.use(express.static(__dirname + '/'));
 var http = require('http').createServer(app)
 var io = io.listen(http);
-http.listen(3000);
+http.listen(process.env.PORT || 3000);
 
 
 /*
@@ -24,8 +24,8 @@ app.get('/', function(req, res){
 io.on('connection', function(socket){
 	console.log("connection:" + socket);
 	socket.emit("hello","world");
-  socket.on('coords', function(msg){
-    io.emit('coords', msg);
+  socket.on('c', function(msg){
+    io.emit('c', msg);
   });
 
   socket.on("range", function(msg) {

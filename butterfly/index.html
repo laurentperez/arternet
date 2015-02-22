@@ -5,20 +5,20 @@
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script>
         var socket = io('http://192.168.0.14:3000');
-        socket.on('coords', function(coords){
+        socket.on('c', function(coords){
             //console.log("received coords:" + coords.x + "," + coords.y + "," + coords.from);
-            var from = coords.from;
+            var from = coords.f;
             if(from === navigator.userAgent) {
                 console.log("(index)received from myself");
             } else {
                 console.log("(index) will fire local drop from other:" + JSON.stringify(coords));
-                var c = document.getElementsByTagName("canvas")[0]; 
-                var cw = c.width;
-                var ch = c.height;
+                var ca = document.getElementsByTagName("canvas")[0]; 
+                var cw = ca.width;
+                var ch = ca.height;
                 var nx = coords.x * (cw/320);
                 var ny = coords.y * (ch/480);
 
-                $('body').ripples("drop", nx, ny, coords.radius, coords.strength, from)
+                $('body').ripples("drop", nx, ny, coords.r, coords.s, from)
             }
         });
         socket.on("range", function(range){

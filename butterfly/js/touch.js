@@ -29,11 +29,11 @@ function startup() {
 }
 
 var ongoingTouches = new Array();
+//var el = document.getElementsByTagName("canvas")[0];
 
 function handleStart(evt) {
     evt.preventDefault();
     console.log("touchstart.");
-    var el = document.getElementsByTagName("canvas")[0];
     //var ctx = el.getContext("2d");
     var touches = evt.changedTouches;
 
@@ -42,10 +42,10 @@ function handleStart(evt) {
         var x = Math.round(touches[i].pageX);
         var y = Math.round(touches[i].pageY);
         console.log("x,y:" + x + "," + y);
-        var coords = {x:x, y:y, radius:20, strength:0.01, from: navigator.userAgent};
-        var coords1 = {x:x, y:y, radius:30, strength:0.14, from: navigator.userAgent};
-        socket.emit('coords', coords);
-        socket.emit('coords', coords1);
+        var coords = {x:x, y:y, r:20, s:0.01, f: navigator.userAgent};
+        var coords1 = {x:x, y:y, r:30, s:0.14, f: navigator.userAgent};
+        socket.emit('c', coords);
+        socket.emit('c', coords1);
 
         /*
         ongoingTouches.push(copyTouch(touches[i]));
@@ -61,16 +61,15 @@ function handleStart(evt) {
 
 function handleMove(evt) {
     evt.preventDefault();
-    var el = document.getElementsByTagName("canvas")[0];
-    var ctx = el.getContext("2d");
+    //var ctx = el.getContext("2d");
     var touches = evt.changedTouches;
 
     for (var i=0; i < touches.length; i++) {
         var x = Math.round(touches[i].pageX);
         var y = Math.round(touches[i].pageY);
         console.log("(move) x,y:" + x + "," + y);
-        var coords = {x:x, y:y, radius:20, strength:0.01, from: navigator.userAgent};
-        socket.emit('coords', coords);
+        var coords = {x:x, y:y, r:20, s:0.01, f: navigator.userAgent};
+        socket.emit('c', coords);
 
         //var color = colorForTouch(touches[i]);
         /*

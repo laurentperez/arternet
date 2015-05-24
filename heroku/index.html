@@ -1,0 +1,84 @@
+<html>
+<head>
+    <meta name="viewport" content="width=320px, user-scalable=no" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.js"></script>
+    <script>
+      var host = location.origin.replace(/^http/, 'ws');
+
+        var ws = new WebSocket(host);
+      console.log("x connected as client to host:" + host);
+      ws.onopen = function(){
+        // ws.send("opened");
+      }
+      ws.onmessage = function (event) {
+       console.log("someone sent message:" + event.data);
+       var coords = JSON.parse(event.data);
+       // debugger;
+        var from = coords.f;
+            if(from === navigator.userAgent) {
+                console.log("(index)received from myself");
+            } else {
+                console.log("(index) will fire local drop from other:" + JSON.stringify(coords));
+                var ca = document.getElementsByTagName("canvas")[0]; 
+                var cw = ca.width;
+                var ch = ca.height;
+                var nx = coords.x * (cw/320);
+                var ny = coords.y * (ch/480);
+
+                $('body').ripples("drop", nx, ny, coords.r, coords.s, from)
+            }
+      };
+      var socket;
+    </script>
+    <script type="text/javascript" src="js/jquery.ripples.js"></script>
+    <script type="text/javascript" src="js/fs.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            console.log("ready");
+
+            $('body').ripples({
+                resolution: 512,
+                dropRadius: 20,
+                perturbance: 0.04,
+                from: navigator.userAgent
+            });
+
+            document.addEventListener("keydown", function(e) {
+  if (e.keyCode == 13) {
+    toggleFullScreen();
+  }
+}, false);
+
+        })
+
+    </script>
+</head>
+<body>
+
+<style type="text/css">
+    * { margin: 0; padding: 0; }
+    html {
+        height: 100%;
+    }
+    body {
+        color: #fff;
+        font-size: 16px;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        background-image: url(img/grid.jpg);
+        background-size: cover;
+        background-position: 50% 0;
+        height: 100%;
+        text-align: center;
+    }
+</style>
+
+<!--
+<canvas id="canvas" width="600" height="600" style="border:solid black 1px;">
+    Your browser does not support canvas element.
+</canvas>
+-->
+
+
+
+</body>
+</html>

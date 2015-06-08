@@ -1,0 +1,56 @@
+<html>
+<head>
+    <meta name="viewport" content="width=320px, user-scalable=no" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script>
+        var socket = io('http://192.168.0.14:3000');
+        socket.on("range", function(range){
+            console.log("received range:" + range);
+            blur(range);
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            console.log("ready");
+        })
+
+    </script>
+</head>
+<body>
+<style type="text/css">
+.flex {
+    display: flex;
+    height: 100%;
+    align-items:center;
+    justify-content:center;
+    transition: all 1s;
+    -webkit-filter: blur(20px);
+}
+img {
+    display: flex;
+    margin: auto;
+    max-width: 50%;
+}
+</style>
+
+<div class="flex" id="flex">
+<img src="img/logo.png" id="img">    
+</div>
+
+<video controls id="myvideo">
+  <source src="somevideo.webm"></source>
+  <source src="somevideo.mp4"></source>
+</video>
+
+<script type="text/javascript" src="js/blur.js"></script>
+<!--
+<canvas id="canvas" width="600" height="600" style="border:solid black 1px;">
+    Your browser does not support canvas element.
+</canvas>
+-->
+
+
+
+</body>
+</html>

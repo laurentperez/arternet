@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "uma",
+        "photo": "img/umaeye.jpg",
+        "filmName": "Kill Bill",
+        "film": "img/killbill.jpg"
+    },
+    {
+        "id": 2,
+        "name": "john",
+        "photo": "img/johneye.jpg",
+        "filmName": "Volte Face",
+        "film": "img/volteface.jpg"
+
+    }
+]

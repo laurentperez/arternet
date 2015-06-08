@@ -14,8 +14,14 @@ $(document).on('pagecreate', function(){
 
 })
 
+
 $(document).ready(function () { 
 console.log("document ready");
+
+$("#playbutton").on("click", function(){
+toggleFullScreen();
+	
+})
 
 $( ":mobile-pagecontainer" ).on( "pagecontainershow", function( event, ui ) {
 	console.log("pagecontainershow");

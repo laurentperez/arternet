@@ -3,6 +3,12 @@
     <ul>
         <li ng-repeat="movie in moviesPlayed">
             <p>{{movie.actor}}</p>
+				<div ng-if="movie.success === true">
+				    success
+				</div>
+					<div ng-if="movie.success !== true">
+				    fail
+				</div>
         </li>
     </ul>
     <img ng-src="{{actor.film}}" style="width:100%" alt="">

@@ -8,6 +8,19 @@ var gameApp = angular.module('gameApp', [
     'gameFilters'
 ]);
 
+gameApp.filter("toStatus", function(){
+  return function(input) {
+    switch(input) {
+      case true:
+        return "success.png";
+      case false:
+        return "fail.png";
+      default:
+        return "sucess.png";
+    } 
+  };
+});
+
 gameApp.factory('service', function ($rootScope) {
 
     var actor;
@@ -17,11 +30,25 @@ gameApp.factory('service', function ($rootScope) {
     return {
         updateMoviePlayed: function(actor, success) {
             console.log("(updateMoviePlayed) " + actor.id + "/" + success);
+            // todo remove if we keep the reset at home
+            var alreadyPlayed = false;
+            for(var k in moviesPlayed){
+              if(moviesPlayed[k].actor.id === actor.id) {
+                console.log("actor id:" + actor.id + " has already been played");
+                alreadyPlayed = true;
+              }
+            }
+            if(!alreadyPlayed) {
             var played = {
                 actor: actor,
                 success: success
             }                   ;
-            moviesPlayed.push(played);
+            moviesPlayed.push(played);   
+            }
+           
+        },
+        resetMoviesPlayed: function() {
+          moviesPlayed = [];
         },
         getMoviesPlayed: function() {
             return moviesPlayed;

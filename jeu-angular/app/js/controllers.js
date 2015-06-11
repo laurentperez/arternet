@@ -10,6 +10,7 @@ gameControllers.controller('HomeCtrl', ['$scope', 'service', '$http',
             $scope.actors = data;
             service.setActors(data);
             console.log("actors:" + service.getActors());
+            service.resetMoviesPlayed();
             var actors = service.getActors();
             var firstActor = actors[0];
             $scope.actor = firstActor;
@@ -101,7 +102,7 @@ gameControllers.controller('PlayCtrl', ['$scope', 'service', '$document', '$loca
                     } else {
                         console.log("no more actor, back to score");
                         $location.path("/score/");
-                        $scope.$apply();
+                        goToScore($location, $scope);
                     }
                 }
             });
@@ -119,8 +120,7 @@ gameControllers.controller('PlayCtrl', ['$scope', 'service', '$document', '$loca
                         return;
                     } else {
                         console.log("no more actor, back to score");
-                        $location.path("/score/");
-                        $scope.$apply();
+                        goToScore($location, $scope);
                     }
                 }
                 if (document.getElementById("timer")) {

@@ -14,7 +14,6 @@ export default class ContactItem extends Component {
   <div>
       <form onSubmit={this.handleSubmit}>
           <input onChange={this.onChange.bind(this)} value={this.state.text} />
-          <button>'Add #'</button>
         </form>
       <div>
       author: {this.state.author}
@@ -25,20 +24,43 @@ export default class ContactItem extends Component {
 };
 
 export default class Contacts extends Component {
+  constructor(props) {
+    super(props);
+  };
+  onChange(e) {
+  };
+  handleClick(i) {
+    console.log('You clicked: ' + this.props.items[i]);
+  };
   render() {
+    console.log(this);
     return (
-    	<div>
-      <ContactItem />
+    	<div className="contacts">
+      <div>
+        {this.props.items.map(function(item, i) {
+          return (
+            <div>
+            <div onClick={this.handleClick.bind(this, i)} key={i}>{item}</div>
+            <ContactItem author={item}/>
+            </div>
+          );
+        }, this)}
+      </div>
+
+
       </div>      
     );
   }
 }
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+  };
   render() {
     return (
     <div>
-      <Contacts author="john"/>
+      <Contacts items={['Apple', 'Banana', 'Cranberry']}/>
     </div>
     );
   }

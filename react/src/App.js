@@ -1,4 +1,7 @@
+"use strict";
+
 import React, { Component } from 'react';
+import About from './About';
 
 export default class ContactItem extends Component {
   constructor(props) {
@@ -32,6 +35,7 @@ export default class Contacts extends Component {
   handleClick(i) {
     console.log('You clicked: ' + this.props.items[i]);
   };
+
   render() {
     console.log(this);
     return (
@@ -56,11 +60,18 @@ export default class Contacts extends Component {
 export default class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
+    let numbers = [1,2,3,4,5,6,7];
+    let even = [];
+    this.state.items = ['Apple', 'Banana', 'Cranberry'];
+    numbers.map(n => console.log(n % 2 ? even.push(n) : 'odd'));
+    console.log(even);
   };
   render() {
     return (
     <div>
-      <Contacts items={['Apple', 'Banana', 'Cranberry']}/>
+      <Contacts items={this.state.items}/>
+      <a href="about">about</a>
     </div>
     );
   }

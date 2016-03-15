@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'icomoon';
+    src:    url('fonts/icomoon.eot?7pfqjq');
+    src:    url('fonts/icomoon.eot?7pfqjq#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?7pfqjq') format('truetype'),
+        url('fonts/icomoon.woff?7pfqjq') format('woff'),
+        url('fonts/icomoon.svg?7pfqjq#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+.lizard {
+    content: "\e900";
+    color: red;
+}
+
+body {
+	margin: 0;
+}
+.choice {
+	color: blue;
+	cursor: pointer;
+	padding: 20px;
+	text-align: center;
+}
+.playerChoice {
+	background-color: blue;
+	color: white;
+	text-align: center;
+	padding: 5px;
+}
+.playButton {
+	display: block;
+	margin: 0 auto;
+}
+#result {
+	color: red;
+	text-align: center;
+	font-size: 26px;
+}

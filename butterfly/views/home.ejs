@@ -17,7 +17,7 @@
                 var nx = coords.x * (cw/320);
                 var ny = coords.y * (ch/480);
 
-                $('body').ripples("drop", nx, ny, coords.r, coords.s, from)
+                $('body').ripples("drop", nx, ny, coords.r, coords.s, from);
             }
         });
         socket.on("range", function(range){

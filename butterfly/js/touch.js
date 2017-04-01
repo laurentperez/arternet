@@ -34,6 +34,8 @@ var ongoingTouches = new Array();
 function handleStart(evt) {
     evt.preventDefault();
     console.log("touchstart.");
+                var successBool = window.navigator.vibrate(20);
+
     //var ctx = el.getContext("2d");
     var touches = evt.changedTouches;
 

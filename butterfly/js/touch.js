@@ -25,6 +25,11 @@ function startup() {
     //el.addEventListener("touchcancel", handleCancel, false);
     //el.addEventListener("touchleave", handleEnd, false);
     el.addEventListener("touchmove", $.debounce(5, handleMove));
+    var item = $("body");
+    item.vibrate({
+ pattern: [15],
+ trigger: "touchend"
+});
     console.log("initialized.");
 }
 

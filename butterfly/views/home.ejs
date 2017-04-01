@@ -1,12 +1,11 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=320, user-scalable=no" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <% include scripts.ejs %>
     <script>
-        var socket = io('http://<%=core%>:4000');
+        var socket = io('http://<%=core%>:3000');
         socket.on('c', function(coords){
-            //console.log("received coords:" + coords.x + "," + coords.y + "," + coords.from);
+            console.log("received coords:" + coords.x + "," + coords.y + "," + coords.from);
             var from = coords.f;
             if(from === navigator.userAgent) {
                 console.log("(index)received from myself");
@@ -29,7 +28,7 @@
         socket.emit('coords', coords);
         */
     </script>
-    <script type="text/javascript" src="js/jquery.ripples.js"></script>
+    <script type="text/javascript" src="js/jquery.ripples.053.js"></script>
     <script type="text/javascript" src="js/fs.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){

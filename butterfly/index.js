@@ -35,6 +35,9 @@ app.set('view engine', 'ejs');
 app.get('/', function(req, res){ 
  res.render('home',{core: eth});
 });
+app.get('/m', (req, res) => {
+ res.render('m',{core: eth});
+})
 app.use(express.static(__dirname + '/'));
 
 var http = require('http').createServer(app)

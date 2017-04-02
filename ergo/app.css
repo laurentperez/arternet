@@ -8,6 +8,7 @@ display:flex;
 flex-direction:column;
 }
 .item {
-color:red;
+color:blue;
+height:1em;
 }
 

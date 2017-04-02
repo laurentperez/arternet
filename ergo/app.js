@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+app.disable('view cache');
 var http = require('http').Server(app);
 var os = require('os');
 var ifaces = os.networkInterfaces();

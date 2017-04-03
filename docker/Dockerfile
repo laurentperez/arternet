@@ -15,6 +15,7 @@ run touch /var/shared/placeholder
 run chown -R dev:dev /var/shared
 volume /var/shared
 # run ln -s /var/shared/.ssh
+expose 3000
 
 workdir /home/dev
 env HOME /home/dev

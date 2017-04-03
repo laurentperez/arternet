@@ -7,6 +7,9 @@ run apt-get install -y subversion
 run apt-get install -y nodejs
 run apt-get install -y npm
 run apt-get install -y lynx
+run apt-get install -y wget
+run apt-get install -y curl
+run apt-get install -y zsh
 
 run useradd dev
 run mkdir /home/dev && chown -R dev: /home/dev
@@ -22,6 +25,9 @@ env HOME /home/dev
 add vimrc /home/dev/.vimrc
 add vim /home/dev/.vim
 add zshrc /home/dev/.zshrc
+run git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+# run chsh -s /bin/zsh
 run chown -R dev: /home/dev
 user dev
+CMD ["zsh"]
 

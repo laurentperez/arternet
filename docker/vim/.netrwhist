@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/laurent'
+let g:netrw_dirhist_2='/Users/laurent/Desktop/incendies.(2010).ita.1cd.(6762388)'
+let g:netrw_dirhist_3='/Users/laurent/Desktop/work/arternet/ergo/views'
+let g:netrw_dirhist_4='/Users/laurent/Desktop/work/arternet/ergo'

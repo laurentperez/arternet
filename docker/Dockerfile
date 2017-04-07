@@ -33,6 +33,7 @@ run chown -R dev: /home/dev
 
 
 run npm install forever -g
+run ln -s /usr/bin/nodejs /usr/bin/node
 run a2enmod proxy_http
 
 user dev

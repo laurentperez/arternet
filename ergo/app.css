@@ -1,14 +1,34 @@
 
 * { margin: 0; padding: 0; }
-html {
+html,body {
 	height: 100%;
 }
 main {
 display:flex;
 flex-direction:column;
+height:100%;
 }
 .item {
 color:blue;
-height:3em;
-}
+flex:1;
+display:flex;
+align-items:center;
+justify-content:center;
 
+width: 100%;
+}
+.a {
+	background-color: #6AFFA2;
+}
+.b {
+	background-color: #E8B816;
+}
+.c {
+	background-color: #FF2561;
+}
+.d {
+	background-color: #759DE8;
+}
+.e {
+	background-color: #66FF4B;
+}

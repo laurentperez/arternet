@@ -23,6 +23,7 @@ expose 3000
 
 workdir /home/dev
 env HOME /home/dev
+add server.js /home/dev/server.js
 add vimrc /home/dev/.vimrc
 add vim /home/dev/.vim
 add zshrc /home/dev/.zshrc

@@ -10,6 +10,7 @@ run apt-get install -y lynx
 run apt-get install -y wget
 run apt-get install -y curl
 run apt-get install -y zsh
+run apt-get install -y apache2
 
 run useradd dev
 run mkdir /home/dev && chown -R dev: /home/dev
@@ -28,6 +29,11 @@ add zshrc /home/dev/.zshrc
 run git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 # run chsh -s /bin/zsh
 run chown -R dev: /home/dev
+
+
+run npm install forever -g
+run a2enmod proxy_http
+
 user dev
 CMD ["zsh"]
 

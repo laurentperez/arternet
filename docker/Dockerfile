@@ -11,6 +11,7 @@ run apt-get install -y wget
 run apt-get install -y curl
 run apt-get install -y zsh
 run apt-get install -y apache2
+run apt-get install -y znc
 
 run useradd dev
 run mkdir /home/dev && chown -R dev: /home/dev

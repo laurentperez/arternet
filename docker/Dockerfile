@@ -28,6 +28,7 @@ add server.js /home/dev/server.js
 add vimrc /home/dev/.vimrc
 add vim /home/dev/.vim
 add zshrc /home/dev/.zshrc
+add irsii /home/dev/.irssi
 run git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 # run chsh -s /bin/zsh
 run chown -R dev: /home/dev

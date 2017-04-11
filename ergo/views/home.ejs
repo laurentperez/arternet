@@ -2,23 +2,37 @@
 <html>
 <head>
     <% include scripts.ejs %>
+    <title>ERGOSUITE</title>
     <link rel="stylesheet" href="app.css"/>
     <script type="text/javascript" src="js/ergo.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             console.log("ready");
-        })
+            $(".a").vibrate({
+ duration: 2000,
+ trigger: "touchstart"
+});
+      
+      document.querySelector(".b").addEventListener("touchstart", function(){
+        navigator.vibrate([500,20,500]);
+      }, false);
+
+      document.querySelector(".c").addEventListener("touchstart", function(){
+        navigator.vibrate([500,20,500,20,500]);
+      }, false);
+  });
+ 
     </script>
 </head>
 <body>
 
 	<main>
-		<div class="item">A</div>
-        <div class="item">B</div>
-        <div class="item">C</div>
-        <div class="item">D</div>
-        <div class="item">E</div>
-		<div class="item">F</div>
+		<div class="item a">A</div>
+        <div class="item b">B</div>
+        <div class="item c">C</div>
+        <div class="item d">D</div>
+        <div class="item e">E</div>
+		<div class="item f">F</div>
 	</main>
 
 

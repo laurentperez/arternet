@@ -34,7 +34,8 @@ add irsii /home/dev/.irssi
 add oidentd.conf /home/dev/.oidentd.conf
 run git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 run git clone https://github.com/irssi/irssi
-# run chsh -s /bin/zsh
+run git clone https://github.com/tittof/FiSH-irssi
+#i run chsh -s /bin/zsh
 run chown -R dev: /home/dev
 
 

@@ -10,7 +10,7 @@ run apt-get install -y lynx
 run apt-get install -y wget
 run apt-get install -y curl
 run apt-get install -y zsh
-
+run apt-get install -y build-essential irssi-dev libglib2.0-dev libssl-dev cmake
 run useradd dev
 run mkdir /home/dev && chown -R dev: /home/dev
 run mkdir /var/shared/

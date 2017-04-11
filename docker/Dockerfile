@@ -12,6 +12,8 @@ run apt-get install -y curl
 run apt-get install -y zsh
 run apt-get install -y apache2
 run apt-get install -y znc
+run apt-get install -y libncurses5 libncurses5-dev
+run apt-get install -y fpc
 
 run useradd dev
 run mkdir /home/dev && chown -R dev: /home/dev
@@ -29,6 +31,7 @@ add vimrc /home/dev/.vimrc
 add vim /home/dev/.vim
 add zshrc /home/dev/.zshrc
 add irsii /home/dev/.irssi
+add oidentd.conf /home/dev/.oidentd.conf
 run git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 # run chsh -s /bin/zsh
 run chown -R dev: /home/dev

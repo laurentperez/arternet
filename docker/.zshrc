@@ -1,7 +1,7 @@
 # Lines configured by zsh-newuser-install
 #alias svn='svn --username laurent.perez --password Dfghjklm1'
 export ZSH=$HOME/.oh-my-zsh
-plugins=(git git-flow gitignore) 
+plugins=(git git-flow gitignore jira git-extras mvn osx sublime sudo) 
 source $ZSH/oh-my-zsh.sh
 
 HISTFILE=~/.histfile

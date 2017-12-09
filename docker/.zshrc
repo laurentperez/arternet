@@ -1,7 +1,7 @@
 # Lines configured by zsh-newuser-install
 #alias svn='svn --username laurent.perez --password Dfghjklm1'
 export ZSH=$HOME/.oh-my-zsh
-plugins=(git)
+plugins=(git git-flow gitignore) 
 source $ZSH/oh-my-zsh.sh
 
 HISTFILE=~/.histfile
@@ -34,7 +34,6 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushd_silent
 
-#export JAVA_HOME=/Users/laurent/work/jdk1.7.0_40
 export JAVA_HOME=~/.sdkman/candidates/java/current
 export JDK_HOME=$JAVA_HOME
 export M2_REPO=/Users/laurent/.m2/repository

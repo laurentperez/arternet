@@ -38,6 +38,49 @@ export JAVA_HOME=~/.sdkman/candidates/java/current
 export JDK_HOME=$JAVA_HOME
 export M2_REPO=/Users/laurent/.m2/repository
 alias ssvn='~/SVN'
+alias ggit='~/Desktop/work/git'
+alias wk='~/Desktop/work'
+git config --global user.name "lperez"
+git config --global user.email "laurent.perez@lsa-courtage.com"
+git config --global rebase.autosquash true
+git config --global rerere.enabled true
+git config --global pull.rebase preserve
+git config --global remote.origin.prune true
+git config --global alias.dog "log --all --decorate --oneline --graph"
+git config --global alias.merge "merge -Xignore-all-space"
+git config --global alias.tidy "rebase -i @{upstream}"
+git config --global alias.st status
+git config --global alias.com commit
+git config --global alias.ci commit
+git config --global alias.br branch
+git config --global alias.co checkout
+git config --global alias.cl checkout
+alias glog='git lg1'
+alias k='gitk'
+alias pull='git pull'
+alias gba='git branch -avv'
+alias gco='git checkout'
+alias gdo='git diff origin/master'
+alias gdp='git diff @{push}..'
+alias glp='git log @{push}..'
+alias gpdo='git diff origin/master'
+alias grso='git remote show origin'
+alias co='git checkout'
+alias grh='git reset --hard HEAD^'
+alias itg='git co integration'
+alias master='git co master'
+alias mcc='mvn clean compile'
+alias mcp='mvn clean package'
+alias mci='mvn clean install'
+alias mcu='mvn clean install -U'
+alias mcd='mvn clean install deploy -U'
+alias mi='mvn install'
+alias mc='mvn compile'
+alias mp='mvn package'
+alias md='mvn deploy'
+alias mt='mvn test'
+alias mct='mvn clean test'
+alias CLEARREPO='rm -fr ~/.m2/repository'
 alias sup='svn up'
 alias ll='ls -la'
 alias grep='egrep --exclude-dir=\.svn --color=auto'

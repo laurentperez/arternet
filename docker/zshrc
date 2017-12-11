@@ -35,8 +35,10 @@ setopt pushd_ignore_dups
 setopt pushd_silent
 
 export JAVA_HOME=~/.sdkman/candidates/java/current
+export GROOVY_HOME=/Users/admin/Desktop/work/groovy-2.4.11
 export JDK_HOME=$JAVA_HOME
 export M2_REPO=/Users/laurent/.m2/repository
+export M2_HOME=/Users/admin/Desktop/work/apache-maven-3.5.2
 alias ssvn='~/SVN'
 alias sup='svn up'
 alias ll='ls -la'

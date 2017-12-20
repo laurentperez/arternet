@@ -1,0 +1,72 @@
+[user]
+	email = laurent.perez@xxxx.com
+	name = lperez
+[merge]
+	log = 100
+	conflictstyle = diff3
+
+[alias]
+	st = status
+	br = branch
+	co = checkout
+	ci = commit
+	pr = !git pull --rebase
+	grh = !git reset --hard HEAD^
+	# git rebase -i HEAD~X
+	reb = --rebase
+	rebc = rebase --continue
+	rebs = rebase --skip
+	rebi = rebase --interactive @{upstream}
+	hist = log --pretty=oneline --abbrev-commit --graph --decorate
+	in = !git fetch && git log --name-status --pretty=oneline --abbrev-commit --graph --decorate HEAD..origin
+	addm = !git-ls-files -m -z | xargs -0 git-add && git status
+	addu = !git-ls-files -o --exclude-standard -z | xargs -0 git-add && git status
+	pl = pull
+	l = log
+	lo = log --oneline
+	lg = log --graph
+	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(black)%s%C(reset) %C(red)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(black)%s%C(reset) %C(red)- %an%C(reset)' --all
+	lg = !"git lg1"
+	gl1 = !"git lg1"
+	gl2 = !"git lg2"
+	adog = log --all --decorate --oneline --graph
+	dog = log --all --decorate --oneline --graph
+	com = commit
+	merge = merge -Xignore-all-space
+	cl = checkout
+	tidy = rebase -i @{upstream}
+	superlog = log -p -M --follow --stat --
+	cp = cherry-pick
+	cpnx = cherry-pick --no-commit -x
+	ds = diff --staged
+	dw = diff --word-diff
+	snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+	branch-name = rev-parse --abbrev-ref HEAD
+	publish = !"git push --set-upstream origin $(git branch-name)"
+	unpublish = !"git push origin :$(git branch-name)"
+	reincarnate = !"f() { [[ -n $@ ]] && git checkout \"$@\" && git unpublish && git checkout master && git branch -D \"$@\" && git checkout -b \"$@\" && git publish; }; f"
+
+[core]
+	autocrlf = input
+	excludesfile = /Users/admin/.gitignore
+	whitespace = -trailing-space,-indent-with-non-tab,-tab-in-indent
+	editor = atom --wait
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/admin/.stCommitMsg
+[rebase]
+	autosquash = true
+[rerere]
+	enabled = true
+[pull]
+	rebase = preserve
+[remote "origin"]
+	prune = true
+[branch "master"]
+	mergeoptions = --no-ff

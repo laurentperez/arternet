@@ -1,5 +1,5 @@
 [user]
-	email = laurent.perez@xxxx.com
+	email = laurent.perez@xxxxxx.com
 	name = lperez
 [merge]
 	log = 100
@@ -9,6 +9,7 @@
 	st = status
 	br = branch
 	co = checkout
+	cl = clone
 	ci = commit
 	pr = !git pull --rebase
 	grh = !git reset --hard HEAD^
@@ -23,6 +24,7 @@
 	addu = !git-ls-files -o --exclude-standard -z | xargs -0 git-add && git status
 	pl = pull
 	l = log
+	last = log -1 --stat
 	lo = log --oneline
 	lg = log --graph
 	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(black)%s%C(reset) %C(red)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
@@ -34,13 +36,13 @@
 	dog = log --all --decorate --oneline --graph
 	com = commit
 	merge = merge -Xignore-all-space
-	cl = checkout
 	tidy = rebase -i @{upstream}
 	superlog = log -p -M --follow --stat --
-	cp = cherry-pick
-	cpnx = cherry-pick --no-commit -x
+	cherry-pick = !"git cherry-pick -x -Xignore-all-space"
+	cp = cherry-pick -x -Xignore-all-space
+	cpnx = cherry-pick -x --no-commit -Xignore-all-space
 	ds = diff --staged
-	dw = diff --word-diff
+	dword = diff --word-diff
 	snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
 	branch-name = rev-parse --abbrev-ref HEAD
 	publish = !"git push --set-upstream origin $(git branch-name)"

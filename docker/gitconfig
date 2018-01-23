@@ -1,5 +1,5 @@
 [user]
-	email = laurent.perez@xxxxxx.com
+	email = laurent.perez@xxxxxxxxx.com
 	name = lperez
 [merge]
 	log = 100
@@ -9,7 +9,7 @@
 	st = status
 	br = branch
 	co = checkout
-	cl = clone
+	cl = checkout
 	ci = commit
 	pr = !git pull --rebase
 	grh = !git reset --hard HEAD^
@@ -48,7 +48,11 @@
 	publish = !"git push --set-upstream origin $(git branch-name)"
 	unpublish = !"git push origin :$(git branch-name)"
 	reincarnate = !"f() { [[ -n $@ ]] && git checkout \"$@\" && git unpublish && git checkout master && git branch -D \"$@\" && git checkout -b \"$@\" && git publish; }; f"
-
+	wa = !"git worktree add"
+	wl = !"git worktree list"
+	wp = !"git worktree prone"
+	wlk = !"git worktree lock"
+	wulk = !"git worktree unlock"
 [core]
 	autocrlf = input
 	excludesfile = /Users/admin/.gitignore

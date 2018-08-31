@@ -1,6 +1,7 @@
 [user]
-	email = laurent.perez@xxxxxxxxx.com
 	name = lperez
+	email = laurent.perez@xxxxxxxt.com
+
 [merge]
 	log = 100
 	conflictstyle = diff3
@@ -11,13 +12,15 @@
 	co = checkout
 	cl = checkout
 	ci = commit
-	pr = !git pull --rebase
+	dry = merge --no-commit --no-ff $BRANCH
+ # To examine the staged changes:git diff --cached
+	pr = !git pull --rebase --preserve-merges
 	grh = !git reset --hard HEAD^
 	# git rebase -i HEAD~X
-	reb = --rebase
+	reb = --rebase --preserve-merges
 	rebc = rebase --continue
 	rebs = rebase --skip
-	rebi = rebase --interactive @{upstream}
+	rebi = rebase --preserve-merges --interactive @{upstream}
 	hist = log --pretty=oneline --abbrev-commit --graph --decorate
 	in = !git fetch && git log --name-status --pretty=oneline --abbrev-commit --graph --decorate HEAD..origin
 	addm = !git-ls-files -m -z | xargs -0 git-add && git status
@@ -27,6 +30,7 @@
 	last = log -1 --stat
 	lo = log --oneline
 	lg = log --graph
+	gld = !"git log --oneline --all --graph --decorate --simplify-by-decoration"
 	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(black)%s%C(reset) %C(red)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
 	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(black)%s%C(reset) %C(red)- %an%C(reset)' --all
 	lg = !"git lg1"
@@ -54,18 +58,18 @@
 	wlk = !"git worktree lock"
 	wulk = !"git worktree unlock"
 [core]
-	autocrlf = input
-	excludesfile = /Users/admin/.gitignore
-	whitespace = -trailing-space,-indent-with-non-tab,-tab-in-indent
+	autocrlf = true
+	excludesfile = /Users/lperez/.gitignore_global
+	whitespace = cr-at-eol
 	editor = atom --wait
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [commit]
-	template = /Users/admin/.stCommitMsg
+	template = /Users/lperez/.stCommitMsg
 [rebase]
 	autosquash = true
 [rerere]
@@ -76,3 +80,6 @@
 	prune = true
 [branch "master"]
 	mergeoptions = --no-ff
+[branch "develop"]
+	mergeoptions = --no-ff
+

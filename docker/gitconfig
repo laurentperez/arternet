@@ -1,10 +1,11 @@
 [user]
 	name = lperez
-	email = laurent.perez@xxxxxxxt.com
+	email = laurent.perez@sequoiasoft.com
 
 [merge]
 	log = 100
 	conflictstyle = diff3
+	# ff = false
 
 [alias]
 	st = status
@@ -12,6 +13,7 @@
 	co = checkout
 	cl = checkout
 	ci = commit
+	mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
 	dry = merge --no-commit --no-ff $BRANCH
  # To examine the staged changes:git diff --cached
 	pr = !git pull --rebase --preserve-merges
@@ -58,7 +60,7 @@
 	wlk = !"git worktree lock"
 	wulk = !"git worktree unlock"
 [core]
-	autocrlf = true
+	autocrlf = input
 	excludesfile = /Users/lperez/.gitignore_global
 	whitespace = cr-at-eol
 	editor = atom --wait
@@ -81,5 +83,7 @@
 [branch "master"]
 	mergeoptions = --no-ff
 [branch "develop"]
+	mergeoptions = --no-ff
+[branch "version_2017"]
 	mergeoptions = --no-ff
 

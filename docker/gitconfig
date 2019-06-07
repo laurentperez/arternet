@@ -8,6 +8,8 @@
 	# ff = false
 
 [alias]
+	lt = !"git describe --tags $(git rev-list --tags --max-count=1)"
+	ltl = !"git describe --tags --abbrev=0"
 	st = status
 	br = branch
 	co = checkout
@@ -59,6 +61,7 @@
 	wp = !"git worktree prone"
 	wlk = !"git worktree lock"
 	wulk = !"git worktree unlock"
+	please = push --force-with-lease
 [core]
 	autocrlf = input
 	excludesfile = /Users/lperez/.gitignore_global

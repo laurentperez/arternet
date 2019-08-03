@@ -1,0 +1,34 @@
+#green,#blue {
+	width:200px;
+	height: 200px;
+	position: absolute; 
+}
+
+#blue {
+  background-color: blue;
+  -webkit-animation: bbox 2s infinite alternate;
+}
+#green {
+  background-color: green;
+ 	-webkit-animation: gbox 2s infinite alternate;
+}
+
+@-webkit-keyframes bbox {
+  0%   { 
+    -webkit-transform:translate(0px, 0px);
+  }
+  100% { 
+    -webkit-transform:translate(250px, 0px);
+  }
+}
+
+@-webkit-keyframes gbox {
+  0%   { 
+  	-webkit-transform:translate(0px, 0px);
+    opacity: 1;
+  }
+  100% { 
+  	-webkit-transform:translate(250px, 0px);
+  	opacity: 0;
+  }
+}

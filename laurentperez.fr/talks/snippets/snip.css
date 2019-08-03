@@ -1,0 +1,103 @@
+.btn.prepend-icon-arrow {
+background-color:lightblue;
+}
+
+.btn {
+border: none;
+font-family: inherit;
+font-size: inherit;
+color: inherit;
+background: none;
+cursor: pointer;
+padding: 25px 80px;
+text-transform: uppercase;
+letter-spacing: 1px;
+font-weight: 700;
+outline: none;
+position: relative;
+-webkit-transition: all 0.3s;
+-moz-transition: all 0.3s;
+transition: all 0.3s;
+}
+
+
+.btn.prepend-icon-arrow:before {
+background: blue;
+color: #FCAD26;
+z-index: 2;
+/* border-radius: 10px 0 0 10px; */
+position: absolute;
+height: 100%;
+left: 0;
+top: 0;
+line-height: 3;
+font-size: 140%;
+width: 50px;
+content: '';
+}
+
+.btn.prepend-icon-arrow:after {
+width: 20px;
+height: 20px;
+background: blue;
+z-index: 1;
+left: 55px;
+top: 50%;
+margin: -10px 0 0 -10px;
+-webkit-transform: rotate(45deg);
+-moz-transform: rotate(45deg);
+-ms-transform: rotate(45deg);
+transform: rotate(45deg);
+content: '';
+position: absolute;
+z-index: 1;
+-webkit-transition: all 0.3s;
+-moz-transition: all 0.3s;
+transition: all 0.3s;
+}
+
+
+
+.feature {
+display: table;
+width: 100%;
+border-collapse: collapse;
+margin-bottom: 30px;
+}
+
+.feature .img {
+width: 450px;
+text-align: center;
+vertical-align: middle;
+}
+
+.feature .aside {
+position: relative;
+height: 100%;
+padding: 20px 20px;
+}
+.feature .img, .feature .aside {
+display: table-cell;
+padding: 20px;
+}
+.feature .aside .inner-border {
+position: absolute;
+top: 50%;
+left: 0;
+width: 1px;
+height: 50%;
+background: gray;
+-webkit-transform: translate(-50%, -50%);
+}
+.feature .aside h1 {
+font-size: 28px;
+margin-bottom: 0.25em;
+}
+.feature .aside * {
+margin: 0;
+}
+.feature .aside h2 {
+font-size: 22px;
+margin-bottom: 0.25em;
+}
+

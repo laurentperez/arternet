@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>reveal.js - The HTML Presentation Framework</title>
+
+	<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+	<meta name="author" content="Hakim El Hattab">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h2>Comment fonctionne</h2>
+					<h2>un moteur de rendu web</h2>
+					<h3>"du HTML aux pixels"</h3>
+					<p>laurentperez.fr / TODO pour UX Flupa MTH</p>
+					<img src="mth.jpg"/>
+				</section>
+
+				<section>
+					<h2>About your speaker</h2>
+					<p>Autodidacte, Bac L, Ecole d'art</p>
+					<p>Dans le web depuis Netscape 3, Photoshop 4</p>
+					<p>Beaucoup de backend, beaucoup de frontend solo ou binôme créa</p>
+					<p>En éditeurs, SSII ou agences</p>
+					<p>Ex-formateur intégration front DFO internes ou chez clients des agences</p>
+					<p>Fortes affinités UX dues aux arts & agences créa</p>
+					<p>Actuellement Lead R&D @ Sequoiasoft - on recrute pour la rentrée</p>
+				</section>
+
+				<section>
+					<h2>About you</h2>
+					<h4>Ratio iOS/Android ?</h4>
+					<h4>Ratio UX UI/DFO/autres champs?</h4>
+					<h4>Qui s'est servi d'un navigateur web ce jour ?</h4>
+				</section>
+
+				<section>
+					<h2>Un moteur de rendu n'est <em>pas un navigateur</em></h2>
+					<h4>Mais une suite de composants pour afficher des sites web, ou des applications</h4>
+					<p>
+						<ul>
+							<li>un composant pour charger des ressources réseau de manière intelligente (ou en tout cas, optimisée)</li>
+							<li>un composant de règles CSS (ex: matrice de calcul de styles en cascade)</li>
+							<li>un composant de dessin qui utilise une libraire graphique (ex: CoreGraphics pour Apple, Cairo GTK pour Linux/Win, ...)</li>
+							<li>un composant pour éxécuter du JS (ex: JavaScriptCore/Nitro sous WebKit, V8 sous Blink)</li>
+							<li>etc...</li>
+							<li>oulala le 1er slide est déjà technique</li>
+							<li>défi, parler de moteur de rendu sans ouvrir un seul code source</li>
+							<li>... prenons du recul</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>What's up, web ?</h2>
+					<p>One moteur to rule them all (?)</p>
+					<p>Donnons des sous à la fondation Mozilla</p>
+					<p>Dualité dangereuse de Apple et Google</p>
+				</section>
+
+				<section>
+					<h2>Plusieurs moteurs sur le marché</h2>
+					<p>
+						WebKit/Blink (<em>Safari/Mail/App Store, Chromium/e, Opera, Epiphany, Samsung, Sony, Nintendo</em>)</p><p>Gecko/Quantum/Servo (<em>Firefox</em>) </p><p>Trident/EdgeHTML (<em>IE &lt; 2020</em>)</p>
+					</p>
+					<p>
+						Sur mobile le dominant (95%) est WebKit/Blink. Trident (WP, IE9/10) est abandonné. FF est une niche
+					</p>
+						<p>Sur desktop le % de part de marché est un peu différent :</p>
+						<p>Gecko/Quantum/Servo pour FF<p>
+						<p>WebKit/Blink pour Safari, Chrome, Opera, Vivaldi, Epiphany (Linux)</p>
+						<p>Trident/EdgeHTML pour IE/Edge</p>
+						<p>Corée du Nord : fork de Gecko, 'Naenara' (Mon Pays) pour visiter des sites réservés</p>
+				</section>
+
+				<section>
+					<h2>Un moteur n'est pas un navigateur. Un navigateur se sert d'un moteur.</h2>
+					<p>Airbus et Boeing partagent des moteurs General Electric, Rolls Royce, Trent : ce n'est pas le même avion == pas le même <em>navigateur</em></p>
+					<p>Une compagnie peut changer l'intérieur de l'avion (Singapore, Qatar Airlines, AF = Apple, Google, Samsung, HTC, Sony)</p>
+					<p>Des pilotes connaissant bien le moteur changent de boite : porosité des devs Apple/Google, Samsung/Sony/Nintendo</p>
+					<p>Microsoft a récemment choisi de passer sous moteur Blink (qui est le moteur de Chromium)</p>
+
+				</section>
+
+				<section>
+					<section>
+						<h2>Le moteur WebKit & les autres</h2>
+						<h3>Historique</h3>
+						<ul>
+							<li>1998 KHTML/KJS issus de Konqueror (KDE, Linux)</li>
+							<li>2001 Apple forke KHTML/KJS en WebKit : WebCore + JavascriptCore. Préféré à Gecko/Netscape</li>
+							<li>2005 Apple open source quelques modifications de code pour Konqueror</li>
+							<li>2007 l'iPhone sort avec Safari 3</li>
+							<li>2008 Google lance Android et Chrome</li>
+							<li>2011 Apple demande à trademarker WebKit, RIM pas trop d'accord</li>
+							<li>2013 Mozilla crée Servo, Google forke WebKit en Blink, Opera abandonne Presto pour Blink, WebKit devient trademark Apple. Blink est un fork technique et business</li>
+							<li>2014/5 Microsoft remplace Trident par EdgeHTML</li>
+							<li>2016/19 CSS4, Layout API Houdini, Offline WebApp, WebPayment, WebAssembly, ... </li>
+						</ul>
+					</section>
+					<section>
+						<h2>Les acteurs clé communiquent ouvertement sur l'avenir de leur moteur</h2>
+						<h3>oui, pour de vrai, les mentalités ont évolué</h3>
+						<ul>
+							<li>WebKit.org (OSS) : https://webkit.org/blog/ et https://webkit.org/status/</li>
+							<li>Blink : https://www.chromestatus.com/features</li>
+							<small>
+									https://chromium.googlesource.com/chromium/src/+log/master/third_party/WebKit<br/>
+							</small>
+							<li>Edge : https://developer.microsoft.com/en-us/microsoft-edge/platform/status/</li>
+							<li>Safari : https://developer.apple.com/safari/technology-preview/</li>
+							<li>nb : Apple ne commentent jamais en détails sur qu'ils vont ajouter pour iOS, les curieux.ses peuvent lire les commits des devs @apple.com</li>
+							<small>
+							https://github.com/WebKit/webkit/commits/master<br/>
+							</small>
+						</ul>
+					</section>
+					<section>
+						<h3>Contributeurs WebKit (principaux)</h3>
+						<pre>git shortlog -e -s -n</pre>
+						<p>Apple, Google (avant Blink), webkit.org, Adobe, Igalia, Samsung, Sony, RIM, Nokia, Intel</p>
+						<p>Blink : Google, Opera, Adobe, Igalia, Samsung</p>
+						<p>Igalia ? ex-GNOME, petite équipe de consultants experts et commiters WebKit/Blink/Chromium/Qt/GTK/Tizen</p>
+						<p>Bientôt Huawei via un fork ? :)</p>
+					</section>
+				</section>
+
+				<section>
+					<h2>git clone webkit</h2>
+					<img src="logo.png" style="width:10%"/>
+					<p>https://www.webkit.org/building/checkout.html</p>
+					<p>8 GB. 35000 tests. Des 100MB de sources C++, 210000 commits. Projet XCode ou Visual Studio</p>
+					<p>70% des 8GB sont des tests ou ressources de tests (pages HTML, images, fichiers JS)</p>
+					<p>25 minutes de compile sur un très bon CPU</p>
+					<p>dedans : WebCore, JavaScriptCore, WebInspectorUI, WTF, MiniBrowser, DumpRenderTree, WebKit2, ...</p>
+					<p></p>
+				</section>
+
+				<section>
+					<section>
+						<h2>Une base commune et des ports</h2>
+						<p>Pas un WebKit unique. Un port parle aux APIs natives plateforme (ex: API de rendu, de réseau, ...)</p>
+						<ul>
+							<li>OSX/iOS port (Safari/Mail/AppStore + CoreGraphics)
+							<li>Android port (Stock browsers/Chromium &lt; Blink + Skia)</li>
+							<li>GTK port (Linux Gnome Epiphany browser + Cairo)</li>
+							<li>Qt port (Spotify Player &lt; Blink, wkhtml2pdf)</li>
+							<li>EFL port par Samsung (Freebox, TizenOS)</li>
+							<li>EA : moteur de l'UI de Sim City 2K</li>
+							<li>Amazon : le lecteur d'ebook Kindle</li>
+							<li>Sony : browser de la PS3/4 et dashboard console en WebGL</li>
+							<li>Nintendo : browsers Wii U et Switch, Nintendo Store</li>
+							<li>QNX port (BlackBerry) : Audi, BMW, Ford, Honda, Hyundai, Jaguar Land Rover, KIA, Maserati, Mercedes-Benz, Porsche, Toyota, Volkswagen</li>
+						</ul>
+					</section>
+					<section>
+<img src="graphicscontext.png"/>
+<p>Exemple de ports pour le rendu graphique : https://trac.webkit.org/browser/webkit/trunk/Source/WebCore/platform/graphics?order=date&desc=1/</p>
+</section>
+					<section>
+						<p>La base commune pour : parsing HTML/CSS/SVG/MathML &amp; styling/layout (WebCore), JS (JavaScriptCore), GraphicsContext (délègue le rendu à un port)</p>
+						<p>Les ports pour : spécifique OS (pile graphique ou réseau), image decoding, liens hardware (GPU, orientation, geoloc, battery, vibration, touch events, senseurs lumière/pression/paiement, ...). </p><p>Présence de flags lors du build : #if ENABLE(PLATFORM_IOS)(...)</p>
+						<p>C'est le même moteur dans des chassis différents.<br> C'est pour ça qu'il y a des différences de comportement ou bugs</p>
+
+					</section>
+						<section>
+						<p>WebCore délègue à un contexte graphique (GraphicsContext) pour dessiner le layout calculé : dessine moi un bouton</p>
+						<p><img src="mouton.jpeg"><img src="buttonios.png"></p>
+						<p><img src="buttongtk.png"><img src="buttonqt.jpeg"></p>
+
+					</section>
+
+				</section>
+				<section>
+					<h2>Le fork Blink (Google)</h2>
+					<p>Mi 2013 Google décide de diverger de WebKit (plus précisemment de son WebCore)</p>
+					<p>Changements de fond liés aux perfs (ex: volonté de multithreading et décharge vers GPU), au refus des -prefix CSS, au refus originel du code MathML, à l'arrivée du moderne Servo chez Mozilla, à la concurrence avec Apple</p>
+					<p>Le moteur de Chromium : Chrome, Opera, Silk, UI Battle.net, Steam, Spotify post WebKit</p>
+				</section>
+
+				<section>
+					<section>
+						<h2>Retour à WebKit : WebCore (1)</h2>
+						<h3>Les étapes de rendu</h3>
+						<p>mise en 2 arbres du HTML et CSS (parsing)</p>
+						<p>calcul des styles depuis la cascade CSS (styling)</p>
+						<p>calcul de la mise en page x/y (layout)</p>
+						<p>mise en calques de la mise en page puis dessin (painting)</p>
+						<p>post-dessin, le JS peut altérer les 2 arbres (JavascriptCore)</p>
+					</section>
+				
+				</section>
+
+
+				<section>
+					<section>
+						<h2>Retour à WebKit : WebCore (2)</h2>
+						<p>Pour réseau, HTML, CSS, SVG, MathML, Canvas</p>
+						<p>rappel : HTMLDocument != SVGDocument. HTML != MathML</p>
+						<p>Fait le parsing aidé par un preload scanner, le styling le layout et le dessin (mais pas le café). </p>
+						<p>Le layout c'est le calcul de la position et taille d'un élément (une boite rectangulaire). Un parent doit layout() ses enfants pour connaître sa propre hauteur/largeur : récursivité</p>
+						<p>Un layout au final c'est juste des boites dans des boites, une mise en page</p>
+						<p>Les boites sont mises en calques puis dessinées et paintes</p>
+
+						<p><b>Pour savoir comment placer les boites et les dessiner, le moteur ne fait que suivre les specs.</b></p>
+						<p>Specs de base : le box model, le flow, le visual formatting model</p>
+					</section>
+				
+				</section>
+
+				<section>
+
+					<section>
+						<h3>Spec #1 : Le Box Model</h3>
+						<p><img src="css_box_model.gif"></p>
+						<p><small>http://en.wikipedia.org/wiki/Internet_Explorer_box_model_bug</small></p>
+						<p>probablement la spec la plus connue, le rectangle est visible dans un inspecteur, fourni par WebKit</p>
+						<p>langage commun entre créas et devs</p>
+						<p>"tu as mis 1px de trop sur la marge gauche"</p>
+					</section>
+
+					<section>
+						<h3>Spec #2 : les 3 flows : normal (block, inline, relative pos), float, absolute pos</h3>
+						<p>http://www.w3.org/TR/CSS2/visuren.html#positioning-scheme</p>
+						<p>Le HTML est un flux d'éléments (flow)</p>
+						<ul>
+							<li>normal : Les blocks s'empilent (p, div). Les inline sont une ligne, qui wrappe (a, span, image*, table)</li>
+							<li>float: né dans le normal flow, puis sorti et flotte à left ou right</li>
+							<li>absolute: né en dehors du normal flow : pas d'impact sur ses siblings (!float), né au x,y du containing block (parent significatif)</li>
+						</ul>
+						<p>block element, inline element... et replaced element : un element dont le rendu est non spécifié par CSS (image, form control, iframe, applet, object ActiveX/Flash), il est inline par défaut</p>
+
+
+						<p><small>When an object is absolute/fixed positioned, it becomes block-level. Even if the CSS display type is set to inline (or inline-block/table), the effective display type becomes block-level once an object is positioned. </small></p>
+					</section>
+
+					<section>
+						<h3>Visual formatting model et détails</h3>
+						<p>http://www.w3.org/TR/CSS2/visuren.html</p>
+						<p>http://www.w3.org/TR/CSS2/visudet.html</p>
+						<p>specs difficiles, doliprane requis</p>
+						<p>pour briller en société</p>
+						<p>pour postuler chez un fabricant de navigateur</p>
+
+					</section>
+
+				</section>
+
+				<section>
+					<h2>Un cas industriel & créa particulier</h2>
+					<p>Les specs sont publiques</p>
+					<p>Nimporte qui peut y contribuer</p>
+					<p>Les fabricants/individuels implémentent (ou non) les specs selon leur propre roadmap</p>
+					<p>Les specs sont une prédiction de ce qui va arriver dans les navigateurs et donc WebViews natives</p>
+					<p>Suivre les "Intent to implement" pour savoir quand ça va arriver sous FF ou Chrome</p>
+					<p>Suivre les commits WebKit pour savoir quand ça va arriver sous Safari</p>
+					<p>La peinture par specs existe aussi dans l'art/psycho : Klein, Paint by numbers (revoir Will Hunting)</p>
+				</section>
+
+				<section>
+					<h2>Quelques travaux en cours</h2>
+					<small>Blink Intents : https://docs.google.com/spreadsheets/d/1pvXEMD5pRioognaqEzglS-4ZBSQ_YmzL8Fiz7yt4Bb4/edit#gid=0</small>
+					<p>Shape Detection API (barcode, face, text)</p>
+					<p>SMS Receiver API (ENFIN !)</p>
+					<p>SVG dans les favicon (!)</p>
+					<p>&lt;img loading&gt; above the fold pour charger que si on scrolle</p>
+					<p>window.open popup interdit au unload</p>
+					<p>Constructible CSS sans &lt;style&gt; ou &lt;link&gt;</p>
+					<p>Payment API (GooglePay, ApplePay dans le browser)</p>
+					<p>Media Queries dark/light modes</p>
+				</section>
+				<section>
+					<h2>Du HTML brut aux boites</h2>
+					<p>Tu tapes une URL et tu fais entrée : welcome to WebCore</p>
+					<p>Il faut d'abord charger le HTML (HTMLDocument) du cache ou du réseau</p>
+					<p>Caractère par caractère, mise en Tokens (comment, start/end tag, doctype, cdata) </p>
+					<p>En général dans une page on a besoin de ressources (img, script, CSS)</p>
+					<p>On charge toutes les ressources une par une ?</p>
+					<p>Non, on précharge (20% à 30% + rapide)</p>
+				</section>
+
+				<section>
+					<h2>Ami(e)s créas restez avec nous</h2>
+					<p>Une petite plongée dans le code de WebKit</p>
+					<p>Scanners Réseau, Parsing en Tokens (= caractères clef, ex = &lt;div&gt;, &lt;head&gt;, &lt;svg&gt;), Rectangles, Arbres HTML et CSS, Renderers</p>
+					<p>Création d'un arbre de renderers (= "afficheurs"), produisant des rectangles poupées russes, rangés en calques</p>
+					<p>Puis peinture de ces calques</p>
+					<p>TODO Montrer le code XCode ?</p>
+				</section>
+
+				<section>
+
+					<section>
+						<h2>Les preload scanners (... IE8 !)</h2>
+						<p>HTMLPreloadScanner et CSSPreloadScanner</p>
+						<p>Le chargement du HTML est bloquant sur chargement de script JS et CSS externe</p>
+						<p>Parce que le JS éxécuté peut modifier le DOM et son style CSSOM (appendChild, display:), ou avoir besoin de CSS chargée</p>
+						<p>Un preload scanner est un chargeur ressources réseau en parallèle, il permet de libérer le moteur pour faire autre chose (construire un arbre au lieu de télécharger une image).</p>
+						<p>HTMLPreloadScanner : &lt;script&gt;, &lt;img&gt;, &lt;input type image&gt;, &lt;link rel ext&gt;, &lt;poster&gt;</p>
+						<p>CSSPreloadScanner : règle @import (oui, seulement)</p>
+						<p>HTMLPreloadScanner intelligent : la CSS n'est pas chargée si son attribut=disabled, si son <b>attribut</b>media matche pas, elle est chargée en priorité basse</p>
+					</section>
+
+					<section>
+							<p>Le CSSPreloadScanner ne précharge que les CSS @import, pourquoi pas le reste ?</p>
+							<ul>
+						<li>background-image ? il faudrait pas charger une url() dans une MQ inutile mais le scanner <strong>n'est pas un parseur CSS</strong></li>
+						<li>bg image responsive/retina ? puisque scanner != parseur, impossible d'évaluer une MQ (width,dpx), alors &lt;img srcset&gt; a été créé (dans HTMLPreloadScanner)</li>
+						<li>fontes ? compliqué, il faudrait les charger que si elles sont utilisées dans le style, mais impossible de preloader : le style n'est pas encore connu</li>
+						</ul>
+						<p>donc : préférez &lt;img&gt; à &lt;div style&gt; (+ semantic first !)</p>
+						<p>donc : attention aux multiples fontes, utilisez GWF et avec un subset si possible</p>
+
+						<p><small>Blink : multi-threaded PreloadScanner architecture pour pas utiliser la main thread de HTMLPreloadScanner (par ex pour évaluer MQ à part)</small></p>
+<small>DONE https://codereview.chromium.org/201813002/</small>
+						<aside class="notes">
+						yoav
+							ouigo font 75% du poids
+							, gzippez les, cachez les !
+							https://code.google.com/p/chromium/issues/detail?id=347998 M34
+						</aside>
+					</section>
+					
+					<section>
+						pause
+					</section>
+
+					<section>
+						<h2>Parsing (HTML/CSS) puis Layout (mise en rectangles)</h2>
+						<p>Le HTML tokenizé est mis en arbre (DOM Tree) d'HTMLElement, la CSS en Style Rules</p>
+						<small>Le moteur nettoie ce qu'il peut (ici balises mal fermées) et recoud le wrap (splitflow RenderInline.cpp).</small>
+						<p>Matrice DOM Tree + Style Rules = RenderTree</p>	
+						<p>Le tree est un arbre de Renderers (RenderObject)</p>
+						<p>Chaque HTMLElement a une méthode pour s'attacher un Renderer en fonction de son display : le renderer calcule un RenderStyle (Recalculate style) et est rangé dans un RenderLayer (clip,mask,overflow) rangé par z-index relatif</p> (RenderElement.cpp)
+						<p>ex de display: block, inline, table, column, flex, flow (region), grid, ...</p>
+					</section>
+					<section>
+						<p>Renderers de base sous RenderFlow : RenderBlock, RenderInline et RenderText</p>
+						<p>RenderFlexibleBox, RenderGrid, RenderListItem, RenderSlider, RenderTable, ...</p>
+						<p>Tous les élements ne sont pas rendus : head (meta, script, link), display:none</p>
+						<p>Certains élements ont plusieurs renderers : select (boite, drop, bouton). Le Shadow DOM est né ici</p>
+
+						<p>Le RenderStyle est calculé avec parsing de selectors et cascades. Optimisez vos CSS pour accélérer !</p>
+
+						<p>Au layout(), les renderers du tree produisent un rectangle (un LayoutRect suivant le Box Model) avec des coordonnées xy (void RenderBox::layout())</p>
+						<p>Rectangles dans des rectangles : le layout</p>
+
+					</section>
+
+				</section>
+
+				<section>
+					<p>pause</p>
+					<img src="pipe.png"><img src="tree.png"><img src="gpu.png">
+				</section>
+
+
+				<section>
+					<section>
+						<h3>Géométrie (layout propre/sale) et paint</h3>	
+						<p>Rappel : tous les renderers ont une méthode layout() recursive : le renderer du parent significatif (le containing block) layout() ses enfants</p>
+						<p>Dirty bit : si un nouveau renderer rentre dans l'arbre, s'il est dirty (layoutIfNeeded), il informe son parent significatif dit containing block (<b>A renderer’s containing block is an ancestor block of the renderer that is responsible for determining that renderer’s position.</b>).</p>
+						<!-- <p>Les Renderers positionnés sont optimisés (car dessinés après le parent)</p> -->
+						<p>Le containing block se nettoie (layout) jusqu'à ne plus avoir d'enfants dirties. Quand il est propre on peut le dessiner</p>
+						<p>Le containing block a aussi un containing block (parent a un parent). C'est un arbre</p>
+						<p>Le renderer peut déborder le rectangle du containing : c'est l'overflow</p>
+					<!--
+					<p>benfrain : le dirty est par layer. union de dirties. promotion du fiex en hdpi</p>
+					<p>http://aerotwist.com/blog/on-translate3d-and-layer-creation-hacks/</p>
+				-->
+
+			</section>
+
+			<section>		
+				<h3>Déterminer le containing block</h3>
+				<p>Rappel : c'est le block clé qui layout() ses enfants : c'est le parent significatif</p>
+				<p>http://www.w3.org/TR/CSS21/visuren.html#containing-block.</p>
+				<p>Par défaut c'est le root element (ou RenderView : ce qu'on voit à l'écran, à x=0,y=0 : le haut à gauche de l'écran)</p>
+				<p>La position: du rectangle enfant est relative à celle du containingBlock</p>
+				<p>ex : relative ou static (= default) : containingBlock = l'ancêtre block <i>le plus proche</i></p>
+				<p>ex : fixed : containingBlock = RenderView = l'écran. RenderView réajuste les coordonnées du fixed selon le scroll (il re-fixe au bon endroit)</p>
+				<p>ex : absolute : containingBlock = ancêtre le plus proche avec position absolute/relative/fixed ou transform, si aucun, alors RenderView (donc x=0,y=0)</p>	
+			</section>
+			<section>
+				<h3>Ce qui coûte le plus cher au moteur</h3>
+				<p>Recalculer le layout</p>
+				<p>Lutter avec un HTML surchargé de balises inutiles et styles CSS YOLO</p>
+				<p>Le JS qui déclenche des recalculs de layout (ex: worst case, au touch scroll, 60 fois/seconde)</p>
+				<p>Exercice formateur : faire un site avec le moins de balises possibles et le moins de JS possible</p>
+				<p>Exercice UX/DFO avancé : repérer tous les recalculs de layout inutiles</p>
+				<p>N'optimisez que ce que vous pouvez mesurer : utilisez la Timeline de DevTools pour voir le réseau, le layout et le dessin</p>
+
+			</section>
+			<section>
+				<h3>On ne relayout pas tout. Seulement les containing blocks avec dirties (sales gosses)</h3>
+				<p>Le layout n'est pas figé : au 'hit testing' (où et sur quoi est le pointeur) un survol :hover, un focus, un touch JS peut relayouter.</p>
+				<p>Le RenderStyle recalculé ne change pas toujours le layout : color non, position/display/height/width oui. </p>
+				<small>http://gent.ilcore.com/2011/03/how-not-to-trigger-layout-in-webkit.html</small>
+				<!-- <p>Si tu relayout au touchmove t'es mal : le JS est sur la même thread que la UI thread, !Compositor. Blink veut un Layout threadé</p> -->
+
+				<p>Savoir minimiser le layout = perfs ! (une des raisons du fork Blink : éxécuter le JS en // du layout)</p>
+				<p>Savoir profiter du cache et du preload scanner = more perfs !</p>
+				<p>Savoir minimiser le dessin/peinture à venir = godlike, jedi</p>
+				<p>Mettre du translateZ/3D partout pour "accélérer le rendu" : sith lord. Savez-vous ce que ça fait vraiment ?</p>
+				<p>... des questions à poser en recrutement DFO, avant Angular/React</p>
+				
+			</section>
+
+			<section>
+				<h3>Fini de layouter</h3>
+				<p>Le moteur a calculé les coordonnées x, y des rectangles : on a enfin une mise en page</p>
+				<p>En HTML on dessine des rectangles, qui peuvent être clippés ou croisés (mask, shape, overflow:hidden)</p>
+				<p>En SVG on aurait dessiné des paths, circles, ...</p>
+				<p>En MathML on aurait dessiné des vecteurs, racines, fractions, ...</p>
+				<p>En Canvas/WebGL on aurait dessiné sur des surfaces 2D ou 3D avec sources de lumières et angles de caméra, ...</p>
+				<p>Le moteur envoie tout le calculé vers des calques (coucou Photoshop)</p>
+			</section>
+
+			<section>
+				<h3>Le RenderTree est LayoutRecté et ses rectangles rangés en RenderLayer (calques)</h3>
+				<p>utilitaires DumpRenderTree/DumpRenderLayer dans Safari</p>
+
+				<p>Le layer est ensuite Painté via le GraphicsContext (ex: CoreGraphics, rappel des boutons, ici look natif)</p>
+				<p>ex: un overflow:hidden (rectangle qui déborde du containing) c'est un layer clippé</p>
+				<p>ex: une reflection c'est un layer cloné à l'envers</p>
+				<p>ex: un transform3d c'est un layer devenu une texture GL, son intersection crée des sous textures</p>
+				<p>ex: une shape/mask c'est un layer clippé, un filter c'est un layer mélangé (multiply,blur,...)</p>
+				<p>Un calque peut être backé par GPU pour optimiser (accélération carte graphique)</p>
+			</section>
+
+			<section>
+				<h3>Super, on a un Layout non dirty qui nous a donné des calques</h3>
+				<h4>On peut (enfin) dessiner / paint nos RenderLayers!</h4>
+				
+				<p>Pause : plus besoin de penser box model, containing block, les styles sont calculés (cascades appliquées), le layout (padding, margin, border, width, height) a été fait et mis en layers</p>
+				<p>Pour chaque layer, la spec CSS nous dit exactement quoi peindre dans quel ordre</p>
+				<p>La peinture suit les specs, comme le layout : 9 étapes</p>
+
+			</section>
+
+		</section>
+
+		<section>
+			<section>
+				<h2>9 Etapes de peinture</h2>
+				<p>Where the magic happens. With specs</p>
+				<p>On ne peint pas élément par élément au feeling, pour éviter bavures</p>
+				<p>On peint des CSS stacking contexts (piles), en suivant un ordre précis et pas celui du HTML (!=couches)</p>
+				<p>Les piles sont étanches entre elles (sinon ça coule, comme de la... peinture)</p>
+				<p>Un stacking context est formé par élément qui est: racine, positioné, region, flex, grid item, table, float</p>
+				<p>Un stacking context peut avoir des enfants avec stacking contexts (un enfant position:absolute/relatif suffit à créer un nouveau sc)</p>
+				<p>Un stacking context n'est pas juste le z-index : le zi est relatif au context</p>
+			</section>
+			<section>
+				<h3>Oh non, encore des specs !</h3>
+				<small>On peint récursif par stacking context et pas par l'ordre du HTML</small>
+					<ol>
+						<li>on peint background (color/img/col/row/cell/region/grid-item), borders de l'element</li>
+						<li>on peint dans l'ordre du flow : enfants positionnés en zindex &lt; 0</li>
+						<li>on peint dans l'ordre du flow : les blocks non inline, non positionnés</li>
+						<li>on peint dans l'ordre du flow : les floats non positionnés<!-- (genere sc) --></li>
+						<li>on peint dans l'ordre du flow : les inlines non positionnés, tables et inline blocks<!-- (generent un sc) --></li>
+						<li>on peint le sc de l'enfant non positionné puis positionné à zindex: 0 (= fixed)<!-- (genere sc) --></li>
+						<li>on peint le sc de l'enfant opacity &lt; 1 (cf filtre photoshop)</li>
+						<li>on peint le sc de l'enfant avec CSS transform/filter (idem)</li>
+						<li>on peint le sc de l'enfant positionné zindex &gt; 0 (cf calque photoshop)</li>
+						<!-- <li>on passe au sc suivant</li> -->
+					</ol>
+				</section>
+				<section>
+					<h3>This painting order is applied recursively to each stacking context.</h3>
+					<p>Les enfants positionnés forment un stacking context enfant du stacking context parent</p>
+					<p>Le z-index n'est pas un onion global, il est relatif aux éléments du même stacking context. ex : div rouge et fixed</p>
+					<p>c'est pour ça que opacity &lt; 1 affecte le rendu z-index : elle est peinte avant le &gt;0</p>
+					<p>donc : touchez au z-index avec précaution, même si la réponse est dans la spec</p>
+					<p>Aspirine ? et j'ai même pas parlé de flexbox, region, grid ou column</p>
+
+				</section>
+				<section>
+
+					<p>Most elements on a page are in a single, root stacking context, but absolutely or relatively positioned elements with non-auto z-index values form their own stacking contexts (that is, all of their children will be z-ordered within the parent and not be interleaved with content from outside the parent</p>
+<!--
+					<p>With region chains, an element may be split across multiple boxes and these boxes may overlap (for example if they are absolutely positioned). So fragments of the same element can overlap each other. Since each element has a single z-index, it would be required to find another mechanism to decide in which order the fragments are rendered. Since each CSS Region creates a new stacking context, it is clear that each fragment is rendered separately and their rendering order follows the regular CSS rendering model.
+					</p>
+				-->
+					<p>Flex items paint exactly the same as block-level elements in the normal flow, except that ‘z-index’ values other than ‘auto’ create a stacking context even if ‘position’ is ‘static’.  Descendants that are positioned outside a flex item still participate in any stacking context established by the flex item.</p>
+					<p>All column boxes in a multi-column element are in the same stacking context and the drawing order of their contents is as specified in CSS 2.1. Column boxes do not establish new stacking contexts.</p>
+				</section>
+			</section>
+
+			<section>
+				<h2>Ce que translate3d(0,0,0) et translateZ(0) font vraiment</h2>
+				<p>Activent le Compositing d'un RenderLayer (crée une texture) et lui donnent un "backing context"</p>
+				<p>en français : prennent un chemin hardware vers la puce graphique au lieu d'un chemin logiciel</p>
+				<p>Pas seuls à faire ça : CSS transform 3d, filter, opacity ou perspective, video, canvas, flash, auto au dessus d'un composité ou avec un enfant composité</p>
+		<!-- 	<p>For instance, the compositor is responsible for applying the necessary transformations (as specified by the layer's CSS transform properties)
+			to each compositing layer’s bitmap before compositing it.
+			Further, since painting of the layers is decoupled from compositing, invalidating one of these layers only results in repainting the contents of that layer alone and recompositing.
+				In contrast, with the software path, invalidating any layer requires repainting all layers (at least the overlapping portions of them) below and above it which unnecessarily taxes the CPU.</p> -->
+				<p>Oui ça booste le rendu grâce au GPU, mais ça fait beaucoup de textures pour peu de VRAM</p>
+				<p>Envoyer du CPU au GPU a un coût, ça génère des clignotements</p>
+				<p>10 frames de couleur qui changent en JS : 10 textures (demo)</p>
+				<p>To minimize the amount of texture uploads, you can only animate or transition the following properties: opacity, transform, and filter</p>
+				<p>CSS : propriétés CSS will-change et will-animate pour les fous</p>
+				</section>
+
+				<!-- Example of nested vertical slides -->
+				<section>
+					<h1>Q &amp; A</h1>
+
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+</script>
+
+</body>
+</html>

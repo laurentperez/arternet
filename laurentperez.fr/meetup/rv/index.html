@@ -62,7 +62,35 @@
 											</code></pre>
 						<p class="darkside"></p>
 				</section>
-				<section>Slide 2</section>
+				<section>CSS Houdini</section>
+				<h2>tl;dr : pour un accès direct au moteur CSS via JS</h2>
+				<p>Division en 5 grandes APIs</p>
+				<p>https://github.com/w3c/css-houdini-drafts</p>
+				<p>https://github.com/yi-gu/group_effect choregraphy</p>
+				<ul>
+					<li>CSSOM API : objet CSS typé</li>
+					<li>Properties/Values API : de la structure dans des variables CSS (bem pour classes)</li>
+					<li>Paint API : dessin 2D personnalisé avec background:foobar()</li>
+					<li>Web Animation API (WAAPI) : animations non blocking à 60fps relatives à la timeline et au scroll</li>
+					<li>Layout API : au delà de flex et grid, pour des UI entièrement custom (UI militaire, dash voiture/avion, presse, ...)</li>
+				</ul>
+				<section>Recap blogs wk/chome</section>
+				<section>CSSOM API</section>
+				<h2>Mars 2018</h2>
+				<aside>passer vite</aside>
+				<p>Fini la concaténation et les typos, et enfin le tryc/catch</p>
+				<p>Aussi utile pour les outils tiers (Adobe XD)</p>
+				<pre><code class="css">
+						el.attributeStyleMap.set('opacity', CSS.number(0.3));
+						el.attributeStyleMap.has('opacity') // true
+						el.computedStyleMap().get('opacity').value // old getComputedStyle
+						el.attributeStyleMap.delete('opacity') // remove opacity.
+						el.attributeStyleMap.clear();
+						CSS.vw('100');CSS.px(42);
+						CSS.percent('10');CSS.ms(300);
+						new CSSMathSum(CSS.vw(100), CSS.px(-10)).toString(); // "calc(100vw + -10px)"
+						const css = CSSStyleValue.parse('transform', 'translate4d(bogus value)');
+				</code></pre>
 			</div>
 		</div>
 

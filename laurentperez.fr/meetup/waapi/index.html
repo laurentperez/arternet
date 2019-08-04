@@ -1,0 +1,325 @@
+<!--
+ * Copyright 2018 Google Inc. All Rights Reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+-->
+
+<!doctype html>
+<style>
+  body {
+    font-family: Helvetica;
+    margin: 0;
+  }
+  #header {
+    width: 100%;
+    height: 200px;
+    background-color: hotpink;
+    position: fixed;
+    transform-origin: top;
+    top:0;
+    left:0;
+  }
+  #other {
+    width: 50%;
+    height: 100px;
+    background-color: blue;
+    position: fixed;
+    transform-origin: top right;
+
+    top:0;
+    right:0;
+  }
+  main {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    overflow: auto
+  }
+  #inputs {
+    position: absolute;
+  }
+  #flamingo {
+    font-family: Helvetica;
+background-image: url('fla.jpg');
+background-size: cover;
+width: 200px;
+height: 200px;
+z-index: -1;
+position: absolute;
+bottom: 0;
+right: 0;
+  }
+</style>
+<body>
+  <div id="flamingo" >
+  </div>
+
+<div id="header">
+  <form action="#foo">
+    <input type="text" value="hello">
+  </form>
+</div>
+<div id="other">
+  </div>
+<main>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+</main>
+<script language="javascript+animationworklet">
+  registerAnimator('superscroll', class {
+    animate(currentTime, effect) {
+      effect.localTime = currentTime;
+    }
+  });
+  registerAnimator('superfade', class {
+    animate(currentTime, effect) {
+      effect.localTime = currentTime;
+    }
+  });
+</script>
+<script>
+  if(!('animationWorklet' in CSS)) {
+    document.write("You need AnimationWorklet to see this demo :(");
+  }
+  
+  function urlFromTag(sel) {
+    const el = document.querySelector(sel);
+    if(!el) {
+      throw new Error("Couldn’t find element");
+    }
+    const blob = new Blob([el.textContent], {type: "text/javascript"});
+    return URL.createObjectURL(blob);
+  }
+
+  async function init() {
+    await CSS.animationWorklet.addModule(urlFromTag("script[language='javascript+animationworklet']"));
+    new WorkletAnimation(
+      'superscroll',
+      new KeyframeEffect(
+        document.querySelector('#header'), 
+        [
+          {
+            transform: 'scale(1.0,1.0)'
+          },
+          {
+            transform: 'scale(1.0,0.2)'
+          }
+        ],
+        {
+          duration: 2000, 
+          fill: 'both'
+        }
+      ),
+      new ScrollTimeline({
+        scrollSource: document.querySelector("bozdy"), 
+        orientation: "vertical", // "horizontal" or "vertical".
+        timeRange: 2000,
+        startScrollOffset: 0,
+      endScrollOffset: CSS.px(document.documentElement.clientHeight * 0.25)
+      })
+    ).play();
+    new WorkletAnimation(
+      'superfade',
+      new KeyframeEffect(document.querySelector('#other'),
+                    [{opacity: 0}, {opacity: 1}],
+                    {duration: 2000, iterations: 1}),
+      new ScrollTimeline({
+        scrollSource: document.querySelector("bozdy"), 
+        orientation: "vertical", // "horizontal" or "vertical".
+        timeRange: 2000
+      })
+    ).play();
+  }
+  init();
+</script>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+  scroll me<br>
+</body>

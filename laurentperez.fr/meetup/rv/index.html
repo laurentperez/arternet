@@ -26,26 +26,26 @@
 		<div class="reveal">
 			<div class="slides">
 				<style>
-					.darkside_txt {
-						color: white;
-					}
+				.darkside_txt {
+					color: white;
+				}
 				.darkside {
 					background-image:url('anakin.png');
 					background-size: contain;
 					height:250px;
 				}
 				@media (prefers-color-scheme: dark) {
-							body {
-							  background-color: black;
-							  color: white;
-							}
-							.darkside {
-								background-image:url('vador.jpg');
-							}
-							.darkside_txt {
-								color: red;
-							}
-						  }
+					body {
+						background-color: black;
+						color: white;
+					}
+					.darkside {
+						background-image:url('vador.jpg');
+					}
+					.darkside_txt {
+						color: red;
+					}
+				}
 				</style>
 				<section>Dark mode
 					<p class="darkside_txt">iOS13, Android Q</p>
@@ -62,24 +62,34 @@
 											</code></pre>
 						<p class="darkside"></p>
 				</section>
+
+				<section>Recap blogs wk/chome</section>
+				<section>pwa</section>
+				<section>preload srcset</section>
+
 				<section>CSS Houdini</section>
 				<h2>tl;dr : pour un accès direct au moteur CSS via JS</h2>
-				<p>Division en 5 grandes APIs</p>
+				<p>plus de hacks, on a un véritable accès au moteur</p>
+				<p>objet typé, propriétés, peinture, animation, layout, fontes</p>
+				<p>Travail commencé circa 2017</p>
+				<p>Division en 6 grandes APIs</p>
 				<p>https://github.com/w3c/css-houdini-drafts</p>
-				<p>https://github.com/yi-gu/group_effect choregraphy</p>
+				
 				<ul>
-					<li>CSSOM API : objet CSS typé</li>
-					<li>Properties/Values API : de la structure dans des variables CSS (bem pour classes)</li>
-					<li>Paint API : dessin 2D personnalisé avec background:foobar()</li>
-					<li>Web Animation API (WAAPI) : animations non blocking à 60fps relatives à la timeline et au scroll</li>
-					<li>Layout API : au delà de flex et grid, pour des UI entièrement custom (UI militaire, dash voiture/avion, presse, ...)</li>
+					<li>CSSOM API (CAPI)</li>
+					<li>Properties/Values API (PVAPI)</li>
+					<li>Paint API (PAPI)</li>
+					<li>Web Animation API (WAAPI)</li>
+					<li>Layout API (LAPI): au delà de flex et grid, pour des UI entièrement custom (UI militaire, dash voiture/avion, presse, ...)</li>
+					<li>Font Metrics API</li>
 				</ul>
-				<section>Recap blogs wk/chome</section>
+				
 				<section>CSSOM API</section>
 				<h2>Mars 2018</h2>
 				<aside>passer vite</aside>
-				<p>Fini la concaténation et les typos, et enfin le tryc/catch</p>
+				<p>Fini la concaténation et les typos, et enfin le try/catch</p>
 				<p>Aussi utile pour les outils tiers (Adobe XD)</p>
+				<p>Nouvel objet CSS et .attributesStyleMap/.computedStyleMap</p>
 				<pre><code class="css">
 						el.attributeStyleMap.set('opacity', CSS.number(0.3));
 						el.attributeStyleMap.has('opacity') // true
@@ -89,8 +99,61 @@
 						CSS.vw('100');CSS.px(42);
 						CSS.percent('10');CSS.ms(300);
 						new CSSMathSum(CSS.vw(100), CSS.px(-10)).toString(); // "calc(100vw + -10px)"
-						const css = CSSStyleValue.parse('transform', 'translate4d(bogus value)');
+						const css = CSSStyleValue.parse('transform', 'translate4d(bogus value)'); // throw
 				</code></pre>
+
+				<section>Properties/Values API</section>
+				<h2>De la structure/typage dans des variables CSS custom</h2>
+				<p>... on rappelle BEM/SASS/Less pour une structure de classes</p>
+				<p>Types supportés : length, number, %, color, image, url(), integer, angle, time, resolution, transform</p>
+				<pre><code class="css">
+						CSS.registerProperty({
+							name: '--sky',
+							syntax: '<color>',
+							inherits: true,
+							initialValue: 'purple',
+						  });</code></pre>
+				<p>Ne pas réinventer des horreurs lexicales comme couleur=color</p>
+				<p>demo</p>
+
+				<section>Paint API</section>
+				<h2>Dessin 2D personnalisé avec background:paint(foo);</h2>
+				<p>Introduction de PaintWorklet : analogie avec les ServiceWorkers pour le cache/offline/push notifs</p>
+				<p>Une Worklet est short-lived, destructible par le moteur, déplaçable entre threads</p>
+				<p>But : qu'il ne tourne pas dans la main thread (main JS UI =lag)</p>
+				<p>La Paint API donne un Canvas (2DContext)</p>
+				<p>demo</p>
+
+				<section>Web Animations API</section>
+				<h2>Animations non blocking à 60fps relatives à la timeline et au scroll</h2>
+				<p>... c'est surtout fait pour le scroll, et ça le fait bien</p>
+				<small>qui a déjà fait des parallaxes fluides ?</small>
+				<p>AnimationWorklet/KeyFrameEffect, avec état</p>
+				<p>Sprints : https://www.chromium.org/teams/animations/animation-objectives</p>
+				<p>Pour le moment (Août), GroupEffect est désactivé (mais dans la spec)</p>
+				<p>Travail important de Yi Gu sur la Chorégraphie/Staggering</p>
+				<p>https://github.com/yi-gu/group_effect</p>
+				<p>demo</p>
+
+				<section>Layout API</section>
+				<h2>Quand flex ou grid ne suffisent plus (oui oui)</h2>
+				<p>tl;dr : pour écrire son propre display:monlayout;</p>
+				<p>https://houdini.glitch.me/layout</p>
+				<p>Rappel : c'est Bloomberg qui a sponsorisé grid (Igalia)</p>
+				<p>Conteneur de LayoutChild/Edges/Fragments dans un ParentLayout</p>
+				<p>penser à Tetris : c'est exactement ça, une disposition de blocs libre dans un espace clot</p>
+				<p>Les Child sont parallélisables pour les moteurs next-gen</p>
+				<p>Cas d'usage : architecture, UI stricts (affichage dash militaire/voiture/avion)</p>
+				<p>demo</p>
+				
+				<section>Pour suivre / plus loin</section>
+				<p>https://www.chromium.org/teams (rétros 'agiles')</p>
+				<p>https://houdini.glitch.me (démos)</p>
+				<p>2020 : rapprochement de Paint API et WAnimations API</p>
+				<p>On peut imaginer un IDE en ligne 100% web, gratuit et open source qui remplacerait Sketch/Adobe XD, 100% extensible car basé sur des APIs ouvertes</p>
+
+				<section>EOF</section>
+
 			</div>
 		</div>
 

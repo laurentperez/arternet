@@ -25,10 +25,13 @@
 				<section>
 					<h2>Meetup Frontend CSS/JS #1</h2>
 					<p>MontpellierJS / Web Front/Privacy</p>
+					<p><img src="awe.png" alt=""></p>
+					<small>laurentperez.fr/talks</small>
 				</section>
 
 				<section>
-					<p>Qui fait du front/UI/animation ?</p>
+					<h2>Toi, public</h2>
+					<p>Qui fait du front/UI/animation/print ?</p>
 					<p>Ratio natif iOS/Android/Web/Print/Vidéo ?</p>
 				</section>
 
@@ -43,15 +46,16 @@
 				<section>
 					<h2>Motivations</h2>
 					<p>Ouvrir les portes de la "magie" CSS et étendre le moteur</p>
-					<p>Arrêter les hacks JS à base de addClass/el.style</p>
+					<p>Arrêter les hacks JS à base de addClass/el.style/requestAnimationFrame</p>
 					<p>Garantir du rendu à 60fps hors thread UI principale</p>
-					<p>Suite logique après WebComponents et ServiceWorkers</p>
+					<p>Suite logique du travail après WebComponents et ServiceWorkers</p>
 					<p>Task force Chrome, Mozilla, Apple</p>
+					<small>hacks JS = parce qu'on n'a pas le choix</small>
 				</section>
 
 				<section>
 						<p>Division en 6 grandes APIs</p>
-						<p>https://github.com/w3c/css-houdini-drafts</p>
+						<p>https://github.com/w3c/css-houdini-drafts (repo des specs)</p>
 						<p>https://drafts.css-houdini.org (specs)</p>
 						<ul>
 								<li class="fragment fade-up">CSSOM API (CAPI)</li>
@@ -63,17 +67,18 @@
 							</ul>
 							<small>* = pas encore d'implémentation stable</small>
 				</section>
+
 				<section>
 					<h2>Oui, mais le support ?</h2>
 					<p>https://www.chromestatus.com/features#houdini</p>
 					<p>https://ishoudinireadyyet.com</p>
 					<ul>
 						<li>CSSOM : shipped Chrome, ii FF, in dev SF</li>
-						<li>PropValPI : partial Chrome/SF, in dev FF</li>
+						<li>PropValPI : partial 90% Chrome/SF, in dev FF</li>
 						<li>Paint API : shipped Chrome, ii FF, in dev SF</li>
-						<li>Animation API : partial Chrome (sans chorégraphie)</li>
+						<li>Animation API : partial 70% Chrome (sans chorégraphie, Q1 2020)</li>
 						<li>Layout API : très partial Chrome, ii FF</li>
-						<li>Font Metrics API : rien</li>
+						<li>Font Metrics API : rien, uniquement les specs</li>
 					</ul>
 					<small>ii : Intent to Implement, in dev : en cours</small>
 				</section>
@@ -99,7 +104,7 @@ const css = CSSStyleValue.parse('transform', 'translate4d(bogus value)'); // thr
 			</section>
 
 				<section>
-				<h2>Properties/Values API</h2>
+				<h2>Properties/Values API 🔑</h2>
 				<p>De la structure/typage dans des variables CSS custom</p>
 				<p>... on rappelle BEM/SASS/Less pour une structure de classes</p>
 				<p>Types supportés : length, number, %, color, image, url(), integer, angle, time, resolution, transform</p>
@@ -114,7 +119,7 @@ CSS.registerProperty({
 				<p>demo</p>
 				</section>
 
-				<section><h2>Paint API</h2>
+				<section><h2>Paint API 🎨</h2>
 				<p>Dessin 2D personnalisé avec background:paint(foo);</p>
 				<p>Introduction de PaintWorklet : analogie avec les ServiceWorkers pour le cache/offline/push notifs</p>
 				<p>Une Worklet est un JS short-lived, destructible par le moteur, déplaçable entre threads</p>
@@ -124,7 +129,7 @@ CSS.registerProperty({
 				</section>
 
 				<section>
-					<h2>Web Animations API</h2>
+					<h2>Web Animations API 🎬</h2>
 					<p>Animations non blocking à 60fps relatives à la timeline et au scroll
 					... c'est surtout fait pour le scroll, et ça le fait bien</p>
 					<small>qui a déjà fait des parallaxes fluides ?</small>
@@ -136,46 +141,54 @@ CSS.registerProperty({
 				<section>
 						<p>Sprints : https://www.chromium.org/teams/animations/animation-objectives</p>
 						<p>Pour le moment (Août), GroupEffect = enchaînement de KeyFrameEffects est désactivé, mais dans la spec</p>
-						<p>Travail important de Yi Gu sur la Chorégraphie/Staggering pour améliorer la spec</p>
+						<p>Travail important de Yi Gu sur la Chorégraphie et Staggering pour améliorer la spec</p>
 						<p>https://github.com/yi-gu/group_effect</p>
+						<p>Q1 2020</p>
 				</section>
 
-				<section><h2>Layout API</h2>
-				<p>Quand flex ou grid ne suffisent plus (oui oui)</p>
-				<p>tl;dr : pour écrire son propre display:monlayout;</p>
-				<p>https://houdini.glitch.me/layout</p>
-				<p>Rappel : c'est Bloomberg qui a sponsorisé grid (Igalia)</p>
-				<p>Conteneur de LayoutChild/Edges/Fragments dans un ParentLayout (block, flex ou inline)</p>
-				</section>
-
-				<section></section>
-				<p>c'est plus compliqué que les autres API</p>
-				<p>c'est - un peu - comme faire son propre box model</p>
-				<p>penser à Tetris : c'est exactement ça, une disposition de blocs constraints dans un espace clot</p>
-				<p>Les blocs Fragments sont parallélisables pour les moteurs next-gen</p>
-				<p>Cas d'usage : architecture, UI stricts (affichage dash militaire/voiture/avion, presse écrite)</p>
-				<p>demo / illustrations</p>
+				<section><h2>Layout API 🖼️</h2>
+					<p>Quand flex ou grid ne suffisent plus (oui oui)</p>
+					<p>tl;dr : écrire son propre display:layout('monlayout');</p>
+					<p>https://houdini.glitch.me/layout</p>
+					<p>Rappel : c'est Bloomberg qui a sponsorisé grid dans WebKit (Igalia)</p>
+					<p>Conteneur de LayoutChild/Fragments dans un ParentLayout</p>
+					<p>Le Parent a des borders, paddings : les Edges. Entre les Edges, on a des Constraints. Les LayoutChild sont dans ces Constraints et ont des Fragments</p>
+					<p>La clef : chaque Fragment a un inlineOffset/blockOffset pour le positionner par rapport à la box de son Child</p>
+					<p>C'est - en gros - du position:relative; dans un wireframe</p>
 				</section>
 
 				<section>
-					<h2>Font Metrics API</h2>
-					<p>liée au Layout API</p>
-					<p>dessiner des blocs custom n'est pas suffisant : on a souvent besoin de gérer du texte dedans</p>
-					<p>exemple type : faire son propre line-breaking, connaître la baseline dans un Fragment, les tailles les ligatures Œ, Æ, محرك</p>
+					<p>c'est un peu plus compliqué que les autres API</p>
+					<p>penser à Tetris : une disposition de blocs constraints dans un espace clot</p>
+					<p>display:layout('L'); display:layout('4bar');</p>
+					<p>4bar est ici 4 Fragments empilés, L 3 et le 4e a un offset</p>
+					<p>Les blocs Fragments sont _parallélisables_ pour les moteurs next-gen (LayoutNG CR, WebRender FF) : quand le 4bar rentre et 'flashe' un Tetris, 4 lignes sont à effacer, et y-4 pour au dessus</p>
+					<p>Cas d'usage : architecture, UI normés (affichage dash militaire/voiture/avion, presse écrite, eBooks, ePub Comics)</p>
+					<small>des utilisaturs.trices de QuarkXPress/InDesign ?</small>
+					<p>demo / illustrations</p>
+				</section>
+
+				<section>
+					<h2>Font Metrics API 🔠</h2>
+					<p>... causée par la Layout API :</p>
+					<p>dessiner des blocs custom c'est cool mais : on a souvent besoin de gérer du texte dedans</p>
+					<p>exemples : faire son propre line-breaking, connaître la baseline dans un Fragment, les tailles réelles des ligatures Œ, Æ, محرك, et cætera ...</p>
 					<p>exposer seulement la font ne suffit pas : il faut descendre au niveau du glyphe dessiné par chaque navigateur</p>
 				</section>
 				
 				<section>
 					<h2>Pour suivre / plus loin</h2>
-				<p>https://www.chromium.org/teams (rétros 'agiles')</p>
-				<p>https://houdini.glitch.me (démos)</p>
-				<p>2020 : rapprochement de Paint API et WAnimations API</p>
-				<p>On peut imaginer un IDE en ligne 100% web, gratuit et open source qui remplacerait Sketch/Adobe XD, 100% extensible car basé sur des APIs ouvertes</p>
+					<p>https://www.chromium.org/teams (rétros 'agiles')</p>
+					<p>https://houdini.glitch.me (démos)</p>
+					<p>2020 : rapprochement de Paint API et WAnimations API</p>
+					<p>On peut imaginer un IDE en ligne 100% web, gratuit et open source qui remplacerait Sketch/Adobe XD, 100% extensible car basé sur des APIs ouvertes</p>
 				</section>
 
+				<!--
 				<section>Recap blogs wk/chome</section>
 				<section>pwa</section>
 				<section>preload srcset</section>
+				-->
 
 
 				<style>

@@ -3,16 +3,12 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
 		<title>reveal.js</title>
-
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
-
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
-
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -26,33 +22,61 @@
 		<div class="reveal">
 			<div class="slides">
 				
-
-				
 				<section>
-					<h2>Meetup CSS #1</h2>
+					<h2>Meetup Frontend CSS/JS #1</h2>
+					<p>MontpellierJS / Web Front/Privacy</p>
+				</section>
+
+				<section>
+					<p>Qui fait du front/UI/animation ?</p>
+					<p>Ratio natif iOS/Android/Web/Print/Vidéo ?</p>
 				</section>
 
 				<section>
 				<h2>CSS Houdini</h2>
-				<p>tl;dr : pour un accès direct au moteur CSS via JS</p>
-				<p>fini les hacks, on a un véritable accès au moteur</p>
-				<p>on peut créer nos propriétés, peinture, animation, layout</p>
-				<p>travail commencé circa 2017</p>
-				
+				<p class="fragment fade-up">tl;dr : pour un accès direct au moteur CSS via JS</p>
+				<p class="fragment fade-up">fini les hacks, on a un véritable accès au moteur</p>
+				<p class="fragment fade-up">on peut créer nos propriétés, peinture, animation, layout</p>
+				<p class="fragment fade-up">travail commencé circa 2016</p>
 				</section>
+
+				<section>
+					<h2>Motivations</h2>
+					<p>Ouvrir les portes de la "magie" CSS et étendre le moteur</p>
+					<p>Arrêter les hacks JS à base de addClass/el.style</p>
+					<p>Garantir du rendu à 60fps hors thread UI principale</p>
+					<p>Suite logique après WebComponents et ServiceWorkers</p>
+					<p>Task force Chrome, Mozilla, Apple</p>
+				</section>
+
 				<section>
 						<p>Division en 6 grandes APIs</p>
 						<p>https://github.com/w3c/css-houdini-drafts</p>
+						<p>https://drafts.css-houdini.org (specs)</p>
 						<ul>
-								<li>CSSOM API (CAPI)</li>
-								<li>Properties/Values API (PVAPI)</li>
-								<li>Paint API (PAPI)</li>
-								<li>Web Animation API (WAAPI)</li>
-								<li>Layout API (LAPI)</li>
-								<li>Font Metrics API</li>
+								<li class="fragment fade-up">CSSOM API (CAPI)</li>
+								<li class="fragment fade-up">Properties/Values API (PVAPI)</li>
+								<li class="fragment fade-up">Paint API (PAPI)</li>
+								<li class="fragment fade-up">Web Animation API (WAAPI)</li>
+								<li class="fragment fade-up">Layout API (LAPI) *</li>
+								<li class="fragment fade-up">Font Metrics API (FMAPI) *</li>
 							</ul>
+							<small>* = pas encore d'implémentation stable</small>
 				</section>
-				
+				<section>
+					<h2>Oui, mais le support ?</h2>
+					<p>https://www.chromestatus.com/features#houdini</p>
+					<p>https://ishoudinireadyyet.com</p>
+					<ul>
+						<li>CSSOM : shipped Chrome, ii FF, in dev SF</li>
+						<li>PropValPI : partial Chrome/SF, in dev FF</li>
+						<li>Paint API : shipped Chrome, ii FF, in dev SF</li>
+						<li>Animation API : partial Chrome (sans chorégraphie)</li>
+						<li>Layout API : très partial Chrome, ii FF</li>
+						<li>Font Metrics API : rien</li>
+					</ul>
+					<small>ii : Intent to Implement, in dev : en cours</small>
+				</section>
 			
 				
 				<section>
@@ -80,20 +104,20 @@ const css = CSSStyleValue.parse('transform', 'translate4d(bogus value)'); // thr
 				<p>... on rappelle BEM/SASS/Less pour une structure de classes</p>
 				<p>Types supportés : length, number, %, color, image, url(), integer, angle, time, resolution, transform</p>
 				<pre><code class="css">
-						CSS.registerProperty({
-							name: '--sky',
-							syntax: '<color>',
-							inherits: true,
-							initialValue: 'purple',
-						  });</code></pre>
-				<p>Ne pas réinventer des horreurs lexicales comme couleur=color</p>
+CSS.registerProperty({
+		name: '--sky',
+		syntax: '&lt;color&gt;',
+		inherits: true,
+		initialValue: 'vanilla',
+	});</code></pre>
+				<p>Ne pas réinventer des horreurs lexicales comme couleur=color, ni substituer aux data-* HTML5</p>
 				<p>demo</p>
 				</section>
 
 				<section><h2>Paint API</h2>
 				<p>Dessin 2D personnalisé avec background:paint(foo);</p>
 				<p>Introduction de PaintWorklet : analogie avec les ServiceWorkers pour le cache/offline/push notifs</p>
-				<p>Une Worklet est short-lived, destructible par le moteur, déplaçable entre threads</p>
+				<p>Une Worklet est un JS short-lived, destructible par le moteur, déplaçable entre threads</p>
 				<p>But : qu'il ne tourne pas dans la main thread (main JS UI =lag)</p>
 				<p>La Paint API donne un Canvas (2DContext)</p>
 				<p>demo</p>
@@ -101,15 +125,19 @@ const css = CSSStyleValue.parse('transform', 'translate4d(bogus value)'); // thr
 
 				<section>
 					<h2>Web Animations API</h2>
-				<p>Animations non blocking à 60fps relatives à la timeline et au scroll
-				... c'est surtout fait pour le scroll, et ça le fait bien</p>
-				<small>qui a déjà fait des parallaxes fluides ?</small>
-				<p>AnimationWorklet/KeyFrameEffect, avec état</p>
-				<p>Sprints : https://www.chromium.org/teams/animations/animation-objectives</p>
-				<p>Pour le moment (Août), GroupEffect est désactivé (mais dans la spec)</p>
-				<p>Travail important de Yi Gu sur la Chorégraphie/Staggering</p>
-				<p>https://github.com/yi-gu/group_effect</p>
-				<p>demo</p>
+					<p>Animations non blocking à 60fps relatives à la timeline et au scroll
+					... c'est surtout fait pour le scroll, et ça le fait bien</p>
+					<small>qui a déjà fait des parallaxes fluides ?</small>
+					<p>AnimationWorklet/KeyFrameEffect, avec état</p>
+					<p>Limite actuelle : séquence/chorégraphie à faire à la main</p>
+					<p>demo</p>
+				</section>
+
+				<section>
+						<p>Sprints : https://www.chromium.org/teams/animations/animation-objectives</p>
+						<p>Pour le moment (Août), GroupEffect = enchaînement de KeyFrameEffects est désactivé, mais dans la spec</p>
+						<p>Travail important de Yi Gu sur la Chorégraphie/Staggering pour améliorer la spec</p>
+						<p>https://github.com/yi-gu/group_effect</p>
 				</section>
 
 				<section><h2>Layout API</h2>
@@ -117,11 +145,24 @@ const css = CSSStyleValue.parse('transform', 'translate4d(bogus value)'); // thr
 				<p>tl;dr : pour écrire son propre display:monlayout;</p>
 				<p>https://houdini.glitch.me/layout</p>
 				<p>Rappel : c'est Bloomberg qui a sponsorisé grid (Igalia)</p>
-				<p>Conteneur de LayoutChild/Edges/Fragments dans un ParentLayout</p>
-				<p>penser à Tetris : c'est exactement ça, une disposition de blocs libre dans un espace clot</p>
-				<p>Les Child sont parallélisables pour les moteurs next-gen</p>
-				<p>Cas d'usage : architecture, UI stricts (affichage dash militaire/voiture/avion)</p>
-				<p>demo</p>
+				<p>Conteneur de LayoutChild/Edges/Fragments dans un ParentLayout (block, flex ou inline)</p>
+				</section>
+
+				<section></section>
+				<p>c'est plus compliqué que les autres API</p>
+				<p>c'est - un peu - comme faire son propre box model</p>
+				<p>penser à Tetris : c'est exactement ça, une disposition de blocs constraints dans un espace clot</p>
+				<p>Les blocs Fragments sont parallélisables pour les moteurs next-gen</p>
+				<p>Cas d'usage : architecture, UI stricts (affichage dash militaire/voiture/avion, presse écrite)</p>
+				<p>demo / illustrations</p>
+				</section>
+
+				<section>
+					<h2>Font Metrics API</h2>
+					<p>liée au Layout API</p>
+					<p>dessiner des blocs custom n'est pas suffisant : on a souvent besoin de gérer du texte dedans</p>
+					<p>exemple type : faire son propre line-breaking, connaître la baseline dans un Fragment, les tailles les ligatures Œ, Æ, محرك</p>
+					<p>exposer seulement la font ne suffit pas : il faut descendre au niveau du glyphe dessiné par chaque navigateur</p>
 				</section>
 				
 				<section>

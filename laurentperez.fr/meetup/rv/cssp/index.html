@@ -1,0 +1,45 @@
+<!-- index.html -->
+<!doctype html>
+<style>
+  #hotel {
+    --ranking: 1; /* mon type */
+    --flamingo:url('fla.jpg');
+    list-style-image: var(--flamingo); /* hack pour charger image, <color> bug */
+    background-image: paint(meetup); /* mon peintre */
+    height: 200px; /* je suis 'vide : toile où je vais être peint */
+    flex:1;
+    margin:10px;
+  }
+  main {
+    display: flex;
+    border: 1px solid rebeccapurple;
+    --sky: blue;
+    background-color: var(--sky);
+    transition: all 2s;
+  }
+  #photo {
+    width: 100px;
+    height: 100px;
+  }
+</style>
+<main>
+  <img id="photo" src="https://dummyimage.com/100x100" alt="">
+  <div id="hotel">Evaluez votre s&eacute;jour  &nbsp;</div>
+</main>
+<script>
+  CSS.registerProperty({
+    name: '--ranking', /* on type ranking en number */
+    syntax: '<number>',
+    inherits: true,
+    initialValue: 1
+  });
+  CSS.registerProperty({
+    name: '--sky', /* on type sky en couleur */
+    syntax: '<color>',
+    inherits: true,
+    initialValue: '#f3e5ab' /* vanilla. ok */
+  });
+</script>
+<script>
+  CSS.paintWorklet.addModule('meetup.js');
+</script>

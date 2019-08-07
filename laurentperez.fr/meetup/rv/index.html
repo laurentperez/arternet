@@ -46,7 +46,8 @@
 				<section>
 					<h2>Motivations</h2>
 					<p>Ouvrir les portes de la "magie" CSS et étendre le moteur</p>
-					<p>Arrêter les hacks JS à base de addClass/el.style/requestAnimationFrame</p>
+					<p>Arrêter les hacks JS à base de addClass/el.style</p>
+					<p>Séparer logique (JS) et style (CSS)</p>
 					<p>Garantir du rendu à 60fps hors thread UI principale</p>
 					<p>Suite logique du travail après WebComponents et ServiceWorkers</p>
 					<p>Task force Chrome, Mozilla, Apple</p>
@@ -80,7 +81,7 @@
 					<li>Layout API : très partial Chrome, ii FF</li>
 					<li>Font Metrics API : rien, uniquement les specs</li>
 				</ul>
-				<small>ii : Intent to Implement, in dev : en cours</small>
+				<small>ii : Intent to Implement, in dev : partial, en cours : Safary Technology Preview, Chrome Canary</small>
 			</section>
 			
 				
@@ -123,9 +124,19 @@ CSS.registerProperty({
 				<p>Dessin 2D personnalisé avec background:paint(foo);</p>
 				<p>Introduction de PaintWorklet : analogie avec les ServiceWorkers pour le cache/offline/push notifs</p>
 				<p>Une Worklet est un JS short-lived, destructible par le moteur, déplaçable entre threads</p>
-				<p>But : qu'il ne tourne pas dans la main thread (main JS UI =lag)</p>
-				<p>La Paint API donne un Canvas (2DContext)</p>
+				<p>But : qu'elle ne tourne pas dans la main thread (main JS UI =lag) mais dans une autre thread</p>
+				<p>La Paint API donne un Canvas (2DContext) sans accès au DOM</p>
+				<small>sécurité : un Canvas chargé dans une CSS externe ne doit pas pouvoir lire/altérer le DOM</small>
 				<p>demo</p>
+			</section>
+
+			<section>
+				<h2>Quelques remarques</h2>
+				<p>lues de https://github.com/w3c/css-houdini-drafts/issues</p>
+				<ul>
+					<li>Pas de partage de custom prop+paint dans un seul fichier : il faut registerProperty puis mapper la property dans la Worklet</li>
+					<li>Par sécurité, aucun accès au DOM. Le Canvas est étanche. Si besoin de DOM, alors faire un Canvas classique</li>
+				</ul>
 			</section>
 
 			<section>
@@ -133,17 +144,19 @@ CSS.registerProperty({
 					<p>Animations non blocking à 60fps relatives à la timeline et au scroll
 					... c'est surtout fait pour le scroll, et ça le fait bien</p>
 					<small>qui a déjà fait des parallaxes fluides ?</small>
-					<p>AnimationWorklet/KeyFrameEffect, avec état</p>
-					<p>Limite actuelle : séquence/chorégraphie à faire à la main</p>
+					<p>AnimationWorklet/KeyFrameEffect, avec état pour se souvenir si le moteur stoppe la Worklet</p>
+					<p>Limite actuelle : séquence/chorégraphie à faire à la main. Un peu pénible, mais GroupEffect dans la spec</p>
 					<p>demo</p>
 			</section>
 
 			<section>
 					<p>Sprints : https://www.chromium.org/teams/animations/animation-objectives</p>
-					<p>Pour le moment (Août), GroupEffect = enchaînement de KeyFrameEffects est désactivé, mais dans la spec</p>
-					<p>Travail important de Yi Gu sur la Chorégraphie et Staggering pour améliorer la spec</p>
+					<p>Pour le moment (Août), GroupEffect = enchaînement de KeyFrameEffects est désactivé, mais il est dans la spec</p>
+					<p>exemple : démarrer l'animation B quand la A est à 50%, démarrer en même temps A, B, C, D</p>
+					<p>Travail important de Yi Gu sur la Chorégraphie, Séquence et Staggering pour améliorer la spec</p>
 					<p>https://github.com/yi-gu/group_effect</p>
 					<p>Q1 2020</p>
+					<img src="pigeon.gif" alt="">
 			</section>
 
 			<section><h2>Layout API 🖼️</h2>
@@ -176,6 +189,12 @@ CSS.registerProperty({
 				<p>exposer seulement la font ne suffit pas : il faut descendre au niveau du glyphe dessiné par chaque navigateur</p>
 			</section>
 				
+			<section>
+				<h2>Démo avancées</h2>
+				<p>https://css-houdini.rocks</p>
+				<p>notamment : Inner Borders, Masonry, Random Bubble Masks</p>
+			</section>
+
 			<section>
 				<h2>Pour suivre / plus loin</h2>
 				<p>https://www.chromium.org/teams (rétros 'agiles')</p>

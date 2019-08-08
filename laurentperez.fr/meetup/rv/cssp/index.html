@@ -1,37 +1,38 @@
 <!-- index.html -->
 <!doctype html>
 <style>
-  #hotel {
-    --ranking: 1; /* ma note séjour */
+  .hotel {
+    --ranking: 1; /* mon appréciation du séjour */
     /* hack pour charger image, type <image> pas 100% implémenté */
     --flamingo:url('fla.jpg');
     list-style-image: var(--flamingo); 
     background-image: paint(meetup); /* mon peintre */
-    height: 200px; /* je suis 'vide' : hauteur toile où je vais être peint */
+    height: 200px; /* hauteur toile où je vais être peint */
     flex:1;
     margin:10px;
   }
-  #under {
-    background-image: paint(underline);
+  .under {
+    background-image: paint(underline); /* https://blog.logrocket.com/new-horizons-in-css-houdini-and-the-paint-api-8b307cf387bb/ */
     padding: 15px;
   }
   main {
     display: flex;
     border: 1px solid rebeccapurple;
-    --sky: blue;
+    --sky: white;
     background-color: var(--sky);
-    transition: all 2s;
+    transition: all 4s;
   }
-  #photo {
+  .photo {
     width: 100px;
     height: 100px;
+    margin: 10px;
   }
 </style>
 <main>
-  <img id="photo" src="https://dummyimage.com/100x100" alt="">
-  <div id="hotel">Evaluez votre s&eacute;jour  &nbsp;</div>
+  <img class="photo" src="https://dummyimage.com/100x100" alt="">
+  <div class="hotel">Evaluez votre s&eacute;jour  &nbsp;</div>
 </main>
-<div ><h1 id="under">J'ai une underline custom</h1></div>
+<div ><h1 class="under">J'ai une underline custom</h1></div>
 
 <script>
   CSS.registerProperty({
@@ -44,7 +45,7 @@
     name: '--sky', /* on type sky en couleur */
     syntax: '<color>',
     inherits: true,
-    initialValue: '#f3e5ab' /* vanilla. ok */
+    initialValue: '#f3e5ab' /* ya pas vanilla ? allo quoi */
   });
 </script>
 <script>

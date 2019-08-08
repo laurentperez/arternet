@@ -91,7 +91,7 @@
 				<small>passer vite</small>
 				<p>Fini la concaténation et les typos, et enfin le try/catch</p>
 				<p>Nouveaux objets CSS* et .attributesStyleMap/.computedStyleMap</p>
-				<pre><code class="css">
+				<pre class="fragment fade-up"><code class="css">
 el.attributeStyleMap.set('opacity', CSS.number(0.3));
 el.attributeStyleMap.has('opacity');
 el.computedStyleMap().get('opacity').value // ex getComputedStyle
@@ -108,25 +108,25 @@ new CSSStyleValue.parse('transform', 'translate4d(...)'); // throw
 				<h2>Properties/Values API 🔑</h2>
 				<p>De la structure/typage dans des variables CSS custom</p>
 				<small>... on rappelle BEM/SASS/Less pour une structure de classes maintenable</small>
-				<p>Types supportés : length, number, %, color, image, url(), integer, angle, time, resolution, transform</p>
-				<pre><code class="css">
+				<p class="fragment fade-up">Types supportés : length, number, %, color, image, url(), integer, angle, time, resolution, transform</p>
+				<pre class="fragment fade-up"><code class="css">
 CSS.registerProperty({
 		name: '--sky',
 		syntax: '&lt;color&gt;',
 		inherits: true,
 		initialValue: 'vanilla',
 });</code></pre>
-				<p>SVP ne pas réinventer des horreurs lexicales comme couleur=color, ni substituer aux data-* HTML5</p>
+				<small>SVP ne pas réinventer des horreurs lexicales comme couleur=color, ni substituer aux data-* HTML5</small>
 				<p>demo</p>
 			</section>
 
 			<section><h2>Paint API 🎨</h2>
-				<p>Dessin 2D personnalisé avec background:paint(foo);</p>
-				<p>Introduction de PaintWorklet : analogie avec les ServiceWorkers pour le cache/offline/push notifs</p>
-				<p>Une Worklet est un JS short-lived, destructible par le moteur, déplaçable entre threads</p>
-				<p>But : qu'elle ne tourne pas dans la main thread (main JS sur thread UI sans rAf = lag) mais dans une autre thread</p>
-				<p>La Paint API donne un Canvas (2DContext) sans accès au DOM</p>
-				<small>sécurité : un Canvas chargé dans une CSS externe ne doit pas pouvoir lire/altérer le DOM</small>
+				<p>Dessin 2D personnalisé avec <em>background:paint('foo');</em></p>
+				<p>Introduction de <em>PaintWorklet</em> : analogie avec les <em>ServiceWorkers</em> pour le cache/offline/push notifs</p>
+				<p class="fragment fade-up">Une <em>Worklet</em> est un JS short-lived, déplaçable entre threads au gré du moteur</p>
+				<p class="fragment fade-up">But : qu'elle ne tourne pas dans la main thread (main JS sur thread UI sans rAf = lag) mais dans une autre thread</p>
+				<p class="fragment fade-up">La Paint API donne un <em>Canvas</em> (2DContext) sans accès au DOM</p>
+				<small class="fragment fade-up">donc oui le 31/10 tu peux faire background:paint(🎃);</small>
 				<p>demo</p>
 			</section>
 
@@ -135,9 +135,10 @@ CSS.registerProperty({
 				<p>lire https://github.com/w3c/css-houdini-drafts/issues</p>
 				<ul>
 					<li>Par sécurité, aucun accès au DOM. Le Canvas est étanche. Si besoin de DOM, alors faire un Canvas classique</li>
-					<li>Tu n'as pas spécialement envie qu'un Canvas chargé depuis JS/CSS externe puisse repeindre des éléments du DOM</li>
+					<li>Tu n'as pas spécialement envie qu'un Canvas chargé depuis JS/CSS externe puisse lire ou repeindre des éléments du DOM</li>
 					<li>exemple : redessiner champ input de saisie de CB</li>
 				</ul>
+				<img src="gifhack.gif" width="200px" style="border: none;" alt="">
 			</section>
 
 			<section>
@@ -146,18 +147,20 @@ CSS.registerProperty({
 					... c'est surtout fait pour le scroll, et ça le fait bien</p>
 					<small>qui a déjà fait des parallaxes fluides ? des offsets / staggering ?</small>
 					<p><em>AnimationWorklet/KeyFrameEffect</em>, avec état pour se souvenir si le moteur stoppe la Worklet</p>
-					<p>Limite actuelle : séquence/chorégraphie à faire à la main. Un peu pénible, mais <em>GroupEffect</em> dans la spec</p>
+					<p>Limite actuelle : séquence/chorégraphie à faire à la main. Un peu pénible, car <em>GroupEffect</em> dans la spec</p>
 					<p>demo</p>
 			</section>
 
 			<section>
 					<p>Sprints et roadmap : https://www.chromium.org/teams/animations/animation-objectives</p>
 					<p>Pour le moment (Août), <em>GroupEffect</em> = enchaînement de <em>>KeyFrameEffects</em> est désactivé</p>
-					<p>exemple : démarrer l'animation B quand la A est à 50%, démarrer A, B, C, D avec des offsets (= parallaxe/stagger)</p>
+					<p>exemple : démarrer l'animation B quand la A est à 50%, démarrer A, B, C, D en même temps mais avec des offsets (= parallaxe/stagger)</p>
 					<small>Travail important de Yi Gu sur la Chorégraphie, Séquence et Staggering pour améliorer la spec</small>
+			</section>
+			<section>
+					<img src="pigeon.gif" alt="">
 					<small>https://github.com/yi-gu/group_effect</small>
 					<p>Q1 2020</p>
-					<img src="pigeon.gif" alt="">
 			</section>
 
 			<section><h2>Layout API 🖼️</h2>
@@ -174,7 +177,7 @@ CSS.registerProperty({
 			<section>
 				<p>c'est un peu plus compliqué que les autres API</p>
 				<p>penser à Tetris : une disposition de blocs dans un espace constraint</p>
-				<p>display:layout('L'); display:layout('4bar');</p>
+				<p>display:layout('L'); display:layout('4bar'); ▛ ▚ ▐</p>
 				<small>4bar est ici 4 Fragments empilés, L 3 et le 4e a un offset</small>
 				<p>Les blocs Fragments sont _parallélisables_ pour les moteurs next-gen (LayoutNG CR, WebRender FF) : quand le 4bar rentre et 'flashe' un Tetris, 4 lignes sont à effacer, et y-4 pour au dessus</p>
 				<p>Cas d'usage : architecture, UI normés (affichage dash militaire/voiture/avion, presse écrite, eBooks, ePub Comics)</p>
@@ -186,8 +189,8 @@ CSS.registerProperty({
 				<h2>Font Metrics API 🔠</h2>
 				<p>... spec causée par la Layout API :</p>
 				<p>dessiner des blocs custom c'est cool mais : on a parfois besoin de gérer du texte dedans</p>
-				<p>exemples : faire son propre line-breaking, connaître la baseline dans un Fragment, les tailles réelles des ligatures Œ, Æ, محرك, et cætera ...</p>
-				<p>exposer seulement la font ne suffit pas : il faut descendre au niveau du glyphe dessiné par chaque navigateur</p>
+				<small>exemples : faire son propre line-breaking, connaître la baseline dans un Fragment, les tailles réelles des symboles math chimie, des ligatures Œ, Æ, محرك, et cætera … &lt;- c'est des points de suspension, pas '...' </small>
+				<p>exposer seulement la font ne suffit pas : il faut descendre au niveau du <em>glyphe</em> dessiné par chaque navigateur</p>
 			</section>
 				
 			<section>

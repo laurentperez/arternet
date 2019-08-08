@@ -26,7 +26,7 @@
 					<h2>Meetup Frontend CSS/JS #1</h2>
 					<p>MontpellierJS / Web Front/Privacy</p>
 					<p><img src="awe.png" alt=""></p>
-					<small>laurentperez.fr/talks</small>
+					<small>laurentperez.fr/talks/css1</small>
 				</section>
 
 				<section>
@@ -78,7 +78,7 @@
 					<li>CSSOM : shipped Chrome, ii FF, in dev SF</li>
 					<li>PropValPI : partial 90% Chrome/SF, in dev FF</li>
 					<li>Paint API : shipped Chrome, ii FF, in dev SF</li>
-					<li>Animation API : partial 70% Chrome (sans chorégraphie, Q1 2020)</li>
+					<li>Animation API : partial 80% Chrome (sans chorégraphie, Q1 2020)</li>
 					<li>Layout API : très partial Chrome, ii FF</li>
 					<li>Font Metrics API : rien, uniquement les specs</li>
 				</ul>
@@ -145,14 +145,14 @@ CSS.registerProperty({
 					<p>Animations non blocking à 60fps relatives à la timeline et au scroll
 					... c'est surtout fait pour le scroll, et ça le fait bien</p>
 					<small>qui a déjà fait des parallaxes fluides ? des offsets / staggering ?</small>
-					<p>AnimationWorklet/KeyFrameEffect, avec état pour se souvenir si le moteur stoppe la Worklet</p>
-					<p>Limite actuelle : séquence/chorégraphie à faire à la main. Un peu pénible, mais GroupEffect dans la spec</p>
+					<p><em>AnimationWorklet/KeyFrameEffect</em>, avec état pour se souvenir si le moteur stoppe la Worklet</p>
+					<p>Limite actuelle : séquence/chorégraphie à faire à la main. Un peu pénible, mais <em>GroupEffect</em> dans la spec</p>
 					<p>demo</p>
 			</section>
 
 			<section>
 					<p>Sprints et roadmap : https://www.chromium.org/teams/animations/animation-objectives</p>
-					<p>Pour le moment (Août), GroupEffect = enchaînement de KeyFrameEffects est désactivé</p>
+					<p>Pour le moment (Août), <em>GroupEffect</em> = enchaînement de <em>>KeyFrameEffects</em> est désactivé</p>
 					<p>exemple : démarrer l'animation B quand la A est à 50%, démarrer A, B, C, D avec des offsets (= parallaxe/stagger)</p>
 					<small>Travail important de Yi Gu sur la Chorégraphie, Séquence et Staggering pour améliorer la spec</small>
 					<small>https://github.com/yi-gu/group_effect</small>
@@ -165,10 +165,10 @@ CSS.registerProperty({
 				<p>tl;dr : écrire son propre display:layout('monlayout');</p>
 				<p>https://houdini.glitch.me/layout</p>
 				<small>Rappel : c'est Bloomberg qui a sponsorisé grid dans WebKit (Igalia)</small>
-				<p>Conteneur de LayoutChild/Fragments dans un ParentLayout</p>
-				<p>Le Parent a des borders, paddings : les Edges. Entre les Edges, on a des Constraints. Les LayoutChild sont dans ces Constraints et ont des Fragments</p>
-				<p>La clef : chaque Fragment a un inlineOffset/blockOffset pour le positionner par rapport à la box de son Child</p>
-				<p>C'est - en gros - du position:relative; dans un wireframe</p>
+				<p>Conteneur de <em>LayoutChild/Fragments</em> dans un <em>ParentLayout</em></p>
+				<small>Le <em>Parent</em> a des borders, paddings : les <em>Edges</em>. Entre les <em>Edges</em>, on a des <em>Constraints</em>. Les <em>LayoutChild</em> sont dans ces <em>Constraints</em> et ont des <em>Fragments</em></small>
+				<p>La clef : chaque <em>Fragment</em> a un <em>inlineOffset/blockOffset</em> pour le positionner par rapport à la box de son <em>Child</em></p>
+				<p>C'est - en gros - du position:relative; dans un <em>wireframe</em></p>
 			</section>
 
 			<section>

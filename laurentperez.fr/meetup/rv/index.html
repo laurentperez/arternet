@@ -31,26 +31,27 @@
 
 				<section>
 					<h2>Toi, public</h2>
-					<p>Qui fait du front/UI/animation/print ?</p>
-					<p>Ratio natif iOS/Android/Web/Print/Vidéo ?</p>
+					<p>Qui fait du front/UI/animation/print/TV ?</p>
+					<p>Ratio natif iOS/Android (hors WebViews) &amp; web/print/vidéo ?</p>
 				</section>
 
 				<section>
-				<h2>CSS Houdini</h2>
+				<h2>✨ CSS Houdini ✨</h2>
 				<p class="fragment fade-up">tl;dr : pour un accès direct au moteur CSS via JS</p>
 				<p class="fragment fade-up">fini les hacks, on a un véritable accès au moteur</p>
 				<p class="fragment fade-up">on peut créer nos propriétés, peinture, animation, layout</p>
 				<p class="fragment fade-up">travail commencé circa 2016</p>
+				<p  class="fragment fade-up">suite logique du travail après WebComponents et ServiceWorkers</p>
 				</section>
 
 				<section>
 					<h2>Motivations</h2>
-					<p>Ouvrir les portes de la "magie" CSS et étendre le moteur</p>
-					<p>Arrêter les hacks JS à base de addClass/el.style</p>
+					<p>Ouvrir les portes de la "magie" CSS et pouvoir étendre le moteur sans attendre les fabricants ou ticket les librairies tierces</p>
+					<small>Arrêter les hacks JS à base de addClass/el.style/translate3D(0,0,0)</small>
 					<p>Séparer logique (JS) et style (CSS)</p>
 					<p>Garantir du rendu à 60fps hors thread UI principale</p>
-					<p>Suite logique du travail après WebComponents et ServiceWorkers</p>
-					<p>Task force Chrome, Mozilla, Apple</p>
+					
+					<p>Task force Google, Mozilla, Apple</p>
 					<small>hacks JS = parce qu'on n'a pas le choix</small>
 				</section>
 
@@ -89,8 +90,7 @@
 				<h2>CSSOM API</h2>
 				<small>passer vite</small>
 				<p>Fini la concaténation et les typos, et enfin le try/catch</p>
-				<p>Aussi utile pour les outils tiers (Adobe XD)</p>
-				<p>Nouvel objet CSS et .attributesStyleMap/.computedStyleMap</p>
+				<p>Nouveaux objets CSS* et .attributesStyleMap/.computedStyleMap</p>
 				<pre><code class="css">
 el.attributeStyleMap.set('opacity', CSS.number(0.3));
 el.attributeStyleMap.has('opacity');
@@ -107,7 +107,7 @@ new CSSStyleValue.parse('transform', 'translate4d(...)'); // throw
 			<section>
 				<h2>Properties/Values API 🔑</h2>
 				<p>De la structure/typage dans des variables CSS custom</p>
-				<p>... on rappelle BEM/SASS/Less pour une structure de classes</p>
+				<small>... on rappelle BEM/SASS/Less pour une structure de classes maintenable</small>
 				<p>Types supportés : length, number, %, color, image, url(), integer, angle, time, resolution, transform</p>
 				<pre><code class="css">
 CSS.registerProperty({
@@ -124,7 +124,7 @@ CSS.registerProperty({
 				<p>Dessin 2D personnalisé avec background:paint(foo);</p>
 				<p>Introduction de PaintWorklet : analogie avec les ServiceWorkers pour le cache/offline/push notifs</p>
 				<p>Une Worklet est un JS short-lived, destructible par le moteur, déplaçable entre threads</p>
-				<p>But : qu'elle ne tourne pas dans la main thread (main JS UI =lag) mais dans une autre thread</p>
+				<p>But : qu'elle ne tourne pas dans la main thread (main JS sur thread UI sans rAf = lag) mais dans une autre thread</p>
 				<p>La Paint API donne un Canvas (2DContext) sans accès au DOM</p>
 				<small>sécurité : un Canvas chargé dans une CSS externe ne doit pas pouvoir lire/altérer le DOM</small>
 				<p>demo</p>
@@ -132,10 +132,11 @@ CSS.registerProperty({
 
 			<section>
 				<h2>Quelques remarques</h2>
-				<p>lues de https://github.com/w3c/css-houdini-drafts/issues</p>
+				<p>lire https://github.com/w3c/css-houdini-drafts/issues</p>
 				<ul>
-					<li>Pas de partage de custom prop+paint dans un seul fichier : il faut registerProperty puis mapper la property dans la Worklet</li>
 					<li>Par sécurité, aucun accès au DOM. Le Canvas est étanche. Si besoin de DOM, alors faire un Canvas classique</li>
+					<li>Tu n'as pas spécialement envie qu'un Canvas chargé depuis JS/CSS externe puisse repeindre des éléments du DOM</li>
+					<li>exemple : redessiner champ input de saisie de CB</li>
 				</ul>
 			</section>
 
@@ -143,18 +144,18 @@ CSS.registerProperty({
 					<h2>Web Animations API 🎬</h2>
 					<p>Animations non blocking à 60fps relatives à la timeline et au scroll
 					... c'est surtout fait pour le scroll, et ça le fait bien</p>
-					<small>qui a déjà fait des parallaxes fluides ?</small>
+					<small>qui a déjà fait des parallaxes fluides ? des offsets / staggering ?</small>
 					<p>AnimationWorklet/KeyFrameEffect, avec état pour se souvenir si le moteur stoppe la Worklet</p>
 					<p>Limite actuelle : séquence/chorégraphie à faire à la main. Un peu pénible, mais GroupEffect dans la spec</p>
 					<p>demo</p>
 			</section>
 
 			<section>
-					<p>Sprints : https://www.chromium.org/teams/animations/animation-objectives</p>
-					<p>Pour le moment (Août), GroupEffect = enchaînement de KeyFrameEffects est désactivé, mais il est dans la spec</p>
-					<p>exemple : démarrer l'animation B quand la A est à 50%, démarrer en même temps A, B, C, D</p>
-					<p>Travail important de Yi Gu sur la Chorégraphie, Séquence et Staggering pour améliorer la spec</p>
-					<p>https://github.com/yi-gu/group_effect</p>
+					<p>Sprints et roadmap : https://www.chromium.org/teams/animations/animation-objectives</p>
+					<p>Pour le moment (Août), GroupEffect = enchaînement de KeyFrameEffects est désactivé</p>
+					<p>exemple : démarrer l'animation B quand la A est à 50%, démarrer A, B, C, D avec des offsets (= parallaxe/stagger)</p>
+					<small>Travail important de Yi Gu sur la Chorégraphie, Séquence et Staggering pour améliorer la spec</small>
+					<small>https://github.com/yi-gu/group_effect</small>
 					<p>Q1 2020</p>
 					<img src="pigeon.gif" alt="">
 			</section>
@@ -163,7 +164,7 @@ CSS.registerProperty({
 				<p>Quand flex ou grid ne suffisent plus (oui oui)</p>
 				<p>tl;dr : écrire son propre display:layout('monlayout');</p>
 				<p>https://houdini.glitch.me/layout</p>
-				<p>Rappel : c'est Bloomberg qui a sponsorisé grid dans WebKit (Igalia)</p>
+				<small>Rappel : c'est Bloomberg qui a sponsorisé grid dans WebKit (Igalia)</small>
 				<p>Conteneur de LayoutChild/Fragments dans un ParentLayout</p>
 				<p>Le Parent a des borders, paddings : les Edges. Entre les Edges, on a des Constraints. Les LayoutChild sont dans ces Constraints et ont des Fragments</p>
 				<p>La clef : chaque Fragment a un inlineOffset/blockOffset pour le positionner par rapport à la box de son Child</p>
@@ -172,9 +173,9 @@ CSS.registerProperty({
 
 			<section>
 				<p>c'est un peu plus compliqué que les autres API</p>
-				<p>penser à Tetris : une disposition de blocs constraints dans un espace clot</p>
+				<p>penser à Tetris : une disposition de blocs dans un espace constraint</p>
 				<p>display:layout('L'); display:layout('4bar');</p>
-				<p>4bar est ici 4 Fragments empilés, L 3 et le 4e a un offset</p>
+				<small>4bar est ici 4 Fragments empilés, L 3 et le 4e a un offset</small>
 				<p>Les blocs Fragments sont _parallélisables_ pour les moteurs next-gen (LayoutNG CR, WebRender FF) : quand le 4bar rentre et 'flashe' un Tetris, 4 lignes sont à effacer, et y-4 pour au dessus</p>
 				<p>Cas d'usage : architecture, UI normés (affichage dash militaire/voiture/avion, presse écrite, eBooks, ePub Comics)</p>
 				<small>des utilisaturs.trices de QuarkXPress/InDesign ?</small>
@@ -183,14 +184,15 @@ CSS.registerProperty({
 
 			<section>
 				<h2>Font Metrics API 🔠</h2>
-				<p>... causée par la Layout API :</p>
-				<p>dessiner des blocs custom c'est cool mais : on a souvent besoin de gérer du texte dedans</p>
+				<p>... spec causée par la Layout API :</p>
+				<p>dessiner des blocs custom c'est cool mais : on a parfois besoin de gérer du texte dedans</p>
 				<p>exemples : faire son propre line-breaking, connaître la baseline dans un Fragment, les tailles réelles des ligatures Œ, Æ, محرك, et cætera ...</p>
 				<p>exposer seulement la font ne suffit pas : il faut descendre au niveau du glyphe dessiné par chaque navigateur</p>
 			</section>
 				
 			<section>
 				<h2>Démo avancées</h2>
+				<p>avec Chrome Canary, Safari Technology Preview ou Firefox Aurora</p>
 				<p>https://css-houdini.rocks</p>
 				<p>notamment : Inner Borders, Masonry, Random Bubble Masks</p>
 			</section>
@@ -199,8 +201,9 @@ CSS.registerProperty({
 				<h2>Pour suivre / plus loin</h2>
 				<p>https://www.chromium.org/teams (rétros 'agiles')</p>
 				<p>https://houdini.glitch.me (démos)</p>
-				<p>2020 : rapprochement de Paint API et Web Animations API</p>
+				<p>2020, rapprochement de Paint API et Web Animations API :</p>
 				<p>On peut imaginer un IDE en ligne 100% web, gratuit et open source qui remplacerait Sketch/Adobe XD, 100% extensible car basé sur des APIs ouvertes</p>
+				<p>Plus de "on peut pas le faire en CSS" : mais ça va demander des compétences de dessin canvas2D et animation... FullFullStack ?</p>
 			</section>
 
 				<!--

@@ -76,7 +76,7 @@
 				<p>https://ishoudinireadyyet.com</p>
 				<ul>
 					<li>CSSOM : shipped Chrome, ii FF, in dev SF</li>
-					<li>PropValPI : partial 90% Chrome/SF, in dev FF</li>
+					<li>Properties Values API : partial 90% Chrome/SF, in dev FF</li>
 					<li>Paint API : shipped Chrome, ii FF, in dev SF</li>
 					<li>Animation API : partial 80% Chrome (sans chorégraphie, Q1 2020)</li>
 					<li>Layout API : très partial Chrome, ii FF</li>
@@ -135,10 +135,19 @@ CSS.registerProperty({
 				<p>lire https://github.com/w3c/css-houdini-drafts/issues</p>
 				<ul>
 					<li>Par sécurité, aucun accès au DOM. Le Canvas est étanche. Si besoin de DOM, alors faire un Canvas classique</li>
-					<li>Tu n'as pas spécialement envie qu'un Canvas chargé depuis JS/CSS externe puisse lire ou repeindre des éléments du DOM</li>
+					<li>Tu n'as pas spécialement envie qu'un Canvas chargé depuis JS/CSS <em>externe</em> puisse lire ou repeindre des éléments du DOM</li>
 					<li>exemple : redessiner champ input de saisie de CB</li>
 				</ul>
 				<img src="gifhack.gif" width="200px" style="border: none;" alt="">
+			</section>
+
+			<section>
+				<p>Values trop simples ? Comment passer des avancées ?</p>
+				<p>exemple : un stream audio/vidéo/trading/ECU (data automobile) </p>
+				<p>cheap solution (Juin 2019) : ajouter un type &lt;blob&gt;</p>
+				<p>https://github.com/w3c/css-houdini-drafts/issues/872</p>
+				<p>postMessage pour plus tard pour pas repasser la Value dans la main thread</p>
+				<p>valable aussi pour AnimationWorklet :</p>
 			</section>
 
 			<section>
@@ -203,6 +212,7 @@ CSS.registerProperty({
 			<section>
 				<h2>Pour suivre / plus loin</h2>
 				<p>https://www.chromium.org/teams (rétros 'agiles')</p>
+				<p>https://github.com/w3c/css-houdini-drafts/wiki/Meeting-Planning-Pages (meetings trimestriels CSSWG)</p>
 				<p>https://houdini.glitch.me (démos)</p>
 				<p>2020, rapprochement de Paint API et Web Animations API :</p>
 				<p>On peut imaginer un IDE en ligne 100% web, gratuit et open source qui remplacerait Sketch/Adobe XD, 100% extensible car basé sur des APIs ouvertes</p>

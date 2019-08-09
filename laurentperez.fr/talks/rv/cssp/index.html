@@ -5,6 +5,7 @@
     --ranking: 1; /* mon appréciation du séjour */
     /* hack pour charger image, type <image> pas 100% implémenté */
     --flamingo:url('fla.jpg');
+    --im:url('fla.jpg');
     list-style-image: var(--flamingo); 
     background-image: paint(meetup); /* mon peintre */
     height: 200px; /* hauteur toile où je vais être peint */
@@ -46,6 +47,12 @@
     syntax: '<color>',
     inherits: true,
     initialValue: '#f3e5ab' /* ya pas vanilla ? allo quoi */
+  });
+  CSS.registerProperty({
+    name: '--im', /* on type im en image */
+    syntax: '<image> | none',
+    inherits: true,
+    initialValue: 'none'
   });
 </script>
 <script>

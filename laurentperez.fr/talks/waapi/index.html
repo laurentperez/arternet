@@ -212,6 +212,7 @@ right: 0;
   scroll me<br>
 </main>
 <script language="javascript+animationworklet">
+  /* on enregistre nos AnimationWorklets */
   registerAnimator('superscroll', class {
     animate(currentTime, effect) {
       effect.localTime = currentTime;
@@ -230,9 +231,6 @@ right: 0;
   
   function urlFromTag(sel) {
     const el = document.querySelector(sel);
-    if(!el) {
-      throw new Error("Couldn’t find element");
-    }
     const blob = new Blob([el.textContent], {type: "text/javascript"});
     return URL.createObjectURL(blob);
   }
@@ -261,7 +259,8 @@ right: 0;
         orientation: "vertical", // "horizontal" or "vertical".
         timeRange: 2000,
         startScrollOffset: 0,
-      endScrollOffset: CSS.px(document.documentElement.clientHeight * 0.25)
+        /* on stoppe quand on a scrollé de 1/4 de la hauteur */
+        endScrollOffset: CSS.px(document.documentElement.clientHeight * 0.25)
       })
     ).play();
     new WorkletAnimation(
@@ -271,8 +270,9 @@ right: 0;
                     {duration: 2000, iterations: 1}),
       new ScrollTimeline({
         scrollSource: document.querySelector("bozdy"), 
-        orientation: "vertical", // "horizontal" or "vertical".
+        orientation: "vertical",
         timeRange: 2000
+        /* on laisse fader jusqu'à aligner à 2000 */
       })
     ).play();
   }

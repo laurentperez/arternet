@@ -20,9 +20,9 @@ class MeetupPainter {
     if(ranking <= 3){color='red'} // c'est déjà un number, pas de cast
     else if(ranking > 3 & ranking <= 5){color='orange'}
 
-    ctx.save();
+    ctx.save();aa
     for(let x = 0.5; x < ranking; x++) {
-      ctx.globalAlpha = ratio;
+      ctx.globalAlpha = 1/ranking;
       ctx.drawImage(image, 0, 100, 120, 100 );
       ctx.restore();
       //debugger;

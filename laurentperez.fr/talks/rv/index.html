@@ -137,9 +137,11 @@ CSS.registerProperty({
 				<h2>Sécurité</h2>
 				<p>lire aussi https://github.com/w3c/css-houdini-drafts/issues</p>
 				<ul>
-					<li>Aucun accès au DOM. Le Canvas est étanche. Si besoin de DOM, alors faire un Canvas classique sans Paint API</li>
+					<li>Aucun accès au DOM. Le Canvas est étanche. Si besoin de DOM, faire un Canvas classique sans Paint API</li>
 					<li>Car tu n'as pas spécialement envie qu'un Canvas chargé depuis JS/CSS <em>externe</em> puisse lire ou repeindre des éléments du DOM</li>
 					<li>exemple : redessiner champ input de saisie de CB</li>
+					<li>c'est un <em>PaintRenderingContext2D</em> subset de <em>CanvasRenderingContext2D</em></li>
+					<small>https://github.com/w3c/css-houdini-drafts/issues/20</small>
 				</ul>
 				<img src="gifhack.gif" width="200px" style="border: none;" alt="">
 			</section>

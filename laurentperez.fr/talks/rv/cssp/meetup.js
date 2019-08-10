@@ -20,12 +20,12 @@ class MeetupPainter {
     if(ranking <= 3){color='red'} // c'est déjà un number, pas de cast
     else if(ranking > 3 & ranking <= 5){color='orange'}
 
-    ctx.save();aa
+    ctx.save();
     for(let x = 0.5; x < ranking; x++) {
       ctx.globalAlpha = 1/ranking;
       ctx.drawImage(image, 0, 100, 120, 100 );
       ctx.restore();
-      //debugger;
+      debugger;
       this.drawStar(ctx,color,x*(size-10 + spacing),1*(size-10 + spacing),5,30,15);
       console.log('drawn:' + x*(size + spacing), 1*(size + spacing), size, size);
       console.log("type de sky:" + sky);

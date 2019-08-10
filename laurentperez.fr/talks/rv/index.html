@@ -24,7 +24,7 @@
 				
 				<section>
 					<h2>Meetup Frontend CSS/JS #1</h2>
-					<p>MontpellierJS / Web Front/Privacy</p>
+					<p>MontpellierJS / Web Front</p>
 					<p><img src="awe.png" alt=""></p>
 					<small>laurentperez.fr/talks/css1</small>
 				</section>
@@ -39,8 +39,8 @@
 			<section>
 				<h2>✨ CSS Houdini ✨</h2>
 				<p class="fragment fade-up">tl;dr : pour un accès direct au moteur CSS via JS</p>
-				<p class="fragment fade-up">fini les hacks, on a un véritable accès au moteur</p>
-				<p class="fragment fade-up">on peut créer nos propriétés, peinture, animation, layout</p>
+				<p class="fragment fade-up">on a un véritable accès au moteur</p>
+				<p class="fragment fade-up">on peut y créer nos propriétés, peinture, animation, layout</p>
 				<p class="fragment fade-up">travail commencé circa 2016</p>
 				<p  class="fragment fade-up">suite logique du travail après WebComponents et ServiceWorkers</p>
 			</section>
@@ -49,7 +49,7 @@
 				<h2>Motivations</h2>
 				<p  class="fragment fade-up">Ouvrir les portes de la "magie" CSS et pouvoir étendre le moteur sans attendre les fabricants ou ticket les librairies tierces</p>
 				<small  class="fragment fade-up">Arrêter les hacks JS à base de addClass/el.style/translate3D(0,0,0)</small>
-				<p  class="fragment fade-up">Séparer logique (JS) et style (CSS)</p>
+				<p  class="fragment fade-up">Séparer la logique (JS) et le style (CSS)</p>
 				<p  class="fragment fade-up">Garantir du rendu à 60fps hors thread UI principale</p>
 				<p>Task force Google, Mozilla, Apple</p>
 				<small  class="fragment fade-up">hacks JS = parce qu'on n'a pas le choix</small>
@@ -84,11 +84,14 @@
 				</ul>
 				<small>ii : Intent to Implement, in dev : partial, en cours : Safary Technology Preview, Chrome Canary</small>
 			</section>
+
+			<section>
+				<p>Chromium (Blink) lead, Safari TP (WebKit) suit</p>
+				<p>Firefox (Servo) est à la bourre</p>
+			</section>
 			
-				
 			<section>
 				<h2>CSSOM API</h2>
-				<small>passer vite</small>
 				<p>Fini la concaténation et les typos, et enfin le try/catch</p>
 				<p>Nouveaux objets CSS* et .attributesStyleMap/.computedStyleMap</p>
 				<pre class="fragment fade-up"><code class="css">
@@ -99,7 +102,7 @@ el.attributeStyleMap.delete('opacity')
 el.attributeStyleMap.clear();
 CSS.vw('100'); CSS.px(42);
 CSS.percent('10'); CSS.ms(300);
-new CSSMathSum(CSS.vw(100), CSS.px(-10)) // "calc(100vw + -10px)"
+new CSSMathSum(CSS.vw(100), CSS.px(-10)) // calc(100vw + -10px)
 new CSSStyleValue.parse('transform', 'translate4d(...)'); // throw
 				</code></pre>
 			</section>
@@ -184,7 +187,7 @@ CSS.registerProperty({
 			</section>
 
 			<section>
-				<p>c'est un peu plus compliqué que les autres API</p>
+				<p>c'est un peu plus riche que les autres API</p>
 				<p>penser à Tetris : une disposition de blocs dans un espace constraint</p>
 				<p>display:layout('L'); display:layout('4bar'); ▛ ▚ ▐</p>
 				<small>4bar est ici 4 Fragments empilés, L 3 et le 4e a un offset</small>
@@ -196,7 +199,7 @@ CSS.registerProperty({
 
 			<section>
 				<h2>🔠 Font Metrics API 🔠</h2>
-				<p>... spec causée par la Layout API :</p>
+				<p>... spec utilitaire causée par la Layout API :</p>
 				<p>dessiner des blocs custom c'est cool mais : on a parfois besoin de gérer du texte dedans</p>
 				<small>ex : faire son propre line-breaking, connaître la baseline dans un Fragment, les tailles réelles des symboles math chimie, des ligatures Œ, Æ, محرك, et cætera … &lt;- c'est des points de suspension, pas '...' </small>
 				<p>exposer seulement la Font ne suffit pas : il faut descendre au niveau du <em>glyphe</em> dessiné par chaque navigateur</p>

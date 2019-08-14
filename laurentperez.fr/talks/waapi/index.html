@@ -31,16 +31,19 @@
   #inputs {
     position: absolute;
   }
-  #flamingo {
-    font-family: Helvetica;
-background-image: url('fla.jpg');
+  .logo {
+background-image: url('gits.png');
 background-size: cover;
-width: 200px;
-height: 200px;
+background-color: transparent;
+width: 100px;
+height: 100px;
 z-index: -1;
 position: absolute;
 bottom: 0;
 right: 0;
+  }
+  .logo2 {
+  right: 10vw;
   }
   #progress {
     width: 200px;
@@ -51,16 +54,13 @@ right: 0;
   }
 </style>
 <body>
-  <div id="flamingo" >
+  <div class="logo"></div>
+  <div class="logo logo2"></div>
+  <div id="header">
+    ScrollTimeline
   </div>
-
-<div id="header">
-  <form action="#foo">
-    <input type="text" value="hello">
-  </form>
-</div>
-<div id="other"></div>
-<div id="progress"></div>
+  <div id="other"><span style="position: absolute; bottom:0; color:white;">ScrollTimeline</span></div>
+  <div id="progress"><span style="position: absolute; right:0; color:white;">ScrollTimeline</span></div>
 
 <script language="meetup">
   /* on enregistre nos AnimationWorklets */
@@ -72,6 +72,16 @@ right: 0;
   registerAnimator('scrollfade', class {
     animate(currentTime, effect) {
       effect.localTime = currentTime;
+    }
+  });
+  registerAnimator('logo', class {
+    animate(currentTime, effect) {
+      effect.localTime = currentTime / 10;
+    }
+  });
+  registerAnimator('logo2', class {
+    animate(currentTime, effect) {
+      effect.localTime = currentTime / 8;
     }
   });
   registerAnimator('progress', class {
@@ -90,26 +100,45 @@ right: 0;
 </script>
 <script>
 
+  /* utils */
   function urlFromTag(sel) {
     const el = document.querySelector(sel);
     const blob = new Blob([el.textContent], {type: "text/javascript"});
     return URL.createObjectURL(blob);
   }
 
+  let logo1; /* non anonyme pour avoir les playback control */
+
   async function init() {
     await CSS.animationWorklet.addModule(urlFromTag("script[language='meetup']"));
+    
+    logo1 = new WorkletAnimation(
+      'logo',
+      new KeyframeEffect(
+        document.querySelector('.logo'),
+        [
+        { transform: 'rotate(0)'},{ transform: 'rotate(360deg)'},
+        { offset: 1, transform: 'scale(4.0,4.0)'}],
+        {
+          duration: 2000,
+          iterations: Number.POSITIVE_INFINITY
+        }
+      ),
+      document.timeline
+    );
+
     new WorkletAnimation(
       'superscroll',
       new KeyframeEffect(
         document.querySelector('#header'), 
-        [{transform: 'scale(1.0,1.0)'},{transform: 'scale(1.0,0.2)'}],
+        [{height: CSS.vh(50)}, {height: CSS.px(30)}],
         {
           duration: 2000, 
           fill: 'both'
         }
       ),
       new ScrollTimeline({
-        scrollSource: document.querySelector("bozdy"), 
+        scrollSource: document.scrollingElement, 
         orientation: "vertical", // "horizontal" or "vertical".
         timeRange: 2000,
         startScrollOffset: 0,
@@ -123,7 +152,7 @@ right: 0;
                     [{opacity: 0}, {opacity: 1}],
                     {duration: 2000, iterations: 1}),
       new ScrollTimeline({
-        scrollSource: document.querySelector("bozdy"), 
+        scrollSource: document.scrollingElement, 
         orientation: "vertical",
         timeRange: 2000
         /* on laisse fader jusqu'à aligner à 2000 */
@@ -145,8 +174,23 @@ right: 0;
         timeRange: 2000
       })
     ).play();
+    new WorkletAnimation(
+      'logo2',
+      new KeyframeEffect(
+        document.querySelector('.logo2'),
+        [
+        { transform: 'rotate(0)'},{ transform: 'rotate(360deg)'}],
+        {
+          duration: 2000,
+          iterations: Number.POSITIVE_INFINITY
+        }
+      ),
+      document.timeline
+    ).play();
+    logo1.play();
   }
   init();
+
 </script>
   scroll me<br>
   scroll me<br>

@@ -102,7 +102,6 @@
 
 				
 				<section>
-					<section>
 						<h2>6 moteurs sur le marché</h2>
 						<table>
 							<thead>
@@ -148,8 +147,8 @@
 					<p>Une compagnie peut changer l'intérieur de l'avion (Singapore, Qatar Airlines, Air France = Apple, Google, Samsung, Sony)</p>
 					<p>Des pilotes connaissant bien le moteur changent de boite : porosité des devs Apple/Google, Samsung/Sony/Nintendo</p>
 					<p>... Microsoft a récemment choisi de passer sous moteur Blink (qui est le moteur de Chromium)</p>
-
 				</section>
+
 				<section>
 					<h2>Microsoft qui lâche EdgeHTML pour Blink</h2>
 					<small>https://www.developer-tech.com/news/2019/apr/17/mozilla-google-firefox-boost-chrome/</small>
@@ -158,9 +157,9 @@
 					<p>Youtube+Chrome = pubs = $$$</p>
 					<p>MS a clairement indiqué ne pas vouloir forker Blink et veut réouvrir des API bloquées pour les adblockers (reddit AMA Juin 2019)</p>
 				</section>
+
 				<section>
 					<h2>Google bashing ?</h2>
-					<p>Ce n'est pas -encore- un abus de position à la MS</p>
 					<p>Chromium n'est pas Chrome</p>
 					<p>Leurs travaux demeurent remarquables (du point de vue DFO &amp; Analytics)</p>
 					<p>Top ingés Blink ouverts sur twitter (Ylia, Jake, Yoav, Tab) comme les top ingés Moz (Marcos, Lin)</p>
@@ -180,21 +179,22 @@
 					<p>embarqué dans automobile, smart TVs, ...</p>
 				</section>
 
-					<section>
-						<h2>Le moteur WebKit & les autres</h2>
-						<h3>Historique</h3>
-						<ul>
-							<li>1998 KHTML/KJS issus de Konqueror (KDE, Linux)</li>
-							<li>2001 Apple forke KHTML/KJS en WebKit : WebCore + JavascriptCore. Préféré à Gecko/Netscape</li>
-							<li>2005 Apple open source quelques modifications de code pour Konqueror</li>
-							<li>2007 l'iPhone sort avec Safari 3</li>
-							<li>2008 Google lance Android et Chrome</li>
-							<li>2011 Apple demande à trademarker WebKit, RIM pas trop d'accord</li>
-							<li>2013 Mozilla crée Servo, Google forke WebKit en Blink, Opera abandonne Presto pour Blink, WebKit devient trademark Apple. Blink est un fork technique et business</li>
-							<li>2014/5 Microsoft remplace Trident par EdgeHTML</li>
-							<li>2016/19 CSS4, Layout API Houdini, Offline WebApp, WebPayment, WebAssembly, Privacy, ... </li>
-						</ul>
-					</section>
+				<section>
+					<h2>Le moteur WebKit & les autres</h2>
+					<h3>Historique</h3>
+					<ul>
+						<li>1998 KHTML/KJS issus de Konqueror (KDE, Linux)</li>
+						<li>2001 Apple forke KHTML/KJS en WebKit : WebCore + JavascriptCore. Préféré à Gecko/Netscape</li>
+						<li>2005 Apple open source quelques modifications de code pour Konqueror</li>
+						<li>2007 l'iPhone sort avec Safari 3</li>
+						<li>2008 Google lance Android et Chrome</li>
+						<li>2011 Apple demande à trademarker WebKit, RIM pas trop d'accord</li>
+						<li>2013 Mozilla crée Servo, Google forke WebKit en Blink, Opera abandonne Presto pour Blink, WebKit devient trademark Apple. Blink est un fork technique et business</li>
+						<li>2014/5 Microsoft remplace Trident par EdgeHTML</li>
+						<li>2016/19 CSS4, Layout API Houdini, Offline WebApp, WebPayment, WebAssembly, Privacy, ... </li>
+					</ul>
+				</section>
+
 					<section>
 						<h2>Les acteurs clé communiquent ouvertement sur l'avenir de leur moteur</h2>
 						<h3>oui, pour de vrai, les mentalités ont évolué</h3>
@@ -210,6 +210,7 @@
 							</small>
 						</ul>
 					</section>
+
 					<section>
 						<h3>Contributeurs WebKit (principaux)</h3>
 						<pre>git shortlog -e -s -n</pre>
@@ -235,39 +236,39 @@
 				</section>
 
 				<section>
-					
-						<h2>Une base commune et des ports</h2>
-						<p>Pas un WebKit unique. Un port parle aux APIs natives plateforme (ex: API de rendu, de réseau, ...)</p>
-						<ul>
-							<li>OSX/iOS port (Safari/Mail/AppStore/iWork + CoreGraphics)
-							<li>Android port (Stock browsers/Chromium &lt; Blink + Skia)</li>
-							<li>GTK port (Linux Gnome Epiphany browser + Cairo)</li>
-							<li>Qt port (Spotify Player &lt; Blink, wkhtml2pdf)</li>
-							<li>EFL port par Samsung (Freebox, TizenOS)</li>
-							<li>EA : moteur de l'UI de Sim City 2K</li>
-							<li>Amazon : le lecteur d'ebook Kindle</li>
-							<li>Sony : browser de la PS3/4 et UI console en WebGL</li>
-							<li>Nintendo : browsers Wii U et Switch, Nintendo Store</li>
-							<li>QNX port (BlackBerry) : Audi, BMW, Ford, Honda, Hyundai, Porsche, Toyota, Volkswagen</li>
-						</ul>
+					<h2>Une base commune et des ports</h2>
+					<p>Pas un WebKit unique. Un port parle aux APIs natives plateforme (ex: API de rendu, de réseau, ...)</p>
+					<ul>
+						<li>OSX/iOS port (Safari/Mail/AppStore/iWork + CoreGraphics)
+						<li>Android port (Stock browsers/Chromium &lt; Blink + Skia)</li>
+						<li>GTK port (Linux Gnome Epiphany browser + Cairo)</li>
+						<li>Qt port (Spotify Player &lt; Blink, wkhtml2pdf)</li>
+						<li>EFL port par Samsung (Freebox, TizenOS)</li>
+						<li>EA : moteur de l'UI de Sim City 2K</li>
+						<li>Amazon : le lecteur d'ebook Kindle</li>
+						<li>Sony : browser de la PS3/4 et UI console en WebGL</li>
+						<li>Nintendo : browsers Wii U et Switch, Nintendo Store</li>
+						<li>QNX port (BlackBerry) : Audi, BMW, Ford, Honda, Hyundai, Porsche, Toyota, Volkswagen</li>
+					</ul>
 					</section>
+
 					<section>
 <img src="graphicscontext.png"/>
 <p>Exemple de ports pour le rendu graphique : https://trac.webkit.org/browser/webkit/trunk/Source/WebCore/platform/graphics?order=date&desc=1/</p>
-</section>
+					</section>
+
 					<section>
 						<p>La base commune pour : parsing HTML/CSS/SVG/MathML &amp; styling/layout (WebCore), JS (JavaScriptCore), GraphicsContext (délègue le rendu à un port)</p>
 						<p>Les ports pour : spécifique OS (pile graphique ou réseau), image decoding, liens hardware (GPU, orientation, geoloc, battery, vibration, touch inputs, senseurs lumière/pression/paiement, ...). </p><p>Présence de flags lors du build : #if ENABLE(PLATFORM_IOS)(...)</p>
 						<p>C'est le même moteur dans des chassis différents.
-							<br> C'est pour ça qu'il y a des différences de comportement ou bugs</p>
-
+						<br> C'est pour ça qu'il y a des différences de comportement ou bugs</p>
 					</section>
-						<section>
-							<h2>Graphics Context delegate</h2>
+
+					<section>
+						<h2>Graphics Context delegate</h2>
 						<p>WebCore délègue à un contexte graphique (GraphicsContext) pour dessiner : dessine moi un bouton</p>
 						<p><img src="mouton.jpeg"><img src="buttonios.png"></p>
 						<p><img src="buttongtk.png"><img src="buttonqt.jpeg"></p>
-
 					</section>
 
 				
@@ -289,12 +290,8 @@
 						<p>post-dessin, le JS peut altérer les 2 arbres (JavascriptCore)</p>
 						<img src="treec.jpg" width="400px" alt="">
 					</section>
-				
-				</section>
-
 
 				<section>
-					<section>
 						<h2>Retour à WebKit : WebCore (2)</h2>
 						<p>Pour réseau, HTML, CSS, SVG, MathML, Canvas</p>
 						<p>rappel : HTMLDocument != SVGDocument. HTML != MathML</p>
@@ -308,7 +305,8 @@
 					</section>
 				
 				</section>
-<section><h2>Specs ?</h2>
+<section>
+	<h2>Specs ?</h2>
 <p>Une spécification n'est qu'un document (HTML) avec des schémas (WebIDL) qui décrit comment faire les choses</p>
 <p>Rédaction collaborative, elles sont sous github</p>
 <p>Outil simple open source de rédaction de specs : ReSpec outil du W3C : https://github.com/w3c/respec . C'est 'juste' un peu de JS et CSS dans une page HTML</p>
@@ -316,6 +314,7 @@
 <p>Fonctions natives de statut de document (draft, preview, final), auteurs, contributeurs, risques, privacy, vocabulaire non ambigu (it MUST, it MAY, it SHOULD, ...) </p>
 <p>Les voir comme un super Wikipedia du web</p>
 </section>
+
 <section>
 	<h2>Spec exemple : Web Auth</h2>
 	<div>
@@ -346,8 +345,6 @@
 							<li>absolute: né en dehors du normal flow : pas d'impact sur ses siblings (!float), né au x,y du containing block (parent significatif)</li>
 						</ul>
 						<p>block element, inline element... et replaced element : un element dont le rendu est non spécifié par CSS (image, form control, iframe, applet, object ActiveX/Flash), il est inline par défaut</p>
-
-
 						<p><small>When an object is absolute/fixed positioned, it becomes block-level. Even if the CSS display type is set to inline (or inline-block/table), the effective display type becomes block-level once an object is positioned. </small></p>
 					</section>
 
@@ -359,10 +356,7 @@
 						<p>pour briller en société</p>
 						<p>pour postuler chez un fabricant de navigateur</p>
 						<p>pour des interviews front</p>
-
 					</section>
-
-		
 
 				<section>
 					<h2>Un cas industriel & créa particulier</h2>
@@ -375,8 +369,6 @@
 					<p>La peinture par specs existe aussi dans l'art/psycho : Klein, Paint by numbers (revoir Will Hunting)</p>
 					<img src="willh.jpeg" width="400px" alt="">
 				</section>
-
-				
 
 				<section>
 					<h2>Quelques travaux en cours</h2>
@@ -408,22 +400,24 @@
 					<p>Tu tapes une URL et tu fais entrée : welcome to WebCore</p>
 					<p>Il faut d'abord charger le HTML (HTMLDocument) du cache ou du réseau</p>
 					<p>Caractère par caractère : le Parsing = mise en Tokens (commentaires, start/end balises, doctype, langue, cdata) </p>
-				
 				</section>
+
 				<section>
 					<h2>Tokens</h2>
 					<p>Pour découvrir les éléments
 					</p>
 					<p><img src="tok.png" width="600px" alt=""></p>
 				</section>
-	<section>
-					<h2>Ressources de la page</h2>
+
+				<section>
+					<h2>Les ressources de la page</h2>
 					<p>En général dans une page on a besoin de ressources (images, scripts, CSS pour le style, vidéo)</p>
 					<p>On charge toutes les ressources une par une ?</p>
-					<p>Non, on les précharge en parallèle(20% à 30% + rapide)</p>
+					<p>Non, on les précharge en parallèle (20% à 30% + rapide)</p>
 					<p>avec des Preload Scanners</p>
 					<p>nb : preload != async</p>
 				</section>
+
 				<section>
 					<h2>Ami(e)s créas restez avec nous</h2>
 					<p>Une petite plongée dans le code de WebKit</p>
@@ -434,7 +428,6 @@
 				</section>
 
 				<section>
-
 					<section>
 						<h2>Les preload scanners (... IE8 !)</h2>
 						<p>HTMLPreloadScanner et CSSPreloadScanner</p>
@@ -447,8 +440,8 @@
 					</section>
 
 					<section>
-							<p>Le CSSPreloadScanner ne précharge que les CSS @import, pourquoi pas ses images/fonts ?</p>
-							<ul>
+						<p>Le CSSPreloadScanner ne précharge que les CSS @import, pourquoi pas ses images/fonts ?</p>
+						<ul>
 						<li>background-image ? il faudrait pas charger une url() inutile via une MQ mais le scanner <strong>n'est pas un parseur CSS</strong></li>
 						<li>bg image responsive/retina ? scanner != parseur, impossible d'évaluer une MQ (width,dpx), alors &lt;img srcset&gt; a été créé (pour HTMLPreloadScanner)</li>
 						<li>fontes ? compliqué, il faudrait les charger que si elles seront utilisées dans le style, mais impossible de preloader : le style n'est pas encore connu</li>
@@ -458,12 +451,7 @@
 
 						<p><small>Blink : multi-threaded PreloadScanner architecture pour pas utiliser la main thread de HTMLPreloadScanner (par ex pour évaluer MQ à part)</small></p>
 <small>DONE https://codereview.chromium.org/201813002/</small>
-						<aside class="notes">
-						yoav
-							ouigo font 75% du poids
-							, gzippez les, cachez les !
-							https://code.google.com/p/chromium/issues/detail?id=347998 M34
-						</aside>
+					
 					</section>
 					<section>
 						<p>Pourquoi ne pas 'simplement' multithreader ? Les CPU mobiles ont plusieurs cores après tout</p>
@@ -472,7 +460,7 @@
 						<p>un preload scanner est une réponse simple pour donner un peu plus de perfs</p>
 						<p>pour plus : des workers JS en tâche de fond, des envois directs au GPU pour libérer le CPU, une refonte totale du code de rendu</p>
 						<p>ça tombe bien c'est exactement ce sur quoi Blink (LayoutNG)/Servo (WebRender) bossent en ce moment</p>
-						<p>Apple A12 6xCPU+4xGPU, 7 miliards de transistors dans < 1cm2. Respects</p>
+						<p>Apple A12 6xCPU+4xGPU, 7 miliards de transistors dans &lt; 1cm2. Respects</p>
 					</section>
 					<section>
 						<h2>Pour plus de performance réseau</h2>
@@ -504,16 +492,13 @@
 						<p>Au layout(), les renderers du tree produisent un rectangle (un LayoutRect suivant le Box Model) avec des coordonnées xy (void RenderBox::layout())</p>
 						<p>Rectangles dans des rectangles : le layout</p>
 						<img src="bob.png" width="200px"/>
-
 					</section>
 
-				</section>
 
 				<section>
 					<p>pause</p>
 					<img src="pipe.png"><img src="tree.png"><img src="gpu.png">
 				</section>
-
 
 				<section>
 					<section>
@@ -549,8 +534,8 @@
 				<p>Exercice formateur : faire un site avec le moins de balises possibles et le moins de JS possible</p>
 				<p>Exercice UX/DFO avancé : repérer tous les recalculs de layout inutiles</p>
 				<p>N'optimisez que ce que vous pouvez mesurer : utilisez la Timeline de DevTools pour voir le réseau, le layout et le dessin</p>
-
 			</section>
+
 			<section>
 				<h3>On ne relayout pas tout. Seulement les containing blocks avec dirties (sales gosses)</h3>
 				<p>Le layout n'est pas figé : au 'hit testing' (où et sur quoi est le pointeur) un survol :hover, un focus, un touch JS peut relayouter.</p>
@@ -598,10 +583,8 @@
 				<img src="kid.jpg" width="400px" alt="">
 			</section>
 
-		</section>
 
 		<section>
-			<section>
 				<h2>9 Etapes de peinture</h2>
 				<p>Where the magic happens. With specs</p>
 				<p>On ne peint pas élément par élément au feeling, pour éviter bavures</p>
@@ -610,7 +593,8 @@
 				<p>Un stacking context est formé par élément qui est: racine, positioné, region, flex, grid item, table, float</p>
 				<p>Un stacking context peut avoir des enfants avec stacking contexts (un enfant position:absolute/relatif suffit à créer un nouveau sc)</p>
 				<p>Un stacking context n'est pas juste le z-index : le zi est relatif au context</p>
-			</section>
+		</section>
+
 			<section>
 				<h3>Oh non, encore des specs !</h3>
 				<small>On peint récursif par stacking context et pas par l'ordre du HTML</small>
@@ -636,6 +620,7 @@
 					<p>Aspirine ? et j'ai même pas parlé de flexbox, region, grid ou column</p>
 
 				</section>
+
 				<section>
 
 					<p>Most elements on a page are in a single, root stacking context, but absolutely or relatively positioned elements with non-auto z-index values form their own stacking contexts (that is, all of their children will be z-ordered within the parent and not be interleaved with content from outside the parent</p>
@@ -646,7 +631,6 @@
 					<p>Flex items paint exactly the same as block-level elements in the normal flow, except that ‘z-index’ values other than ‘auto’ create a stacking context even if ‘position’ is ‘static’.  Descendants that are positioned outside a flex item still participate in any stacking context established by the flex item.</p>
 					<p>All column boxes in a multi-column element are in the same stacking context and the drawing order of their contents is as specified in CSS 2.1. Column boxes do not establish new stacking contexts.</p>
 				</section>
-			</section>
 
 			<section>
 				<h2>Ce que translate3d(0,0,0) et translateZ(0) font vraiment</h2>

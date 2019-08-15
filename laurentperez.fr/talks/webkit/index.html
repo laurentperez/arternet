@@ -3,35 +3,35 @@
 
 <head>
 	<meta charset="utf-8">
-
-	<title>laurentperez::talks</title>
-
-	<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-	<meta name="author" content="Hakim El Hattab">
-
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>laurentperez.fr::talks::webkit</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css">
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/monokai.css">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
 
+	<!-- rv v1 
 	<link rel="stylesheet" href="css/reveal.min.css">
 	<link rel="stylesheet" href="css/theme/default.css" id="theme">
-
-	<!-- For syntax highlighting -->
 	<link rel="stylesheet" href="lib/css/zenburn.css">
-
-	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
 	<script>
 		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
 	</script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
+	-->
+	
 	</head>
 
 	<body>
-
 
 		<div class="reveal">
 
@@ -42,7 +42,7 @@
 					<h2>un moteur de rendu web</h2>
 					<h3>"du HTML aux pixels"</h3>
 					<p>Meetup Web front/Privacy #1</p>
-					<img src="mth.jpg"/>
+					<img src="mth.jpg" width="100px"/>
 				</section>
 
 				<section>
@@ -501,7 +501,6 @@
 				</section>
 
 				<section>
-					<section>
 						<h3>Géométrie (layout propre/sale) et paint</h3>	
 						<p>Rappel : tous les renderers ont une méthode layout() recursive : le renderer du parent significatif (le containing block) layout() ses enfants</p>
 						<p>Dirty bit : si un nouveau renderer rentre dans l'arbre, s'il est dirty (layoutIfNeeded), il informe son parent significatif dit containing block (<b>A renderer’s containing block is an ancestor block of the renderer that is responsible for determining that renderer’s position.</b>).</p>
@@ -526,6 +525,7 @@
 				<p>ex : fixed : containingBlock = RenderView = l'écran. RenderView réajuste les coordonnées du fixed selon le scroll (il re-fixe au bon endroit)</p>
 				<p>ex : absolute : containingBlock = ancêtre le plus proche avec position absolute/relative/fixed ou transform, si aucun, alors RenderView (donc x=0,y=0)</p>	
 			</section>
+
 			<section>
 				<h3>Ce qui coûte le plus cher au moteur</h3>
 				<p>Recalculer les styles et le layout</p>
@@ -542,13 +542,11 @@
 				<p>Le RenderStyle recalculé ne change pas toujours le layout : color non, position/display/height/width oui. </p>
 				<small>http://gent.ilcore.com/2011/03/how-not-to-trigger-layout-in-webkit.html</small>
 				<!-- <p>Si tu relayout au touchmove t'es mal : le JS est sur la même thread que la UI thread, !Compositor. Blink veut un Layout threadé</p> -->
-
 				<p>Savoir minimiser le layout = perfs ! (une des raisons du fork Blink : éxécuter le JS en // du layout)</p>
 				<p>Savoir profiter du cache et du preload scanner = more perfs !</p>
 				<p>Savoir minimiser le dessin/peinture à venir = godlike, jedi</p>
 				<p>Mettre du translateZ/3D partout pour "accélérer le rendu" : sith lord. Savez-vous ce que ça fait vraiment ?</p>
 				<p>... des questions à poser en recrutement DFO, avant Angular/React</p>
-				
 			</section>
 
 			<section>
@@ -564,7 +562,6 @@
 			<section>
 				<h3>Le RenderTree est LayoutRecté et ses rectangles rangés en RenderLayer (calques)</h3>
 				<p>utilitaires DumpRenderTree/DumpRenderLayer dans Safari</p>
-
 				<p>Le layer est ensuite Painté via le GraphicsContext (ex: CoreGraphics, rappel des boutons, ici look natif)</p>
 				<p>ex: un overflow:hidden (rectangle qui déborde du containing) c'est un layer clippé</p>
 				<p>ex: une reflection c'est un layer cloné à l'envers</p>
@@ -576,13 +573,11 @@
 			<section>
 				<h3>Super, on a un Layout non dirty qui nous a donné des calques</h3>
 				<h4>On peut (enfin) dessiner / paint nos RenderLayers!</h4>
-				
 				<p>Pause : plus besoin de penser box model, containing block, les styles sont calculés (cascades appliquées), le layout (padding, margin, border, width, height) a été fait et mis en layers</p>
 				<p>Pour chaque layer, la spec CSS nous dit exactement quoi peindre dans quel ordre</p>
 				<p>La peinture suit les specs, comme le layout : 9 étapes</p>
 				<img src="kid.jpg" width="400px" alt="">
 			</section>
-
 
 		<section>
 				<h2>9 Etapes de peinture</h2>
@@ -611,6 +606,7 @@
 						<!-- <li>on passe au sc suivant</li> -->
 					</ol>
 				</section>
+
 				<section>
 					<h3>This painting order is applied recursively to each stacking context.</h3>
 					<p>Les enfants positionnés forment un stacking context enfant du stacking context parent</p>
@@ -618,11 +614,9 @@
 					<p>c'est pour ça que opacity &lt; 1 affecte le rendu z-index : elle est peinte avant le &gt;0</p>
 					<p>donc : touchez au z-index avec précaution, même si la réponse est dans la spec</p>
 					<p>Aspirine ? et j'ai même pas parlé de flexbox, region, grid ou column</p>
-
 				</section>
 
 				<section>
-
 					<p>Most elements on a page are in a single, root stacking context, but absolutely or relatively positioned elements with non-auto z-index values form their own stacking contexts (that is, all of their children will be z-ordered within the parent and not be interleaved with content from outside the parent</p>
 <!--
 					<p>With region chains, an element may be split across multiple boxes and these boxes may overlap (for example if they are absolutely positioned). So fragments of the same element can overlap each other. Since each element has a single z-index, it would be required to find another mechanism to decide in which order the fragments are rendered. Since each CSS Region creates a new stacking context, it is clear that each fragment is rendered separately and their rendering order follows the regular CSS rendering model.
@@ -665,39 +659,21 @@
 			</div>
 
 		</div>
-
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
+<script src="js/reveal.js"></script>
 
 		<script>
-
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
-
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
-
-				// Parallax scrolling
-				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
-				// parallaxBackgroundSize: '2100px 900px',
-
-				// Optional libraries used to extend on reveal.js
 				dependencies: [
-				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
 				]
 			});
-
-</script>
+		</script>
 
 </body>
 </html>

@@ -17,16 +17,41 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+		<style>
+			.reveal section p {
+			font-size: 0.8em !important;
+			}
+			.reveal section h2 {
+			font-size: 1.2em !important;
+			}
+			.reveal section h3 {
+			font-size: 1em !important;
+			}
+			.reveal section img {
+			margin:0 !important;
+			border: none !important;
+			}
+			.reveal section blockquote {
+			font-size: 0.5em !important;
+			}
+			.reveal section ul li {
+			font-size: 0.6em !important;
+			}
+			.reveal section ol li {
+			font-size: 0.6em !important;
+			}
+			</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
 				
 				<section>
-					<h2>Meetup Frontend CSS/JS #1</h2>
+					<h2>Meetup Frontend #1</h2>
 					<p>MTH / Web Front</p>
 					<p><img src="awe.png" alt=""></p>
 					<small>laurentperez.fr/talks/css1</small>
+					<p><img src="mth.jpg" width="100px"/></p>
 				</section>
 
 				<section>
@@ -38,11 +63,11 @@
 
 			<section>
 				<h2>✨ CSS Houdini ✨</h2>
-				<p class="fragment fade-up">tl;dr : pour un accès direct au moteur CSS via JS</p>
+				<p class="fragment fade-up">tl;dr : pour un accès direct au moteur CSS</p>
 				<p class="fragment fade-up">on a un véritable accès au moteur</p>
 				<p class="fragment fade-up">on peut y créer nos propriétés, peinture, animation, layout</p>
 				<p class="fragment fade-up">travail commencé circa 2016</p>
-				<p  class="fragment fade-up">suite logique du travail après WebComponents et ServiceWorkers</p>
+				<p  class="fragment fade-up">suite logique du travail après WebComponents et WebWorkers</p>
 			</section>
 
 			<section>
@@ -57,8 +82,8 @@
 
 			<section>
 				<p>Division en 6 nouvelles grandes APIs</p>
-				<p>https://github.com/w3c/css-houdini-drafts (repo des specs)</p>
-				<p>https://drafts.css-houdini.org (specs)</p>
+				<p><a href="https://github.com/w3c/css-houdini-drafts">https://github.com/w3c/css-houdini-drafts</a> (repo des specs)</p>
+				<p><a href="https://drafts.css-houdini.org">https://drafts.css-houdini.org</a> (specs)</p>
 				<ul>
 					<li class="fragment fade-up">CSSOM API (CAPI)</li>
 					<li class="fragment fade-up">Properties/Values API (PVAPI)</li>
@@ -67,30 +92,30 @@
 					<li class="fragment fade-up">Layout API (LAPI)</li>
 					<li class="fragment fade-up">Font Metrics API (FMAPI) *</li>
 					</ul>
-				<small>* = pas encore d'implémentation visible</small>
+				<small class="fragment fade-up">* = pas encore d'implémentation visible</small>
 			</section>
 
 			<section>
 				<h2>Oui, mais le support ?</h2>
-				<p>https://www.chromestatus.com/features#houdini</p>
-				<p>https://ishoudinireadyyet.com</p>
+				<p><a href="https://www.chromestatus.com/features#houdini">https://www.chromestatus.com/features#houdini</a> </p>
+				<p><a href="https://ishoudinireadyyet.com">https://ishoudinireadyyet.com</a> </p>
 				<ul>
 					<li>CSSOM : shipped Chrome, ii FF, in dev SF</li>
 					<li>Properties Values API : partial 90% Chrome/SF, in dev FF</li>
 					<li>Paint API : shipped Chrome, ii FF, in dev SF</li>
-					<li>Worklet Animation API : partial 80% Chrome (sans chorégraphie, Q1 2020)</li>
+					<li>Worklet Animation API : partial 80% Chrome (sans chorégraphie, Q1 2020), uc SF</li>
 					<li>Layout API : partial 50% Chrome, ii FF</li>
 					<li>Font Metrics API : rien, uniquement les specs</li>
 				</ul>
-				<small>ii : Intent to Implement, in dev : partial, en cours : Safary Technology Preview, Chrome Canary</small>
+				<small>ii : Intent to Implement, in dev : en cours : Safary Technology Preview, Chrome Canary</small>
 			</section>
 
 			<section>
 				<p>Chromium (Blink) et Safari (WebKit) lead</p>
 				<p>Firefox (Servo) est à la bourre. IE va utiliser Blink (M78)</p>
-				<p>lire les questions sur https://github.com/w3c/css-houdini-drafts/issues</p>
+				<p>lire les questions sur <a href="https://github.com/w3c/css-houdini-drafts/issues">https://github.com/w3c/css-houdini-drafts/issues</a></p>
 				<p>réponses des auteurs de specs et fabricants</p>
-				<p>Important : WAAPI à 100% dans Safari TP / iOS13 (sans Worklet), 80% CR FF</p>
+				<p>Important : WAAPI à 100% dans Safari TP / iOS13 (sans Worklet, uc), 80% CR FF</p>
 			</section>
 			
 			<section>
@@ -106,7 +131,7 @@ el.attributeStyleMap.clear();
 CSS.vw('100'); CSS.px(42);
 CSS.percent('10'); CSS.ms(300);
 new CSSMathSum(CSS.vw(100), CSS.px(-10)) // calc(100vw + -10px)
-new CSSStyleValue.parse('transform', 'translate4d(...)'); // throw
+new CSSStyleValue.parse('transform', 'translte3d(...)'); // throw
 				</code></pre>
 			</section>
 
@@ -151,7 +176,7 @@ CSS.registerProperty({
 				<p>Values trop simples ? Comment passer des complexes ?</p>
 				<p>exemple : un stream audio/vidéo/trading/ECU (data automobile) </p>
 				<p>cheap solution (Juin 2019) : ajouter un type &lt;blob&gt;</p>
-				<p>https://github.com/w3c/css-houdini-drafts/issues/872</p>
+				<p><a href="https://github.com/w3c/css-houdini-drafts/issues/872">https://github.com/w3c/css-houdini-drafts/issues/872</a></p>
 				<p>puis <em>postMessage</em> plus tard pour pas devoir repasser la Value dans la main thread</p>
 				<p>valable aussi pour AnimationWorklet :</p>
 			</section>
@@ -165,43 +190,43 @@ CSS.registerProperty({
 --laptime: 7.28;
 --rpm: 6000;
 				</code></pre>
-				<img src="488.jpeg" width="350px" alt="" style="border:none">
-				<img src="motec.jpeg" width="350px" alt="" style="border:none">
+				<img src="488.jpeg" width="350px" alt="">
+				<img src="motec.jpeg" width="350px" alt="">
 			</section>
 
 			<section>
 				<h2>🎬 Worklet Animation API 🎬</h2>
 				<p>Animations non blocking à 60fps relatives à la timeline et au scroll
 				... c'est surtout fait pour le scroll, et ça le fait bien</p>
-				<small>qui a déjà fait des parallaxes fluides ? des offsets / staggering ?</small>
-				<p>Syntaxe : <em>AnimationWorklet/KeyFrameEffect</em></p>
-				<p>Note : séquence/chorégraphie à faire à la main. Un peu pénible, car <em>GroupEffect</em> dans la spec</p>
-				<p><a href="../waapi">demo</a></p>
+				<small>qui a déjà fait des parallaxes fluides ? des offsets / staggering ? anime.JS ?</small>
+				<p>Syntaxe : <em>AnimationWorklet + KeyFrameEffect</em></p>
+				<p>Note : séquence/chorégraphie/playback à faire à la main. Un peu pénible, car <em>GroupEffect</em> dans la spec</p>
 			</section>
 			<section>
 				<p>Encore une API d'animation ?</p>
 				<small>... on a déjà CSS transitions, animations, Web Animations API</small>
-				<p>La Worklet est une extension de WAAPI qui donne un état (stateful) et des timelines libres (dont une ScrollTimeline)</p>
+				<p>La Worklet est une <em>extension</em> de WAAPI qui donne un état (stateful) et des timelines libres (dont une ScrollTimeline)</p>
 				<p>ex: se souvenir de l'état quand le moteur bouge la Worklet entre threads</p>
 				<p>ex: accélérer/distordre le temps (document.timeline modifiable)</p>
+				<p><a href="../waapi">demo</a></p>				
 			</section>
 
 			<section>
-				<p>Sprints et roadmap : https://www.chromium.org/teams/animations/animation-objectives</p>
+				<p>Sprints et roadmap : <a href="https://www.chromium.org/teams/animations/animation-objectives">https://www.chromium.org/teams/animations/animation-objectives</a></p>
 				<p>Pour le moment (Août), <em>GroupEffect</em> = enchaînement de <em>>KeyFrameEffects</em> est désactivé</p>
 				<p>exemple : démarrer l'animation B quand la A est à 50%, démarrer B, C, D en même temps mais avec des offsets (= parallaxe/stagger)</p>
 				<small>Travail important de Yi Gu sur la Chorégraphie, Séquence et Staggering pour améliorer la spec</small>
 			</section>
 			<section>
 				<img src="pigeon.gif" alt="">
-				<p>lire les travaux de Yi sur https://github.com/yi-gu/group_effect</p>
+				<p>lire les travaux de Yi sur <a href="https://github.com/yi-gu/group_effect">https://github.com/yi-gu/group_effect</a></p>
 				<p>Q1 2020</p>
 			</section>
 
 			<section><h2>🖼️ Layout API 🖼️</h2>
 				<p>Quand flex ou grid ne suffisent plus (oui oui)</p>
 				<p>tl;dr : écrire son propre display:layout('monlayout');</p>
-				<p>https://houdini.glitch.me/layout</p>
+				<p><a href="https://houdini.glitch.me/layout">https://houdini.glitch.me/layout</a></p>
 				<small>Rappel : c'est Bloomberg qui a sponsorisé grid dans WebKit (Igalia)</small>
 				<p>Conteneur de <em>LayoutChild/Fragments</em> dans un <em>ParentLayout</em></p>
 				<small>Le <em>Parent</em> a des borders, paddings : les <em>Edges</em>. Entre les <em>Edges</em>, on a des <em>Constraints</em>. Les <em>LayoutChild</em> sont dans ces <em>Constraints</em> et ont des <em>Fragments</em></small>
@@ -230,15 +255,15 @@ CSS.registerProperty({
 			<section>
 				<h2>Démo avancées</h2>
 				<p>avec Chrome Canary, Safari Technology Preview ou Firefox Nightly (peu d'implémenté)</p>
-				<p>https://css-houdini.rocks</p>
+				<p><a href="https://css-houdini.rocks">https://css-houdini.rocks</a></p>
 				<p>notamment : Inner Borders, Masonry, Random Bubble Masks</p>
 			</section>
 
 			<section>
 				<h2>Pour suivre / plus loin</h2>
-				<p>https://github.com/w3c/css-houdini-drafts/wiki/Meeting-Planning-Pages (meetings trimestriels CSSWG)</p>
-				<p>https://www.chromium.org/teams (rétros agiles)</p>
-				<p>https://houdini.glitch.me (démos)</p>
+				<p><a href="https://github.com/w3c/css-houdini-drafts/wiki/Meeting-Planning-Pages">https://github.com/w3c/css-houdini-drafts/wiki/Meeting-Planning-Pages</a> (meetings trimestriels CSSWG)</p>
+				<p><a href="https://www.chromium.org/teams">https://www.chromium.org/teams</a> (rétros agiles)</p>
+				<p><a href="https://houdini.glitch.me">https://houdini.glitch.me</a> (démos)</p>
 				<p>Q2 2020, rapprochement de Paint API et Web Animations API :</p>
 				<p>On peut imaginer un IDE en ligne 100% web, gratuit et open source qui remplacerait Sketch/Adobe XD, 100% extensible car basé sur des APIs ouvertes</p>
 				<p>Plus de "on peut pas le faire en CSS" : mais ça va demander des compétences de dessin canvas2D et animation... FullFullStack ?</p>

@@ -6,6 +6,7 @@
     /* hack pour charger image, type <image> pas 100% implémenté */
     --flamingo:url('fla.jpg');
     --im:url('fla.jpg');
+    --rotate:0;
     list-style-image: var(--flamingo); 
     background-image: paint(meetup); /* mon peintre */
     height: 200px; /* hauteur toile où je vais être peint */
@@ -30,7 +31,7 @@
   }
 </style>
 <main>
-  <img class="photo" src="https://dummyimage.com/100x100" alt="">
+  <img class="photo" src="https://placekitten.com/100/100" alt="">
   <div class="hotel">Evaluez votre s&eacute;jour  &nbsp;</div>
 </main>
 <div ><h1 class="under">J'ai une underline custom</h1></div>
@@ -49,11 +50,18 @@
     initialValue: '#f3e5ab' /* ya pas vanilla ? allo quoi */
   });
   CSS.registerProperty({
-    name: '--im', /* on type im en image */
+    name: '--rotate', /* on type rotate en deg */
+    syntax: '<number>',
+    inherits: true,
+    initialValue:0
+  });
+  /*
+  CSS.registerProperty({
+    name: '--im',
     syntax: '<image> | none',
     inherits: true,
     initialValue: 'none'
-  });
+  });*/
 </script>
 <script>
   CSS.paintWorklet.addModule('meetup.js');

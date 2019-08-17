@@ -67,14 +67,14 @@
 				<p class="fragment fade-up">on a un véritable accès au moteur</p>
 				<p class="fragment fade-up">on peut y créer nos propriétés, peinture, animation, layout</p>
 				<p class="fragment fade-up">travail commencé circa 2016</p>
-				<p  class="fragment fade-up">suite logique du travail après WebComponents et WebWorkers</p>
+				<p  class="fragment fade-up">suite logique du travail après WebComponents, WebWorkers et Web Animations API</p>
 			</section>
 
 			<section>
 				<h2>Motivations</h2>
 				<p  class="fragment fade-up">Ouvrir les portes de la "magie" CSS et pouvoir étendre le moteur sans attendre les fabricants ou ticket les librairies tierces</p>
 				<small  class="fragment fade-up">Arrêter les hacks JS à base de addClass/el.style/translate3D(0,0,0)</small>
-				<p  class="fragment fade-up">Séparer la logique (JS) et le style (CSS)</p>
+				<p  class="fragment fade-up">Séparer la logique dessin/animation (JS) et son style (CSS)</p>
 				<p  class="fragment fade-up">Garantir du rendu à 60fps hors thread UI principale</p>
 				<p>Task force Google, Mozilla, Apple</p>
 				<small  class="fragment fade-up">hacks JS = parce qu'on n'a pas le choix</small>
@@ -111,7 +111,7 @@
 			</section>
 
 			<section>
-				<p>Chromium (Blink) et Safari (WebKit) lead</p>
+				<p>Chromium (Blink) et Safari (WebKit) devant</p>
 				<p>Firefox (Servo) est à la bourre. IE va utiliser Blink (M78)</p>
 				<p>lire les questions sur <a href="https://github.com/w3c/css-houdini-drafts/issues">https://github.com/w3c/css-houdini-drafts/issues</a></p>
 				<p>réponses des auteurs de specs et fabricants</p>
@@ -156,7 +156,7 @@ CSS.registerProperty({
 				<p>Introduction de <em>PaintWorklet</em> : analogie avec les <em>ServiceWorkers</em> pour le cache/offline/push notifs</p>
 				<p class="fragment fade-up">Une <em>Worklet</em> est un JS short-lived, déplaçable entre threads au gré du moteur</p>
 				<p class="fragment fade-up">But : qu'elle ne tourne pas dans la main thread (main JS sur thread UI sans rAf = lag) mais dans une autre thread</p>
-				<p class="fragment fade-up">La Paint API donne un subset <em>Canvas</em> sans accès au DOM</p>
+				<p class="fragment fade-up">La Paint API donne un <em>Canvas</em> sans accès au DOM</p>
 				<small class="fragment fade-up">donc oui le 31/10 tu peux faire background:paint(🎃);</small>
 				<p><a href="../cssp">demo</a></p>
 			</section>
@@ -165,8 +165,8 @@ CSS.registerProperty({
 				<h2>Sécurité</h2>
 				<ul>
 					<li>Aucun accès au DOM. Le Canvas est étanche. Si besoin de DOM, faire un Canvas classique sans Paint API</li>
-					<li>Car tu n'as pas spécialement envie qu'un Canvas chargé depuis JS/CSS <em>externe</em> puisse lire ou repeindre des éléments du DOM</li>
-					<li>exemple : redessiner champ input de saisie de CB</li>
+					<li class="fragment fade-up">Car tu n'as pas spécialement envie qu'un Canvas chargé <em>depuis JS/CSS externe</em> puisse lire ou repeindre des éléments du DOM</li>
+					<li class="fragment fade-up">exemple : redessiner champ input de saisie de CB</li>
 					<li>c'est un <em>PaintRenderingContext2D</em> subset de <em>CanvasRenderingContext2D</em></li>
 				</ul>
 				<img src="gifhack.gif" width="200px" style="border: none;" alt="">
@@ -174,11 +174,11 @@ CSS.registerProperty({
 
 			<section>
 				<p>Values trop simples ? Comment passer des complexes ?</p>
-				<p>exemple : un stream audio/vidéo/trading/ECU (data automobile) </p>
-				<p>cheap solution (Juin 2019) : ajouter un type &lt;blob&gt;</p>
+				<p class="fragment fade-up">exemple : un stream audio/vidéo/trading/ECU (data automobile) </p>
+				<p class="fragment fade-up">solution (Juin 2019) : ajouter un type &lt;blob&gt;</p>
 				<p><a href="https://github.com/w3c/css-houdini-drafts/issues/872">https://github.com/w3c/css-houdini-drafts/issues/872</a></p>
-				<p>puis <em>postMessage</em> plus tard pour pas devoir repasser la Value dans la main thread</p>
-				<p>valable aussi pour AnimationWorklet :</p>
+				<p class="fragment fade-up">puis <em>postMessage</em> plus tard pour pas devoir repasser la Value dans la main thread</p>
+				<p>valable aussi pour AnimationWorklet</p>
 			</section>
 
 			<section>
@@ -205,21 +205,22 @@ CSS.registerProperty({
 			<section>
 				<p>Encore une API d'animation ?</p>
 				<small>... on a déjà CSS transitions, animations, Web Animations API</small>
-				<p>La Worklet est une <em>extension</em> de WAAPI qui donne un état (stateful) et des timelines libres (dont une ScrollTimeline)</p>
-				<p>ex: se souvenir de l'état quand le moteur bouge la Worklet entre threads</p>
-				<p>ex: accélérer/distordre le temps (document.timeline modifiable)</p>
+				<p class="fragment fade-up">NON. La Worklet est une <em>extension</em> de WAAPI qui donne un état (stateful) et des timelines libres (dont une ScrollTimeline)</p>
+				<p class="fragment fade-up">ex: se souvenir de l'état quand le moteur bouge la Worklet entre threads</p>
+				<p class="fragment fade-up">ex: accélérer/distordre le temps (document.timeline modifiable)</p>
 				<p><a href="../waapi">demo</a></p>				
 			</section>
 
 			<section>
 				<p>Sprints et roadmap : <a href="https://www.chromium.org/teams/animations/animation-objectives">https://www.chromium.org/teams/animations/animation-objectives</a></p>
 				<p>Pour le moment (Août), <em>GroupEffect</em> = enchaînement de <em>>KeyFrameEffects</em> est désactivé</p>
-				<p>exemple : démarrer l'animation B quand la A est à 50%, démarrer B, C, D en même temps mais avec des offsets (= parallaxe/stagger)</p>
-				<small>Travail important de Yi Gu sur la Chorégraphie, Séquence et Staggering pour améliorer la spec</small>
+				<p class="fragment fade-up">exemple : démarrer l'animation B quand la A est à 50%, démarrer B, C, D en même temps mais avec des offsets (= parallaxe/stagger)</p>
+				<small class="fragment fade-up">Travail important de Yi Gu sur la Chorégraphie, Séquence et Staggering pour améliorer la spec</small>
 			</section>
 			<section>
 				<img src="pigeon.gif" alt="">
 				<p>lire les travaux de Yi sur <a href="https://github.com/yi-gu/group_effect">https://github.com/yi-gu/group_effect</a></p>
+				<p>nouveaux types SequenceEffect, ParallelEffect, StaggeEffect</p>
 				<p>Q1 2020</p>
 			</section>
 
@@ -236,11 +237,11 @@ CSS.registerProperty({
 
 			<section>
 				<p>penser à Tetris : une disposition de blocs dans un espace constraint</p>
-				<p>display:layout('L'); display:layout('4bar'); ▛ ▚ ▐</p>
-				<small>4bar est ici 4 Fragments empilés, L 3 et le 4e a un offset</small>
-				<p>Les blocs Fragments sont _parallélisables_ pour les moteurs next-gen (LayoutNG CR, WebRender FF) : quand le 4bar rentre et 'flashe' un Tetris, 4 lignes sont à effacer, et y-4 pour au dessus</p>
-				<p>Cas d'usage : architecture, UI normés (affichage dash militaire/voiture/avion, presse écrite, eBooks, ePub Comics)</p>
-				<small>des utilisaturs.trices de QuarkXPress/InDesign ?</small>
+				<p class="fragment fade-up">display:layout('L'); display:layout('4bar'); ▛ ▚ ▐</p>
+				<small class="fragment fade-up">4bar est ici 4 Fragments empilés, L 3 et le 4e a un offset</small>
+				<p class="fragment fade-up">Les blocs Fragments sont _parallélisables_ pour les moteurs next-gen (LayoutNG CR, WebRender FF) : quand le 4bar rentre et 'flashe' un Tetris, 4 lignes sont à effacer, et y-4 pour au dessus</p>
+				<p class="fragment fade-up">Cas d'usage : architecture, UI normés (affichage dash militaire/voiture/avion, presse écrite, eBooks, ePub Comics)</p>
+				<small class="fragment fade-up">des utilisaturs.trices de QuarkXPress/InDesign ?</small>
 				<p><a href="https://css-houdini.rocks/masonry/">demo</a></p>
 			</section>
 
@@ -248,8 +249,8 @@ CSS.registerProperty({
 				<h2>🔠 Font Metrics API 🔠</h2>
 				<p>... spec utilitaire causée par la Layout API :</p>
 				<p>dessiner des blocs custom c'est cool mais : on a parfois besoin de gérer du texte dedans</p>
-				<small>ex : faire son propre line-breaking, connaître la baseline dans un Fragment, les tailles réelles des symboles math chimie, des ligatures Œ, Æ, محرك, et cætera … &lt;- c'est des points de suspension, pas '...' </small>
-				<p>exposer seulement la Font ne suffit pas : il faut descendre au niveau du <em>glyphe</em> dessiné par chaque navigateur</p>
+				<small class="fragment fade-up">ex : faire son propre line-breaking, connaître la baseline dans un Fragment, les tailles réelles des symboles math chimie, des ligatures Œ, Æ, محرك, et cætera … &lt;- c'est des points de suspension, pas '...' </small>
+				<p class="fragment fade-up">exposer seulement la Font ne suffit pas : il faut descendre au niveau du <em>glyphe</em> dessiné par chaque navigateur</p>
 			</section>
 				
 			<section>

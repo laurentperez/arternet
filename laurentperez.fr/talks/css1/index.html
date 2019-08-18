@@ -65,7 +65,7 @@
 				<h2>✨ CSS Houdini ✨</h2>
 				<p class="fragment fade-up">tl;dr : pour un accès direct au moteur CSS</p>
 				<p class="fragment fade-up">on a un véritable accès au moteur</p>
-				<p class="fragment fade-up">on peut y créer nos propriétés, peinture, animation, layout</p>
+				<p class="fragment fade-up">on peut y créer nos propriétés, peinture/clip, animation, layout</p>
 				<p class="fragment fade-up">travail commencé circa 2016</p>
 				<p  class="fragment fade-up">suite logique du travail après WebComponents, WebWorkers et Web Animations API</p>
 			</section>
@@ -78,6 +78,13 @@
 				<p  class="fragment fade-up">Garantir du rendu à 60fps hors thread UI principale</p>
 				<p>Task force Google, Mozilla, Apple</p>
 				<small  class="fragment fade-up">hacks JS = parce qu'on n'a pas le choix</small>
+			</section>
+
+			<section>
+				<p>C'est une boite à outils sur CSS</p>
+				<p>Dans une maquette, 80% est "facile"</p>
+				<p>C'est quand le moteur ne te donne pas les autres 20% que la recherche commence (google, stackoverflow, ...)</p>
+				<p>Houdini = plus de "on peut pas le faire en CSS"</p>
 			</section>
 
 			<section>
@@ -158,7 +165,7 @@ CSS.registerProperty({
 				<p class="fragment fade-up">But : qu'elle ne tourne pas dans la main thread (main JS sur thread UI sans rAf = lag) mais dans une autre thread</p>
 				<p class="fragment fade-up">La Paint API donne un <em>Canvas</em> sans accès au DOM</p>
 				<small class="fragment fade-up">donc oui le 31/10 tu peux faire background:paint(🎃);</small>
-				<p><a href="../cssp">demo</a></p>
+				<p><a href="../cssp">demo (voir les 2 threads + FPS)</a></p>
 			</section>
 
 			<section>
@@ -204,8 +211,8 @@ CSS.registerProperty({
 			</section>
 			<section>
 				<p>Encore une API d'animation ?</p>
-				<small>... on a déjà CSS transitions, animations, Web Animations API</small>
-				<p class="fragment fade-up">NON. La Worklet est une <em>extension</em> de WAAPI qui donne un état (stateful) et des timelines libres (dont une ScrollTimeline)</p>
+				<small>... on a déjà CSS transitions, CSS animations (@keyframes), Web Animations API (el.animate({...}))</small>
+				<p class="fragment fade-up">NON. La Worklet est une <em>extension</em> de WAAPI qui donne un <em>Effect</em>, des <em>timelines</em> libres (dont une <em>ScrollTimeline</em>) et un état optionel (stateful)</p>
 				<p class="fragment fade-up">ex: se souvenir de l'état quand le moteur bouge la Worklet entre threads</p>
 				<p class="fragment fade-up">ex: accélérer/distordre le temps (document.timeline modifiable)</p>
 				<p><a href="../waapi">demo</a></p>				
@@ -220,7 +227,7 @@ CSS.registerProperty({
 			<section>
 				<img src="pigeon.gif" alt="">
 				<p>lire les travaux de Yi sur <a href="https://github.com/yi-gu/group_effect">https://github.com/yi-gu/group_effect</a></p>
-				<p>nouveaux types SequenceEffect, ParallelEffect, StaggeEffect</p>
+				<p>nouveaux types SequenceEffect, ParallelEffect, StaggerEffect</p>
 				<p>Q1 2020</p>
 			</section>
 

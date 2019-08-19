@@ -1,8 +1,8 @@
 <!-- index.html -->
 <!doctype html>
 <style>
-  .hotel {
-    --ranking: 1; /* mon appréciation du séjour */
+  .cats {
+    --ranking: 1; /* mon appréciation des chatons */
     /* hack pour charger image, type <image> pas 100% implémenté */
     --flamingo:url('fla.jpg');
     --im:url('fla.jpg');
@@ -29,12 +29,30 @@
     height: 100px;
     margin: 10px;
   }
+  @supports (display: layout(parent)) {
+  .test {
+    display: layout(parent);
+    background: aliceblue;
+    height: 200px;
+    border: 1px solid black;
+    margin: 10px;
+  }
+  .child {
+    background: violet;
+  }
+}
 </style>
 <main>
   <img class="photo" src="https://placekitten.com/100/100" alt="">
-  <div class="hotel">Evaluez votre s&eacute;jour  &nbsp;</div>
+  <div class="cats">Evaluez si ces chatons sont mignons  &nbsp;</div>
 </main>
 <div ><h1 class="under">J'ai une underline custom</h1></div>
+
+<div>Layout API : placement custom de 2 enfants</div>
+<div class="test">
+    <div class="child" style="width:100px">#1 lorem ipsum bla bla bla bla <img src="https://placekitten.com/100/100"/></div>
+    <div class="child" style="width:200px">#2 la la la <img src="https://placekitten.com/100/100"/></div>
+</div>
 
 <script>
   CSS.registerProperty({
@@ -66,12 +84,13 @@
 <script>
   CSS.paintWorklet.addModule('meetup.js');
   CSS.paintWorklet.addModule('under.js');
+  CSS.layoutWorklet.addModule('masonry.js');
 </script>
 <script>
   /*
 document.addEventListener('mousemove', function (e) {
   console.log(Math.round(e.screenX / 100));
-  document.querySelector('.hotel').style.setProperty('--ranking', Math.round(e.screenX / 100))
+  document.querySelector('.cats').style.setProperty('--ranking', Math.round(e.screenX / 100))
 });
 */
 </script>

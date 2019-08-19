@@ -35,7 +35,7 @@ class MeetupPainter {
       ctx.setTransform(angle_cosine, angle_sine, -angle_sine, angle_cosine, 10, 10);
 
       //ctx.restore();
-      debugger;
+      //debugger;
       this.drawStar(ctx,color,x*(size-10 + spacing),1*(size-10 + spacing),5,30,15);
       //console.log('drawn:' + x*(size + spacing), 1*(size + spacing), size, size);
       console.log("geom:" + geom.width + "x" + geom.height);

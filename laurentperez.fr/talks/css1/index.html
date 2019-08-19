@@ -169,11 +169,22 @@ CSS.registerProperty({
 			</section>
 
 			<section>
+				<h2>Short lived ?</h2>
+				<p>La Worklet se réveille (repaint) quand :</p>
+				<p class="fragment fade-up">Une des propriétés CSS mappées change</p>
+				<p class="fragment fade-up">La géométrie de l'élément peint change (ex:resize)</p>
+				<p class="fragment fade-up">La timeline bouge (ex:scroll, demo plus loin)</p>
+				<p class="fragment fade-up">Une Worklet va peindre à <em>chaque frame, donc au minimum à 60fps</em></p>
+				<p class="fragment fade-up">C'est un WebWorker en plus léger, câblé directement sur le Compositing : tu repaint seulement une zone, sans repasser par les calculs DOM. Voir ça un peu comme un layer Photoshop </p>
+			</section>
+
+			<section>
 				<h2>Sécurité</h2>
 				<ul>
-					<li>Aucun accès au DOM. Le Canvas est étanche. Si besoin de DOM, faire un Canvas classique sans Paint API</li>
+					<li>Aucun accès au DOM et les Properties sont readonly. Le Canvas est étanche. Si besoin de DOM, faire un Canvas classique sans Paint API</li>
 					<li class="fragment fade-up">Car tu n'as pas spécialement envie qu'un Canvas chargé <em>depuis JS/CSS externe</em> puisse lire ou repeindre des éléments du DOM</li>
 					<li class="fragment fade-up">exemple : redessiner champ input de saisie de CB</li>
+					<li class="fragment fade-up">Les Properties readonly aussi contre boucle repaint infinie</li>
 					<li>c'est un <em>PaintRenderingContext2D</em> subset de <em>CanvasRenderingContext2D</em></li>
 				</ul>
 				<img src="gifhack.gif" width="200px" style="border: none;" alt="">
@@ -184,7 +195,7 @@ CSS.registerProperty({
 				<p class="fragment fade-up">exemple : un stream audio/vidéo/trading/ECU (data automobile) </p>
 				<p class="fragment fade-up">solution (Juin 2019) : ajouter un type &lt;blob&gt;</p>
 				<p><a href="https://github.com/w3c/css-houdini-drafts/issues/872">https://github.com/w3c/css-houdini-drafts/issues/872</a></p>
-				<p class="fragment fade-up">puis <em>postMessage</em> plus tard pour pas devoir repasser la Value dans la main thread</p>
+				<p class="fragment fade-up">... puis <em>postMessage</em> plus tard pour pas devoir repasser la Value CSS dans la main UI thread</p>
 				<p>valable aussi pour AnimationWorklet</p>
 			</section>
 
@@ -195,7 +206,7 @@ CSS.registerProperty({
 --speed: 81;
 --pos: 16;
 --laptime: 7.28;
---rpm: 6000;
+--rpm: 6000; /* jauge rectangle en Ferrari, arc rectangles en Motec */
 				</code></pre>
 				<img src="488.jpeg" width="350px" alt="">
 				<img src="motec.jpeg" width="350px" alt="">
@@ -211,7 +222,7 @@ CSS.registerProperty({
 			</section>
 			<section>
 				<p>Encore une API d'animation ?</p>
-				<small>... on a déjà CSS transitions, CSS animations (@keyframes), Web Animations API (el.animate({...}))</small>
+				<small>... on a déjà CSS transitions, CSS animations (@keyframes), Web Animations API (el.animate({...}).pause())</small>
 				<p class="fragment fade-up">NON. La Worklet est une <em>extension</em> de WAAPI qui donne un <em>Effect</em>, des <em>timelines</em> libres (dont une <em>ScrollTimeline</em>) et un état optionel (stateful)</p>
 				<p class="fragment fade-up">ex: se souvenir de l'état quand le moteur bouge la Worklet entre threads</p>
 				<p class="fragment fade-up">ex: accélérer/distordre le temps (document.timeline modifiable)</p>
@@ -220,15 +231,16 @@ CSS.registerProperty({
 
 			<section>
 				<p>Sprints et roadmap : <a href="https://www.chromium.org/teams/animations/animation-objectives">https://www.chromium.org/teams/animations/animation-objectives</a></p>
-				<p>Pour le moment (Août), <em>GroupEffect</em> = enchaînement de <em>>KeyFrameEffects</em> est désactivé</p>
+				<p>Pour le moment (Août), <em>GroupEffect</em> = enchaînement de <em>KeyFrameEffects</em> est désactivé</p>
 				<p class="fragment fade-up">exemple : démarrer l'animation B quand la A est à 50%, démarrer B, C, D en même temps mais avec des offsets (= parallaxe/stagger)</p>
 				<small class="fragment fade-up">Travail important de Yi Gu sur la Chorégraphie, Séquence et Staggering pour améliorer la spec</small>
 			</section>
 			<section>
 				<img src="pigeon.gif" alt="">
 				<p>lire les travaux de Yi sur <a href="https://github.com/yi-gu/group_effect">https://github.com/yi-gu/group_effect</a></p>
-				<p>nouveaux types SequenceEffect, ParallelEffect, StaggerEffect</p>
+				<p>nouveaux types SequenceEffect, ParallelEffect, StaggerEffect en plus de GroupEffect</p>
 				<p>Q1 2020</p>
+				<small>Question à Julian Garnier (anime.js) <a href>https://github.com/juliangarnier/anime/issues/602</a></small>
 			</section>
 
 			<section><h2>🖼️ Layout API 🖼️</h2>
@@ -239,7 +251,7 @@ CSS.registerProperty({
 				<p>Conteneur de <em>LayoutChild/Fragments</em> dans un <em>ParentLayout</em></p>
 				<small>Le <em>Parent</em> a des borders, paddings : les <em>Edges</em>. Entre les <em>Edges</em>, on a des <em>Constraints</em>. Les <em>LayoutChild</em> sont dans ces <em>Constraints</em> et ont des <em>Fragments</em></small>
 				<p>La clef : chaque <em>Fragment</em> a un <em>inlineOffset/blockOffset</em> pour le positionner par rapport à la box de son <em>Child</em></p>
-				<p>C'est - en gros - du position:relative; dans un <em>wireframe</em></p>
+				<p>C'est - en gros - du position:relative; dynamique dans un <em>wireframe</em></p>
 			</section>
 
 			<section>

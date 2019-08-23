@@ -64,6 +64,7 @@ right: 0;
 
 <script language="meetup">
   /* on enregistre nos AnimationWorklets */
+  /* 3 pour la timeline du scroll */
   registerAnimator('superscroll', class {
     animate(currentTime, effect) {
       effect.localTime = currentTime;
@@ -74,28 +75,40 @@ right: 0;
       effect.localTime = currentTime;
     }
   });
+  registerAnimator('progress', class {
+    animate(currentTime, effect) {
+      console.log(Math.round(currentTime));
+      effect.localTime = currentTime;
+    }
+  });
+  /* 2 pour la timeline naturelle, document.timeline */
   registerAnimator('logo', class {
     animate(currentTime, effect) {
-      effect.localTime = currentTime / 10;
+      effect.localTime = currentTime / 10; /* on manipule le temps */
     }
   });
   registerAnimator('logo2', class {
+    constructor(options, state = { slowBy : 20}) { /* avec args */
+      this.slowBy = state.slowBy;
+    }
     animate(currentTime, effect) {
-      effect.localTime = currentTime / 8;
+      effect.localTime = currentTime / this.slowBy; /* ici aussi */
+    }
+    state() {
+      return {
+        slowBy : this.slowBy
+      };
     }
   });
-  registerAnimator('progress', class {
-    constructor(options = {}, color = {}) {
-    this.color = 'green' || (Math.random() > 0.5 ? 'red' : 'yellow');
-  }
+  /* la meme chose mais avec GroupEffect */
+  /* --enable-blink-features=GroupEffect */
+  registerAnimator('logoGroup', class {
     animate(currentTime, effect) {
-      effect.localTime = currentTime;
+      let effects = effect.getChildren();
+      effects[0].localTime = currentTime / 10;
+      effects[1].localTime = currentTime / 20;
+      effects[2].localTime = currentTime / 2;
     }
-    destroy() {
-    return {
-      color: this.color
-    };
-  }
   });
 </script>
 <script>
@@ -107,14 +120,17 @@ right: 0;
     return URL.createObjectURL(blob);
   }
 
-  let logo1; /* non anonyme pour avoir les playback control */
+  let logo1; /* non anonyme pour montrer les playback control */
+  let logo2;
+  let effect1;
+  let effect2;
+  let effect3;
+  let grouped;
 
   async function init() {
     await CSS.animationWorklet.addModule(urlFromTag("script[language='meetup']"));
     
-    logo1 = new WorkletAnimation(
-      'logo',
-      new KeyframeEffect(
+    effect1 = new KeyframeEffect(
         document.querySelector('.logo'),
         [
         { transform: 'rotate(0)'},{ transform: 'rotate(360deg)'},
@@ -123,15 +139,44 @@ right: 0;
           duration: 2000,
           iterations: Number.POSITIVE_INFINITY
         }
-      ),
+      );
+    effect2  = new KeyframeEffect(
+        document.querySelector('.logo2'),
+        [
+        { transform: 'rotate(0)'},{ transform: 'rotate(360deg)'},
+        ],
+        {
+          duration: 2000,
+          iterations: Number.POSITIVE_INFINITY
+        }
+      )
+      effect3  = new KeyframeEffect(
+        document.querySelector('.logo2'),
+        [
+        { boxShadow: '4px 4px 55px blue' },{ boxShadow: '4px 4px 25px red' }
+        ],
+        {
+          duration: 1000,
+          iterations: Number.POSITIVE_INFINITY
+        }
+      )
+
+    logo1 = new WorkletAnimation(
+      'logo', /* l'Animator registered */
+      effect1, /* l'effet */
+      document.timeline /* le temps naturel */
+    );
+    logo2 = new WorkletAnimation(
+      'logo2',
+      effect2,
       document.timeline
     );
 
     new WorkletAnimation(
       'superscroll',
       new KeyframeEffect(
-        document.querySelector('#header'), 
-        [{height: CSS.vh(50)}, {height: CSS.px(30)}],
+        document.querySelector('#header'), /* le header rose */
+        [{height: CSS.vh(50)}, {height: CSS.px(30)}], /* réduit à 30px */
         {
           duration: 2000, 
           fill: 'both'
@@ -139,55 +184,52 @@ right: 0;
       ),
       new ScrollTimeline({
         scrollSource: document.scrollingElement, 
-        orientation: "vertical", // "horizontal" or "vertical".
+        orientation: "vertical", // "horizontal" | "vertical".
         timeRange: 2000,
         startScrollOffset: 0,
         /* on stoppe quand on a scrollé de 1/4 de la hauteur */
         endScrollOffset: CSS.px(document.documentElement.clientHeight * 0.25)
       })
     ).play();
+
     new WorkletAnimation(
       'scrollfade',
-      new KeyframeEffect(document.querySelector('#other'),
+      new KeyframeEffect(document.querySelector('#other'), /*boite bleue*/
                     [{opacity: 0}, {opacity: 1}],
                     {duration: 2000, iterations: 1}),
       new ScrollTimeline({
         scrollSource: document.scrollingElement, 
         orientation: "vertical",
-        timeRange: 2000
         /* on laisse fader jusqu'à aligner à 2000 */
+        timeRange: 2000 
       })
     ).play();
+
     new WorkletAnimation(
       'progress',
       new KeyframeEffect(
-        document.querySelector('#progress'), 
-        [{width: 0, background:'green'}, {width: CSS.px(document.body.clientWidth), background:'red'}],
+        document.querySelector('#progress'), /* le rectangle range */ 
+        [{width: 0, background:'green'},
+         {width: CSS.px(document.body.clientWidth), background:'red'}],
         {
           duration: 2000, 
           fill: 'both'
         }
       ),
       new ScrollTimeline({
-        scrollSource: document.querySelector("main"), 
+        scrollSource: document.querySelector("main"), /*scroll du main*/ 
         orientation: "vertical",
         timeRange: 2000
       })
     ).play();
-    new WorkletAnimation(
-      'logo2',
-      new KeyframeEffect(
-        document.querySelector('.logo2'),
-        [
-        { transform: 'rotate(0)'},{ transform: 'rotate(360deg)'}],
-        {
-          duration: 2000,
-          iterations: Number.POSITIVE_INFINITY
-        }
-      ),
-      document.timeline
-    ).play();
-    logo1.play();
+
+    // /Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary
+    // --enable-blink-features=GroupEffect
+    grouped = new WorkletAnimation('logoGroup', [effect1, effect2, effect3]);
+    grouped.play();
+
+    // logo1.play();
+    // logo2.play();
   }
   init();
 

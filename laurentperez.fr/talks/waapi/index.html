@@ -13,7 +13,7 @@
     top:0;
     left:0;
   }
-  #other {
+  #bluebox {
     width: 50%;
     height: 100px;
     background-color: blue;
@@ -21,6 +21,22 @@
     transform-origin: top right;
     top:0;
     right:0;
+  }
+  .minibox {
+    width: 50px;
+    height: 50px;
+    background-color: rebeccapurple;
+    opacity: 0.8;
+    list-style: decimal-leading-zero;
+  }
+  .flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    position: absolute;
+    left: 25vh;
   }
   main {
     width: 200px;
@@ -54,23 +70,29 @@ right: 0;
   }
 </style>
 <body>
-  <div class="logo"></div>
-  <div class="logo logo2"></div>
+
   <div id="header">
     ScrollTimeline
   </div>
-  <div id="other"><span style="position: absolute; bottom:0; color:white;">ScrollTimeline</span></div>
+  <div id="bluebox"><span style="position: absolute; bottom:0; color:white;">ScrollTimeline</span></div>
   <div id="progress"><span style="position: absolute; right:0; color:white;">ScrollTimeline</span></div>
+  <ul class="flex">
+    <li class="minibox"></li>
+    <li class="minibox"></li>
+    <li class="minibox"></li>
+  </ul>
+  <div class="logo"></div>
+  <div class="logo logo2"></div>
 
-<script language="meetup">
+<script language="meetup"> /* juste du lexique */
   /* on enregistre nos AnimationWorklets */
   /* 3 pour la timeline du scroll */
-  registerAnimator('superscroll', class {
+  registerAnimator('headerheight', class {
     animate(currentTime, effect) {
       effect.localTime = currentTime;
     }
   });
-  registerAnimator('scrollfade', class {
+  registerAnimator('blueboxfade', class {
     animate(currentTime, effect) {
       effect.localTime = currentTime;
     }
@@ -87,27 +109,37 @@ right: 0;
       effect.localTime = currentTime / 10; /* on manipule le temps */
     }
   });
+  /* dont 1 avec etat stateful  */
+  /* nb: c'est pas le defaut, stateless lui est optimise */
   registerAnimator('logo2', class {
     constructor(options, state = { slowBy : 20}) { /* avec args */
       this.slowBy = state.slowBy;
     }
     animate(currentTime, effect) {
-      effect.localTime = currentTime / this.slowBy; /* ici aussi */
+      effect.localTime = currentTime / this.slowBy;
     }
     state() {
       return {
-        slowBy : this.slowBy
+        slowBy : this.slowBy /* = serializable */
       };
     }
   });
-  /* la meme chose mais avec GroupEffect */
+  /* des groupes d'effets avec GroupEffect */
   /* --enable-blink-features=GroupEffect */
   registerAnimator('logoGroup', class {
     animate(currentTime, effect) {
       let effects = effect.getChildren();
       effects[0].localTime = currentTime / 10;
       effects[1].localTime = currentTime / 20;
-      effects[2].localTime = currentTime / 2;
+      effects[2].localTime = currentTime / 30;
+    }
+  });
+  registerAnimator('miniboxGroup', class {
+    animate(currentTime, effect) {
+      let effects = effect.getChildren();
+      effects[0].localTime = currentTime - 1000;
+      effects[1].localTime = currentTime - 1500;
+      effects[2].localTime = currentTime - 2000;
     }
   });
 </script>
@@ -125,7 +157,9 @@ right: 0;
   let effect1;
   let effect2;
   let effect3;
+  let miniEffects = [];
   let grouped;
+  let grouped2;
 
   async function init() {
     await CSS.animationWorklet.addModule(urlFromTag("script[language='meetup']"));
@@ -134,7 +168,8 @@ right: 0;
         document.querySelector('.logo'),
         [
         { transform: 'rotate(0)'},{ transform: 'rotate(360deg)'},
-        { offset: 1, transform: 'scale(4.0,4.0)'}],
+        { offset: 0.5, transform: 'scale(4.0,4.0)'} /* 1 = à la fin */
+        ], 
         {
           duration: 2000,
           iterations: Number.POSITIVE_INFINITY
@@ -150,17 +185,28 @@ right: 0;
           iterations: Number.POSITIVE_INFINITY
         }
       )
-      effect3  = new KeyframeEffect(
+    effect3  = new KeyframeEffect(
         document.querySelector('.logo2'),
         [
         { boxShadow: '4px 4px 55px blue' },{ boxShadow: '4px 4px 25px red' }
         ],
         {
-          duration: 1000,
+          duration: 1000, /* ici on veut un shadow plus rapide que les rotate */
           iterations: Number.POSITIVE_INFINITY
         }
       )
+      /* sur tous les ul > li */
+      document.querySelectorAll('.minibox').forEach(e => {
+        miniEffects.push(new KeyframeEffect(
+        e, 
+        [{transform: 'translateX(0px)'},{transform: 'translateX(200px)'},
+        {offset: 0.5, transform: 'scale(1.5,1.5)'}],
+         {duration: 4000, iterations: Number.POSITIVE_INFINITY}
+        )
+        )
+      });
 
+    /* les logos relatifs au temps de document.timeline */
     logo1 = new WorkletAnimation(
       'logo', /* l'Animator registered */
       effect1, /* l'effet */
@@ -172,35 +218,36 @@ right: 0;
       document.timeline
     );
 
+    /* les rectangles relatifs au temps de scroll.timeline */
     new WorkletAnimation(
-      'superscroll',
+      'headerheight',
       new KeyframeEffect(
         document.querySelector('#header'), /* le header rose */
         [{height: CSS.vh(50)}, {height: CSS.px(30)}], /* réduit à 30px */
         {
-          duration: 2000, 
+          duration: 2000,
           fill: 'both'
         }
       ),
       new ScrollTimeline({
-        scrollSource: document.scrollingElement, 
-        orientation: "vertical", // "horizontal" | "vertical".
-        timeRange: 2000,
+        scrollSource: document.scrollingElement, /* body par défaut */ 
+        orientation: "vertical",
+        timeRange: 2000, /* quand le scroll touche à sa fin, on est à 2000 */
         startScrollOffset: 0,
-        /* on stoppe quand on a scrollé de 1/4 de la hauteur */
+        /* on stoppe l'anim quand on a scrollé de 1/4 de la hauteur */
         endScrollOffset: CSS.px(document.documentElement.clientHeight * 0.25)
       })
     ).play();
 
     new WorkletAnimation(
-      'scrollfade',
-      new KeyframeEffect(document.querySelector('#other'), /*boite bleue*/
+      'blueboxfade',
+      new KeyframeEffect(document.querySelector('#bluebox'), /*boite bleue*/
                     [{opacity: 0}, {opacity: 1}],
                     {duration: 2000, iterations: 1}),
       new ScrollTimeline({
         scrollSource: document.scrollingElement, 
         orientation: "vertical",
-        /* on laisse fader jusqu'à aligner à 2000 */
+        /* on laisse fader jusqu'à aligner à 2000 : la fin du scroll de body */
         timeRange: 2000 
       })
     ).play();
@@ -211,10 +258,7 @@ right: 0;
         document.querySelector('#progress'), /* le rectangle range */ 
         [{width: 0, background:'green'},
          {width: CSS.px(document.body.clientWidth), background:'red'}],
-        {
-          duration: 2000, 
-          fill: 'both'
-        }
+         {duration: 2000, fill: 'both'}
       ),
       new ScrollTimeline({
         scrollSource: document.querySelector("main"), /*scroll du main*/ 
@@ -227,6 +271,9 @@ right: 0;
     // --enable-blink-features=GroupEffect
     grouped = new WorkletAnimation('logoGroup', [effect1, effect2, effect3]);
     grouped.play();
+
+    grouped2 = new WorkletAnimation('miniboxGroup', miniEffects);
+    grouped2.play();
 
     // logo1.play();
     // logo2.play();

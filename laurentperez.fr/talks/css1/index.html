@@ -88,7 +88,7 @@
 				<p  class="fragment fade-up">Ouvrir les portes de la "magie" CSS et pouvoir étendre le moteur sans attendre les fabricants ou ticket les librairies tierces</p>
 				<small  class="fragment fade-up">Arrêter les hacks JS à base de addClass/el.style/translate3D(0,0,0)</small>
 				<p  class="fragment fade-up">Séparer la logique dessin/animation (JS) et son style (CSS)</p>
-				<p  class="fragment fade-up">Garantir du rendu à 60fps hors thread UI principale</p>
+				<p  class="fragment fade-up">Atteindre du rendu à 60fps hors thread UI principale</p>
 				<p>Task force Google, Mozilla, Apple</p>
 				<small  class="fragment fade-up">hacks JS = parce qu'on n'a pas le choix</small>
 			</section>
@@ -196,7 +196,7 @@ CSS.registerProperty({
 				<p class="fragment fade-up">Une des propriétés CSS mappées change</p>
 				<p class="fragment fade-up">La géométrie de l'élément peint change (ex:resize)</p>
 				<p class="fragment fade-up">La timeline bouge (ex:scroll, demo plus loin)</p>
-				<p class="fragment fade-up">Une Worklet va peindre à <em>chaque frame, donc au minimum à 60fps</em></p>
+				<p class="fragment fade-up">Une Worklet va peindre à <em>chaque frame, au minimum à 60fps</em></p>
 				<p class="fragment fade-up">C'est un WebWorker en plus léger, câblé directement sur le moteur CSS. Voir ça un peu comme un layer Photoshop </p>
 			</section>
 
@@ -236,17 +236,18 @@ CSS.registerProperty({
 
 			<section>
 				<h2>🎬 Worklet Animation API 🎬</h2>
-				<p>Animations non blocking à 60fps relatives à la timeline et au scroll
+				<p class="fragment fade-up">Animations non blocking à 60fps relatives à la timeline et au scroll
 				... c'est surtout fait pour le scroll, et ça le fait bien</p>
-				<small>qui a déjà fait des parallaxes fluides ? des offsets / staggering ? anime.JS ?</small>
+				<small class="fragment fade-up">qui a déjà fait des parallaxes fluides ? des offsets / staggering ? anime.JS ?</small>
 				<p>Syntaxe : <em>AnimationWorklet + KeyFrameEffects</em></p>
-				<p>Note : séquence/chorégraphie à faire à la main. Un peu pénible, car <em>GroupEffect</em> dans la spec</p>
+				<p class="fragment fade-up">Note : séquence/chorégraphie à faire à la main. Un peu pénible, car <em>GroupEffect</em> dans la spec</p>
 			</section>
+
 			<section>
 				<p>Encore une API d'animation ?</p>
 				<small>... on a déjà CSS transitions, CSS animations (@keyframes), Web Animations API sans CSS (el.animate({...}).pause())</small>
 				<p class="fragment fade-up">NON. La Worklet est une <em>extension</em> de WAAPI qui donne un <em>Effect</em>, des <em>timelines</em> libres (dont une <em>ScrollTimeline</em>) et un état optionel (stateful)</p>
-				<p class="fragment fade-up">ex: se souvenir de l'état quand le moteur bouge la Worklet entre threads</p>
+				<p class="fragment fade-up">ex: se souvenir de l'état pour le conserver entre frames, ou quand le moteur bouge la Worklet entre threads</p>
 				<p class="fragment fade-up">ex: accélérer/distordre le temps (document.timeline modifiable)</p>
 				<p><a href="../waapi">demo (+ question paint flashing)</a></p>				
 			</section>
@@ -255,8 +256,18 @@ CSS.registerProperty({
 				<p>Pourquoi on a toujours du paint flashing ? - sur certains éléments</p>
 				<p class="fragment fade-up">Parce que j'ai modifié leur géométrie ou box shadow</p>
 				<p class="fragment fade-up"><a href="https://csstriggers.com/">https://csstriggers.com/</a></p>
-				<p class="fragment fade-up">Mais la Worlet reste câblée sur le Compositor, elle 'saute' les phases de construction des arbres DOM et CSSOM, donc ça va vite</p>
-				<small class="fragment fade-up">fini les hacks risqués translate3d(0,0,0), la Worklet promeut l'élément dans le Compositor</small>
+				<p class="fragment fade-up">Mais la Worklet n'est pas sur la Main thread (no jank)</p>
+				<small class="fragment fade-up">fini les hacks risqués translate3d(0,0,0), la Worklet promeut l'élément vers le Compositor</small>
+			</section>
+
+			<section>
+				<p>La Worklet n'est <em>PAS sur la Compositor thread</em>, elle s'y <em>sync en "best effort"</em></p>
+				<p>Car si tu fais du bitcoin dans la Worklet, ça ralentirait le Compositing</p>
+				<p>Elle va <em>au minimum</em> performer comme <em>requestAnimationFrame</em> à 60fps</p>
+				<p>Si ton animate est trop souvent &gt; 16ms (1/60), le moteur throttle, comme rAf : un 30fps fluide est meilleur qu'un 60fps qui drop</p>
+				<small>60fps est une limite basse, l'iPad Pro est à 120Hz, l'Oculus/Vive à 90hz</small>
+				<br>
+				<small>mais Apple <a href="https://github.com/WebKit/webkit/blob/master/Source/WebCore/page/RenderingUpdateScheduler.cpp">limite à 60fps</a></small>
 			</section>
 
 			<section>

@@ -135,7 +135,7 @@
 				<p>Firefox (Servo) est à la bourre. IE va utiliser Blink (M78)</p>
 				<p>lire les questions sur <a href="https://github.com/w3c/css-houdini-drafts/issues">https://github.com/w3c/css-houdini-drafts/issues</a></p>
 				<p>réponses des auteurs de specs et fabricants</p>
-				<p class="fragment fade-up">Important : WAAPI à 100% dans Safari TP / iOS13 (sans Worklet, uc), 80% CR FF</p>
+				<p class="fragment fade-up">Important : WAAPI à 100% dans Safari TP / iOS13 (sans Worklet, uc), 80% CR FF (playback pas fini)</p>
 			</section>
 
 			<section>
@@ -143,6 +143,7 @@
 				<p class="fragment fade-up">C'est dû au switch de Gecko vers Servo à partir de 2017</p>
 				<p class="fragment fade-up">On veut de la diversité dans les moteurs de rendu, Servo est top</p>
 				<p class="fragment fade-up">Pas de One Blink to rule them all</p>
+				<p class="fragment fade-up">nb : la Team IE Edge va verser le meilleur de Edge dans Blink (Reddit aMa 06/19), réouvrir des API bloquées</p>
 				<small>FF Worklet mi Août : <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1315239">https://bugzilla.mozilla.org/show_bug.cgi?id=1315239</a></small>
 				<small>en Q3 2019 tout Houdini marqué en enhancement, les tickets dataient de 2017</small>
 			</section>
@@ -181,8 +182,8 @@ CSS.registerProperty({
 			</section>
 
 			<section><h2>🎨 Paint API 🎨</h2>
-				<p>Dessin 2D personnalisé avec <em>background:paint('foo');</em></p>
-				<p>Introduction de <em>PaintWorklet</em> : analogie avec les <em>ServiceWorkers</em> pour le cache/offline/push notifs</p>
+				<p>Dessin libre avec <em>background:paint('foo');</em></p>
+				<p>Introduction de <em>PaintWorklet</em> : analogie avec les <em>Workers</em> pour le cache/offline/push notifs</p>
 				<p class="fragment fade-up">Une <em>Worklet</em> est un JS short-lived, déplaçable entre threads au gré du moteur</p>
 				<p class="fragment fade-up">But : qu'elle ne tourne pas dans la main thread (main JS sur thread UI sans rAf = lag) mais dans une autre thread</p>
 				<p class="fragment fade-up">La Paint API donne un <em>Canvas</em> sans accès au DOM</p>
@@ -192,7 +193,7 @@ CSS.registerProperty({
 
 			<section>
 				<h2>Short lived ?</h2>
-				<p>La Worklet se réveille (repaint) quand :</p>
+				<p>La Worklet est dormante et se réveille quand :</p>
 				<p class="fragment fade-up">Une des propriétés CSS mappées change</p>
 				<p class="fragment fade-up">La géométrie de l'élément peint change (ex:resize)</p>
 				<p class="fragment fade-up">La timeline bouge (ex:scroll, demo plus loin)</p>
@@ -205,7 +206,7 @@ CSS.registerProperty({
 				<ul>
 					<li>Aucun accès au DOM et les Properties sont readonly. Le Canvas est étanche. Si besoin de DOM, faire un Canvas classique sans Paint API</li>
 					<li class="fragment fade-up">Car tu n'as pas spécialement envie qu'un Canvas chargé <em>depuis JS/CSS externe</em> puisse lire ou repeindre des éléments du DOM</li>
-					<li class="fragment fade-up">exemple : redessiner champ input de saisie de CB</li>
+					<li class="fragment fade-up">exemple : redessiner champ input de saisie de CB avec un message pour contacter la "banque"</li>
 					<li class="fragment fade-up">Les Properties readonly aussi contre boucle repaint infinie</li>
 					<li>c'est un <em>PaintRenderingContext2D</em> subset de <em>CanvasRenderingContext2D</em></li>
 				</ul>
@@ -224,6 +225,7 @@ CSS.registerProperty({
 			<section>
 				<p>Skins : background:paint('488GT3'); background:paint('motec');</p>
 				<pre class="fragment fade-up"><code class="css">
+/* nos Properties CSS custom (ici, number)*/
 --gear: 3;
 --speed: 81;
 --pos: 16;
@@ -237,16 +239,16 @@ CSS.registerProperty({
 			<section>
 				<h2>🎬 Worklet Animation API 🎬</h2>
 				<p class="fragment fade-up">Animations non blocking à 60fps relatives à la timeline et au scroll
-				... c'est surtout fait pour le scroll, et ça le fait bien</p>
+				... c'est assez fait pour le scroll, et ça le fait - très - bien</p>
 				<small class="fragment fade-up">qui a déjà fait des parallaxes fluides ? des offsets / staggering ? anime.JS ?</small>
 				<p>Syntaxe : <em>AnimationWorklet + KeyFrameEffects</em></p>
-				<p class="fragment fade-up">Note : séquence/chorégraphie à faire à la main. Un peu pénible, car <em>GroupEffect</em> dans la spec</p>
+				<p class="fragment fade-up">Note : séquence/chorégraphie à faire à la main. Un peu pénible, car <em>GroupEffect</em> dans la spec - mais caché</p>
 			</section>
 
 			<section>
 				<p>Encore une API d'animation ?</p>
-				<small>... on a déjà CSS transitions, CSS animations (@keyframes), Web Animations API sans CSS (el.animate({...}).pause())</small>
-				<p class="fragment fade-up">NON. La Worklet est une <em>extension</em> de WAAPI qui donne un <em>Effect</em>, des <em>timelines</em> libres (dont une <em>ScrollTimeline</em>) et un état optionel (stateful)</p>
+				<small>... on a déjà CSS transitions, CSS animations (@keyframes), la Web Animations API sans CSS (el.animate({...}).pause())</small>
+				<p class="fragment fade-up">NON. La Worklet est une <em>extension</em> de WAAPI qui donne un <em>KeyframeEffect</em>, des <em>timelines</em> libres (dont une <em>ScrollTimeline</em>) et un état optionel (stateful)</p>
 				<p class="fragment fade-up">ex: se souvenir de l'état pour le modifier dans le temps, ou quand le moteur bouge la Worklet entre threads</p>
 				<p class="fragment fade-up">ex: accélérer/distordre le temps (document.timeline modifiable)</p>
 				<p><a href="../waapi">demo (+ question paint flashing)</a></p>				
@@ -255,6 +257,7 @@ CSS.registerProperty({
 			<section>
 				<p>Pourquoi on a toujours du paint flashing ? - sur certains éléments</p>
 				<p class="fragment fade-up">Parce que j'ai modifié leur géométrie ou box shadow</p>
+				<p class="fragment fade-up">Et ce sont des classiques qui déclenchent un repaint</p>
 				<p class="fragment fade-up"><a href="https://csstriggers.com/">https://csstriggers.com/</a></p>
 				<p class="fragment fade-up">Mais la Worklet n'est pas sur la Main thread (no jank)</p>
 				<small class="fragment fade-up">fini les hacks risqués translate3d(0,0,0), la Worklet promeut l'élément vers le Compositor</small>
@@ -263,24 +266,25 @@ CSS.registerProperty({
 			<section>
 				<p>La Worklet n'est <em>PAS sur la Compositor thread</em>, elle s'y <em>sync en "best effort"</em></p>
 				<p>Car si tu fais du bitcoin dans la Worklet, ça ralentirait le Compositing</p>
-				<p>Elle va <em>au minimum</em> performer comme <em>requestAnimationFrame</em> à 60fps</p>
+				<p class="fragment fade-up">Elle va <em>au minimum</em> performer comme <em>requestAnimationFrame</em> à 60fps</p>
 				<p class="fragment fade-up">Si ton animate est trop souvent &gt; 16ms (1/60), le moteur offthread ou throttle, comme rAf : un 30fps fluide est meilleur qu'un 60fps qui drop</p>
-				<small>60fps est une limite basse, l'iPad Pro est à 120Hz, l'Oculus/Vive à 90hz</small>
+				<small class="fragment fade-up">60fps est une limite basse, l'iPad Pro est à 120Hz, l'Oculus/Vive à 90hz. Chrome, IE et FF peuvent faire du 240hz</small>
 				<br>
-				<small>mais Apple <a href="https://github.com/WebKit/webkit/blob/master/Source/WebCore/page/RenderingUpdateScheduler.cpp">limite à 60fps</a></small>
+				<small class="fragment fade-up">nb: Safari iOS <a href="https://github.com/WebKit/webkit/blob/master/Source/WebCore/page/RenderingUpdateScheduler.cpp">limite à 60fps</a> et les iframe sans interaction <a href="https://trac.webkit.org/changeset/215070/webkit">à 30fps</a></small>
 			</section>
 
 			<section>
 				<p>Jouer avec le temps, animer des éléments liés ou distincts</p>
 				<p><img src="tars.jpg" alt=""></p>
-				<small>Ne pas voir ça comme de la sci-fi complexe. La clef est toujours la timeline.</small>
-				<small>Penser en distance relative au temps : km/h, m/s</small>
+				<small>Ne pas partir dans un trip sci-fi/math complexe avec doliprane : <em>la clef est toujours la timeline</em>.</small>
+				<small>Penser en distance relative au temps : km/h, m/s, à la Flèche du temps (Eddington)</small>
 			</section>
 
 			<section>
 				<p>⌛ Le temps peut être altéré par une autre unité libre ⌛</p>
 				<p class="fragment fade-up"><a href="https://majido.github.io/houdini-samples/animation-worklet/touch-input/drag.html">Superbe démo : le temps basé sur un deltaX d'un CSS Pointer Event</a></p>
 				<p class="fragment fade-up"><img src="incep.png" alt=""></p>
+				<p class="fragment fade-up"><img src="spin.jpg" width="400px" alt=""></p>
 			</section>
 
 			<section>
@@ -299,12 +303,12 @@ CSS.registerProperty({
 
 			<section><h2>🖼️ Layout API 🖼️</h2>
 				<p>Quand flex ou grid ne suffisent plus (oui oui)</p>
-				<p>tl;dr : écrire son propre display:layout('monlayout');</p>
+				<p class="fragment fade-up">tl;dr : écrire son propre display:layout('monlayout');</p>
 				<p><a href="https://houdini.glitch.me/layout">https://houdini.glitch.me/layout</a></p>
-				<small>Rappel : c'est Bloomberg qui a sponsorisé grid dans WebKit (Igalia)</small>
-				<p>Conteneur de <em>LayoutChild/Fragments</em> dans un <em>ParentLayout</em></p>
-				<small>Le <em>Parent</em> a des borders, paddings : les <em>Edges</em>. Entre les <em>Edges</em>, on a des <em>Constraints</em>. Les <em>LayoutChild</em> sont dans ces <em>Constraints</em> et ont des <em>Fragments</em></small>
-				<p>La clef : chaque <em>Fragment</em> a un <em>inlineOffset/blockOffset</em> pour le positionner par rapport à la box de son <em>Child</em></p>
+				<small class="fragment fade-up">Rappel : c'est Bloomberg qui a sponsorisé grid dans WebKit (Igalia)</small>
+				<p class="fragment fade-up">Conteneur de <em>LayoutChild/Fragments</em> dans un <em>ParentLayout</em></p>
+				<small class="fragment fade-up">Le <em>Parent</em> a des borders, paddings : les <em>Edges</em>. Entre les <em>Edges</em>, on a des <em>Constraints</em>. Les <em>LayoutChild</em> sont dans ces <em>Constraints</em> et ont des <em>Fragments</em></small>
+				<p class="fragment fade-up">La clef : chaque <em>Fragment</em> a un <em>inlineOffset/blockOffset</em> pour le positionner par rapport à la box de son <em>Child</em></p>
 				<p>C'est - en gros - du position:relative; dynamique dans un <em>wireframe</em></p>
 			</section>
 

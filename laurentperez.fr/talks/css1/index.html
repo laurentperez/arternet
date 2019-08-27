@@ -249,7 +249,7 @@ CSS.registerProperty({
 				<p>Encore une API d'animation ?</p>
 				<small>... on a déjà CSS transitions, CSS animations (@keyframes), la Web Animations API sans CSS (el.animate({...}).pause())</small>
 				<p class="fragment fade-up">NON. La Worklet est une <em>extension</em> de WAAPI qui donne un <em>KeyframeEffect</em>, des <em>timelines</em> libres (dont une <em>ScrollTimeline</em>) et un état optionel (stateful)</p>
-				<p class="fragment fade-up">ex: se souvenir de l'état pour le modifier dans le temps, ou quand le moteur bouge la Worklet entre threads</p>
+				<p class="fragment fade-up">ex: se souvenir de l'état pour le modifier/partager dans le temps, ou quand le moteur bouge la Worklet entre threads</p>
 				<p class="fragment fade-up">ex: accélérer/distordre le temps (document.timeline modifiable)</p>
 				<p><a href="../waapi">demo (+ question paint flashing)</a></p>				
 			</section>
@@ -259,16 +259,16 @@ CSS.registerProperty({
 				<p class="fragment fade-up">Parce que j'ai modifié leur géométrie ou box shadow</p>
 				<p class="fragment fade-up">Et ce sont des classiques qui déclenchent un repaint</p>
 				<p class="fragment fade-up"><a href="https://csstriggers.com/">https://csstriggers.com/</a></p>
-				<p class="fragment fade-up">Mais la Worklet n'est pas sur la Main thread (no jank)</p>
-				<small class="fragment fade-up">fini les hacks risqués translate3d(0,0,0), la Worklet promeut l'élément vers le Compositor</small>
+				<p class="fragment fade-up">Mais la Worklet n'est pas sur la Main thread : no jank si son JS rame</p>
+				<small class="fragment fade-up">fini les hacks risqués translate3d(0,0,0), la Worklet promeut l'élément en Layer vers le Compositor</small>
 			</section>
 
 			<section>
 				<p>La Worklet n'est <em>PAS sur la Compositor thread</em>, elle s'y <em>sync en "best effort"</em></p>
 				<p>Car si tu fais du bitcoin dans la Worklet, ça ralentirait le Compositing</p>
-				<p class="fragment fade-up">Elle va <em>au minimum</em> performer comme <em>requestAnimationFrame</em> à 60fps</p>
-				<p class="fragment fade-up">Si ton animate est trop souvent &gt; 16ms (1/60), le moteur offthread ou throttle, comme rAf : un 30fps fluide est meilleur qu'un 60fps qui drop</p>
-				<small class="fragment fade-up">60fps est une limite basse, l'iPad Pro est à 120Hz, l'Oculus/Vive à 90hz. Chrome, IE et FF peuvent faire du 240hz</small>
+				<p class="fragment fade-up">Elle va <em>au minimum</em> chercher à performer comme <em>requestAnimationFrame</em> à 60fps</p>
+				<p class="fragment fade-up">Si ton animate est trop souvent &gt; 16ms (1/60), le moteur va offthread ou throttle, comme rAf : un 30fps fluide est meilleur qu'un 60fps qui drop</p>
+				<small class="fragment fade-up">60fps est une limite basse, l'iPad Pro est à 120Hz, l'Oculus/Vive à 90Hz. Chrome, IE et FF peuvent faire du 240Hz et même 480Hz sur des moniteurs usine</small>
 				<br>
 				<small class="fragment fade-up">nb: Safari iOS <a href="https://github.com/WebKit/webkit/blob/master/Source/WebCore/page/RenderingUpdateScheduler.cpp">limite à 60fps</a> et les iframe sans interaction <a href="https://trac.webkit.org/changeset/215070/webkit">à 30fps</a></small>
 			</section>
@@ -297,7 +297,7 @@ CSS.registerProperty({
 				<img src="pigeon.gif" alt="">
 				<p>lire les travaux de Yi sur <a href="https://github.com/yi-gu/group_effect">https://github.com/yi-gu/group_effect</a></p>
 				<p>nouveaux types SequenceEffect, ParallelEffect, StaggerEffect en plus de GroupEffect</p>
-				<p>Q1 2020</p>
+				<p>Q1 2020. Yi est joignable et demandeur de retours</p>
 				<small>Question à Julian Garnier (anime.js) <a href>https://github.com/juliangarnier/anime/issues/602</a></small>
 			</section>
 
@@ -317,17 +317,18 @@ CSS.registerProperty({
 				<p class="fragment fade-up">display:layout('L'); display:layout('4bar'); ▛ ▚ ▐</p>
 				<small class="fragment fade-up">4bar est ici 4 Fragments empilés, L 3 et le 4e a un offset</small>
 				<p class="fragment fade-up">Les blocs Fragments sont _parallélisables_ pour les moteurs next-gen (LayoutNG CR, WebRender FF) : quand le 4bar rentre et 'flashe' un Tetris, 4 lignes sont à effacer, et y-4 pour au dessus</p>
-				<p class="fragment fade-up">Cas d'usage : architecture, UI normés (affichage dash militaire/voiture/avion, presse écrite, eBooks, ePub Comics)</p>
+				<p class="fragment fade-up">Cas d'usage : architecture, UI normés (affichage dash militaire/industriel, presse écrite, eBooks, ePub Comics)</p>
 				<small class="fragment fade-up">des utilisaturs.trices de QuarkXPress/InDesign ?</small>
 				<p><a href="https://css-houdini.rocks/masonry/">demo</a></p>
 			</section>
 
 			<section>
 				<h2>🔠 Font Metrics API 🔠</h2>
-				<p>... spec utilitaire causée par la Layout API :</p>
+				<p>... spec seulement utilitaire, causée par la Layout API :</p>
 				<p>dessiner des blocs custom c'est cool mais : on a parfois besoin de gérer du texte dedans</p>
-				<small class="fragment fade-up">ex : faire son propre line-breaking, connaître la baseline dans un Fragment, les tailles réelles des symboles math chimie, des ligatures Œ, Æ, محرك, et cætera … &lt;- c'est des points de suspension, pas '...' </small>
+				<small class="fragment fade-up">ex : faire son propre line-breaking, connaître les tailles réelles des symboles math chimie ∑ √ ∞, des ligatures Œ, Æ, محرك, et cætera … &lt;- c'est des points de suspension, pas '...' </small>
 				<p class="fragment fade-up">exposer seulement la Font ne suffit pas : il faut descendre au niveau du <em>glyphe</em> dessiné par chaque navigateur</p>
+				<p class="fragment fade-up">la FMAPI donnera un objet du glyphe dessiné</p>
 			</section>
 				
 			<section>

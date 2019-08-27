@@ -17,28 +17,23 @@ class MeetupPainter {
     const spacing = 40;
     const size = 30;
 
-    let color = 'green';
-    if(ranking <= 3){color='red'} // c'est déjà un number, pas de cast
-    else if(ranking > 3 & ranking <= 5){color='orange'}
-
-    //ctx.save();
-
     let rotation_degs = rot
-    console.log('deg:' + rotation_degs)
     let rotation_rads = this.degs_to_rads(rotation_degs)
     let angle_sine = Math.sin(rotation_rads)
     let angle_cosine = Math.cos(rotation_rads)
 
-    for(let x = 0.5; x < ranking; x++) {
-      ctx.globalAlpha = 1/ranking;
-      ctx.drawImage(image, 0, 100, 120, 100 );
-      ctx.setTransform(angle_cosine, angle_sine, -angle_sine, angle_cosine, 10, 10);
+    var gradient=ctx.createLinearGradient(0,0,geom.width,0);
+    gradient.addColorStop(0,"red");
+    gradient.addColorStop(0.5,"orange");
+    gradient.addColorStop(1.0,"green");
 
-      //ctx.restore();
-      //debugger;
-      this.drawStar(ctx,color,x*(size-10 + spacing),1*(size-10 + spacing),5,30,15);
+    for(let x = 0.5; x < ranking; x++) {
+      ctx.setTransform(angle_cosine, angle_sine, -angle_sine, angle_cosine, 10, 10);
+      //debugger; /* pour voir les threads */
+      this.drawStar(ctx,gradient,x*(size-10 + spacing),1*(size-10 + spacing),5,30,15);
+      ctx.drawImage(image, 0, 100, 120, 100);
       //console.log('drawn:' + x*(size + spacing), 1*(size + spacing), size, size);
-      console.log("geom:" + geom.width + "x" + geom.height);
+      console.log("geom:" + geom.width + "x" + geom.height + "/" + (geom.width/geom.height));
       console.log("type de sky:" + sky);
     }
     
@@ -75,7 +70,7 @@ class MeetupPainter {
     ctx.lineWidth=1;
     ctx.strokeStyle='black';
     ctx.stroke();
-    ctx.fillStyle='' + color;
+    ctx.fillStyle=color;
     ctx.fill();
   }
 }

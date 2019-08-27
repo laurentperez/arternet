@@ -3,10 +3,9 @@
 <style>
   .cats {
     --ranking: 1; /* mon appréciation des chatons */
+    --rotate:0;
     /* hack pour charger image, type <image> pas 100% implémenté */
     --flamingo:url('fla.jpg');
-    --im:url('fla.jpg');
-    --rotate:0;
     list-style-image: var(--flamingo); 
     background-image: paint(meetup); /* mon peintre */
     height: 200px; /* hauteur toile où je vais être peint */
@@ -29,29 +28,33 @@
     height: 100px;
     margin: 10px;
   }
-  @supports (display: layout(parent)) {
+  @supports (display: layout(coincoin)) {
   .test {
-    display: layout(parent);
+    display: layout(coincoin);
     background: aliceblue;
     height: 200px;
-    border: 1px solid black;
+    border: 20px solid rebeccapurple;
     margin: 10px;
   }
   .child {
     background: violet;
+    transition: all 2s;
+    overflow: auto;
   }
 }
 </style>
+<div>Paint API : dessin personnalisé</div>
 <main>
   <img class="photo" src="https://placekitten.com/100/100" alt="">
   <div class="cats">Evaluez si ces chatons sont mignons  &nbsp;</div>
 </main>
-<div ><h1 class="under">J'ai une underline custom</h1></div>
+<div ><p class="under">J'ai une underline custom</p></div>
 
-<div>Layout API : placement custom de 2 enfants</div>
+<div>Layout API : placement custom de 2 enfants : 2 1ers dans les coins, le reste au milieu</div>
 <div class="test">
     <div class="child" style="width:100px">#1 lorem ipsum bla bla bla bla <img src="https://placekitten.com/100/100"/></div>
     <div class="child" style="width:200px">#2 la la la <img src="https://placekitten.com/100/100"/></div>
+    <div>miaou</div>
 </div>
 
 <script>

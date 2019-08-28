@@ -49,7 +49,7 @@
 				<section>
 					<p>Meetup AFUP / Web Front</p>
 					<p>"Le moteur CSS sous stéroides avec la magie d'Houdini"</p>
-					<p>Dessin et animations nouvelle génération</p>
+					<p>Dessin et animations nouvelle génération, et plus encore</p>
 					<p><img src="awe.png" alt=""></p>
 					<p><img src="mth.jpg" width="30px"/></p>
 					<small>laurentperez.fr/talks/css1</small>
@@ -77,27 +77,50 @@
 			<section>
 				<h2>✨ CSS Houdini ✨</h2>
 				<p class="fragment fade-up">tl;dr : pour un accès direct au moteur CSS via JS</p>
-				<p class="fragment fade-up">on a un véritable accès au moteur</p>
+				<p class="fragment fade-up">on a un véritable accès au moteur, au plus proche de l'interne</p>
 				<p class="fragment fade-up">on peut y créer nos propriétés, peinture/clip, animation, layout</p>
 				<p class="fragment fade-up">travail commencé circa 2016</p>
 				<p  class="fragment fade-up">suite logique du travail après WebComponents, WebWorkers et Web Animations API</p>
 			</section>
 
 			<section>
-				<h2>Motivations</h2>
+				<h2>🤔 ... Une solution à la recherche d'un problème ? 🤔</h2>
+				<p>C'est une boite à outils sur CSS. OK ...</p>
+				<p class="fragment fade-up"><blockquote class="fragment fade-up">" Like 10000 spoons when all you need is a knife ". Ironic</blockquote></p>
+				<p class="fragment fade-up">Ca te donne de quoi construire ton couteau si tu n'en avais pas</p>
+				<p class="fragment fade-up">Et si tu en avais, ça te permet de mieux l'utiliser, le polir, l'améliorer, ou prototyper une alternative, variation</p>
+				<p class="fragment fade-up">Artisanat, outil sans limites ou presque. Presque*, c'est pas open bar total</p>
+			</section>
+
+			<section>
+				<h2>Qui te donne le couteau ?</h2>
+				<p class="fragment fade-up">Les fabricants de navigateurs, et de librairies - toi compris !</p>
+				<p class="fragment fade-up">Houdini, la reine des neiges dans ton navigateur</p>
+				<p class="fragment fade-up">Libéré(e), délivré(e) de contraintes du moteur ou limites/bugs des librairies tierces</p>
+				<p class="fragment fade-up">... ça t'empêche pas de commit sur un tiers OSS si tu sais/peux/veux le faire</p>
+				<small class="fragment fade-up">Dans un slide on cite une princesse, une arme blanche, de l'OSS, 2 des GAFA. Joyeux bordel Tarantinesque. Mais pas Charles Manson, alors tout va bien</small>
+			</section>
+
+			<section>
+				<p><img src="pai.jpg" width="600px" alt=""></p>
+				<p>Question : où est ton client, ton créa, ton navigateur, ton budget, ta deadline, ton/ta collègue super doué(e), ton mentor... toi ?</p>
+				<p class="fragment fade-up">Ce qui se passe dans ton code reste dans ton code. Nope. Pense aux autres, c'est !important</p>
+			</section>
+
+			<section>
+				<h2>Motivations, buts et acteurs</h2>
 				<p  class="fragment fade-up">Ouvrir les portes de la "magie" CSS et pouvoir étendre le moteur sans attendre les fabricants ou ticket les librairies tierces</p>
-				<small  class="fragment fade-up">Arrêter les hacks JS à base de addClass/el.style/translate3D(0,0,0)</small>
+				<small  class="fragment fade-up">Arrêter le JS à base de addClass/el.style ou les hacks type translate3D(0,0,0) et manipulations de DOM et CSSOM douteuses</small>
 				<p  class="fragment fade-up">Séparer la logique dessin/animation (JS) et son style (CSS)</p>
 				<p  class="fragment fade-up">Atteindre du rendu à 60fps hors thread UI principale</p>
-				<p>Task force Google, Mozilla, Apple</p>
+				<p>Task force Google, Mozilla, Apple. Réelle volonté, par et pour des devs/UI</p>
 				<small  class="fragment fade-up">hacks JS = parce qu'on n'a pas le choix</small>
 			</section>
 
 			<section>
-				<p>C'est une boite à outils sur CSS</p>
 				<p>Dans une maquette, 80% est "facile"</p>
-				<p>C'est quand le moteur ne te donne pas les autres 20% que la recherche commence (google, stackoverflow, ...)</p>
-				<p>Houdini = plus de "on peut pas le faire en CSS"</p>
+				<p>C'est quand le moteur ne te donne pas les autres 20% que la recherche commence (toi, tes collègues, google, stackoverflow, ...)</p>
+				<p>Houdini = moins de galères, moins de "on peut pas le faire en CSS / pur web"</p>
 			</section>
 
 			<section>
@@ -172,12 +195,12 @@ new CSSStyleValue.parse('transform', 'translte3d(...)'); // throw
 				<p class="fragment fade-up">Types supportés : length, number, %, color, image, url(), integer, angle, time, dpi, transform</p>
 				<pre class="fragment fade-up"><code class="css">
 CSS.registerProperty({
-		name: '--sky',
-		syntax: '&lt;color&gt;',
-		inherits: true,
-		initialValue: 'vanilla',
+ name: '--sky', /* tu peux un peu changer le ciel du header ? */
+ syntax: '&lt;color&gt;',
+ inherits: true,
+ initialValue: 'vanilla',
 });</code></pre>
-				<small>SVP ne pas réinventer des horreurs lexicales comme couleur=color, ni substituer aux meta data-* HTML5</small>
+				<small>SVP ne pas réinventer des horreurs lexicales comme couleur=color, ni substituer aux meta data-* HTML5. C'est pour mieux décrire, pas pour faire de la metadonn&eacute;e</small>
 				<p><a href="../cssp">demo</a></p>
 			</section>
 

@@ -113,12 +113,12 @@
 
 			<section>
 				<p><img src="pai.jpg" width="600px" alt=""></p>
-				<p>QCM : où est ton client, ton créa, ton navigateur, ton budget, ta deadline, ton/ta collègue super doué(e) qui t'aide en front, ton mentor, jQuery, ton DOM, ta CSS ... toi ?</p>
-				<p class="fragment fade-up">Ce qui se passe dans ton code reste dans ton code. Nope. Pense aux autres, c'est !important</p>
+				<p>QCM : où est ton client, ton/ta créa UI UX, ton navigateur, ton budget, ta deadline, ton/ta collègue super doué(e) qui t'aide en front, jQuery, ton DOM, ta CSS ... toi ?</p>
+				<p class="fragment fade-up">Ce qui se passe dans ton code reste secret dans ton code. Nope. Pense aux autres, c'est !important</p>
 			</section>
 
 			<section>
-				<h2>Motivations, buts et acteurs</h2>
+				<h2>Buts et acteurs</h2>
 				<p  class="fragment fade-up">Ouvrir les portes de la "magie" CSS et pouvoir étendre le moteur sans attendre les fabricants ou ticket les librairies tierces</p>
 				<small  class="fragment fade-up">Arrêter le JS à base de addClass/el.style ou les hacks type translate3D(0,0,0) et manipulations de DOM et CSSOM douteuses</small>
 				<p  class="fragment fade-up">Séparer la logique dessin/animation (JS) et son style (CSS)</p>
@@ -131,7 +131,8 @@
 				<p>Dans une maquette, 70% est "facile" - relatif à l'expérience de chacun(e)</p>
 				<p>C'est quand le moteur ne te donne pas les autres 30% que la recherche commence (toi, tes collègues, google, stackoverflow, ...)</p>
 				<p>Houdini = moins de galères, moins de "on peut pas le faire en CSS / pur web"</p>
-				<p class="fragment fade-up">Ce n'est pas un remplaçant à WebGL. C'est <a href="https://en.wikipedia.org/wiki/WebGPU">WebGPU</a> qui remplacera WebGL</p>
+				<p>Houdini + Flex/Grid + BEM/SASS/LeSS= 🌈</p>
+				<p class="fragment fade-up">nb : ce n'est pas un remplaçant à WebGL. C'est <a href="https://en.wikipedia.org/wiki/WebGPU">WebGPU</a> qui remplacera WebGL</p>
 			</section>
 
 			<section>
@@ -221,7 +222,7 @@ CSS.registerProperty({
  inherits: true, /* propagée vers le bas dans le DOM tree */
  initialValue: 'vanilla', /* son default */
 });</code></pre>
-				<small>SVP ne pas inventer des horreurs lexicales comme couleur=color, ni substituer aux meta data-* HTML5. C'est pour mieux décrire, pas pour faire de la metadonn&eacute;e</small>
+				<small>SVP ne pas inventer des horreurs lexicales comme couleur=color, ni substituer aux meta data-* HTML5. C'est pour mieux décrire, pas pour de la metadonn&eacute;e</small>
 				<small>inherits false par défaut pour pas recalculer le CSSOM tree si pas besoin</small>
 				<p><a href="../cssp">demo</a></p>
 			</section>
@@ -242,8 +243,8 @@ CSS.registerProperty({
 				<p class="fragment fade-up">Une des propriétés CSS mappées change</p>
 				<p class="fragment fade-up">La géométrie de l'élément peint change (ex:resize)</p>
 				<p class="fragment fade-up">La timeline bouge (ex:scroll, demo plus loin)</p>
-				<p class="fragment fade-up">Une Worklet va peindre à <em>chaque frame, et viser le 60fps</em></p>
-				<p class="fragment fade-up">C'est un WebWorker en plus léger, câblé directement sur le moteur CSS. Voir ça un peu comme un layer Photoshop </p>
+				<p class="fragment fade-up">Une Worklet va bosser sur <em>chaque frame, donc à 60fps</em></p>
+				<p class="fragment fade-up">C'est un WebWorker en plus léger, câblé directement sur le moteur CSS. Voir ça comme un layer Photoshop, effect Premiere, After Effect</p>
 			</section>
 
 			<section>
@@ -295,7 +296,7 @@ CSS.registerProperty({
 				<p>Encore une API d'animation ?</p>
 				<small>... on a déjà CSS transitions, CSS animations (@keyframes), Web Animations API sans CSS (el.animate({...}).pause())</small>
 				<p class="fragment fade-up">NON. La Worklet est une <em>extension</em> de WAAPI qui donne un <em>KeyframeEffect</em>, des <em>timelines</em> libres (dont une <em>ScrollTimeline</em>) et un état optionel (stateful)</p>
-				<p class="fragment fade-up">ex: se souvenir de l'état pour le modifier/partager dans le temps, ou quand le moteur bouge la Worklet entre threads</p>
+				<p class="fragment fade-up">ex: se souvenir de l'état pour le modifier/partager dans le temps, ou quand le moteur bouge la Worklet entre threads (kill and revive)</p>
 				<p class="fragment fade-up">ex: accélérer/distordre le temps (document.timeline modifiable)</p>
 				<p><a href="../waapi">demo (+ question paint flashing)</a></p>				
 			</section>
@@ -312,7 +313,7 @@ CSS.registerProperty({
 			<section>
 				<p>La Worklet n'est <em>PAS sur la Compositor thread</em>, elle s'y <em>sync en "best effort"</em></p>
 				<p>Car si tu fais du bitcoin dans la Worklet, ça ralentirait le Compositing</p>
-				<p class="fragment fade-up">Elle va <em>au minimum</em> chercher à performer comme <em>requestAnimationFrame</em> : à 60fps</p>
+				<p class="fragment fade-up">Elle va <em>au minimum</em> chercher à performer comme <em>requestAnimationFrame</em> : à 60fps, et bénéficie des optims du Compositor (cache)</p>
 				<p class="fragment fade-up">Si ton animate est trop souvent &gt; 16ms (1/60), le moteur peut t'offthread (kill and revive) ou throttle : un 30fps fluide est meilleur qu'un 60fps qui drop</p>
 				<small class="fragment fade-up">60fps est une limite basse, l'iPad Pro est à 120Hz, l'Oculus/Vive à 90Hz. Chrome, IE et FF peuvent faire du 240Hz et même 480Hz sur des moniteurs usine</small>
 				<br>
@@ -336,11 +337,12 @@ CSS.registerProperty({
 			<section>
 				<p>Sprints et roadmap : <a href="https://www.chromium.org/teams/animations/animation-objectives">https://www.chromium.org/teams/animations/animation-objectives</a></p>
 				<p>Pour le moment (Août), <em>GroupEffect</em> = groupe de <em>KeyFrameEffects</em> est caché (flag)</p>
-				<p class="fragment fade-up">exemple : démarrer l'animation B quand la A est à 50%, démarrer B, C, D en même temps mais avec des offsets (= parallaxe/stagger), pause() ou play() les effets en bloc</p>
+				<p class="fragment fade-up">exemple : démarrer l'animation B quand la A est à 50%, démarrer B, C, D en même temps mais avec des offsets (= delay/parallaxe/stagger), pause() ou play() les effets en bloc</p>
 				<small class="fragment fade-up">Travail important de Yi Gu sur la Chorégraphie, Parallel, Séquence et Staggering pour améliorer la spec</small>
 			</section>
 			<section>
 				<img src="pigeon.gif" alt="">
+				<img src="corgi.gif" alt="">
 				<p>lire les travaux de Yi sur <a href="https://github.com/yi-gu/group_effect">https://github.com/yi-gu/group_effect</a></p>
 				<p>nouveaux types SequenceEffect, ParallelEffect, StaggerEffect en plus de GroupEffect</p>
 				<p>Q1 2020. Yi est joignable et demandeur de retours</p>

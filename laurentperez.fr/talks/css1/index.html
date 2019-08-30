@@ -374,7 +374,7 @@ CSS.registerProperty({
 				<p>penser à Tetris : une disposition de blocs dans un espace constraint</p>
 				<p class="fragment fade-up">display:layout('L'); display:layout('4bar'); ▛ ▚ ▐</p>
 				<small class="fragment fade-up">4bar est ici 4 Fragments empilés, L 3 et le 4e a un offset</small>
-				<p class="fragment fade-up">Le calcul des blocs Fragments est _asynchrone_ par les moteurs next-gen (LayoutNG CR, WebRender FF) : le futur Fragment peut dépendre de calculs longs</p>
+				<p class="fragment fade-up">Le calcul des blocs Fragments est non blocking _asynchrone_ par les moteurs next-gen (LayoutNG CR, WebRender FF) : le futur Fragment peut dépendre de calculs différés ou longs : Promise JS</p>
 				<p class="fragment fade-up">Cas d'usage : architecture, UI normés (affichage dash militaire/industriel/logiciel, presse écrite, eBooks, ePub Comics)</p>
 				<small class="fragment fade-up">des utilisaturs.trices de QuarkXPress/InDesign ?</small>
 				<p><a href="../cssp">demo</a></p>
@@ -385,10 +385,10 @@ CSS.registerProperty({
 			<section>
 				<h2>🔠 Font Metrics API 🔠</h2>
 				<p>... spec seulement utilitaire, causée par la Layout API :</p>
-				<p>dessiner des blocs custom c'est cool mais : on a parfois besoin de gérer du texte dedans</p>
+				<p>dessiner des blocs custom c'est cool mais : on a parfois besoin de gérer du texte/symboles dedans</p>
 				<small class="fragment fade-up">ex : faire son propre line-breaking, connaître les tailles réelles des symboles math chimie ∑ √ ∞, des ligatures Œ, Æ, محرك, et cætera … &lt;- c'est des points de suspension, pas '...' </small>
 				<p class="fragment fade-up">exposer seulement la Font ne suffit pas : il faut descendre au niveau du <em>glyphe</em> dessiné par chaque navigateur</p>
-				<p class="fragment fade-up">la FMAPI donnera un objet du glyphe dessiné</p>
+				<p class="fragment fade-up">la FMAPI donnera un objet JS FontMetrics des glyphes dessinés, utilitaire</p>
 			</section>
 				
 			<section>
@@ -454,7 +454,11 @@ CSS.registerProperty({
 								<p class="darkside"></p>
 						</section>
 
-				<section>EOF</section>
+				<section>
+					<h2>Merci</h2>
+					<p>Speakers wanted sur des sujets front/privacy pour un Meetup pur web</p>
+					<p>@laurentperez / Slack Comm MPL</p>
+				</section>
 
 			</div>
 		</div>

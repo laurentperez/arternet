@@ -183,6 +183,12 @@
 			</section>
 			
 			<section>
+				<h2>Les nouvelles API</h2>
+				<p>Objets CSS et propriétés perso typées</p>
+				<p>Dessin, peinture, animation, layout, et fontes en dessert</p>
+			</section>
+			
+			<section>
 				<h2>CSSOM API</h2>
 				<p>Fini la concaténation et les typos, et enfin le try/catch</p>
 				<p>Nouveaux objets CSS* et .attributesStyleMap/.computedStyleMap</p>
@@ -209,11 +215,12 @@ new CSSStyleValue.parse('transform', 'translte3d(...)');
 				<pre class="fragment fade-up"><code class="css">
 CSS.registerProperty({
  name: '--sky', /* tu peux un peu changer le ciel du header ? */
- syntax: '&lt;color&gt;',
- inherits: true,
- initialValue: 'vanilla',
+ syntax: '&lt;color&gt;', /* son type pour JS */
+ inherits: true, /* propagée vers le bas dans le DOM tree */
+ initialValue: 'vanilla', /* son default */
 });</code></pre>
-				<small>SVP ne pas réinventer des horreurs lexicales comme couleur=color, ni substituer aux meta data-* HTML5. C'est pour mieux décrire, pas pour faire de la metadonn&eacute;e</small>
+				<small>SVP ne pas inventer des horreurs lexicales comme couleur=color, ni substituer aux meta data-* HTML5. C'est pour mieux décrire, pas pour faire de la metadonn&eacute;e</small>
+				<small>inherits false par défaut pour pas recalculer le CSSOM tree si pas besoin</small>
 				<p><a href="../cssp">demo</a></p>
 			</section>
 

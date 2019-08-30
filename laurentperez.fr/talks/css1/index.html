@@ -48,7 +48,7 @@
 				
 				<section>
 					<p>Meetup AFUP / Web Front</p>
-					<p>"Le moteur CSS enrichi par la magie d'Houdini"</p>
+					<p>"Le moteur CSS envoûté par la magie d'Houdini"</p>
 					<p>Dessin et animations nouvelle génération, et plus encore</p>
 					<p><img src="awe.png" alt=""></p>
 					<p><img src="mth.jpg" width="30px"/></p>
@@ -56,15 +56,15 @@
 				</section>
 				<!--
 
-					Le moteur CSS enrichi par la magie d'Houdini
+					Le moteur CSS envoûté par la magie d'Houdini
 					Pour du dessin et animations nouvelle génération... et plus encore
 
 					Le meetup AFUP est notre hôte à titre exceptionnel pour ce 1er talk 
 					entièrement dédié au frontend Web/CSS/JS, et quel meilleur sujet qu'Houdini, 
-					une nouvelle boîte à outils initiée par Google, Apple et Mozilla ?
+					une nouvelle boîte à outils créative initiée par Google, Apple et Mozilla ?
 
-					Houdini ouvre les portes du moteur CSS aux développeurs.ses frontend mais également
-					aux créas, avec à la clef un jeu étendu de possibilités de dessin, d'animation, 
+					Houdini pousse les portes du moteur CSS et les ouvre aux développeurs.ses frontend mais également
+					aux créas, avec à la clef un jeu étendu de possibilités de dessin, d'animation, de propriétés, 
 					et même de layout.
 
 					Le talk présente toutes ces nouvelles possibilités
@@ -106,7 +106,7 @@
 				<h2>Qui te donne - ou pas - le couteau ?</h2>
 				<p class="fragment fade-up">Les fabricants de navigateurs, et de librairies - toi compris !</p>
 				<p class="fragment fade-up">Houdini, la reine des neiges dans ton navigateur ❄️</p>
-				<p class="fragment fade-up">Libéré(e), délivré(e) de difficultés du moteur ou limites/bugs des librairies tierces</p>
+				<p class="fragment fade-up">Libéré(e), délivré(e) de limites du moteur des librairies tierces</p>
 				<p class="fragment fade-up">... ça t'empêche pas de commit sur un tiers OSS si tu sais/peux/veux le faire, ou trouver des compromis créas (chifoumi ?)</p>
 				<small class="fragment fade-up">On cite un hit musical, une princesse Disney, une arme blanche, de l'OSS, 2 des GAFA. Joyeux bordel Tarantinesque. Tout va bien</small>
 			</section>
@@ -183,9 +183,11 @@
 			</section>
 			
 			<section>
-				<h2>Les nouvelles API</h2>
+				<h2>Les nouvelles API au menu</h2>
 				<p>Objets CSS et propriétés perso typées</p>
-				<p>Dessin, peinture, animation, layout, et fontes en dessert</p>
+				<p>Objets JS Worklets pour :</p>
+				<p>Dessin, peinture, animation, layout</p>
+				<p>Fontes en dessert/café (léger)</p>
 			</section>
 			
 			<section>
@@ -214,8 +216,8 @@ new CSSStyleValue.parse('transform', 'translte3d(...)');
 				<p class="fragment fade-up">Types supportés : length, number, %, color, image, url(), integer, angle, time, dpi, transform</p>
 				<pre class="fragment fade-up"><code class="css">
 CSS.registerProperty({
- name: '--sky', /* tu peux un peu changer le ciel du header ? */
- syntax: '&lt;color&gt;', /* son type pour JS */
+ name: '--sky', /* stp change un peu le ciel du header ? */
+ syntax: '&lt;color&gt;', /* son type pour JS (rgb) */
  inherits: true, /* propagée vers le bas dans le DOM tree */
  initialValue: 'vanilla', /* son default */
 });</code></pre>
@@ -303,18 +305,18 @@ CSS.registerProperty({
 				<p class="fragment fade-up">Parce que j'ai modifié leur géométrie ou box shadow</p>
 				<p class="fragment fade-up">Et ce sont des classiques qui déclenchent un repaint</p>
 				<p class="fragment fade-up"><a href="https://csstriggers.com/">https://csstriggers.com/</a></p>
-				<p class="fragment fade-up">Mais la Worklet n'est pas sur la Main thread : no jank si son JS rame</p>
+				<p class="fragment fade-up">Mais la Worklet n'est pas sur la Main thread : no main UI jank si son JS rame</p>
 				<small class="fragment fade-up">fini les hacks risqués translate3d(0,0,0), la Worklet promeut l'élément en Layer vers le Compositor</small>
 			</section>
 
 			<section>
 				<p>La Worklet n'est <em>PAS sur la Compositor thread</em>, elle s'y <em>sync en "best effort"</em></p>
 				<p>Car si tu fais du bitcoin dans la Worklet, ça ralentirait le Compositing</p>
-				<p class="fragment fade-up">Elle va <em>au minimum</em> chercher à performer comme <em>requestAnimationFrame</em> à 60fps</p>
-				<p class="fragment fade-up">Si ton animate est trop souvent &gt; 16ms (1/60), le moteur va offthread ou throttle, comme rAf : un 30fps fluide est meilleur qu'un 60fps qui drop</p>
+				<p class="fragment fade-up">Elle va <em>au minimum</em> chercher à performer comme <em>requestAnimationFrame</em> : à 60fps</p>
+				<p class="fragment fade-up">Si ton animate est trop souvent &gt; 16ms (1/60), le moteur peut t'offthread (kill and revive) ou throttle : un 30fps fluide est meilleur qu'un 60fps qui drop</p>
 				<small class="fragment fade-up">60fps est une limite basse, l'iPad Pro est à 120Hz, l'Oculus/Vive à 90Hz. Chrome, IE et FF peuvent faire du 240Hz et même 480Hz sur des moniteurs usine</small>
 				<br>
-				<small class="fragment fade-up">nb: Safari iOS <a href="https://github.com/WebKit/webkit/blob/master/Source/WebCore/page/RenderingUpdateScheduler.cpp">limite à 60fps</a> et les iframe sans interaction <a href="https://trac.webkit.org/changeset/215070/webkit">à 30fps</a></small>
+				<small class="fragment fade-up">nb: Safari iOS <a href="https://github.com/WebKit/webkit/blob/master/Source/WebCore/page/RenderingUpdateScheduler.cpp">limite certains écrans à 60fps</a> et toutes les iframe sans interaction <a href="https://trac.webkit.org/changeset/215070/webkit">à 30fps</a></small>
 			</section>
 
 			<section>
@@ -345,26 +347,38 @@ CSS.registerProperty({
 				<small>Question à Julian Garnier (anime.js) <a href>https://github.com/juliangarnier/anime/issues/602</a></small>
 			</section>
 
-			<section><h2>🖼️ Layout API 🖼️</h2>
+			<section>
+				<h2>🖼️ Layout API 🖼️</h2>
+				<p>On a déjà flex, multi-column, grid...</p>
+				<p class="fragment fade-up">OUI</p>
+				<p class="fragment fade-up">et subgrid va arriver pour hériter des tracks (il est déjà dans FF Nightly)</p>
+				<p class="fragment fade-up">PVAPI, PAPI et WAPI ouvrent propriétés, dessin et animation... quid de la mise en page ?</p>
+				<small class="fragment fade-up">Rappel : c'est Bloomberg qui a sponsorisé grid dans WebKit (implémenté par Igalia). Ils aiment bien les grilles, le Terminal a 30 ans... pas ton navigateur evergreen</small>
+				<p class="fragment fade-up"><img src="bloom.png" width="300px" alt=""></p>
+			</section>
+
+			<section>
+				<h2>🖼️ Layout API 🖼️</h2>
 				<p>Quand flex ou grid ne suffisent plus (oui oui)</p>
 				<p class="fragment fade-up">tl;dr : écrire son propre display:layout('monlayout');</p>
 				<p><a href="https://houdini.glitch.me/layout">https://houdini.glitch.me/layout</a></p>
-				<small class="fragment fade-up">Rappel : c'est Bloomberg qui a sponsorisé grid dans WebKit (Igalia)</small>
 				<p class="fragment fade-up">Conteneur de <em>LayoutChild/Fragments</em> dans un <em>ParentLayout</em></p>
 				<small class="fragment fade-up">Le <em>Parent</em> a des borders, paddings : les <em>Edges</em>. Entre les <em>Edges</em>, on a des <em>Constraints</em>. Les <em>LayoutChild</em> sont dans ces <em>Constraints</em> et ont des <em>Fragments</em></small>
-				<p class="fragment fade-up">La clef : chaque <em>Fragment</em> a un <em>inlineOffset/blockOffset</em> pour le positionner par rapport à la box de son <em>Child</em></p>
-				<p>C'est - en gros - du position:relative; dynamique dans un <em>wireframe</em></p>
+				<p class="fragment fade-up">La *clef* : chaque <em>Fragment</em> a un <em>inlineOffset/blockOffset</em> pour le positionner par rapport à la box de son <em>Child</em></p>
+				<p>C'est - en gros - du position:relative; dynamique, précalculable, dans un <em>wireframe</em></p>
 			</section>
 
 			<section>
 				<p>penser à Tetris : une disposition de blocs dans un espace constraint</p>
 				<p class="fragment fade-up">display:layout('L'); display:layout('4bar'); ▛ ▚ ▐</p>
 				<small class="fragment fade-up">4bar est ici 4 Fragments empilés, L 3 et le 4e a un offset</small>
-				<p class="fragment fade-up">Les blocs Fragments sont _parallélisables_ pour les moteurs next-gen (LayoutNG CR, WebRender FF) : quand le 4bar rentre et 'flashe' un Tetris, 4 lignes sont à effacer, et y-4 pour au dessus</p>
-				<p class="fragment fade-up">Cas d'usage : architecture, UI normés (affichage dash militaire/industriel, presse écrite, eBooks, ePub Comics)</p>
+				<p class="fragment fade-up">Le calcul des blocs Fragments est _asynchrone_ par les moteurs next-gen (LayoutNG CR, WebRender FF) : le futur Fragment peut dépendre de calculs longs</p>
+				<p class="fragment fade-up">Cas d'usage : architecture, UI normés (affichage dash militaire/industriel/logiciel, presse écrite, eBooks, ePub Comics)</p>
 				<small class="fragment fade-up">des utilisaturs.trices de QuarkXPress/InDesign ?</small>
 				<p><a href="../cssp">demo</a></p>
 			</section>
+
+			
 
 			<section>
 				<h2>🔠 Font Metrics API 🔠</h2>

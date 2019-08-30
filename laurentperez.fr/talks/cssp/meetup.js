@@ -2,6 +2,7 @@
 class MeetupPainter {
 
   // on récupère les properties dont on a besoin
+  // elles sont readonly à l'intérieur de ce Painter
   static get inputProperties() { 
     return ['--ranking','list-style-image','--sky','--rotate']; 
   }
@@ -10,6 +11,7 @@ class MeetupPainter {
   // c'est le JS qui porte la logique de peinture
   // la CSS elle ne gère que le style
   paint(ctx, geom, properties) {
+    // rien à caster : elles sont déjà typées
     const ranking = properties.get('--ranking');
     const rot = properties.get('--rotate');
     const sky = properties.get('--sky'); 
@@ -17,24 +19,28 @@ class MeetupPainter {
     const spacing = 40;
     const size = 30;
 
+    // on aurait pu registerProperty --rotate en type <angle> pour eviter
     let rotation_degs = rot
     let rotation_rads = this.degs_to_rads(rotation_degs)
     let angle_sine = Math.sin(rotation_rads)
     let angle_cosine = Math.cos(rotation_rads)
 
+    // gradient sur axe X de rouge à vert
     var gradient=ctx.createLinearGradient(0,0,geom.width,0);
     gradient.addColorStop(0,"red");
     gradient.addColorStop(0.5,"orange");
     gradient.addColorStop(1.0,"green");
 
     for(let x = 0.5; x < ranking; x++) {
+      // rotation
       ctx.setTransform(angle_cosine, angle_sine, -angle_sine, angle_cosine, 10, 10);
       //debugger; /* pour voir les threads */
+      // dessin !
       this.drawStar(ctx,gradient,x*(size-10 + spacing),1*(size-10 + spacing),5,30,15);
       ctx.drawImage(image, 0, 100, 120, 100);
       //console.log('drawn:' + x*(size + spacing), 1*(size + spacing), size, size);
-      console.log("geom:" + geom.width + "x" + geom.height + "/" + (geom.width/geom.height));
-      console.log("type de sky:" + sky);
+      console.log("geom du canvas:" + geom.width + "x" + geom.height + ", ratio:" + (geom.width/geom.height));
+      console.log("type de sky, une vraie Color:" + sky);
     }
     
   }

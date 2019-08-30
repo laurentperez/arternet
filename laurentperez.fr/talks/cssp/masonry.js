@@ -1,12 +1,20 @@
 registerLayout('coincoin', class {
-  async intrinsicSizes() {}
+
+  async intrinsicSizes() { /* pas besoin ici pour demo */}
+  
+  /* la mise en page perso */
   async layout(children, edges, constraints, styleMap) {
-    const childFragments = await Promise.all(children.map((child) => child.layoutNextFragment({})));
+    const childFragments = await Promise.all(
+      /* spec : the engine may run the algorithm asynchronously with other work
+      and/or on a different thread of execution */
+      children.map((child) => child.layoutNextFragment({}))
+    );
     console.log(constraints); /* mon cadre parent */
-    console.log(edges); /* mon cadre parent */
+    console.log(edges); /* mes edges */
     for (let i = 0; i < children.length; i++) {
-      console.log(childFragments[i]);
+      console.log(childFragments[i]); /* mon fragment */
       /* les 2 1ers en bas à gauche et en haut à droite */
+      /* la clef : l'offset inline (axe X) et block (axe Y) */
       if(i%2==0) {
         childFragments[i].inlineOffset = 0 + edges.inlineStart; /*ltr*/
         childFragments[i].blockOffset = constraints.fixedBlockSize 

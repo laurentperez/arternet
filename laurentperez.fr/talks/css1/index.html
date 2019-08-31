@@ -228,9 +228,9 @@ CSS.registerProperty({
 			</section>
 
 			<section><h2>🎨 Paint API 🎨</h2>
-				<p>Dessin libre avec <em>background:paint('foo');</em></p>
-				<p>Introduction de <em>PaintWorklet</em> : analogie avec les <em>Workers</em> pour le cache/offline/push notifs</p>
-				<p class="fragment fade-up">Une <em>Worklet</em> est un JS short-lived, déplaçable entre threads au gré du moteur</p>
+				<p>Dessin/masque libre avec <em>-webkit-mask-image ou background:paint('foo');</em></p>
+				<p>Introduction de <em>PaintWorklet</em> : analogie avec les <em>Workers</em> JS</p>
+				<p class="fragment fade-up">Une <em>Worklet</em> est un JS dormant, déplaçable entre threads au gré du moteur</p>
 				<p class="fragment fade-up">But : qu'elle ne tourne pas dans la main thread (main JS sur thread UI sans rAf = lag) mais dans une autre thread</p>
 				<p class="fragment fade-up">La Paint API donne un <em>Canvas</em> sans accès au DOM</p>
 				<small class="fragment fade-up">donc oui le 31/10 tu peux faire background:paint(🎃);</small>
@@ -238,7 +238,7 @@ CSS.registerProperty({
 			</section>
 
 			<section>
-				<h2>Short lived ?</h2>
+				<h2>Dormant ?</h2>
 				<p>La Worklet est dormante et se réveille quand :</p>
 				<p class="fragment fade-up">Une des propriétés CSS mappées change (ex:sky)</p>
 				<p class="fragment fade-up">La géométrie de l'élément peint change (ex:resize)</p>
@@ -251,7 +251,7 @@ CSS.registerProperty({
 				<h2>Sécurité</h2>
 				<ul>
 					<li>Aucun accès au DOM et les Properties sont readonly. Le Canvas est étanche. Si besoin de DOM, faire un Canvas classique sans Paint API</li>
-					<li class="fragment fade-up">Car tu n'as pas spécialement envie qu'un Canvas chargé <em>depuis JS/CSS externe</em> puisse lire ou repeindre des éléments de ta page</li>
+					<li class="fragment fade-up">Car tu n'as pas spécialement envie qu'un Canvas chargé <em>depuis JS/CSS externe</em> puisse lire repeindre ou masquer des éléments de ta page</li>
 					<li class="fragment fade-up">exemple : redessiner champ input de saisie de CB avec un message pour contacter la "banque"</li>
 					<li class="fragment fade-up">Les Properties readonly aussi contre boucle repaint infinie</li>
 					<li>c'est un <em>PaintRenderingContext2D</em> subset de <em>CanvasRenderingContext2D</em> : un Canvas restreint</li>
@@ -272,7 +272,7 @@ CSS.registerProperty({
 				<p>Skins : background:paint('488GT3'); background:paint('motec');</p>
 				<pre class="fragment fade-up"><code class="css">
 /* nos Properties CSS custom (ici, number)*/
---gear: 3; /* si pas set, initialValue, ici 0 */
+--gear: 3; /* si pas set: initialValue, Motec 0 */
 --speed: 81; 
 --pos: 16;
 --laptime: 7.28;
@@ -294,10 +294,10 @@ CSS.registerProperty({
 
 			<section>
 				<p>Encore une API d'animation ?</p>
-				<small>... on a déjà CSS transitions, CSS animations (@keyframes), Web Animations API sans CSS (el.animate({...}).pause())</small>
-				<p class="fragment fade-up">NON. La Worklet est une <em>extension</em> de WAAPI qui donne un <em>KeyframeEffect</em>, des <em>timelines</em> libres (dont une <em>ScrollTimeline</em>) et un état optionel (stateful)</p>
+				<small>... on a déjà CSS transitions, CSS animations (@keyframes), Web Animations API (el.animate({...}).pause())</small>
+				<p class="fragment fade-up">NON. La Worklet est une <em>extension</em> de WAAPI qui donne au <em>KeyframeEffect</em>, des <em>timelines</em> libres (dont une <em>ScrollTimeline</em>) et un état optionel (stateful)</p>
 				<p class="fragment fade-up">ex: se souvenir de l'état pour le modifier/partager dans le temps, ou quand le moteur bouge la Worklet entre threads (kill and revive)</p>
-				<p class="fragment fade-up">ex: accélérer/distordre le temps (document.timeline modifiable)</p>
+				<p class="fragment fade-up">ex: accélérer/distordre le temps (document.timeline relative)</p>
 				<p><a href="../waapi">demo (+ question paint flashing)</a></p>				
 			</section>
 
@@ -332,19 +332,19 @@ CSS.registerProperty({
 				<p>Jouer avec le temps, animer des éléments liés ou distincts</p>
 				<p><img src="tars.jpg" alt=""></p>
 				<small>Ne pas partir dans un trip sci-fi/math complexe avec doliprane : <em>la clef est toujours la timeline</em>.</small>
-				<small>Penser en distance relative au temps : km/h, m/s, à la Flèche du temps (Eddington)</small>
+				<small>Penser en distance relative au temps : km/h, m/s, à la Flèche du temps --&gt; (Eddington)</small>
 			</section>
 
 			<section>
-				<p>⌛ Le temps peut être altéré par une autre unité libre ⌛</p>
+				<p>⌛ Le temps peut être basé sur une unité libre ⌛</p>
 				<p class="fragment fade-up"><a href="https://majido.github.io/houdini-samples/animation-worklet/touch-input/drag.html">Belle démo : le temps basé sur un deltaX d'un CSS Pointer Event (... ton doigt/stylo)</a></p>
 				<p class="fragment fade-up"><img src="incep.png" alt=""></p>
-				<p class="fragment fade-up"><img src="spin.jpg" width="400px" alt=""></p>
+				<p class="fragment fade-up">Le temps sur le bout de ton doigt. Si tu donnes NaN ou infinite... essaie ;)</p>
 			</section>
 
 			<section>
 				<p>Sprints et roadmap : <a href="https://www.chromium.org/teams/animations/animation-objectives">https://www.chromium.org/teams/animations/animation-objectives</a></p>
-				<p>Pour le moment (Août), <em>GroupEffect</em> = groupe de <em>KeyFrameEffects</em> est caché (flag)</p>
+				<p>Pour le moment (Août), <em>GroupEffect</em> = groupe de <em>KeyFrameEffects</em> est caché (flag, ya plus de -prefix)</p>
 				<p class="fragment fade-up">exemple : démarrer l'animation B quand la A est à 50%, démarrer B, C, D en même temps mais avec des offsets (= delay/parallaxe/stagger), pause() ou play() les effets en bloc</p>
 				<small class="fragment fade-up">Travail important de Yi Gu sur la Chorégraphie, Parallel, Séquence et Staggering pour améliorer la spec</small>
 			</section>
@@ -352,7 +352,7 @@ CSS.registerProperty({
 				<img src="pigeon.gif" alt="">
 				<img src="corgi.gif" alt="">
 				<p>lire les travaux de Yi sur <a href="https://github.com/yi-gu/group_effect">https://github.com/yi-gu/group_effect</a></p>
-				<p>nouveaux types SequenceEffect, ParallelEffect, StaggerEffect en plus de GroupEffect</p>
+				<p>propose nouveaux types SequenceEffect, ParallelEffect, StaggerEffect en plus de GroupEffect</p>
 				<p>Q1 2020. Yi est joignable et demandeur de retours</p>
 				<small>Question à Julian Garnier (anime.js) <a href>https://github.com/juliangarnier/anime/issues/602</a></small>
 			</section>

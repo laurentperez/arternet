@@ -19,9 +19,8 @@ class MeetupPainter {
     const spacing = 40;
     const size = 30;
 
-    // on aurait pu registerProperty --rotate en type <angle> pour eviter
-    let rotation_degs = rot
-    let rotation_rads = this.degs_to_rads(rotation_degs)
+    // --rotate en type <angle> de degres vers radians
+    const rotation_rads = this.degs_to_rads(rot.value)
     let angle_sine = Math.sin(rotation_rads)
     let angle_cosine = Math.cos(rotation_rads)
 
@@ -81,4 +80,4 @@ class MeetupPainter {
   }
 }
 
-registerPaint('meetup', MeetupPainter);
+registerPaint('etoiles', MeetupPainter);

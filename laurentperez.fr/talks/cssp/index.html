@@ -2,19 +2,24 @@
 <style>
   .cats {
     --ranking: 1; /* ** mon appréciation des chatons ** */
-    --rotate:0;
+    --rotate:0deg;
     /* hack pour charger image, registerProerty type <image> pas 100% implémenté */
     --flamingo:url('fla.jpg');
     list-style-image: var(--flamingo); 
-    background-image: paint(meetup); /* ** mon peintre **  */
     height: 200px; /* hauteur toile où je vais être peint */
     flex:1;
     margin:10px;
+  }
+  @supports (background-image: paint(etoiles)) {
+    .cats {
+      background-image: paint(etoiles); /* ** mon peintre **  */
+    }
   }
   .under {
     background-image: paint(underline); /* ** mon peintre **  */
     /* credit : https://blog.logrocket.com/new-horizons-in-css-houdini-and-the-paint-api-8b307cf387bb/ */
     padding: 15px;
+    border: 1px solid black;
   }
   main {
     --sky: white; /* ** mon ciel **  */
@@ -45,14 +50,15 @@
 }
 </style>
 
-<div>Properties API + Paint API : dessin personnalisé</div>
+<div>Properties API + Paint API : typage et dessin custom</div>
+<br>
 <main>
   <img class="photo" src="https://placekitten.com/100/100" alt="">
   <div class="cats">Evaluez si ces chatons sont mignons  &nbsp;</div>
 </main>
-<div><p class="under">J'ai une underline custom</p></div>
-
+<div><p class="under">Un texte avec une underline custom</p></div>
 <div>Layout API : placement custom de 2 enfants : 2 1ers dans les coins, le reste au milieu</div>
+<br>
 <div class="coins" style="visibility: hidden">
     <div class="child" style="width:100px">#1 lorem ipsum bla bla bla bla <img src="https://placekitten.com/100/100"/></div>
     <div class="child" style="width:200px">#2 la la la <img src="https://placekitten.com/100/100"/></div>
@@ -63,20 +69,20 @@
   CSS.registerProperty({
     name: '--ranking', /* on type ranking en number */
     syntax: '<number>',
-    inherits: true,
+    inherits: false,
     initialValue: 1
   });
   CSS.registerProperty({
     name: '--sky', /* on type sky en couleur */
     syntax: '<color>',
-    inherits: true,
+    inherits: false,
     initialValue: '#f3e5ab' /* ya pas vanilla ? allo quoi */
   });
   CSS.registerProperty({
-    name: '--rotate', /* on type rotate en deg */
-    syntax: '<number>',
-    inherits: true,
-    initialValue:0
+    name: '--rotate', /* on type rotate en angle deg */
+    syntax: '<angle>',
+    inherits: false,
+    initialValue:'0deg'
   });
 </script>
 <script>

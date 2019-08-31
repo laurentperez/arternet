@@ -307,7 +307,15 @@ CSS.registerProperty({
 				<p class="fragment fade-up">Et ce sont des classiques qui déclenchent un repaint</p>
 				<p class="fragment fade-up"><a href="https://csstriggers.com/">https://csstriggers.com/</a></p>
 				<p class="fragment fade-up">Mais la Worklet n'est pas sur la Main thread : no main UI jank si son JS rame</p>
-				<small class="fragment fade-up">fini les hacks risqués translate3d(0,0,0), la Worklet promeut l'élément en Layer vers le Compositor</small>
+				<small class="fragment fade-up">fini les hacks risqués translate3d(0,0,0), la Worklet promeut d'office l'élément en Layer vers le Compositor</small>
+			</section>
+
+			<section>
+				<p>Main thread, Compositor ?</p>
+				<p>Main thread : là où la UI vit (impactée par manips de DOM, CSS, JS)</p>
+				<p>Compositor : le dernier élément de la chaîne de rendu d'un navigateur</p>
+				<p>Chargement page + ressources -> construction des arbres DOM, CSSOM -> Layout x/y -> mise en Layers -> Peinture + Compositing -> envoi des pixels vers la carte graphique</p>
+				<p>spoiler : talk à venir sur comment fonctionne un moteur de rendu </p>
 			</section>
 
 			<section>

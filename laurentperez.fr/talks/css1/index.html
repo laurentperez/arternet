@@ -463,11 +463,13 @@ CSS.registerProperty({
 
 		<script src="js/reveal.js"></script>
 
+		<script src="/socket.io/socket.io.js"></script>
 		<script>
 			// More info about config & dependencies:
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				history:true,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
@@ -476,5 +478,6 @@ CSS.registerProperty({
 				]
 			});
 		</script>
+		<script src="script.js"></script>
 	</body>
 </html>

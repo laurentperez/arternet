@@ -111,11 +111,7 @@
 				<small class="fragment fade-up">On cite un hit musical, une princesse Disney, une arme blanche, de l'OSS, 2 des GAFA. Joyeux bordel Tarantinesque. Tout va bien</small>
 			</section>
 
-			<section>
-				<p><img src="pai.jpg" width="600px" alt=""></p>
-				<p>QCM : où est ton client, ton/ta créa UI UX, ton navigateur, ton budget, ta deadline, ton/ta collègue super doué(e) qui t'aide en front, jQuery, ton DOM, ta CSS ... toi ?</p>
-				<p class="fragment fade-up">Ce qui se passe dans ton code reste secret dans ton code. Nope. Pense aux autres, c'est !important</p>
-			</section>
+		
 
 			<section>
 				<h2>Buts et acteurs</h2>
@@ -125,6 +121,12 @@
 				<p  class="fragment fade-up">Donner du rendu à 60fps hors thread UI principale</p>
 				<p>Task force Google, Mozilla, Apple. Réelle volonté, par et pour des devs/UI</p>
 				<small  class="fragment fade-up">hacks JS = parce qu'on n'a pas le choix</small>
+			</section>
+
+			<section>
+				<p><img src="pai.jpg" width="600px" alt=""></p>
+				<p>QCM : où est ton client, ton/ta créa UI UX, ton navigateur, ton budget, ta deadline, ton/ta collègue super doué(e) qui t'aide en front, jQuery, ton DOM, ta CSS ... toi ?</p>
+				<p class="fragment fade-up">Ce qui se passe dans ton code reste secret dans ton code. Nope. Pense aux autres, c'est !important</p>
 			</section>
 
 			<section>
@@ -155,11 +157,11 @@
 				<p><a href="https://www.chromestatus.com/features#houdini">https://www.chromestatus.com/features#houdini</a> </p>
 				<p><a href="https://ishoudinireadyyet.com">https://ishoudinireadyyet.com</a> </p>
 				<ul>
-					<li>CSSOM : shipped Chrome, uc FF, in dev SF</li>
-					<li>Properties Values API : partial 90% Chrome/SF, in dev FF</li>
-					<li>Paint API : shipped Chrome, ii FF, in dev SF</li>
-					<li>Worklet Animation API : partial 80% Chrome (sans chorégraphie, Q1 2020), uc SF</li>
-					<li>Layout API : partial 70% Chrome, uc FF</li>
+					<li>CSSOM : livré Chrome, ii FF, in dev SF</li>
+					<li>Properties Values API : in dev 90% Chrome/SF, in dev FF</li>
+					<li>Paint API : livré Chrome, ii FF, in dev SF</li>
+					<li>Worklet Animation API : in dev 80% Chrome (sans chorégraphie), uc SF</li>
+					<li>Layout API : partial 70% Chrome, uc FF/SF</li>
 					<li>Font Metrics API : rien, uniquement les specs</li>
 				</ul>
 				<small>uc: intérêt, ii: Intent to Implement, in dev: en cours, Safary TP, Chrome Canary, FF Nightly</small>
@@ -167,10 +169,16 @@
 
 			<section>
 				<p>Chromium (Blink) et Safari (WebKit) devant</p>
-				<p>Firefox (Servo) est à la bourre. IE va utiliser Blink (M78)</p>
+				<p>Firefox (Servo) franchement derrière, IE va utiliser Blink</p>
 				<p>lire les questions sur <a href="https://github.com/w3c/css-houdini-drafts/issues">https://github.com/w3c/css-houdini-drafts/issues</a></p>
 				<p>réponses des auteurs de specs et fabricants</p>
-				<p class="fragment fade-up">Important : WAAPI à 100% dans Safari TP / iOS13 (sans Worklet, uc), 80% CR FF (playback pas fini)</p>
+				<p class="fragment fade-up">Important : WAAPI à 100% dans Safari TP / iOS13 (sans Worklet, uc), à 80% CR FF (playback pas fini)</p>
+			</section>
+
+			<section>
+				<p>donc : CSS @support(xxx){....} + JS if('xxx' in CSS)</p>
+				<p>ça fait quelques années que les prefix -webkit -moz -ms ont été abandonnés pour nouvelles fonctions</p>
+				<p>à la place, flags explicites sous 'Experimental features'</p>
 			</section>
 
 			<section>
@@ -180,7 +188,7 @@
 				<p class="fragment fade-up">Pas de One Blink to rule them all</p>
 				<p class="fragment fade-up">nb : la Team IE Edge va verser le meilleur de Edge dans Blink (Reddit aMa 06/19), réouvrir des API bloquées</p>
 				<small>FF Worklet mi Août : <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1315239">https://bugzilla.mozilla.org/show_bug.cgi?id=1315239</a></small>
-				<small>en Q3 2019 tout Houdini marqué en enhancement P3, les tickets dataient de 2017, la Worklet est un pilier des API</small>
+				<small>en Q3 2019 tout Houdini marqué en Enhancement P3, les tickets dataient de 2017, la Worklet est un pilier des API</small>
 			</section>
 			
 			<section>
@@ -201,7 +209,7 @@ el.attributeStyleMap.has('opacity');
 el.computedStyleMap().get('opacity').value // ex getComputedStyle
 el.attributeStyleMap.delete('opacity')
 el.attributeStyleMap.clear();
-CSS.vw('100'); CSS.px(42);
+CSS.vw('100'); CSS.px(42); CSS.angle(90);
 CSS.percent('10'); CSS.ms(300);
 new CSSMathSum(CSS.vw(100), CSS.px(-10))
 // calc(100vw + -10px)
@@ -261,11 +269,10 @@ CSS.registerProperty({
 
 			<section>
 				<p>Values trop simples ? Comment passer des complexes ?</p>
-				<p class="fragment fade-up">exemple : un stream audio/vidéo/trading/ECU (data automobile) </p>
+				<p class="fragment fade-up">exemple : un flux audio/vidéo/ECU (data automobile)... = tl;dr : faire de la DataViz </p>
 				<p class="fragment fade-up">solution (Juin 2019) : ajouter un type &lt;blob&gt;</p>
 				<p><a href="https://github.com/w3c/css-houdini-drafts/issues/872">https://github.com/w3c/css-houdini-drafts/issues/872</a></p>
-				<p class="fragment fade-up">... puis <em>postMessage</em> plus tard pour pas devoir repasser la Value CSS dans la main UI thread</p>
-				<p>valable aussi pour AnimationWorklet (2020)</p>
+				<p class="fragment fade-up">... tu peux déjà passer une property arbitraire non typée facon --madata:'{foo:1,bar:2}'</p>
 			</section>
 
 			<section>
@@ -278,6 +285,7 @@ CSS.registerProperty({
 --laptime: 7.28;
 --rpm: 6000;
 /* jauge rectangle en Ferrari, arc rectangles en Motec */
+background-image:paint('compteur')
 				</code></pre>
 				<img src="488.jpeg" width="350px" alt="">
 				<img src="motec.jpeg" width="350px" alt="">
@@ -289,7 +297,7 @@ CSS.registerProperty({
 				... c'est assez fait pour le scroll, et ça le fait - très - bien</p>
 				<small class="fragment fade-up">qui a déjà fait des parallaxes fluides ? des offsets / staggering ? anime.JS ?</small>
 				<p>Syntaxe : <em>AnimationWorklet + KeyFrameEffects</em></p>
-				<p class="fragment fade-up">Note : séquence/chorégraphie à faire à la main. Un peu pénible, car <em>GroupEffect</em> dans la spec - mais caché pour le moment</p>
+				<p class="fragment fade-up">Note : séquence/chorégraphie à faire à la main. Un peu pénible, car <em>GroupEffect</em> dans la spec - mais caché par un flag</p>
 			</section>
 
 			<section>
@@ -321,7 +329,7 @@ CSS.registerProperty({
 			<section>
 				<p>La Worklet n'est <em>PAS sur la Compositor thread</em>, elle s'y <em>sync en "best effort"</em></p>
 				<p>Car si tu fais du bitcoin dans la Worklet, ça ralentirait le Compositing</p>
-				<p class="fragment fade-up">Elle va <em>au minimum</em> chercher à performer comme <em>requestAnimationFrame</em> : à 60fps, et bénéficie des optims du Compositor (cache)</p>
+				<p class="fragment fade-up">Elle va <em>au minimum</em> chercher à performer comme <em>requestAnimationFrame</em> : à 60fps, et bénéficie des optims du Compositor (ex: cache, delta pixels)</p>
 				<p class="fragment fade-up">Si ton animate est trop souvent &gt; 16ms (1/60), le moteur peut t'offthread (kill and revive) ou throttle : un 30fps fluide est meilleur qu'un 60fps qui drop</p>
 				<small class="fragment fade-up">60fps est une limite basse, l'iPad Pro est à 120Hz, l'Oculus/Vive à 90Hz. Chrome, IE et FF peuvent faire du 240Hz et même 480Hz sur des moniteurs usine</small>
 				<br>
@@ -398,17 +406,18 @@ CSS.registerProperty({
 			</section>
 				
 			<section>
-				<h2>Démo avancées</h2>
+				<h2>Démo avancées : Majido et Rocks</h2>
 				<p>avec Chrome Canary, Safari Technology Preview ou Firefox Nightly (peu d'implémenté)</p>
+				<p><a href="https://majido.github.io/houdini-samples/">https://majido.github.io/></p>
 				<p><a href="https://css-houdini.rocks">https://css-houdini.rocks</a></p>
-				<p>notamment : Inner Borders, Masonry, Random Bubble Masks</p>
+				<p>notamment : QR generator, Trip App, Twitter, Inner Borders, Masonry, Random Bubble Masks</p>
 			</section>
 
 			<section>
 				<h2>Pour suivre / plus loin</h2>
 				<p><a href="https://github.com/w3c/css-houdini-drafts/wiki/Meeting-Planning-Pages">https://github.com/w3c/css-houdini-drafts/wiki/Meeting-Planning-Pages</a> (meetings trimestriels CSSWG)</p>
 				<p><a href="https://www.chromium.org/teams">https://www.chromium.org/teams</a> (rétros agiles)</p>
-				<p><a href="https://houdini.glitch.me">https://houdini.glitch.me</a> (démos)</p>
+				<p><a href="https://houdini.glitch.me">https://houdini.glitch.me</a> (récapitulatif illustré)</p>
 				<p>Q2 2020, rapprochement de Paint API et Web Animations API :</p>
 				<p>On peut imaginer un IDE en ligne 100% web, gratuit et open source qui remplacerait Sketch/Adobe XD, 100% extensible car basé sur des APIs ouvertes</p>
 				<p>Plus de "on peut pas le faire en CSS" : mais ça va demander des compétences de dessin canvas2D et animation... FullFullStack ?</p>
@@ -462,7 +471,8 @@ CSS.registerProperty({
 
 				<section>
 					<h2>Merci</h2>
-					<p>Speakers wanted sur des sujets front/privacy pour un Meetup pur web</p>
+					<p>Speakers wanted</p>
+					<p>sur des sujets front/privacy pour un Meetup pur web</p>
 					<p>@laurentperez / Slack Comm MPL</p>
 				</section>
 

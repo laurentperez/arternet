@@ -104,10 +104,10 @@
 
 			<section>
 				<h2>🤔 ... Une solution à la recherche d'un problème ? 🤔</h2>
-				<p>C'est un accès "boite à outils créa" sur CSS. OK ...</p>
+				<p>C'est un accès "boite à outils créa" sur le moteur CSS. OK ...</p>
 				<p class="fragment fade-up"><blockquote class="fragment fade-up">" Like 10000 spoons when all you need is a knife ". Ironic</blockquote></p>
-				<p class="fragment fade-up">Ca te donne notamment de quoi construire ton couteau si tu n'en avais pas</p>
-				<p class="fragment fade-up">Si tu en avais, ça te permet de le polir, l'améliorer, ou prototyper une alternative, variation... en faire un pinceau à poils doux au lieu de dents, polyfiller une idée</p>
+				<p class="fragment fade-up">Ca te donne de quoi construire ton couteau si tu n'en avais pas</p>
+				<p class="fragment fade-up">Si tu en avais, ça te permet de le polir, l'améliorer, ou faire une alternative, variation... en faire un pinceau à poils doux au lieu de dents, polyfiller une idée</p>
 				<p class="fragment fade-up">Artisanat, outillage sans limites ou presque* : c'est pas open bar total</p>
 			</section>
 
@@ -115,7 +115,7 @@
 				<h2>Qui te donne - ou pas - le couteau ?</h2>
 				<p class="fragment fade-up">Les fabricants de navigateurs, et de librairies - toi compris !</p>
 				<p class="fragment fade-up">Houdini, la reine des neiges dans ton navigateur ❄️</p>
-				<p class="fragment fade-up">Libéré(e), délivré(e) de limites du moteur des librairies tierces. <em>Tu n'attends plus ta fonction : tu peux l'écrire, la partager dans un cadre standard Web, étendre une fonction existante</em></p>
+				<p class="fragment fade-up">Libéré(e), délivré(e) de limites du moteur, des librairies tierces. <em>Tu n'attends plus ta fonction : tu peux l'écrire, la partager dans un cadre standard Web, étendre une fonction existante</em></p>
 				<p class="fragment fade-up">... ça t'empêche pas de commit sur OSS si tu sais/peux/veux le faire, ou trouver des compromis créas (chifoumi ?)</p>
 				<small class="fragment fade-up">On cite un hit musical, une princesse Disney, une arme blanche, de l'OSS, 2 des GAFA. Joyeux bordel Tarantinesque. Tout va bien</small>
 			</section>
@@ -127,7 +127,7 @@
 				<p  class="fragment fade-up">Séparer la logique dessin/animation/layout (JS) et son style (CSS)</p>
 				<p  class="fragment fade-up">Donner du rendu à 60fps hors thread UI principale</p>
 				<p>Task force Google, Mozilla, Apple. Réelle volonté, par et pour des devs/UI</p>
-				<small  class="fragment fade-up">hacks JS = parce qu'on n'a pas le choix</small>
+				<small  class="fragment fade-up">hacks JS = parce qu'on n'a pas parfois le choix</small>
 			</section>
 
 			<section>
@@ -137,15 +137,15 @@
 			</section>
 
 			<section>
-				<p>Dans une maquette, 70% est "facile" - relatif à l'expérience de chacun(e)</p>
+				<p>Dans une maquette, 70% est "facile" - relatif à l'expérience de chacun(e). Hors WebGL, autre domaine</p>
 				<p>C'est quand le moteur ne te donne pas les autres 30% que la recherche commence (toi, tes collègues, google, stackoverflow, ...)</p>
-				<p>Houdini = moins de galères, moins de "on peut pas le faire en CSS / pur web"</p>
+				<p>Houdini = moins de galères, moins de "on peut pas le faire en CSS / pur web" : tu <em>étends</em> le moteur</p>
 				<p>Houdini + Flex/Grid + BEM/SASS/LeSS = 🌈</p>
 				<p class="fragment fade-up">nb : ce n'est pas un remplaçant à WebGL. C'est <a href="https://en.wikipedia.org/wiki/WebGPU">WebGPU</a> qui remplacera WebGL</p>
 			</section>
 
 			<section>
-				<p>Houdini pas difficile, ni obscur. C'est juste 5 nouvelles techniques sur des bases CSS</p>
+				<p>Houdini pas difficile, ni obscur. C'est juste 5 nouvelles techniques sur des bases CSS / Animation</p>
 				<p><img src="posabs.png" width="400px" alt=""></p>
 				<small>"CSS vertical align" sur Google : Environ 10 600 000 résultats</small>
 			</section>
@@ -177,22 +177,21 @@
 					<li>Layout API : partial 70% Chrome, uc FF/SF</li>
 					<li>Font Metrics API : rien, uniquement les specs</li>
 				</ul>
-				<small>uc: intérêt, ii: Intent to Implement, in dev: en cours, Safary TP, Chrome Canary, FF Nightly</small>
+				<small>uc: Considéré, ii: Intent to Implement, in dev: en cours, Safary TP, Chrome Canary, FF Nightly</small>
 			</section>
 
 			<section>
 				<p>Chromium (Blink) et Safari (WebKit) devant</p>
 				<p>Firefox (Servo) franchement derrière, IE va utiliser Blink</p>
-				<p>lire les questions sur <a href="https://github.com/w3c/css-houdini-drafts/issues">https://github.com/w3c/css-houdini-drafts/issues</a></p>
-				<p>réponses des auteurs de specs et fabricants</p>
-				<p class="fragment fade-up">Important : WAAPI à 100% dans Safari TP / iOS13 (sans Worklet, uc), à 80% CR FF (playback pas fini)</p>
+				<p class="fragment fade-up">La Team IE Edge va verser le meilleur de Edge dans Blink (Reddit aMa 06/19), réouvrir des API bloquées contre adblockers</p>
+				<p class="fragment fade-up">Important : WAAPI à 100% dans Safari TP / iOS13 (sans Worklet, uc), à 80% CR FF (playback .pause(),.reverse() pas fini)</p>
 			</section>
 
 			<section>
-				<p>donc : CSS @support(xxx){....} + JS if('xxx' in CSS)</p>
+				<p>donc : CSS @supports(xxx){....} + JS if('xxx' in CSS)</p>
 				<p>ça fait quelques années que les prefix -webkit -moz -ms ont été abandonnés pour nouvelles fonctions</p>
 				<p>à la place, flags explicites sous 'Experimental features'</p>
-				<p>et Progressive Enhancement, toujours</p>
+				<p>et Progressive Enhancement, toujours penser fallback</p>
 			</section>
 
 			<section>
@@ -200,8 +199,7 @@
 				<p class="fragment fade-up">C'est assez dû au switch de Gecko vers Servo à partir de 2017</p>
 				<p class="fragment fade-up">On veut de la diversité dans les moteurs de rendu, Servo est top</p>
 				<p class="fragment fade-up">Pas de One Blink to rule them all</p>
-				<p class="fragment fade-up">nb : la Team IE Edge va verser le meilleur de Edge dans Blink (Reddit aMa 06/19), réouvrir des API bloquées</p>
-				<small>FF Worklet mi Août : <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1315239">https://bugzilla.mozilla.org/show_bug.cgi?id=1315239</a></small>
+				<small>FF Worklet a bougé mi Août : <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1315239">https://bugzilla.mozilla.org/show_bug.cgi?id=1315239</a></small>
 				<small>en Q3 2019 tout Houdini marqué en Enhancement P3, les tickets dataient de 2017, la Worklet est un pilier des API</small>
 			</section>
 			
@@ -220,11 +218,12 @@
 				<pre class="fragment fade-up"><code class="css">
 el.attributeStyleMap.set('opacity', CSS.number(0.3));
 el.attributeStyleMap.has('opacity');
-el.computedStyleMap().get('opacity').value // ex getComputedStyle
+el.computedStyleMap().get('opacity').value
+// ex getComputedStyle(el).xxx
 el.attributeStyleMap.delete('opacity')
 el.attributeStyleMap.clear();
-CSS.vw('100'); CSS.px(42); CSS.angle(90);
-CSS.percent('10'); CSS.ms(300);
+CSS.vw(100); CSS.px(42); CSS.angle(90deg);
+CSS.percent(10); CSS.ms(300);
 new CSSMathSum(CSS.vw(100), CSS.px(-10))
 // calc(100vw + -10px)
 new CSSStyleValue.parse('transform', 'translte3d(...)');
@@ -234,13 +233,13 @@ new CSSStyleValue.parse('transform', 'translte3d(...)');
 
 			<section>
 				<h2>🔑 Properties/Values API 🔑</h2>
-				<p >De la structure/typage dans des variables CSS custom</p>
+				<p >Enfin de la structure/typage dans des variables CSS custom</p>
 				<small>... on rappelle BEM/SASS/Less pour une structure de classes maintenable</small>
 				<p class="fragment fade-up">Types supportés : length, number, %, color, image, url(), integer, angle, time, dpi, transform</p>
 				<pre class="fragment fade-up"><code class="css">
 CSS.registerProperty({
  name: '--sky', /* stp change un peu le ciel du header ? */
- syntax: '&lt;color&gt;', /* son type pour JS (rgb) */
+ syntax: '&lt;color&gt;', /* son type pour JS (objet Color rgba) */
  inherits: true, /* propagée vers le bas dans le DOM tree */
  initialValue: 'vanilla', /* son default */
 });</code></pre>
@@ -252,7 +251,7 @@ CSS.registerProperty({
 			<section><h2>🎨 Paint API 🎨</h2>
 				<p>Dessin/masque libre avec <em>-webkit-mask-image ou background:paint('foo');</em></p>
 				<p>Introduction de <em>PaintWorklet</em> : analogie avec les <em>Workers</em> JS</p>
-				<p class="fragment fade-up">Une <em>Worklet</em> est un JS dormant, déplaçable entre threads au gré du moteur</p>
+				<p class="fragment fade-up">Une <em>Worklet</em> est un JS dormant, en tâche de fond dans sa Thread</p>
 				<p class="fragment fade-up">But : qu'elle ne tourne pas dans la main thread (main JS sur thread UI sans rAf = lag) mais dans une autre thread</p>
 				<p class="fragment fade-up">La Paint API donne un <em>Canvas</em> sans accès au DOM</p>
 				<small class="fragment fade-up">donc oui le 31/10 tu peux faire background:paint(🎃);</small>
@@ -283,10 +282,13 @@ CSS.registerProperty({
 
 			<section>
 				<p>Values trop simples ? Comment passer des complexes ?</p>
-				<p class="fragment fade-up">exemple : un flux audio/vidéo/ECU (data automobile)... = tl;dr : faire de la DataViz </p>
+				<p class="fragment fade-up">exemple : un flux audio/vidéo/ECU (data automobile)... = tl;dr : faire de la DataViz depuis une source riche</p>
 				<p class="fragment fade-up">solution (Juin 2019) : ajouter un type &lt;blob&gt;</p>
 				<p><a href="https://github.com/w3c/css-houdini-drafts/issues/872">https://github.com/w3c/css-houdini-drafts/issues/872</a></p>
-				<p class="fragment fade-up">... tu peux déjà passer une property arbitraire non typée facon --madata:'{foo:1,bar:2}'</p>
+				<p class="fragment fade-up">... tu peux déjà passer une property arbitraire non typée façon</p>
+					 <pre class="fragment fade-up"><code class="css">
+--madata:'{foo:1,bar:2}' /* c'est moche, mais tu peux. en attendant postMessage (spoiler) */
+					 </code></pre>
 			</section>
 
 			<section>

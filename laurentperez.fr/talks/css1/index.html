@@ -88,8 +88,8 @@
 				<h2>😿 CSS, la mal aimée 😿</h2>
 				<p>C'est assez vrai. floats, tables, !important, préfixes -webkit, -ms, z-index, negative margins, positions, ...</p>
 				<p>Trop de libertés laissées aux fabricants de navigateurs, specs trop souples = bugs, inconnues, mues (grid)</p>
-				<p>Travaux HTML des groupes W3C (Open Web) et WhatWG (fabricants) séparés jusqu'en... Mai 2019</p>
-				<p class="fragment fade-up">C'est le passé. Ca va -globalement- beaucoup mieux, malgré quelques tensions entre Moz et Google</p>
+				<p>Travaux des groupes W3C (Open Web) et WhatWG (fabricants) séparés jusqu'en... Mai 2019</p>
+				<p class="fragment fade-up">C'est le passé. Ca va -globalement- beaucoup mieux, malgré quelques tensions entre Moz et Google, liées privacy</p>
 				<p class="fragment fade-up">Membres clef du CSSWG très publics : Rachel Andrew (Smashing), Lea Verou (MIT), Tab Atkins (Google), Jen Simmons (Moz)</p>
 			</section>
 
@@ -99,7 +99,7 @@
 				<p class="fragment fade-up">on a un accès au plus proche de l'interne du moteur</p>
 				<p class="fragment fade-up">on peut y créer nos propriétés, peinture/clip, animation, layout</p>
 				<p class="fragment fade-up">travail commencé circa 2015</p>
-				<p  class="fragment fade-up">suite logique du travail après WebComponents, WebWorkers et Web Animations API</p>
+				<p  class="fragment fade-up">suite du travail après WebComponents, WebWorkers et Web Animations API</p>
 			</section>
 
 			<section>
@@ -125,9 +125,9 @@
 				<p  class="fragment fade-up">Ouvrir les portes de la "magie" CSS et pouvoir étendre le moteur sans attendre les fabricants ou ticket les librairies tierces</p>
 				<small  class="fragment fade-up">Arrêter l'interaction JS à base de addClass/el.style ou les hacks type translate3D(0,0,0) et manipulations de DOM et CSSOM douteuses</small>
 				<p  class="fragment fade-up">Séparer la logique dessin/animation/layout (JS) et son style (CSS)</p>
-				<p  class="fragment fade-up">Donner du rendu à 60fps hors thread UI principale</p>
+				<p  class="fragment fade-up">Donner du rendu à 60fps fluide hors thread UI principale</p>
 				<p>Task force Google, Mozilla, Apple. Réelle volonté, par et pour des devs/UI</p>
-				<small  class="fragment fade-up">hacks JS = parce qu'on n'a pas parfois le choix</small>
+				<small  class="fragment fade-up">hacks JS = parce qu'on n'a pas parfois le choix. Coucou Samsung, certains iOS</small>
 			</section>
 
 			<section>
@@ -287,7 +287,8 @@ CSS.registerProperty({
 				<p><a href="https://github.com/w3c/css-houdini-drafts/issues/872">https://github.com/w3c/css-houdini-drafts/issues/872</a></p>
 				<p class="fragment fade-up">... tu peux déjà passer une property arbitraire non typée façon</p>
 					 <pre class="fragment fade-up"><code class="css">
---madata:'{foo:1,bar:2}' /* c'est moche, mais tu peux. en attendant postMessage (spoiler) */
+--madata:'{foo:1,bar:2}';
+/* c'est moche, mais tu peux... en attendant postMessage (spoiler) */
 					 </code></pre>
 			</section>
 
@@ -322,7 +323,7 @@ background-image:paint('compteur')
 				<p class="fragment fade-up">NON. La Worklet est une <em>extension</em> de WAAPI qui donne au <em>KeyframeEffect</em>, des <em>timelines</em> libres (dont une <em>ScrollTimeline</em>) et un état optionel (stateful)</p>
 				<p class="fragment fade-up">ex: se souvenir de l'état pour le modifier/partager dans le temps, ou quand le moteur bouge la Worklet entre threads (kill and revive)</p>
 				<p class="fragment fade-up">ex: accélérer/distordre le temps (document.timeline relative)</p>
-				<p><a href="../waapi">demo (+ question paint flashing)</a></p>				
+				<p><a href="../waapi">demo (+ question paint flashing + layer borders)</a></p>				
 			</section>
 
 			<section>
@@ -335,15 +336,16 @@ background-image:paint('compteur')
 			</section>
 
 			<section>
-				<p>⚙️️ Main thread, Compositor ? 🖌️</p>
+				<p>⚙️️ Main thread, Layer, Compositor ? 🖌️</p>
 				<p>Main thread : là où la UI vit (impactée par réseau, manips de DOM, CSS, JS)</p>
+				<p>Layer : un navigateur dessine par calques, pour optimiser. cf Photoshop</p>
 				<p>Compositor : le dernier élément de la chaîne de rendu d'un navigateur</p>
 				<p>Chargement page + ressources -> construction des arbres DOM, CSSOM -> Layout x/y -> mise en Layers -> Peinture + Compositing -> envoi des pixels vers la carte graphique</p>
 				<p>spoiler : talk à venir sur comment fonctionne un moteur de rendu </p>
 			</section>
 
 			<section>
-				<p>La Worklet n'est <em>PAS sur la Compositor thread</em>, elle s'y <em>sync en "best effort"</em></p>
+				<p>La Worklet n'est <em>PAS sur la Compositor thread</em>, elle s'y <em><a href="https://chromium.googlesource.com/chromium/src/+log/f7bac9f65e868e7cce29a09a2fc721cb3e9f9ebb/cc/paint/paint_worklet_layer_painter.h">async</em></p>
 				<p>Car si tu fais du bitcoin dans la Worklet, ça ralentirait le Compositing</p>
 				<p class="fragment fade-up">Elle va <em>au minimum</em> chercher à performer comme <em>requestAnimationFrame</em> : à 60fps, et bénéficie des optims du Compositor (ex: cache, delta pixels)</p>
 				<p class="fragment fade-up">Si ton animate est trop souvent &gt; 16ms (1/60), le moteur peut t'offthread (kill and revive) ou throttle : un 30fps fluide est meilleur qu'un 60fps qui drop</p>

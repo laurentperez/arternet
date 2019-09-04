@@ -347,7 +347,7 @@ background-image:paint('compteur')
 			</section>
 
 			<section>
-				<p>La Worklet n'est <em>PAS sur la Compositor thread</em>, elle s'y <em><a href="https://chromium.googlesource.com/chromium/src/+log/f7bac9f65e868e7cce29a09a2fc721cb3e9f9ebb/cc/paint/paint_worklet_layer_painter.h">async</em></p>
+				<p>La Worklet n'est <em>PAS sur la Compositor thread</em>, elle s'y <em><a href="https://chromium.googlesource.com/chromium/src/+log/f7bac9f65e868e7cce29a09a2fc721cb3e9f9ebb/cc/paint/paint_worklet_layer_painter.h">async</a></em></p>
 				<p>Car si tu fais du bitcoin dans la Worklet, ça ralentirait le Compositing</p>
 				<p class="fragment fade-up">Elle va <em>au minimum</em> chercher à performer comme <em>requestAnimationFrame</em> : à 60fps, et bénéficie des optims du Compositor (ex: cache, delta pixels)</p>
 				<p class="fragment fade-up">Si ton animate est trop souvent &gt; 16ms (1/60), le moteur peut t'offthread (kill and revive) ou throttle : un 30fps fluide est meilleur qu'un 60fps qui drop</p>

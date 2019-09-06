@@ -108,7 +108,20 @@
 				<p class="fragment fade-up"><blockquote class="fragment fade-up">" Like 10000 spoons when all you need is a knife ". Ironic</blockquote></p>
 				<p class="fragment fade-up">Ca te donne de quoi construire ton couteau si tu n'en avais pas</p>
 				<p class="fragment fade-up">Si tu en avais, ça te permet de le polir, l'améliorer, ou faire une alternative, variation... en faire un pinceau à poils doux au lieu de dents, polyfiller une idée</p>
-				<p class="fragment fade-up">Artisanat, outillage sans limites ou presque* : c'est pas open bar total</p>
+			</section>
+
+			<section>
+				<h2>With great power...</h2>
+				<p>Houdini = Artisanat sur le moteur CSS, outillage sans limites ou presque* : c'est pas open bar total, mais tu peux faire ton propre cocktail</p>
+				<p><img src="bond.png" alt=""></p>
+				<pre class="fragment fade-up"><code class="css">
+.vesper {
+	--gin:6; --vodka:1.5; --lillet:0.75; --lemon:1;
+	background:paint(shaken) !important;
+	display:layout(martiniglass);
+}
+				</code>
+				</pre>
 			</section>
 
 			<section>
@@ -139,7 +152,7 @@
 			<section>
 				<p>Dans une maquette, 70% est "facile" - relatif à l'expérience de chacun(e). Hors WebGL, autre domaine</p>
 				<p>C'est quand le moteur ne te donne pas les autres 30% que la recherche commence (toi, tes collègues, google, stackoverflow, ...)</p>
-				<p>Houdini = moins de galères, moins de "on peut pas le faire en CSS / pur web" : tu <em>étends</em> le moteur</p>
+				<p>Houdini = moins de galères, moins de "on peut pas le faire en CSS / pur web" : tu <em>étends pour ton besoin</em> le moteur</p>
 				<p>Houdini + Flex/Grid + BEM/SASS/LeSS = 🌈</p>
 				<p class="fragment fade-up">nb : ce n'est pas un remplaçant à WebGL. C'est <a href="https://en.wikipedia.org/wiki/WebGPU">WebGPU</a> qui remplacera WebGL</p>
 			</section>
@@ -177,13 +190,14 @@
 					<li>Layout API : partial 70% Chrome, uc FF/SF</li>
 					<li>Font Metrics API : rien, uniquement les specs</li>
 				</ul>
-				<small>uc: Considéré, ii: Intent to Implement, in dev: en cours, Safary TP, Chrome Canary, FF Nightly</small>
+				<small>uc: Considéré, ii: Intent to Implement (signal travail assigné), in dev: en cours : dans Safary TP, Chrome Canary, FF Nightly</small>
 			</section>
 
 			<section>
 				<p>Chromium (Blink) et Safari (WebKit) devant</p>
 				<p>Firefox (Servo) franchement derrière, IE va utiliser Blink</p>
-				<p class="fragment fade-up">La Team IE Edge va verser le meilleur de Edge dans Blink (Reddit aMa 06/19), réouvrir des API bloquées contre adblockers</p>
+				<p >La Team IE Edge va verser le meilleur de Edge dans Blink (Reddit aMa 06/19), réouvrir <a href="https://www.reddit.com/r/IAmA/comments/c094uf/hi_reddit_were_the_team_behind_microsoft_edge_and/">des API bloquées contre adblockers</a></p>
+				<p class="fragment fade-up">"We're still evaluating some of the latest changes here in Chromium(...). To be clear, we will not artificially restrict ad blocking for business reasons related to advertising."</p>
 				<p class="fragment fade-up">Important : WAAPI à 100% dans Safari TP / iOS13 (sans Worklet, uc), à 80% CR FF (playback .pause(),.reverse() pas fini)</p>
 			</section>
 
@@ -375,7 +389,7 @@ background-image:paint('compteur')
 				<p><a href="https://airbnb.design/lottie/">Lottie (AirBnb)</a></p>
 				<p>Librairie pour Android/iOS/React Native... et web pur</p>
 				<p>Importe les animations depuis Adobe After Effects</p>
-				<p>La version web n'était pas très performante, <a href="http://www.chromium.org/teams/animations/highlights-archive/april-2019-volume-ii">son moteur a été porté sous PaintWorklet</a></p>
+				<p>La version web n'était pas très performante, <a href="http://www.chromium.org/teams/animations/highlights-archive/april-2019-volume-ii">son moteur a été porté sous Worklet</a></p>
 				<p><a href="https://flackr.github.io/lottie-web/demo/bodymovin/">demo + animation panel</a></p>
 			</section>
 

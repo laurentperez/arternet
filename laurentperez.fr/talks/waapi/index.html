@@ -70,12 +70,12 @@ right: 0;
   }
 </style>
 <body>
-
+<!-- >> DEMO DOM -->
   <div id="header">
-    ScrollTimeline
+    ScrollTimeline (1/2 to 1/4 body height)
   </div>
-  <div id="bluebox"><span style="position: absolute; bottom:0; color:white;">ScrollTimeline</span></div>
-  <div id="progress"><span style="position: absolute; right:0; color:white;">ScrollTimeline</span></div>
+  <div id="bluebox"><span style="position: absolute; bottom:0; color:white;">ScrollTimeline (full body height)</span></div>
+  <div id="progress"><span style="position: absolute; right:0; color:white;">ScrollTimeline (inner height)</span></div>
   <ul class="flex">
     <li class="minibox"></li>
     <li class="minibox"></li>
@@ -83,10 +83,11 @@ right: 0;
   </ul>
   <div class="logo"></div>
   <div class="logo logo2"></div>
+<!-- << DEMO DOM -->
 
 <script language="meetup"> /* juste du lexique */
   /* on enregistre nos AnimationWorklets */
-  /* 3 pour la timeline du scroll */
+  /* 3 pour la timeline d'un scroll */
   registerAnimator('headerheight', class {
     animate(currentTime, effect) {
       effect.localTime = currentTime;
@@ -99,7 +100,7 @@ right: 0;
   });
   registerAnimator('progress', class {
     animate(currentTime, effect) {
-      console.log(Math.round(currentTime));
+      console.log("progress:" + Math.round(currentTime));
       effect.localTime = currentTime;
     }
   });
@@ -124,7 +125,7 @@ right: 0;
       };
     }
   });
-  /* des groupes d'effets avec GroupEffect */
+  /* des groupes d'effets décalés avec GroupEffect */
   /* --enable-blink-features=GroupEffect */
   registerAnimator('logoGroup', class {
     animate(currentTime, effect) {
@@ -162,8 +163,12 @@ right: 0;
   let grouped2;
 
   async function init() {
-    await CSS.animationWorklet.addModule(urlFromTag("script[language='meetup']"));
+    /* ajout du module meetup (lexique) */
+    await CSS.animationWorklet.addModule(
+      urlFromTag("script[language='meetup']")
+    );
     
+    /* nos KeyframeEffects (WAAPI) */
     effect1 = new KeyframeEffect(
         document.querySelector('.logo'),
         [
@@ -195,18 +200,18 @@ right: 0;
           iterations: Number.POSITIVE_INFINITY
         }
       )
-      /* sur tous les ul > li */
+      /* Effect sur tous les ul > li (boites violettes) */
       document.querySelectorAll('.minibox').forEach(e => {
         miniEffects.push(new KeyframeEffect(
         e, 
         [{transform: 'translateX(0px)'},{transform: 'translateX(200px)'},
-        {offset: 0.5, transform: 'scale(1.5,1.5)'}],
+         {offset: 0.5, transform: 'scale(1.5,1.5)'}],
          {duration: 4000, iterations: Number.POSITIVE_INFINITY}
         )
         )
       });
 
-    /* les logos relatifs au temps de document.timeline */
+    /* les logos en bas, relatifs au temps de document.timeline */
     logo1 = new WorkletAnimation(
       'logo', /* l'Animator registered */
       effect1, /* l'effet */
@@ -229,8 +234,9 @@ right: 0;
           fill: 'both'
         }
       ),
+      /* pas document.timeline, mais une ScrollTimeLine */
       new ScrollTimeline({
-        scrollSource: document.scrollingElement, /* body par défaut */ 
+        scrollSource: document.scrollingElement, /* = body par défaut */ 
         orientation: "vertical",
         timeRange: 2000, /* quand le scroll touche à sa fin, on est à 2000 */
         startScrollOffset: 0,
@@ -261,7 +267,7 @@ right: 0;
          {duration: 2000, fill: 'both'}
       ),
       new ScrollTimeline({
-        scrollSource: document.querySelector("main"), /*scroll du main*/ 
+        scrollSource: document.querySelector("main"), /*scroll du <main>*/ 
         orientation: "vertical",
         timeRange: 2000
       })

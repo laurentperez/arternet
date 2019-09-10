@@ -198,14 +198,15 @@
 				<p>Firefox (Servo) franchement derrière, IE va utiliser Blink</p>
 				<p >La Team IE Edge va verser le meilleur de Edge dans Blink (Reddit aMa 06/19), réouvrir <a href="https://www.reddit.com/r/IAmA/comments/c094uf/hi_reddit_were_the_team_behind_microsoft_edge_and/">des API bloquées contre adblockers</a></p>
 				<p class="fragment fade-up">"We're still evaluating some of the latest changes here in Chromium(...). To be clear, we will not artificially restrict ad blocking for business reasons related to advertising."</p>
-				<p class="fragment fade-up">Important : WAAPI à 100% dans <a href="https://caniuse.com/#search=web%20anima">Safari / iOS13</a> et <a href="https://birtles.github.io/areweanimatedyet/">FF Nightly</a>, à 80% CR (playback .pause(),.reverse() pas fini)</p>
+				<p class="fragment fade-up">Important : WAAPI à 100% dans <a href="https://caniuse.com/#search=web%20anima">Safari / iOS13</a> et <a href="https://birtles.github.io/areweanimatedyet/">FF Nightly</a>, à 80% Chromium (playback .pause(),.reverse() pas fini)</p>
 			</section>
 
 			<section>
+				<p>Les 5 API ne sont pas -encore- disponibles partout</p>
 				<p>donc : CSS @supports(xxx){....} + JS if('xxx' in CSS)</p>
-				<p>ça fait quelques années que les prefix -webkit -moz -ms ont été abandonnés pour nouvelles fonctions</p>
-				<p>à la place, flags explicites sous 'Experimental features'</p>
-				<p>et Progressive Enhancement, toujours penser fallback</p>
+				<p>ça fait quelques années que les prefix -webkit -moz -ms ont été abandonnés pour toute nouvelle fonction</p>
+				<p>à la place, flags explicites à cocher sous 'Experimental features'</p>
+				<p>... et Progressive Enhancement, toujours penser fallback</p>
 			</section>
 
 			<section>
@@ -287,7 +288,7 @@ CSS.registerProperty({
 				<ul>
 					<li>Aucun accès au DOM et les Properties sont readonly. Le Canvas est étanche. Si besoin de DOM, faire un Canvas classique sans Paint API</li>
 					<li class="fragment fade-up">Car tu n'as pas spécialement envie qu'un Canvas chargé <em>depuis JS/CSS externe</em> puisse lire repeindre ou masquer des éléments de ta page</li>
-					<li class="fragment fade-up">exemple : redessiner champ input de saisie de CB avec un message pour contacter la "banque"</li>
+					<li class="fragment fade-up">exemple : redessiner champ input de saisie de CB avec un message pour contacter la "banque" avec n° surtaxé</li>
 					<li class="fragment fade-up">Les Properties readonly aussi contre boucle repaint infinie</li>
 					<li>c'est un <em>PaintRenderingContext2D</em> subset de <em>CanvasRenderingContext2D</em> : un Canvas restreint</li>
 				</ul>

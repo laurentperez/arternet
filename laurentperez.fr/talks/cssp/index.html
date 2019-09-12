@@ -1,28 +1,29 @@
 <!doctype html>
 <style>
+  /* tous les '--' sont mes propriétés perso */
   .cats {
-    --ranking: 1; /* ** mon appréciation des chatons ** */
+    --ranking: 1; /* mon appréciation des chatons */
     --rotate:0deg;
     /* hack pour charger image, registerProerty type <image> pas 100% implémenté */
     --flamingo:url('fla.jpg');
     list-style-image: var(--flamingo); 
-    height: 200px; /* hauteur toile où je vais être peint */
+    height: 200px; /* hauteur canvas où je vais être peint */
     flex:1;
     margin:10px;
   }
   @supports (background-image: paint(etoiles)) {
     .cats {
-      background-image: paint(etoiles); /* ** mon peintre **  */
+      background-image: paint(etoiles); /* mon peintre */
     }
   }
   .under {
-    background-image: paint(underline); /* ** mon peintre **  */
+    background-image: paint(underline); /* mon peintre */
     /* credit : https://blog.logrocket.com/new-horizons-in-css-houdini-and-the-paint-api-8b307cf387bb/ */
     padding: 15px;
-    border: 1px solid black;
+    border: 1px solid rebeccapurple;
   }
   main {
-    --sky: white; /* ** mon ciel **  */
+    --sky: white; /* mon ciel  */
     background-color: var(--sky);
     display: flex;
     border: 1px solid rebeccapurple;
@@ -32,6 +33,9 @@
     width: 100px;
     height: 100px;
     margin: 10px;
+  }
+  body {
+    font-family: sans-serif;
   }
   /* layout API, progressive enhancement si supports */
   @supports (display: layout(coincoin)) {

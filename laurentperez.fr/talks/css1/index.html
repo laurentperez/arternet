@@ -6,7 +6,7 @@
 		<title>laurentperez.fr::talks::houdini</title>
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/white.css">
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
 		<!-- Printing and PDF exports -->
@@ -87,7 +87,7 @@
 			<section>
 				<h2>CSS, je t'💖 moi non plus 😿</h2>
 				<p>C'est assez vrai. floats, !important, préfixes -webkit, -ms, z-index, negative margins, positions, ...</p>
-				<p>Trop de libertés laissées aux fabricants de navigateurs, specs trop souples = bugs, doutes, mues (grid)</p>
+				<p><small>Trop de libertés laissées aux fabricants de navigateurs, specs trop souples = bugs, doutes, mues (cf grid)</small></p>
 				<p>Travaux des groupes W3C (Open Web) et WhatWG (fabricants) séparés jusqu'en... Mai 2019</p>
 				<p class="fragment fade-up">C'est le passé. Ca va -globalement- beaucoup mieux, malgré quelques tensions entre Moz et Google, liées privacy</p>
 				<p class="fragment fade-up">Membres clef du CSSWG très publics : Rachel Andrew (Smashing), Lea Verou (MIT), Tab Atkins (Google), Jen Simmons (Moz)</p>
@@ -117,7 +117,7 @@
 				<pre class="fragment fade-up"><code class="css">
 .vesper {
 	--gin:6; --vodka:1.5; --lillet:0.75; --lemon:1;
-	background:paint(shaken) !important;
+	background:paint(shaken) !important; /* not stirred */
 	display:layout(martiniglass);
 }
 				</code>
@@ -129,14 +129,14 @@
 				<p class="fragment fade-up">Les fabricants de navigateurs, et de librairies - toi compris !</p>
 				<p class="fragment fade-up">Houdini, la reine des neiges dans ton navigateur ❄️</p>
 				<p class="fragment fade-up">Libéré(e), délivré(e) de limites du moteur, des librairies tierces. <em>Tu n'attends plus ta fonction CSS : tu peux l'écrire, la partager dans un cadre standard Web, étendre une fonction existante</em></p>
-				<p class="fragment fade-up">... ça t'empêche pas de commit sur OSS si tu sais/peux/veux le faire, ou trouver des compromis créas (chifoumi ?)</p>
+				<p class="fragment fade-up">... ça t'empêche pas de commit sur OSS si tu sais/peux/veux le faire, ou trouver des compromis créas (ex: chifoumi, alcool)</p>
 				<small class="fragment fade-up">On cite un hit musical, une princesse Disney, une arme blanche, de l'OSS, 2 des GAFA. Joyeux bordel Tarantinesque. Tout va bien</small>
 			</section>
 
 			<section>
 				<h2>Buts et acteurs</h2>
 				<p  class="fragment fade-up">Ouvrir les portes de la "magie" CSS et pouvoir étendre le moteur sans attendre les fabricants ou ticket les librairies tierces</p>
-				<small  class="fragment fade-up">Arrêter l'interaction JS à base de addClass/el.style ou les hacks type translate3D(0,0,0) et manipulations de DOM et CSSOM douteuses</small>
+				<small  class="fragment fade-up">Diminuer l'interaction JS à base de addClass/el.style ou les hacks type translate3D(0,0,0) et manipulations de DOM et CSSOM douteuses</small>
 				<p  class="fragment fade-up">Séparer la logique dessin/animation/layout (JS) et son style (CSS)</p>
 				<p  class="fragment fade-up">Donner du rendu à 60fps fluide hors thread UI principale</p>
 				<p>Task force Google, Mozilla, Apple. Réelle volonté, par et pour des devs/UI</p>
@@ -158,13 +158,13 @@
 			</section>
 
 			<section>
-				<p>Houdini pas difficile, ni obscur. C'est juste 5 nouvelles possibilités sur des bases CSS / Dessin / Animation</p>
+				<p>Houdini pas difficile, ni obscur. C'est simplement 5 nouvelles possibilités sur des bases CSS / Dessin / Animation</p>
 				<p><img src="posabs.png" width="400px" alt=""></p>
 				<small>"CSS vertical align" sur Google : Environ 10 600 000 résultats</small>
 			</section>
 
 			<section>
-				<p>Division en 5 nouvelles grandes APIs</p>
+				<p>Division en 5 nouvelles grandes APIs correspondantes à 5 besoins</p>
 				<p><a href="https://github.com/w3c/css-houdini-drafts">https://github.com/w3c/css-houdini-drafts</a> (repo des specs)</p>
 				<p><a href="https://drafts.css-houdini.org">https://drafts.css-houdini.org</a> (specs)</p>
 				<ul>
@@ -211,19 +211,20 @@
 
 			<section>
 				<p>Que Firefox soit en "retard" <em>n'est pas une mauvaise chose</em></p>
+				<p><img src="rp.png" alt=""></p>
 				<p class="fragment fade-up">C'est assez dû au switch de Gecko vers Servo à partir de 2017</p>
 				<p class="fragment fade-up">On veut de la diversité dans les moteurs de rendu, Servo est top</p>
 				<p class="fragment fade-up">Pas de One Blink to rule them all</p>
 				<small>FF Worklet a bougé mi Août : <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1315239">https://bugzilla.mozilla.org/show_bug.cgi?id=1315239</a></small>
-				<small>en Q3 2019 tout Houdini marqué en Enhancement P3, les tickets dataient de 2017, la Worklet est un pilier des API</small>
+				<small>en Q3 2019 tout Houdini marqué en Enhancement Prio 3, les tickets dataient de 2017, la Worklet est un pilier des API</small>
 			</section>
 			
 			<section>
 				<h2>Les nouvelles API au menu</h2>
-				<p>Objets CSS et propriétés perso typées</p>
-				<p>Objets JS Worklets pour :</p>
+				<p>Nouveaux objets CSS et propriétés perso typées</p>
+				<p>Nouveaux objets JS Worklets pour :</p>
 				<p>Dessin, peinture, animation, layout</p>
-				<p>Fontes en dessert/café (très léger)</p>
+				<p>... fontes en dessert/café (très léger)</p>
 			</section>
 			
 			<section>
@@ -266,7 +267,7 @@ CSS.registerProperty({
 			<section><h2>🎨 Paint API 🎨</h2>
 				<p>Dessin/masque libre avec <em>-webkit-mask-image ou background:paint('foo');</em></p>
 				<p>Introduction de <em>PaintWorklet</em> : analogie avec les <em>Workers</em> JS</p>
-				<p class="fragment fade-up">Une <em>Worklet</em> est un JS de dessin dormant, en tâche de fond dans sa Thread</p>
+				<p class="fragment fade-up">Une <em>Worklet</em> est un JS de dessin dormant, en tâche de fond</p>
 				<p class="fragment fade-up">But : qu'elle ne tourne pas dans la main thread (main JS sur thread UI sans rAf = ça rame) mais dans une autre thread</p>
 				<p class="fragment fade-up">La Paint API te donne un <em>Canvas</em> sans accès au DOM</p>
 				<small class="fragment fade-up">donc oui le 31/10 tu peux faire background:paint(🎃);</small>
@@ -274,13 +275,13 @@ CSS.registerProperty({
 			</section>
 
 			<section>
-				<h2>Dormant ?</h2>
+				<h2>Dessin dormant ?</h2>
 				<p>La Worklet est dormante et se réveille quand :</p>
-				<p class="fragment fade-up">Une des propriétés CSS mappées change (ex:sky)</p>
+				<p class="fragment fade-up">Une des propriétés CSS mappées change (ex:sky,ranking)</p>
 				<p class="fragment fade-up">La géométrie de l'élément peint change (ex:resize)</p>
 				<p class="fragment fade-up">La timeline bouge (ex:scroll, demo plus loin)</p>
-				<p class="fragment fade-up">Une Worklet réveillée va bosser sur <em>chaque frame, donc 60 fois/seconde</em></p>
-				<p class="fragment fade-up">C'est un WebWorker en plus léger, câblé directement sur le moteur CSS. Voir ça comme un layer Photoshop, effect Premiere, After Effect</p>
+				<p class="fragment fade-up">Une Worklet réveillée va dessiner à <em>chaque frame, donc 60 fois/seconde</em> : ton budget fluide est de 16ms</p>
+				<p class="fragment fade-up">C'est un WebWorker en plus léger, câblé directement sur le moteur CSS. Proche d'un layer Photoshop, effect Premiere, After Effect</p>
 			</section>
 
 			<section>
@@ -326,7 +327,8 @@ background-image:paint('compteur')
 			</section>
 
 			<section>
-					<h2>C'était un peu statique ton dessin</h2>
+					<h2>C'était un peu normé cette peinture</h2>
+					<p><img src="willh1.png" width="500px" alt=""></p>
 					<p>... on va animer un peu</p>
 			</section>
 
@@ -336,7 +338,8 @@ background-image:paint('compteur')
 				... c'est assez fait pour le scroll, et ça le fait - très très - bien</p>
 				<small class="fragment fade-up">qui a déjà fait des parallaxes fluides ? des offsets / staggering ? anime.JS ?</small>
 				<p>Syntaxe : <em>AnimationWorklet + KeyFrameEffects</em></p>
-				<p class="fragment fade-up">Note : séquence/chorégraphie à faire à la main. Un peu pénible, car <em>GroupEffect</em> dans la spec - mais caché par un flag</p>
+				<p class="fragment fade-up">Note : séquence/chorégraphie à faire à la main. Un peu ballot, car <em>GroupEffect</em> dans la spec - mais caché par un flag pour le moment</p>
+				<p class="fragment fade-up"><a href="https://www.tesla.com/model3">Chorégraphie chez un petit site web</a></p>
 			</section>
 
 			<section>
@@ -359,9 +362,9 @@ background-image:paint('compteur')
 
 			<section>
 				<p>⚙️️ Main thread, Layer, Compositor ? 🖌️</p>
-				<p>Main thread : là où la UI vit (impactée par réseau, manips de DOM, CSS, JS)</p>
-				<p>Layer : un navigateur dessine par calques, pour optimiser. cf Photoshop</p>
-				<p>Compositor : le dernier élément de la chaîne de rendu d'un navigateur, qui assemble les calques</p>
+				<p>Main thread : là où la UI vit (impactée par réseau, manips lourdes de DOM, CSS, JS lent, etc...)</p>
+				<p>Layer : un navigateur range par calques, pour optimiser. cf Photoshop</p>
+				<p>Compositor : le dernier élément de la chaîne de rendu d'un navigateur, qui affiche les calques (opacity, transform)</p>
 				<p><small>Chargement page + ressources -> construction des arbres DOM, CSSOM -> Layout x/y -> mise en Layers -> Peinture + Compositing -> envoi des pixels vers la carte graphique</small></p>
 				<p>spoiler : talk à venir sur comment fonctionne un moteur de rendu </p>
 			</section>
@@ -373,7 +376,7 @@ background-image:paint('compteur')
 				<p class="fragment fade-up">Si ton animate est trop souvent &gt; 16ms (1/60), le moteur peut t'offthread (kill and revive) ou throttle : un 30fps fluide est meilleur qu'un 60fps qui drop</p>
 				<small class="fragment fade-up">60fps est une limite basse, l'iPad Pro est à 120Hz, l'Oculus/Vive à 90Hz. Chrome, IE et FF peuvent faire du 240Hz et même 480Hz sur des moniteurs usine</small>
 				<br>
-				<small class="fragment fade-up">Safari iOS <a href="https://github.com/WebKit/webkit/blob/master/Source/WebCore/page/RenderingUpdateScheduler.cpp">limite certains écrans à 60fps</a>, toutes les iframes sans interaction <a href="https://trac.webkit.org/changeset/215070/webkit">à 30fps</a></small>
+				<small class="fragment fade-up">Safari iOS <a href="https://github.com/WebKit/webkit/blob/master/Source/WebCore/page/RenderingUpdateScheduler.cpp">limite certains écrans à 60fps</a>, toutes les iframes sans interaction <a href="https://trac.webkit.org/changeset/215070/webkit">à 30fps</a>, pour la batterie : un site web vsync à 120fps c'est beau mais chaud</small>
 			</section>
 
 			<section>
@@ -449,9 +452,9 @@ background-image:paint('compteur')
 				<h2>🔠 Font Metrics API 🔠</h2>
 				<p>... spec seulement utilitaire, causée par la Layout API :</p>
 				<p>placer des blocs custom c'est cool mais : on a parfois besoin de gérer du texte/symboles dedans, le web est Universel, l'alphabet non...</p>
-				<small class="fragment fade-up">ex : faire son propre line-breaking, connaître les tailles réelles des Lettrines, symboles math chimie ∑ √ ∞, des ligatures Œ, Æ, محرك, et cætera … </small>
+				<small class="fragment fade-up">ex : faire son propre line-breaking, connaître les tailles réelles des Lettrines, symboles math chimie ∑ √ ∞, des ligatures Œ, Æ, محرك, մն, ﬗ, ゟ, et cætera … </small>
 				<p class="fragment fade-up">exposer seulement la Font ne suffit pas : il faut descendre au niveau du <em>glyphe</em> dessiné par chaque navigateur, à sa façon</p>
-				<p class="fragment fade-up">la FMAPI donnera un objet JS FontMetrics des glyphes dessinés, utilitaire interne pour typographes</p>
+				<p class="fragment fade-up">la FMAPI donnera un objet JS FontMetrics des glyphes dessinés, utilitaire interne pour typographes et pros du print</p>
 			</section>
 				
 			<section>

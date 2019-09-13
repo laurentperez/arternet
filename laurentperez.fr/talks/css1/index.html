@@ -168,14 +168,14 @@
 				<p><a href="https://github.com/w3c/css-houdini-drafts">https://github.com/w3c/css-houdini-drafts</a> (repo des specs)</p>
 				<p><a href="https://drafts.css-houdini.org">https://drafts.css-houdini.org</a> (specs)</p>
 				<ul>
-					<li class="fragment fade-up">CSSOM API (CAPI)</li>
-					<li class="fragment fade-up">Properties/Values API (PVAPI)</li>
-					<li class="fragment fade-up">Paint API (PAPI)</li>
-					<li class="fragment fade-up">Worklet Animation API (WAPI ...sur WAAPI)</li>
-					<li class="fragment fade-up">Layout API (LAPI)</li>
+					<li class="fragment fade-up">CSSOM API (CAPI) : nouveaux objets CSS</li>
+					<li class="fragment fade-up">Properties/Values API (PVAPI) : properties typées métier</li>
+					<li class="fragment fade-up">Paint API (PAPI) : dessin perso</li>
+					<li class="fragment fade-up">Worklet Animation API (WAPI ...sur WAAPI) : animations on drugs</li>
+					<li class="fragment fade-up">Layout API (LAPI) : layout perso</li>
 					<li class="fragment fade-up">... 6e optionnelle, Font Metrics API (FMAPI) *</li>
 					</ul>
-				<small class="fragment fade-up">* = pas encore d'implémentation visible, pas essentielle</small>
+				<small class="fragment fade-up">* = pas encore d'implémentation, bonus pour typo</small>
 			</section>
 
 			<section>
@@ -191,14 +191,16 @@
 					<li>Font Metrics API : rien, uniquement les specs</li>
 				</ul>
 				<small>uc: Considéré, ii: Intent to Implement (signal travail assigné), in dev: en cours : dans Safary TP, Chrome Canary, FF Nightly</small>
+				<p class="fragment fade-up"><small>Important : WAAPI à 100% dans <a href="https://caniuse.com/#search=web%20anima">Safari / iOS13</a> et <a href="https://birtles.github.io/areweanimatedyet/">FF Nightly</a>, à 80% Chromium (playback .pause(),.reverse() pas fini)</small></p>
+
 			</section>
 
 			<section>
 				<p>Chromium (Blink) et Safari (WebKit) devant</p>
-				<p>Firefox (Servo) franchement derrière, IE va utiliser Blink</p>
+				<p>Firefox (Servo) derrière, IE va utiliser Blink</p>
 				<p >La Team IE Edge va verser le meilleur de Edge dans Blink (Reddit aMa 06/19), réouvrir <a href="https://www.reddit.com/r/IAmA/comments/c094uf/hi_reddit_were_the_team_behind_microsoft_edge_and/">des API bloquées contre adblockers</a></p>
-				<p class="fragment fade-up">"We're still evaluating some of the latest changes here in Chromium(...). To be clear, we will not artificially restrict ad blocking for business reasons related to advertising."</p>
-				<p class="fragment fade-up">Important : WAAPI à 100% dans <a href="https://caniuse.com/#search=web%20anima">Safari / iOS13</a> et <a href="https://birtles.github.io/areweanimatedyet/">FF Nightly</a>, à 80% Chromium (playback .pause(),.reverse() pas fini)</p>
+				<p><blockquote class="fragment fade-up">"We're still evaluating some of the latest changes here in Chromium(...). To be clear, we will not artificially restrict ad blocking for business reasons related to advertising."</blockquote></p>
+				<p><blockquote class="fragment fade-up">Finally, we occasionally hear requests for a built in ad blocking experiences in Edge. For most users, we find that extensions (combined with strong defaults around tracking prevention) are the best option (...) but we absolutely want to hear from you if you think this should be built in.</blockquote></p>
 			</section>
 
 			<section>
@@ -212,7 +214,7 @@
 			<section>
 				<p>Que Firefox soit en "retard" <em>n'est pas une mauvaise chose</em></p>
 				<p><img src="rp.png" alt=""></p>
-				<p class="fragment fade-up">C'est assez dû au switch de Gecko vers Servo à partir de 2017</p>
+				<p class="fragment fade-up">Dû au switch de Gecko vers Servo à partir de 2017, 2 moteurs</p>
 				<p class="fragment fade-up">On veut de la diversité dans les moteurs de rendu, Servo est top</p>
 				<p class="fragment fade-up">Pas de One Blink to rule them all</p>
 				<small>FF Worklet a bougé mi Août : <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1315239">https://bugzilla.mozilla.org/show_bug.cgi?id=1315239</a></small>
@@ -249,7 +251,7 @@ new CSSStyleValue.parse('transform', 'translte3d(...)');
 
 			<section>
 				<h2>🔑 Properties/Values API 🔑</h2>
-				<p >Enfin de la structure/typage dans des variables CSS custom</p>
+				<p >Enfin de la structure/typage dans des variables CSS perso</p>
 				<small>... on rappelle BEM/SASS/Less pour une structure de classes maintenable</small>
 				<p class="fragment fade-up">11 types supportés : length, number, %, color, image, url(), integer, angle, time, dpi, transform</p>
 				<pre class="fragment fade-up"><code class="css">
@@ -259,7 +261,7 @@ CSS.registerProperty({
  inherits: true, /* propagée vers le bas dans le DOM tree */
  initialValue: 'vanilla', /* son default */
 });</code></pre>
-				<small>SVP ne pas inventer des horreurs lexicales comme couleur=color, ni substituer aux meta data-* HTML5. C'est pour mieux décrire, pas pour de la metadonn&eacute;e</small>
+				<small>SVP ne pas inventer des horreurs lexicales comme --couleur=color, --largeur=width</small>
 				<small>inherits : false par défaut pour pas recalculer le CSSOM tree si pas besoin</small>
 				<p><a href="../cssp">demo</a></p>
 			</section>
@@ -329,14 +331,14 @@ background-image:paint('compteur')
 			<section>
 					<h2>C'était un peu normé cette peinture</h2>
 					<p><img src="willh1.png" width="500px" alt=""></p>
-					<p>... on va animer un peu</p>
+					<p>... on va mettre un peu d'animation</p>
 			</section>
 
 			<section>
 				<h2>🎬 Worklet Animation API 🎬</h2>
-				<p class="fragment fade-up">Animations non blocking à 60fps relatives à la timeline et au scroll
+				<p>Animations non blocking à 60fps relatives à une timeline libre
 				... c'est assez fait pour le scroll, et ça le fait - très très - bien</p>
-				<small class="fragment fade-up">qui a déjà fait des parallaxes fluides ? des offsets / staggering ? anime.JS ?</small>
+				<small class="fragment fade-up">qui a déjà fait des parallaxes fluides ? des offsets / staggering ? Material/anime.JS ?</small>
 				<p>Syntaxe : <em>AnimationWorklet + KeyFrameEffects</em></p>
 				<p class="fragment fade-up">Note : séquence/chorégraphie à faire à la main. Un peu ballot, car <em>GroupEffect</em> dans la spec - mais caché par un flag pour le moment</p>
 				<p class="fragment fade-up"><a href="https://www.tesla.com/model3">Chorégraphie chez un petit site web</a></p>
@@ -356,7 +358,7 @@ background-image:paint('compteur')
 				<p>Parce que j'ai modifié leur géométrie ou box shadow</p>
 				<p class="fragment fade-up">Et ce sont des classiques qui déclenchent un repaint</p>
 				<p class="fragment fade-up"><a href="https://csstriggers.com/">https://csstriggers.com/</a></p>
-				<p class="fragment fade-up">Mais la Worklet n'est pas sur la Main thread : no main UI jank si son JS rame</p>
+				<p class="fragment fade-up">Mais la Worklet n'est pas sur la Main thread : no main UI jank si son JS rame, au pire c'est elle qui rame, pas toute l'interface</p>
 				<small class="fragment fade-up">fini les hacks risqués translate3d(0,0,0), la Worklet promeut l'élément en Layer vers le Compositor</small>
 			</section>
 
@@ -364,7 +366,7 @@ background-image:paint('compteur')
 				<p>⚙️️ Main thread, Layer, Compositor ? 🖌️</p>
 				<p>Main thread : là où la UI vit (impactée par réseau, manips lourdes de DOM, CSS, JS lent, etc...)</p>
 				<p>Layer : un navigateur range par calques, pour optimiser. cf Photoshop</p>
-				<p>Compositor : le dernier élément de la chaîne de rendu d'un navigateur, qui affiche les calques (opacity, transform)</p>
+				<p>Compositor : le dernier élément de la chaîne de rendu d'un navigateur, qui traite les pixels des calques (opacity, transform)</p>
 				<p><small>Chargement page + ressources -> construction des arbres DOM, CSSOM -> Layout x/y -> mise en Layers -> Peinture + Compositing -> envoi des pixels vers la carte graphique</small></p>
 				<p>spoiler : talk à venir sur comment fonctionne un moteur de rendu </p>
 			</section>
@@ -372,7 +374,7 @@ background-image:paint('compteur')
 			<section>
 				<p>La Worklet n'est <em>PAS sur la Compositor thread</em>, elle s'y <em><a href="https://chromium.googlesource.com/chromium/src/+/master/cc/paint/paint_worklet_layer_painter.h">defer</a></em></p>
 				<p>Car si tu fais du bitcoin dans la Worklet, ça ralentirait le Compositing : seuls les <em>KeyframeEffects</em> l'intéressent</p>
-				<p class="fragment fade-up">Elle va <em>au minimum</em> chercher à performer comme <em>requestAnimationFrame</em> : à 60fps, et bénéficie des optims du Compositor (ex: cache, interpolation)</p>
+				<p class="fragment fade-up">Elle va <em>au minimum</em> chercher à performer comme <em>requestAnimationFrame</em> : à 60fps, et bénéficie des optims du Compositor (ex: cache de frames, interpolation)</p>
 				<p class="fragment fade-up">Si ton animate est trop souvent &gt; 16ms (1/60), le moteur peut t'offthread (kill and revive) ou throttle : un 30fps fluide est meilleur qu'un 60fps qui drop</p>
 				<small class="fragment fade-up">60fps est une limite basse, l'iPad Pro est à 120Hz, l'Oculus/Vive à 90Hz. Chrome, IE et FF peuvent faire du 240Hz et même 480Hz sur des moniteurs usine</small>
 				<br>
@@ -526,7 +528,7 @@ background-image:paint('compteur')
 					<p>Speakers wanted</p>
 					<p>sur des sujets front/privacy, pour un Meetup pur web</p>
 					<p>@laurentperez / Slack Comm MPL</p>
-					<p><small>merci spécial à Chloe, Charlotte, Estelle, François, Juliens, Hugo &amp; à tout le MTH</small></p>
+					<p><small>merci spécial à Chloe, Charlotte, Estelle, Juliens, Hugo, Alane &amp; à tout le MTH</small></p>
 				</section>
 
 			</div>

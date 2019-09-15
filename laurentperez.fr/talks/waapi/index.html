@@ -18,8 +18,6 @@
     height: 100px;
     background-color: blue;
     position: fixed;
-    transform-origin: top right;
-    top:0;
     right:0;
   }
   .minibox {
@@ -29,7 +27,7 @@
     opacity: 0.8;
     list-style: decimal-leading-zero;
   }
-  .flex {
+  #minibox__group {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,14 +36,11 @@
     position: absolute;
     left: 25vh;
   }
-  main {
+  .inner {
     width: 200px;
     height: 200px;
     border: 1px solid black;
     overflow: auto
-  }
-  #inputs {
-    position: absolute;
   }
   .logo {
 background-image: url('gits.png');
@@ -76,7 +71,7 @@ right: 0;
   </div>
   <div id="bluebox"><span style="position: absolute; bottom:0; color:white;">ScrollTimeline (full body height)</span></div>
   <div id="progress"><span style="position: absolute; right:0; color:white;">ScrollTimeline (inner height)</span></div>
-  <ul class="flex">
+  <ul id="minibox__group">
     <li class="minibox"></li>
     <li class="minibox"></li>
     <li class="minibox"></li>
@@ -138,6 +133,7 @@ right: 0;
   registerAnimator('miniboxGroup', class {
     animate(currentTime, effect) {
       let effects = effect.getChildren();
+      /* escalier */
       effects[0].localTime = currentTime - 1000;
       effects[1].localTime = currentTime - 1500;
       effects[2].localTime = currentTime - 2000;
@@ -168,7 +164,8 @@ right: 0;
       urlFromTag("script[language='meetup']")
     );
     
-    /* nos KeyframeEffects (WAAPI) */
+    /* nos KeyframeEffects */
+    /* pas de Houdini ici, du WAAPI classique */
     effect1 = new KeyframeEffect(
         document.querySelector('.logo'),
         [
@@ -200,7 +197,7 @@ right: 0;
           iterations: Number.POSITIVE_INFINITY
         }
       )
-      /* Effect sur tous les ul > li (boites violettes) */
+      /* Effect sur tous les <ul> > <li> (boites violettes) */
       document.querySelectorAll('.minibox').forEach(e => {
         miniEffects.push(new KeyframeEffect(
         e, 
@@ -211,6 +208,7 @@ right: 0;
         )
       });
 
+    /* nos Worklets Animation, Houdini */
     /* les logos en bas, relatifs au temps de document.timeline */
     logo1 = new WorkletAnimation(
       'logo', /* l'Animator registered */
@@ -267,7 +265,7 @@ right: 0;
          {duration: 2000, fill: 'both'}
       ),
       new ScrollTimeline({
-        scrollSource: document.querySelector("main"), /*scroll du <main>*/ 
+        scrollSource: document.querySelector(".inner"), /*scroll inner */ 
         orientation: "vertical",
         timeRange: 2000
       })
@@ -315,7 +313,7 @@ right: 0;
   scroll me<br>
   scroll me<br>
   scroll me<br>
-  <main>
+  <main class="inner">
       scroll me<br>
       scroll me<br>
       scroll me<br>

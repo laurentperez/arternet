@@ -95,10 +95,11 @@
 
 			<section>
 				<h2>✨ CSS Houdini ✨</h2>
-				<p class="fragment fade-up">tl;dr : pour ouvrir davantage le moteur CSS via JS</p>
+				<p class="fragment fade-up">tl;dr : ouvre davantage le moteur CSS via JS</p>
 				<p class="fragment fade-up">on a un accès au plus proche de l'interne du moteur</p>
-				<p class="fragment fade-up">on peut y créer nos propriétés, peinture/clip, animation, layout</p>
-				<p class="fragment fade-up">travail commencé circa 2015</p>
+				<p class="fragment fade-up">on peut y créer nos propriétés, peinture/clip, animation, layout personnels</p>
+				<p class="fragment fade-up">travail commencé fin 2015</p>
+				<p class="fragment fade-up">pour les devs, pour les créas</p>
 				<p  class="fragment fade-up">suite du travail après WebComponents, WebWorkers ... et Web Animations API</p>
 			</section>
 
@@ -341,13 +342,14 @@ background-image:paint('compteur')
 				<small class="fragment fade-up">qui a déjà fait des parallaxes fluides ? des offsets / staggering ? Material/anime.JS ?</small>
 				<p>Syntaxe : <em>AnimationWorklet + KeyFrameEffects</em></p>
 				<p class="fragment fade-up">Note : séquence/chorégraphie à faire à la main. Un peu ballot, car <em>GroupEffect</em> dans la spec - mais caché par un flag pour le moment</p>
+				<!--  --enable-blink-features=GroupEffect -->
 				<p class="fragment fade-up"><a href="https://www.tesla.com/model3">Chorégraphie chez un petit site web</a></p>
 			</section>
 
 			<section>
-				<p>Encore une API d'animation ?</p>
+				<p>Encore une API d'animation ? Déjà 3</p>
 				<small>... on a déjà CSS transitions, CSS animations (@keyframes), Web Animations API (el.animate({...}).pause())</small>
-				<p class="fragment fade-up">NON. La Worklet est une <em>extension</em> de WAAPI qui donne au <em>KeyframeEffect</em>, des <em>timelines</em> libres (dont une <em>ScrollTimeline</em>) et un état optionel (stateful)</p>
+				<p class="fragment fade-up">NON. La Worklet est une <em>extension</em> de WAAPI qui donne au <em>KeyframeEffect</em>, une <em>timeline</em> libre (dont une <em>ScrollTimeline</em>) et un état optionel (stateful)</p>
 				<p class="fragment fade-up">ex: se souvenir de l'état pour le modifier/partager dans le temps, ou quand le moteur bouge la Worklet entre threads (kill and revive)</p>
 				<p class="fragment fade-up">ex: accélérer/distordre le temps (document.timeline relative)</p>
 				<p><a href="../waapi">demo (+ question paint flashing + layer borders)</a></p>				
@@ -378,7 +380,7 @@ background-image:paint('compteur')
 				<p class="fragment fade-up">Si ton animate est trop souvent &gt; 16ms (1/60), le moteur peut t'offthread (kill and revive) ou throttle : un 30fps fluide est meilleur qu'un 60fps qui drop</p>
 				<small class="fragment fade-up">60fps est une limite basse, l'iPad Pro est à 120Hz, l'Oculus/Vive à 90Hz. Chrome, IE et FF peuvent faire du 240Hz et même 480Hz sur des moniteurs usine</small>
 				<br>
-				<small class="fragment fade-up">Safari iOS <a href="https://github.com/WebKit/webkit/blob/master/Source/WebCore/page/RenderingUpdateScheduler.cpp">limite certains écrans à 60fps</a>, toutes les iframes sans interaction <a href="https://trac.webkit.org/changeset/215070/webkit">à 30fps</a>, pour la batterie : un site web vsync à 120fps c'est beau mais chaud</small>
+				<small class="fragment fade-up">Safari a une <a href="https://github.com/WebKit/webkit/blob/master/Source/WebCore/page/RenderingUpdateScheduler.cpp">option pour 60fps</a> et limite toutes les iframes sans interaction <a href="https://trac.webkit.org/changeset/215070/webkit">à 30fps</a>, pour la batterie : un site web vsync à 120fps c'est beau mais chaud</small>
 			</section>
 
 			<section>
@@ -405,39 +407,39 @@ background-image:paint('compteur')
 			</section>
 
 			<section>
-				<p>Sprints et roadmap publics, backlog, rétros agiles : <a href="https://www.chromium.org/teams/animations/animation-objectives">https://www.chromium.org/teams/animations/animation-objectives</a></p>
-				<p>Pour le moment (Août), <em>GroupEffect</em> = groupe de <em>KeyFrameEffects</em> est caché (flag, ya plus de -prefix)</p>
+				<p>Parfois on veut ranger des Effects ensemble</p>
+				<p>Pour le moment (Août), <em>GroupEffect</em>, groupe de <em>KeyFrameEffects</em> est caché (flag, ya plus de -prefix)</p>
 				<p class="fragment fade-up">exemple : démarrer l'animation B quand la A est à 50%, démarrer B, C, D en même temps mais avec des offsets (= delay/parallaxe/stagger), pause() ou play() les effets en bloc</p>
-				<small class="fragment fade-up">Travail important de Yi Gu sur la Chorégraphie, Parallel, Séquence et Staggering pour améliorer la spec</small>
+				<small class="fragment fade-up">Travail important de Yi Gu sur la Chorégraphie, Parallel, Séquence et Stagger (échelon) pour améliorer la spec</small>
 			</section>
 			<section>
 				<img src="pigeon.gif" alt="">
 				<img src="corgi.gif" alt="">
-				<p>lire les travaux de Yi sur <a href="https://github.com/yi-gu/group_effect">https://github.com/yi-gu/group_effect</a></p>
-				<p>propose nouveaux types SequenceEffect, ParallelEffect, StaggerEffect en plus de GroupEffect</p>
+				<p>beaux travaux de Yi sur <a href="https://github.com/yi-gu/group_effect">https://github.com/yi-gu/group_effect</a></p>
+				<p>propose nouveaux types SequenceEffect, ParallelEffect, StaggerEffect en plus du GroupEffect</p>
 				<p>Q1 2020. Yi est joignable et demandeur de retours</p>
 				<small>Question à Julian Garnier (anime.js) <a href>https://github.com/juliangarnier/anime/issues/602</a></small>
 			</section>
 
 			<section>
 				<h2>🖼️ Layout API 🖼️</h2>
-				<p>On a déjà flex, multi-column, grid...</p>
+				<p>On a déjà flex, column, grid...</p>
 				<p class="fragment fade-up">OUI. Et Bootstrap aussi</p>
-				<p class="fragment fade-up">et subgrid va arriver pour hériter des rails de grid (il est déjà dans FF Nightly)</p>
+				<p class="fragment fade-up">et subgrid va arriver pour hériter des "rails" de grid (il est déjà dans FF Nightly)</p>
 				<p class="fragment fade-up">PVAPI, PAPI et WAPI ouvrent propriétés, dessin et animation... quid de la mise en page ?</p>
-				<small class="fragment fade-up">Rappel : c'est Bloomberg qui a sponsorisé grid dans WebKit (implémenté par Igalia). Ils aiment bien les grilles, le Terminal a 30 ans... pas ton navigateur evergreen</small>
+				<small class="fragment fade-up">Rappel : c'est Bloomberg qui a sponsorisé grid dans WebKit (implémenté par Igalia). Ils aiment bien les grilles, leur Terminal a 30 ans... pas ton navigateur evergreen</small>
 				<p class="fragment fade-up"><img src="bloom.png" width="300px" alt=""></p>
 			</section>
 
 			<section>
 				<h2>🖼️ Layout API 🖼️</h2>
-				<p>Quand flex ou grid ne te suffisent plus (oui oui)</p>
+				<p>Quand flex column ou grid ne te suffisent plus (oui oui)</p>
 				<p class="fragment fade-up">tl;dr : écrire son propre display:layout('monlayoutperso');</p>
 				<p><a href="https://houdini.glitch.me/layout">https://houdini.glitch.me/layout</a></p>
 				<p class="fragment fade-up">Conteneur de <em>LayoutChild/Fragments</em> dans un <em>ParentLayout</em></p>
 				<small class="fragment fade-up">Le <em>Parent</em> a des borders, paddings : les <em>Edges</em>. Entre les <em>Edges</em>, on a des <em>Constraints</em>. Les <em>LayoutChild</em> sont dans ces <em>Constraints</em> et ont des <em>Fragments</em></small>
 				<p class="fragment fade-up">La *clef* : chaque <em>Fragment</em> a un <em>inlineOffset/blockOffset</em> pour le positionner par rapport à la box de son <em>Child</em></p>
-				<p>C'est - très proche - d'un position:relative; dynamique, précalculable, dans un <em>wireframe</em> nommé</p>
+				<p>C'est - proche - d'un position:relative; dynamique dans un <em>wireframe</em> nommé</p>
 			</section>
 
 			<section>

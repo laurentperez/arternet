@@ -1,5 +1,5 @@
 
-class MeetupPainter {
+class EtoilesPainter {
 
   // on récupère les properties dont on a besoin
   // elles sont readonly à l'intérieur de ce Painter
@@ -80,4 +80,4 @@ class MeetupPainter {
   }
 }
 
-registerPaint('etoiles', MeetupPainter);
+registerPaint('etoiles', EtoilesPainter);

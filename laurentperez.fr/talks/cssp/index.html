@@ -4,13 +4,14 @@
   .cats {
     --ranking: 1; /* mon appréciation des chatons */
     --rotate:0deg;
-    /* hack pour charger image, registerProerty type <image> pas 100% implémenté */
+    /* registerProperty type <image> pas 100% implémenté */
     --flamingo:url('fla.jpg');
     list-style-image: var(--flamingo); 
     height: 200px; /* hauteur canvas où je vais être peint */
     flex:1;
     margin:10px;
   }
+  /* Paint API, progressive enhancement si supports */
   @supports (background-image: paint(etoiles)) {
     .cats {
       background-image: paint(etoiles); /* mon peintre */
@@ -22,9 +23,13 @@
     padding: 15px;
     border: 1px solid rebeccapurple;
   }
-  main {
-    --sky: white; /* mon ciel  */
+  .starbox {
+    --sky: #e1e7f1; /* mon ciel  */
     background-color: var(--sky);
+    background-image: url('cloud.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: right;
     display: flex;
     border: 1px solid rebeccapurple;
     transition: all 4s;
@@ -37,7 +42,8 @@
   body {
     font-family: sans-serif;
   }
-  /* layout API, progressive enhancement si supports */
+
+  /* Layout API, progressive enhancement si supports */
   @supports (display: layout(coincoin)) {
   .coins {
     display: layout(coincoin); /* mon layout */
@@ -46,28 +52,35 @@
     border: 20px solid rebeccapurple;
     margin: 10px;
   }
-  .child {
+  .coinschild {
     background: violet;
     transition: all 2s;
     overflow: auto;
   }
+  .colz {
+    column-count: 3;
+    column-rule: 2px solid rebeccapurple;
+  }
 }
 </style>
 
-<div>Properties API + Paint API : typage et dessin custom</div>
-<br>
-<main>
+<h2>Properties API + Paint API : typage et dessin custom</h2>
+
+<section class="starbox">
   <img class="photo" src="https://placekitten.com/100/100" alt="">
   <div class="cats">Evaluez si ces chatons sont mignons  &nbsp;</div>
-</main>
-<div><p class="under">Un texte avec une underline custom</p></div>
-<div>Layout API : placement custom de 2 enfants : 2 1ers dans les coins, le reste au milieu</div>
-<br>
-<div class="coins" style="visibility: hidden">
-    <div class="child" style="width:100px">#1 lorem ipsum bla bla bla bla <img src="https://placekitten.com/100/100"/></div>
-    <div class="child" style="width:200px">#2 la la la <img src="https://placekitten.com/100/100"/></div>
-    <div>miaou</div>
-</div>
+</section>
+<section class="underbox">
+  <p class="under">Un texte avec une underline dessinée custom</p>
+</section>
+
+<h2>Layout API : placement custom de 2 enfants : 2 1ers dans les coins, le reste au milieu</h2>
+
+<section class="coins" style="visibility: xx">
+    <div class="coinschild" style="width:100px">#1 lorem ipsum bla bla bla bla <img src="https://placekitten.com/100/100"/></div>
+    <div class="coinschild" style="width:200px">#2 la la la <img src="https://placekitten.com/100/100"/></div>
+    <div class="colz">yo dawg I heard you liked layout so I put a column layout within your custom layout !</div>
+</section>
 
 <script>
   CSS.registerProperty({
@@ -90,9 +103,9 @@
   });
 </script>
 <script>
-  CSS.paintWorklet.addModule('meetup.js');
+  CSS.paintWorklet.addModule('stars.js');
   CSS.paintWorklet.addModule('under.js');
-  CSS.layoutWorklet.addModule('masonry.js');
+  CSS.layoutWorklet.addModule('coincoin.js');
 </script>
 <script>
   /* live repaint sur move

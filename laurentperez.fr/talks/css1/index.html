@@ -85,19 +85,21 @@
 			</section>
 
 			<section>
-				<h2>CSS, je t'💖 moi non plus 😿</h2>
+				<h2>CSS, je t'💖 moi non plus</h2>
+				<!-- 😿 -->
+				<p><img src="gsb.png" width="400px" alt=""></p>
 				<p>C'est assez vrai. floats, !important, préfixes -webkit, -ms, z-index, negative margins, positions, ...</p>
-				<p><small>Trop de libertés laissées aux fabricants de navigateurs, specs trop souples = bugs, doutes, mues (cf grid)</small></p>
-				<p>Travaux des groupes W3C (Open Web) et WhatWG (fabricants) séparés jusqu'en... Mai 2019</p>
+				<p><small>Trop de libertés laissées aux fabricants de navigateurs, specs trop souples = bugs, doutes, mues (cf grid)<br>
+				Travaux des groupes W3C (Open Web) et WhatWG (fabricants) séparés jusqu'en... Mai 2019</small></p>
 				<p class="fragment fade-up">C'est le passé. Ca va -globalement- beaucoup mieux, malgré quelques tensions entre Moz et Google, liées privacy</p>
-				<p class="fragment fade-up">Membres clef du CSSWG très publics : Rachel Andrew (Smashing), Lea Verou (MIT), Tab Atkins (Google), Jen Simmons (Moz)</p>
+				<p class="fragment fade-up">Membres clef du CSSWG @twitter, YT : Rachel Andrew (Smashing), Lea Verou (MIT), Tab Atkins (Google), Jen Simmons (Moz)</p>
 			</section>
 
 			<section>
 				<h2>✨ CSS Houdini ✨</h2>
 				<p class="fragment fade-up">tl;dr : ouvre davantage le moteur CSS via JS</p>
 				<p class="fragment fade-up">on a un accès au plus proche de l'interne du moteur</p>
-				<p class="fragment fade-up">on peut y créer nos propriétés, peinture/clip, animation, layout personnels</p>
+				<p class="fragment fade-up">on peut y créer nos propriétés, peinture/clip, animation, layout personnels : on <em>étend</em> le moteur</p>
 				<p class="fragment fade-up">travail commencé fin 2015</p>
 				<p class="fragment fade-up">pour les devs, pour les créas</p>
 				<p  class="fragment fade-up">suite du travail après WebComponents, WebWorkers ... et Web Animations API</p>
@@ -398,7 +400,7 @@ background-image:paint('compteur')
 			</section>
 
 			<section>
-				<h2>Usage réel, Adobe, AirBnb</h2>
+				<h2>Exemple, Adobe &amp; AirBnb</h2>
 				<p><a href="https://airbnb.design/lottie/">Lottie (AirBnb)</a></p>
 				<p>Librairie pour Android/iOS/React Native... et web pur</p>
 				<p>Importe les animations depuis Adobe After Effects</p>
@@ -409,13 +411,13 @@ background-image:paint('compteur')
 			<section>
 				<p>Parfois on veut ranger des Effects ensemble</p>
 				<p>Pour le moment (Août), <em>GroupEffect</em>, groupe de <em>KeyFrameEffects</em> est caché (flag, ya plus de -prefix)</p>
-				<p class="fragment fade-up">exemple : démarrer l'animation B quand la A est à 50%, démarrer B, C, D en même temps mais avec des offsets (= delay/parallaxe/stagger), pause() ou play() les effets en bloc</p>
+				<p class="fragment fade-up">exemple : démarrer l'effet B quand le A est à 50%, démarrer B, C, D en même temps mais avec des offsets (= delay/parallaxe/stagger), pause() ou play() les effets en bloc</p>
 				<small class="fragment fade-up">Travail important de Yi Gu sur la Chorégraphie, Parallel, Séquence et Stagger (échelon) pour améliorer la spec</small>
 			</section>
 			<section>
 				<img src="pigeon.gif" alt="">
 				<img src="corgi.gif" alt="">
-				<p>beaux travaux de Yi sur <a href="https://github.com/yi-gu/group_effect">https://github.com/yi-gu/group_effect</a></p>
+				<p>les travaux de Yi sur <a href="https://github.com/yi-gu/group_effect">https://github.com/yi-gu/group_effect</a></p>
 				<p>propose nouveaux types SequenceEffect, ParallelEffect, StaggerEffect en plus du GroupEffect</p>
 				<p>Q1 2020. Yi est joignable et demandeur de retours</p>
 				<small>Question à Julian Garnier (anime.js) <a href>https://github.com/juliangarnier/anime/issues/602</a></small>
@@ -427,7 +429,7 @@ background-image:paint('compteur')
 				<p class="fragment fade-up">OUI. Et Bootstrap aussi</p>
 				<p class="fragment fade-up">et subgrid va arriver pour hériter des "rails" de grid (il est déjà dans FF Nightly)</p>
 				<p class="fragment fade-up">PVAPI, PAPI et WAPI ouvrent propriétés, dessin et animation... quid de la mise en page ?</p>
-				<small class="fragment fade-up">Rappel : c'est Bloomberg qui a sponsorisé grid dans WebKit (implémenté par Igalia). Ils aiment bien les grilles, leur Terminal a 30 ans... pas ton navigateur evergreen</small>
+				<small class="fragment fade-up">Rappel : c'est Bloomberg qui a <a href="https://alistapart.com/article/the-story-of-css-grid-from-its-creators/">sponsorisé grid dans WebKit/Blink</a> (implémenté par Igalia). Ils aiment bien les grilles, leur Terminal a 30 ans... pas ton navigateur evergreen</small>
 				<p class="fragment fade-up"><img src="bloom.png" width="300px" alt=""></p>
 			</section>
 

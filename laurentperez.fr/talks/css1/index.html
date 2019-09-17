@@ -80,7 +80,7 @@
 			<section>
 				<h2>Toi, public</h2>
 				<p>Qui fait du front/UI/animation/print/vidéo ?</p>
-				<p class="fragment fade-up">Ratio natif iOS/Android/autre (hors WebViews) &amp; web pur ?</p>
+				<p class="fragment fade-up">Ratio natif iOS/Android/Win (hors WebViews) &amp; web pur ?</p>
 				<p class="fragment fade-up">Exemples de dernières demandes clientes ou créas complexes ?</p>
 			</section>
 
@@ -88,8 +88,8 @@
 				<h2>CSS, je t'💖 moi non plus</h2>
 				<!-- 😿 -->
 				<p><img src="gsb.png" width="400px" alt=""></p>
-				<p>C'est assez vrai. floats, !important, préfixes -webkit, -ms, z-index, negative margins, positions, ...</p>
-				<p><small>Trop de libertés laissées aux fabricants de navigateurs, specs trop souples = bugs, doutes, mues (cf grid)<br>
+				<p>C'est assez vrai. floats, !important, z-index, negative margins, positions, (r)em/px ...</p>
+				<p><small>Des libertés laissées aux fabricants de navigateurs, specs trop souples = doutes = bugs ou mues (cf -ms-grid)<br>
 				Travaux des groupes W3C (Open Web) et WhatWG (fabricants) séparés jusqu'en... Mai 2019</small></p>
 				<p class="fragment fade-up">C'est le passé. Ca va -globalement- beaucoup mieux, malgré quelques tensions entre Moz et Google, liées privacy</p>
 				<p class="fragment fade-up">Membres clef du CSSWG @twitter, YT : Rachel Andrew (Smashing), Lea Verou (MIT), Tab Atkins (Google), Jen Simmons (Moz)</p>
@@ -108,7 +108,7 @@
 			<section>
 				<h2>🤔 ... Une solution à la recherche d'un problème ? 🤔</h2>
 				<p>C'est un accès "boite à outils créa" sur le moteur CSS. OK ...</p>
-				<p class="fragment fade-up"><blockquote class="fragment fade-up">" Like 10000 spoons when all you need is a knife ". Ironic don't you think ?</blockquote></p>
+				<p class="fragment fade-up"><blockquote>" Like 10000 spoons when all you need is a knife ". Ironic don't you think ?</blockquote></p>
 				<p class="fragment fade-up">Ca te donne de quoi construire ton couteau si tu n'en avais pas</p>
 				<p class="fragment fade-up">Si tu en avais, ça te permet de le polir, l'améliorer, ou faire une alternative, variation... en faire un pinceau à poils doux au lieu de dents, prototyper une idée</p>
 			</section>
@@ -116,7 +116,7 @@
 			<section>
 				<h2>With great power...</h2>
 				<p>Houdini = Artisanat sur le moteur CSS, outillage sans limites ou presque* : c'est pas open bar total, mais tu peux faire ton propre cocktail</p>
-				<p><img src="bond.png" alt=""></p>
+				<p><img src="bond.png" width="400px" alt=""></p>
 				<pre class="fragment fade-up"><code class="css">
 .vesper {
 	--gin:6; --vodka:1.5; --lillet:0.75; --lemon:1;
@@ -131,7 +131,7 @@
 				<h2>Qui te donne - ou pas - le couteau ?</h2>
 				<p class="fragment fade-up">Les fabricants de navigateurs, et de librairies - toi compris !</p>
 				<p class="fragment fade-up">Houdini, la reine des neiges dans ton navigateur ❄️</p>
-				<p class="fragment fade-up">Libéré(e), délivré(e) de limites du moteur, des librairies tierces. <em>Tu n'attends plus ta fonction CSS : tu peux l'écrire, la partager dans un cadre standard Web, étendre une fonction existante</em></p>
+				<p class="fragment fade-up">Libéré(e), délivré(e) de limites du moteur, des librairies tierces. <em>Tu n'attends plus ta fonction CSS : tu peux l'écrire, la partager dans un cadre standard Web, étendre une fonction existante du moteur</em></p>
 				<p class="fragment fade-up">... ça t'empêche pas de commit sur OSS si tu sais/peux/veux le faire, ou trouver des compromis créas (ex: chifoumi, alcool)</p>
 				<small class="fragment fade-up">On cite un hit musical, une princesse Disney, une arme blanche, de l'OSS, 2 des GAFA. Joyeux bordel Tarantinesque. Tout va bien</small>
 			</section>
@@ -141,7 +141,7 @@
 				<p  class="fragment fade-up">Ouvrir les portes de la "magie" CSS et pouvoir étendre le moteur sans attendre les fabricants ou ticket les librairies tierces</p>
 				<small  class="fragment fade-up">Diminuer l'interaction JS à base de addClass/el.style ou les hacks type translate3D(0,0,0) et manipulations de DOM et CSSOM douteuses</small>
 				<p  class="fragment fade-up">Séparer la logique dessin/animation/layout (JS) et son style (CSS)</p>
-				<p  class="fragment fade-up">Donner du rendu à 60fps fluide hors thread UI principale</p>
+				<p  class="fragment fade-up">Donner du rendu à 60fps fluide hors thread principale</p>
 				<p>Task force Google, Mozilla, Apple. Réelle volonté, par et pour des devs/UI</p>
 				<small  class="fragment fade-up">hacks JS = parce qu'on n'a pas parfois le choix. Coucou Samsung, certains iOS</small>
 			</section>
@@ -273,7 +273,7 @@ CSS.registerProperty({
 				<p>Dessin/masque libre avec <em>-webkit-mask-image ou background:paint('foo');</em></p>
 				<p>Introduction de <em>PaintWorklet</em> : analogie avec les <em>Workers</em> JS</p>
 				<p class="fragment fade-up">Une <em>Worklet</em> est un JS de dessin dormant, en tâche de fond</p>
-				<p class="fragment fade-up">But : qu'elle ne tourne pas dans la main thread (main JS sur thread UI sans rAf = ça rame) mais dans une autre thread</p>
+				<p class="fragment fade-up">But : qu'elle ne tourne pas dans la main thread (main JS sur main sans rAf = ça rame) mais dans une autre thread</p>
 				<p class="fragment fade-up">La Paint API te donne un <em>Canvas</em> sans accès au DOM</p>
 				<small class="fragment fade-up">donc oui le 31/10 tu peux faire background:paint(🎃);</small>
 				<p><a href="../cssp">demo (voir les 2 threads + FPS)</a></p>
@@ -362,7 +362,7 @@ background-image:paint('compteur')
 				<p>Parce que j'ai modifié leur géométrie ou box shadow</p>
 				<p class="fragment fade-up">Et ce sont des classiques qui déclenchent un repaint</p>
 				<p class="fragment fade-up"><a href="https://csstriggers.com/">https://csstriggers.com/</a></p>
-				<p class="fragment fade-up">Mais la Worklet n'est pas sur la Main thread : no main UI jank si son JS rame, au pire c'est elle qui rame, pas toute l'interface</p>
+				<p class="fragment fade-up">Mais la Worklet n'est pas sur la Main thread : no UI jank si son JS rame, au pire c'est elle qui rame, pas toute l'interface</p>
 				<small class="fragment fade-up">fini les hacks risqués translate3d(0,0,0), la Worklet promeut l'élément en Layer vers le Compositor</small>
 			</section>
 
@@ -377,30 +377,30 @@ background-image:paint('compteur')
 
 			<section>
 				<p>La Worklet n'est <em>PAS sur la Compositor thread</em>, elle s'y <em><a href="https://chromium.googlesource.com/chromium/src/+/master/cc/paint/paint_worklet_layer_painter.h">defer</a></em></p>
-				<p>Car si tu fais du bitcoin dans la Worklet, ça ralentirait le Compositing : seuls les <em>KeyframeEffects</em> l'intéressent</p>
+				<p>Car si tu fais du bitcoin.js dans la Worklet, ça ralentirait le Compositing : seuls les <em>KeyframeEffects</em> l'intéressent</p>
 				<p class="fragment fade-up">Elle va <em>au minimum</em> chercher à performer comme <em>requestAnimationFrame</em> : à 60fps, et bénéficie des optims du Compositor (ex: cache de frames, interpolation)</p>
 				<p class="fragment fade-up">Si ton animate est trop souvent &gt; 16ms (1/60), le moteur peut t'offthread (kill and revive) ou throttle : un 30fps fluide est meilleur qu'un 60fps qui drop</p>
 				<small class="fragment fade-up">60fps est une limite basse, l'iPad Pro est à 120Hz, l'Oculus/Vive à 90Hz. Chrome, IE et FF peuvent faire du 240Hz et même 480Hz sur des moniteurs usine</small>
 				<br>
-				<small class="fragment fade-up">Safari a une <a href="https://github.com/WebKit/webkit/blob/master/Source/WebCore/page/RenderingUpdateScheduler.cpp">option pour 60fps</a> et limite toutes les iframes sans interaction <a href="https://trac.webkit.org/changeset/215070/webkit">à 30fps</a>, pour la batterie : un site web vsync à 120fps c'est beau mais chaud</small>
+				<small class="fragment fade-up">Safari a une <a href="https://github.com/WebKit/webkit/blob/master/Source/WebCore/page/RenderingUpdateScheduler.cpp">option pour 60fps</a> et limite toutes les iframes sans interaction <a href="https://trac.webkit.org/changeset/215070/webkit">à 30fps</a>, pour la batterie : un site web Vsync à 120fps c'est beau mais chaud</small>
 			</section>
 
 			<section>
 				<p>Jouer avec le temps, animer des éléments corrélés</p>
 				<p><img src="tars.jpg" alt=""></p>
-				<small>Ne pas partir dans un trip sci-fi/math complexe avec doliprane : <em>la clef est toujours la timeline, si tu es perdu, regarde le temps ; d'où tu viens, où tu vas</em>.</small>
+				<small>Ne pas partir dans un trip sci-fi/math complexe avec doliprane : <em>la clef est *toujours* la timeline, si tu es perdu, regarde le temps ; d'où tu viens, où tu vas</em>.</small>
 				<small>Penser en distance relative au temps : km/h, m/s, à la Flèche du temps --&gt; (Eddington)</small>
 			</section>
 
 			<section>
 				<p>⌛ Le temps peut être basé sur une unité libre ⌛</p>
-				<p class="fragment fade-up"><a href="https://majido.github.io/houdini-samples/animation-worklet/touch-input/drag.html">Belle démo : le temps basé sur un deltaX d'un CSS Pointer Event (... ton doigt/stylo)</a></p>
+				<p class="fragment fade-up">On a vu le scroll, <a href="https://majido.github.io/houdini-samples/animation-worklet/touch-input/drag.html">touch démo : le temps basé sur le deltaX d'un CSS Pointer Event (... ton doigt/stylo)</a></p>
 				<p class="fragment fade-up"><img src="incep.png" alt=""></p>
 				<p class="fragment fade-up">Le temps sur le bout de ton doigt. Si tu donnes NaN ou infinite... essaie ;)</p>
 			</section>
 
 			<section>
-				<h2>Exemple, Adobe &amp; AirBnb</h2>
+				<h2>Adobe &amp; AirBnb</h2>
 				<p><a href="https://airbnb.design/lottie/">Lottie (AirBnb)</a></p>
 				<p>Librairie pour Android/iOS/React Native... et web pur</p>
 				<p>Importe les animations depuis Adobe After Effects</p>
@@ -430,7 +430,7 @@ background-image:paint('compteur')
 				<p class="fragment fade-up">et subgrid va arriver pour hériter des "rails" de grid (il est déjà dans FF Nightly)</p>
 				<p class="fragment fade-up">PVAPI, PAPI et WAPI ouvrent propriétés, dessin et animation... quid de la mise en page ?</p>
 				<small class="fragment fade-up">Rappel : c'est Bloomberg qui a <a href="https://alistapart.com/article/the-story-of-css-grid-from-its-creators/">sponsorisé grid dans WebKit/Blink</a> (implémenté par Igalia). Ils aiment bien les grilles, leur Terminal a 30 ans... pas ton navigateur evergreen</small>
-				<p class="fragment fade-up"><img src="bloom.png" width="300px" alt=""></p>
+				<p class="fragment fade-up"><img src="bloom.png" width="340px" alt=""></p>
 			</section>
 
 			<section>
@@ -439,9 +439,9 @@ background-image:paint('compteur')
 				<p class="fragment fade-up">tl;dr : écrire son propre display:layout('monlayoutperso');</p>
 				<p><a href="https://houdini.glitch.me/layout">https://houdini.glitch.me/layout</a></p>
 				<p class="fragment fade-up">Conteneur de <em>LayoutChild/Fragments</em> dans un <em>ParentLayout</em></p>
-				<small class="fragment fade-up">Le <em>Parent</em> a des borders, paddings : les <em>Edges</em>. Entre les <em>Edges</em>, on a des <em>Constraints</em>. Les <em>LayoutChild</em> sont dans ces <em>Constraints</em> et ont des <em>Fragments</em></small>
-				<p class="fragment fade-up">La *clef* : chaque <em>Fragment</em> a un <em>inlineOffset/blockOffset</em> pour le positionner par rapport à la box de son <em>Child</em></p>
-				<p>C'est - proche - d'un position:relative; dynamique dans un <em>wireframe</em> nommé</p>
+				<small class="fragment fade-up">Le <em>Parent</em> a des borders, paddings : les <em>Edges</em>. Entre ces <em>Edges</em>, on a des <em>Constraints</em>. Les <em>LayoutChild</em> sont dans ces <em>Constraints</em> et ont des <em>Fragments</em></small>
+				<p class="fragment fade-up">La *clef* : chaque <em>Fragment</em> a un <em>inlineOffset/blockOffset</em> pour le positionner par rapport à la box de son <em>Child</em>... et peut aussi porter son propre layout (!)</p>
+				<p>C'est - proche - d'un position:relative; mais dynamique dans un <em>wireframe</em> nommé</p>
 			</section>
 
 			<section>
@@ -449,24 +449,24 @@ background-image:paint('compteur')
 				<p class="fragment fade-up">display:layout('L'); display:layout('4bar'); ▛ ▚ ▐</p>
 				<small class="fragment fade-up">4bar est ici 4 Fragments empilés, L 3 et le 4e a un offset à droite</small>
 				<p class="fragment fade-up">Le calcul des blocs Fragments est non blocking _asynchrone_ par les moteurs next-gen (LayoutNG CR, WebRender FF) : le futur Fragment peut dépendre de calculs différés ou longs = ... Promise JS</p>
-				<p class="fragment fade-up">Cas d'usage : architecture, UI normés (affichage dash militaire/industriel/logiciel, presse écrite, eBooks, ePub Comics)</p>
+				<p class="fragment fade-up">Cas d'usage : architecture, UI normés (affichage dash militaire/industriel/logiciel, presse écrite, eBooks, ePub Comics, branding)</p>
 				<small class="fragment fade-up">des utilisaturs.trices de QuarkXPress/InDesign pour du print ?</small>
 				<p><a href="../cssp">demo coincoin</a></p>
 			</section>
 
 			<section>
 				<h2>🔠 Font Metrics API 🔠</h2>
-				<p>... spec seulement utilitaire, causée par la Layout API :</p>
+				<p>... seulement utilitaire, causée par la Layout API :</p>
 				<p>placer des blocs custom c'est cool mais : on a parfois besoin de gérer du texte/symboles dedans, le web est Universel, l'alphabet non...</p>
 				<small class="fragment fade-up">ex : faire son propre line-breaking, connaître les tailles réelles des Lettrines, symboles math chimie ∑ √ ∞, des ligatures Œ, Æ, محرك, մն, ﬗ, ゟ, et cætera … </small>
 				<p class="fragment fade-up">exposer seulement la Font ne suffit pas : il faut descendre au niveau du <em>glyphe</em> dessiné par chaque navigateur, à sa façon</p>
-				<p class="fragment fade-up">la FMAPI donnera un objet JS FontMetrics des glyphes dessinés, utilitaire interne pour typographes et pros du print</p>
+				<p class="fragment fade-up">la FMAPI donnera un objet JS FontMetrics des glyphes dessinés, utilitaire interne pour typographes et pros du print multi alphabets</p>
 			</section>
 				
 			<section>
 				<h2>Démo avancées : Majido et Rocks</h2>
 				<p>avec Chrome Canary, Safari Technology Preview ou Firefox Nightly (peu d'implémenté)</p>
-				<p><a href="https://majido.github.io/houdini-samples/">https://majido.github.io/></p>
+				<p><a href="https://majido.github.io/houdini-samples/">https://majido.github.io</p>
 				<p><a href="https://css-houdini.rocks">https://css-houdini.rocks</a></p>
 				<p>notamment : QR generator, Trip App, Twitter, Inner Borders, Masonry, Random Bubble Masks</p>
 			</section>
@@ -532,7 +532,7 @@ background-image:paint('compteur')
 					<p>Speakers wanted</p>
 					<p>sur des sujets front/privacy, pour un Meetup pur web</p>
 					<p>@laurentperez / Slack Comm MPL</p>
-					<p><small>merci spécial à Chloe, Charlotte, Estelle, Juliens, Hugo, Alane &amp; à tout le MTH</small></p>
+					<p><small>merci spécial à Chloe, Charlotte, Estelle, Juliens, Hugo, Alane &amp; + tout le MTH</small></p>
 				</section>
 
 			</div>

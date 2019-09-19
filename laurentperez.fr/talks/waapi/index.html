@@ -150,7 +150,8 @@ right: 0;
   let effectRotate;
   let effectShadow;
   let effectsEchelon = [];
-
+  let groupedLogos;
+  let groupedBoxes;
   async function init() {
     /* ajout du module meetup (lexique) */
     await CSS.animationWorklet.addModule(
@@ -267,12 +268,12 @@ right: 0;
     // --enable-blink-features=GroupEffect
 
     /* les logos, relatifs au temps de scroll.timeline */
-    let groupedLogos = new WorkletAnimation('logoAnimator', 
+    groupedLogos = new WorkletAnimation('logoAnimator', 
     [effectRotateScale, effectRotate, effectShadow]);
     groupedLogos.play();
 
     /* les boites, relatifs au temps de scroll.timeline */
-    let groupedBoxes = new WorkletAnimation('echelonAnimator', 
+    groupedBoxes = new WorkletAnimation('echelonAnimator', 
     effectsEchelon);
     groupedBoxes.play();
 

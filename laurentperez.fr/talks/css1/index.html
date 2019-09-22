@@ -97,9 +97,10 @@
 
 			<section>
 				<h2>✨ CSS Houdini ✨</h2>
-				<p class="fragment fade-up">tl;dr : ouvre davantage le moteur CSS via JS</p>
+				<p class="fragment fade-up">ouvre davantage le moteur CSS via JS</p>
 				<p class="fragment fade-up">on a un accès au plus proche de l'interne du moteur</p>
 				<p class="fragment fade-up">on peut y créer nos propriétés, peinture/clip, animation, layout personnels : on <em>étend</em> le moteur</p>
+				<p class="fragment fade-up">nos propres effets graphiques</p>
 				<p class="fragment fade-up">travail commencé fin 2015</p>
 				<p class="fragment fade-up">pour les devs, pour les créas</p>
 				<p  class="fragment fade-up">suite du travail après WebComponents, WebWorkers ... et Web Animations API</p>
@@ -115,7 +116,7 @@
 
 			<section>
 				<h2>With great power...</h2>
-				<p>Houdini = Artisanat sur le moteur CSS, outillage sans limites ou presque* : c'est pas open bar total, mais tu peux faire ton propre cocktail</p>
+				<p>Houdini = Extension du moteur CSS, outillage sans limites ou presque* : c'est pas open bar total, mais tu peux faire ton propre cocktail</p>
 				<p><img src="bond.png" width="400px" alt=""></p>
 				<pre class="fragment fade-up"><code class="css">
 .vesper {
@@ -161,7 +162,7 @@
 			</section>
 
 			<section>
-				<p>Houdini pas difficile, ni obscur. C'est simplement 5 nouvelles possibilités sur des bases CSS / Dessin / Animation</p>
+				<p>Houdini peu difficile, ni obscur. On a 5 nouvelles possibilités sur des bases CSS / Dessin / Animation</p>
 				<p><img src="posabs.png" width="400px" alt=""></p>
 				<small>"CSS vertical align" sur Google : Environ 10 600 000 résultats</small>
 			</section>
@@ -193,7 +194,7 @@
 					<li>Layout API : in dev 70% Chrome, uc FF/SF</li>
 					<li>Font Metrics API : rien, uniquement les specs</li>
 				</ul>
-				<small>uc: Considéré, ii: Intent to Implement (signal travail assigné), in dev: en cours : dans Safary TP, Chrome Canary, FF Nightly</small>
+				<small>uc: Considéré, ii: Intent to Implement (signal travail assigné), in dev: En cours : dans Safary TP, Chrome Canary, FF Nightly</small>
 				<p class="fragment fade-up"><small>Important : WAAPI à 100% dans <a href="https://caniuse.com/#search=web%20anima">Safari / iOS13</a> et <a href="https://birtles.github.io/areweanimatedyet/">FF Nightly</a>, à 80% Chromium (playback .pause(),.reverse() pas fini)</small></p>
 
 			</section>
@@ -246,8 +247,8 @@ el.attributeStyleMap.delete('opacity')
 el.attributeStyleMap.clear();
 CSS.vw(100); CSS.px(42); CSS.angle(90deg);
 CSS.percent(10); CSS.ms(300);
-new CSSMathSum(CSS.vw(100), CSS.px(-10))
-// calc(100vw + -10px)
+new CSSTranslate(CSS.px(10), CSS.px(10))
+// translate(10px, 10px)
 new CSSStyleValue.parse('transform', 'translte3d(...)');
 // typo throw
 				</code></pre>

@@ -4,7 +4,7 @@ class EtoilesPainter {
   // on récupère les properties dont on a besoin
   // elles sont readonly à l'intérieur de ce Painter
   static get inputProperties() { 
-    return ['--ranking','list-style-image','--sky','--rotate']; 
+    return ['--ranking','--sky','--rotate']; 
   }
 
   // la peinture sur un canvas
@@ -15,7 +15,6 @@ class EtoilesPainter {
     const ranking = properties.get('--ranking');
     const rot = properties.get('--rotate');
     const sky = properties.get('--sky'); 
-    const image = properties.get('list-style-image');
     const spacing = 40;
     const size = 30;
 
@@ -36,11 +35,11 @@ class EtoilesPainter {
       //debugger; /* pour voir les threads */
       // dessin !
       this.drawStar(ctx,gradient,x*(size-10 + spacing),1*(size-10 + spacing),5,30,15);
-      ctx.drawImage(image, 0, 100, 120, 100);
       //console.log('drawn:' + x*(size + spacing), 1*(size + spacing), size, size);
       console.log("geom du canvas:" + geom.width + "x" + geom.height + ", ratio:" + (geom.width/geom.height));
-      console.log("type de sky, une vraie Color:" + sky);
     }
+    console.log("type de sky, une vraie Color:" + sky);
+
     
   }
 

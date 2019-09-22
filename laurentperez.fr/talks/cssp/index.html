@@ -4,9 +4,6 @@
   .cats {
     --ranking: 1; /* mon appréciation des chatons */
     --rotate:0deg;
-    /* registerProperty type <image> pas 100% implémenté */
-    --flamingo:url('fla.jpg');
-    list-style-image: var(--flamingo); 
     height: 200px; /* hauteur canvas où je vais être peint */
     flex:1;
     margin:10px;
@@ -90,9 +87,35 @@
   <img class="photo" src="https://placekitten.com/100/100" alt="">
   <div class="cats">Evaluez si ces chatons sont mignons  &nbsp;</div>
 </section>
+<style>
+    .js__in__css {
+      height: 140px;
+      --pig:url('pig.png');
+      list-style-image: var(--pig);
+      --background-pigs: (ctx, geom) => {
+        /* grouik ! */
+      const pig = properties.get('list-style-image');
+      ctx.drawImage(pig, geom.width - 200, 0, 200, 200);
+      ctx.fill();
+    };
+    background: paint(cochon);
+    }
+  </style>
+<section class="js__in__css" style="border: 1px solid rebeccapurple;">
+  <p style="margin: 10px">Tu peux faire du JS direct dans la CSS<br>
+      <input class="pigbutton" type="button" 
+      value="... si la personne qui va reprendre ton code ne sait pas o&ugrave; tu habites">
+  </p>
+
+  <script>
+  document.querySelector('.pigbutton').addEventListener('click',function(){
+    CSS.paintWorklet.addModule('cochon.js');
+  })</script>
+</section>
 <section class="underbox">
   <p class="under">Un texte avec une underline dessinée custom</p>
 </section>
+
 
 <h2>Layout API : placement perso de 2 enfants : 2 1ers dans les coins, le reste au milieu</h2>
 

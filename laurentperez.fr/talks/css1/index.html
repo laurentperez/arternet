@@ -384,9 +384,9 @@ background-image:paint('compteur')
 				<p>Car si tu fais du bitcoin.js dans la Worklet, ça ralentirait le Compositing : seuls les <em>KeyframeEffects</em> l'intéressent</p>
 				<p class="fragment fade-up">Elle va <em>au minimum</em> chercher à performer comme <em>requestAnimationFrame</em> : à 60fps, et bénéficie des optims du Compositor (ex: cache de frames, interpolation)</p>
 				<p class="fragment fade-up">Si ton animate est trop souvent &gt; 16ms (1/60), le moteur peut t'offthread (kill and revive) ou throttle : un 30fps fluide est meilleur qu'un 60fps qui drop</p>
-				<small class="fragment fade-up">60fps est une limite basse, l'iPad Pro est à 120Hz, l'Oculus/Vive à 90Hz. Chrome, IE et FF peuvent faire du 240Hz et même 480Hz sur des moniteurs usine</small>
+				<small class="fragment fade-up">60fps est une limite basse, l'iPad Pro est à 120Hz, l'Oculus/Vive à 90Hz. Chrome, IE et FF peuvent faire du 240Hz/480Hz sur des moniteurs usine. Apple discute de dalle 120Hz avec LG/Samsung pour <a href="https://twitter.com/UniverseIce/status/1152928927037308928?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1152928927037308928&ref_url=https%3A%2F%2Fwww.numerama.com%2Ftech%2F534917-les-iphone-de-2020-pourraient-etre-equipes-dun-ecran-120-hz-une-rumeur-realiste.html"> iPhone 2020</a></small>
 				<br>
-				<small class="fragment fade-up">Safari a une <a href="https://github.com/WebKit/webkit/blob/master/Source/WebCore/page/RenderingUpdateScheduler.cpp">option pour 60fps</a> et limite toutes les iframes sans interaction <a href="https://trac.webkit.org/changeset/215070/webkit">à 30fps</a>, pour la batterie : un site web Vsync à 120fps c'est beau mais chaud</small>
+				<small class="fragment fade-up">Safari a une <a href="https://github.com/WebKit/webkit/blob/master/Source/WebCore/page/RenderingUpdateScheduler.cpp">option pour 60fps</a> et limite toutes les iframes sans interaction <a href="https://trac.webkit.org/changeset/215070/webkit">à 30fps</a>, pour la batterie : un site web Vsync à 120fps c'est beau mais chaud.</small>
 			</section>
 
 			<section>
@@ -499,7 +499,7 @@ background-image:paint('compteur')
 					<p>Speakers wanted</p>
 					<p>sur des sujets web front</p>
 					<p>@laurentperez / Slack Comm MPL</p>
-					<p><small>merci spécial à Charlotte, Chloe, Estelle, Julien(s) + tout le MTH</small></p>
+					<p><small>merci spécial à Charlotte<br>Chloe, Estelle, Julien(s)</small></p>
 				</section>
 
 			</div>

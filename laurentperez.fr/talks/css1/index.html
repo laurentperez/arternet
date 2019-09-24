@@ -100,7 +100,7 @@
 				<p class="fragment fade-up">ouvre davantage le moteur CSS via JS</p>
 				<p class="fragment fade-up">on a un accès au plus proche de l'interne du moteur</p>
 				<p class="fragment fade-up">on peut y créer nos propriétés, peinture/clip, animation, layout personnels : on <em>étend</em> le moteur</p>
-				<p class="fragment fade-up">nos propres effets graphiques</p>
+				<p class="fragment fade-up">pour nos propres effets graphiques</p>
 				<p class="fragment fade-up">travail commencé fin 2015</p>
 				<p class="fragment fade-up">pour les devs, pour les créas</p>
 				<p  class="fragment fade-up">suite du travail après WebComponents, WebWorkers ... et Web Animations API</p>
@@ -142,7 +142,7 @@
 				<p  class="fragment fade-up">Ouvrir les portes de la "magie" CSS et pouvoir étendre le moteur sans attendre les fabricants ou ticket les librairies tierces</p>
 				<small  class="fragment fade-up">Diminuer l'interaction JS à base de addClass/el.style ou les hacks type translate3D(0,0,0) et manipulations de DOM et CSSOM douteuses</small>
 				<p  class="fragment fade-up">Séparer la logique dessin/animation/layout (JS) et son style (CSS)</p>
-				<p  class="fragment fade-up">Donner du rendu à 60fps fluide hors thread principale</p>
+				<p  class="fragment fade-up">Faciliter du rendu à 60fps fluide hors thread principale</p>
 				<p>Task force Google, Mozilla, Apple. Réelle volonté, par et pour des devs/UI</p>
 				<small  class="fragment fade-up">hacks JS = parce qu'on n'a pas parfois le choix. Coucou Samsung, certains iOS</small>
 			</section>
@@ -272,7 +272,8 @@ CSS.registerProperty({
 			</section>
 
 			<section><h2>🎨 Paint API 🎨</h2>
-				<p>Dessin/masque libre avec <em>-webkit-mask-image ou background:paint('foo');</em></p>
+				<p>Dessin libre avec <em>background:paint('perso');</em></p>
+				<p><em>CSS.paintWorklet.addModule('stars.js');</em></p>
 				<p>Introduction de <em>PaintWorklet</em> : analogie avec les <em>Workers</em> JS</p>
 				<p class="fragment fade-up">Une <em>Worklet</em> est un JS de dessin dormant, en tâche de fond</p>
 				<p class="fragment fade-up">But : qu'elle ne tourne pas dans la main thread (main JS sur main sans rAf = ça rame) mais dans une autre thread</p>
@@ -344,7 +345,8 @@ background-image:paint('compteur')
 				<p>Animations non blocking à 60fps relatives à une timeline libre
 				... c'est assez fait pour le scroll, et ça le fait - très très - bien</p>
 				<small class="fragment fade-up">qui a déjà fait des parallaxes fluides ? des offsets / staggering ? Material/anime.JS ?</small>
-				<p>Syntaxe : <em>AnimationWorklet + KeyFrameEffects</em></p>
+				<p><em>CSS.animationWorklet.addModule('anim.js')</em></p>
+				<p class="fragment fade-up">Un <em>Animator</em> de <em>KeyFrameEffects</em> sur une <em>timeline</em></p>
 				<p class="fragment fade-up">Note : séquence/chorégraphie à faire à la main. Un peu ballot, car <em>GroupEffect</em> dans la spec - mais caché par un flag pour le moment</p>
 				<!--  --enable-blink-features=GroupEffect -->
 				<p class="fragment fade-up"><a href="https://www.tesla.com/model3">Chorégraphie chez un petit site web</a></p>

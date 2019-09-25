@@ -255,8 +255,21 @@ new CSSStyleValue.parse('transform', 'translte3d(...)');
 			</section>
 
 			<section>
+				<h2>Ce nouvel objet <em>CSS</em></h2>
+				<p>est la pierre fondatrice d'Houdini</p>
+				<pre class="fragment fade-up"><code class="css">
+CSS.registerProperty(...);
+CSS.paintWorklet.addModule(...);
+CSS.animationWorklet.addModule(...);
+CSS.layoutWorklet.addModule(...);
+				</code>
+</pre>	
+<p class="fragment fade-up">et les <em>Worklets</em> ses assistant(e)s</p>
+			</section>
+
+			<section>
 				<h2>🔑 Properties/Values API 🔑</h2>
-				<p >Enfin de la structure/typage dans des variables CSS perso</p>
+				<p >Enfin (!) du typage dans des variables CSS perso</p>
 				<small>... on rappelle BEM/SASS/Less pour une structure de classes maintenable</small>
 				<p class="fragment fade-up">11 types supportés : length, number, %, color, image, url(), integer, angle, time, dpi, transform</p>
 				<pre class="fragment fade-up"><code class="css">
@@ -286,7 +299,7 @@ CSS.registerProperty({
 				<h2>Dessin dormant ?</h2>
 				<p>La Worklet est dormante et se réveille quand :</p>
 				<p class="fragment fade-up">Une des propriétés CSS mappées change (ex:sky,ranking)</p>
-				<p class="fragment fade-up">La géométrie de l'élément peint change (ex:resize)</p>
+				<p class="fragment fade-up">La géométrie de l'élément peint change (ex:resize... responsive)</p>
 				<p class="fragment fade-up">La timeline bouge (ex:scroll, demo plus loin)</p>
 				<p class="fragment fade-up">Une Worklet réveillée va dessiner à <em>chaque frame, donc 60 fois/seconde</em> : ton budget fluide est de 16ms</p>
 				<p class="fragment fade-up">C'est un WebWorker en plus léger, câblé directement sur le moteur CSS. Proche d'un layer Photoshop, effect Premiere, After Effect</p>
@@ -298,15 +311,14 @@ CSS.registerProperty({
 					<li>Aucun accès au DOM et les Properties sont readonly. Le Canvas est étanche. Si besoin de DOM, faire un Canvas classique sans Paint API</li>
 					<li class="fragment fade-up">Car tu n'as pas spécialement envie qu'un Canvas chargé <em>depuis JS/CSS externe</em> puisse lire repeindre ou masquer des éléments de ta page</li>
 					<li class="fragment fade-up">exemple : redessiner champ input de saisie de CB avec un message pour contacter la "banque" avec n° surtaxé</li>
-					<li class="fragment fade-up">Les Properties readonly aussi contre boucle repaint infinie</li>
-					<li>c'est un <em>PaintRenderingContext2D</em> subset de <em>CanvasRenderingContext2D</em> : un Canvas restreint</li>
+					<li>c'est un <em>PaintRenderingContext2D</em> subset de <em>CanvasRenderingContext2D</em> : un Canvas restreint, uniquement d&eacute;di&eacute; à du dessin</li>
 				</ul>
 				<img src="gifhack.gif" width="200px" style="border: none;" alt="">
 			</section>
 
 			<section>
 				<p>11 Types trop simples ? Comment passer des complexes ?</p>
-				<p class="fragment fade-up">exemple : un flux audio/vidéo/ECU (data automobile)... = tl;dr : faire de la DataViz depuis une source riche, à 60fps</p>
+				<p class="fragment fade-up">exemple : un flux audio/vidéo/ECU (data automobile)... = faire de la DataViz depuis une source riche, à 60fps</p>
 				<p class="fragment fade-up">solution (Juin 2019) : ajouter un type &lt;blob&gt;</p>
 				<p><a href="https://github.com/w3c/css-houdini-drafts/issues/872">https://github.com/w3c/css-houdini-drafts/issues/872</a></p>
 				<p class="fragment fade-up">... tu peux déjà passer une property arbitraire non typée façon</p>
@@ -394,6 +406,15 @@ background-image:paint('compteur')
 				<p><img src="tars.jpg" alt=""></p>
 				<small>Ne pas partir dans un trip sci-fi/math complexe avec doliprane : <em>la clef est *toujours* la timeline, si tu es perdu, regarde le temps ; d'où tu viens, où tu vas</em>.</small>
 				<small>Penser en distance relative au temps : km/h, m/s, à la Flèche du temps --&gt; (Eddington)</small>
+				<small>... ou penser aux timelines de Macromedia Flash si tu préfères les films d'horreur</small>
+			</section>
+
+			<section>
+				<p>Flash et ses timelines</p>
+				<img src="flash.gif" alt="">
+				<p><small>no bashing, circa 2006 HTML/CSS ne valait rien pour une UI riche</small></p>
+				<p><small>double budget pour faire un site pour IE et Netscape Navigator</small></p>
+				<p><small>le Web est n&eacute; au CERN, pas dans une &eacute;cole d'art</small></p>
 			</section>
 
 			<section>

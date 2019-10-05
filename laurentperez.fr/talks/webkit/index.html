@@ -1,58 +1,47 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<title>laurentperez.fr::talks::webkit</title>
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/reveal.css">
-	<link rel="stylesheet" href="css/theme/black.css">
-	<!-- Theme used for syntax highlighting of code -->
-	<link rel="stylesheet" href="lib/css/monokai.css">
-	<!-- Printing and PDF exports -->
-	<script>
-		var link = document.createElement( 'link' );
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-		document.getElementsByTagName( 'head' )[0].appendChild( link );
-	</script>
-	<style>
-	.reveal section p {
-    font-size: 0.8em !important;
-	}
-	.reveal section h2 {
-    font-size: 1.2em !important;
-	}
-	.reveal section h3 {
-    font-size: 1em !important;
-	}
-	.reveal section img {
-    margin:0 !important;
-	border: none !important;
-	}
-	.reveal section blockquote {
-    font-size: 0.5em !important;
-	}
-	.reveal section ul li {
-    font-size: 0.6em !important;
-	}
-	.reveal section ol li {
-    font-size: 0.6em !important;
-	}
-</style>
-
-	<!-- rv v1 
-	<link rel="stylesheet" href="css/reveal.min.css">
-	<link rel="stylesheet" href="css/theme/default.css" id="theme">
-	<link rel="stylesheet" href="lib/css/zenburn.css">
-	<script>
-		document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-	</script>
-
-	-->
-	
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>laurentperez.fr::talks::webkit</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+			.reveal section p {
+			font-size: 0.8em !important;
+			}
+			.reveal section h2 {
+			font-size: 1.2em !important;
+			}
+			.reveal section h3 {
+			font-size: 1em !important;
+			}
+			.reveal section img {
+			margin:0 !important;
+			border: none !important;
+			}
+			.reveal section blockquote {
+			font-size: 0.5em !important;
+			}
+			.reveal section ul li {
+			font-size: 0.6em !important;
+			}
+			.reveal section ol li {
+			font-size: 0.6em !important;
+			}
+			</style>
 	</head>
 
 	<body>
@@ -65,31 +54,24 @@
 					<h2>Comment fonctionne</h2>
 					<h2>un moteur de rendu web</h2>
 					<h3>"du HTML aux pixels"</h3>
-					<p>Meetup Web front/Privacy #1</p>
+					<p>Meetup Web front #2</p>
 					<img src="mth.jpg" width="100px"/>
 				</section>
 
 				<section>
-					<h2>About your speaker</h2>
-					<p>Autodidacte, Bac L, Ecole d'art</p>
-					<p>Dans le web depuis Netscape 3, Photoshop 4</p>
-					<p>Beaucoup de backend, beaucoup de frontend solo ou binôme créa</p>
-					<p>En éditeurs, SSII ou agences</p>
-					<p>Ex-formateur intégration front pour DFO internes ou chez clients des agences</p>
-					<p>Fortes affinités UX/créa dues aux arts & agences</p>
-					<p>Actuellement Lead R&D @ Sequoiasoft - on recrute PHP JS Java pour la rentrée</p>
+					<h2>Nos hôtes</h2>
+					
 				</section>
 
 				<section>
 					<h2>About you</h2>
-					<p>Ratio iOS/Android dans la salle ?</p>
-					<p>Ratio UX UI/DFO/autres champs?</p>
+					<p>Ratio iOS/Android/autres dans la salle ?</p>
 					<p>Qui s'est servi d'un navigateur web ce jour ?</p>
 				</section>
 
 				<section>
-					<h2>Un moteur de rendu n'est <em>pas un navigateur</em></h2>
-					<h4>Mais une suite de composants pour afficher des sites web, ou des applications</h4>
+					<h2>Un moteur de rendu n'est <em>pas un navigateur</em> ⛵</h2>
+					<h4>Mais une suite de composants pour afficher une page web</h4>
 					<p>
 						<ul>
 							<li>un composant pour charger des ressources réseau de manière intelligente (ou en tout cas, optimisée)</li>
@@ -112,19 +94,26 @@
 						<img src="f1.jpg" width="400px" style="border: none">
 					</p>
 					<p>Chapitre 1 : architecture du PU, du MGU-H et du MGU-K/KERS dans les homologations FIA</p>
-					<p>... ou on va plutôt parler du web</p>
+					<p>... ou on va plutôt parler du Web</p>
 				</section>
 
 				<section>
-					<h2>What's up, web ?</h2>
-					<p>One moteur to rule them all (?)</p>
+					<h2>What's up, Web ?</h2>
+					<p>One moteur to rule them all ... ?</p>
 					<img src="sauron.jpg" width="110px" alt="">
-					<p>Donnons des sous à la fondation Mozilla (en + leur nouveau moteur est top)</p>
-					<p>Dualité dangereuse de Apple et Google (coups bas via Youtube cf slide suivant)</p>
-					<p>On rappelle que la plus grosse source de revenus de Moz est Google/Yandex/Baidu</p>
-					<p>Annonce probable de Huawei à venir</p>
+					<p>Dualité d'Apple et de Google qui ont partagé un moteur commun jusqu'en 2013</p>
+					<p>Firefox et IE au second plan - en termes de marché</p>
+					<p>... mais IE va utiliser le moteur de Google</p>
 				</section>
 
+				<section>
+					<h2>One Web. Desktop et mobile</h2>
+					<p>Mozilla et Microsoft ont complètement raté le virage mobile</p>
+					<p>Apple interdit tout autre moteur que le sien dans les apps iOS, Chrome et Firefox iOS sont des coquilles</p>
+					<p>Annonce possible de Huawei à venir</p>
+					<p>Samsung, Sony, Nokia, HTC &amp; all utilisent le moteur de Google <em>per</em> Android</p>
+					<p>KaiOS (Asie, Afrique, Brésil) utilise un dérivé du moteur de Firefox Mobile + Opera Mini</p>
+				</section>
 				
 				<section>
 						<h2>6 moteurs sur le marché</h2>
@@ -157,21 +146,21 @@
 					
 				</section>
 				<section>
-					<h2>Parts de marché</h2>
+					<h2>Parts de marché des moteurs</h2>
 					<p>
-						Sur mobile le dominant (95%) est WebKit/Blink. Trident (Windows Phone) est abandonné. FF, Opera Mobile et les navigateurs Symbian Nokia sont des niches.
+						Sur mobile le dominant (95%) est WebKit/Blink. Trident (Windows Phone) est mort. FF, Opera Mobile pour pays émergeants.
 					</p>
-						<p>Sur desktop le % de part de marché est un peu différent : Firefox+IE ont 20% du marché</p>
-						<p>Ratage complet du mobile par Firefox et IE (les 1ers PDAs étaient pourtant WindowsCE)</p>
-						<p>Corée du Nord : fork de Gecko, 'Naenara' (Mon Pays) pour visiter des sites réservés <br><br><img src="kim.jpg" width="200px" style="border: none" alt="fdp"></p>
+					<p>Sur desktop le % est un peu différent : Firefox + IE ont ~20% du marché</p>
+					<p>Corée du Nord : fork de Gecko, 'Naenara' (Mon Pays) pour visiter des sites réservés <br>
+					<br><img src="kim.jpg" width="200px" style="border: none" alt="fdp"></p>
 				</section>
 
 				<section>
-					<h2>Un moteur n'est pas un navigateur. Un navigateur se sert d'un moteur.</h2>
-					<p>Airbus et Boeing partagent des moteurs General Electric, Rolls Royce, Trent : ce n'est pas le même avion == pas le même <em>navigateur</em></p>
-					<p>Une compagnie peut changer l'intérieur de l'avion (Singapore, Qatar Airlines, Air France = Apple, Google, Samsung, Sony)</p>
-					<p>Des pilotes connaissant bien le moteur changent de boite : porosité des devs Apple/Google, Samsung/Sony/Nintendo</p>
-					<p>... Microsoft a récemment choisi de passer sous moteur Blink (qui est le moteur de Chromium)</p>
+					<h2>🥄 Le fork Blink (Google) 🥄</h2>
+					<p>Mi 2013 Google décide de diverger de WebKit - plus précisemment de son WebCore - et crée Blink</p>
+					<p>Changements de fond liés aux perfs (ex: volonté de multithreading JS et décharge vers GPU), au refus des -prefix CSS, au refus originel du code MathML, à l'arrivée du moderne Servo chez Mozilla</p>
+					<p>... à la concurrence avec Apple (Google était co contributeur majeur de WebKit)</p>
+					<p>Blink est moteur de Chromium/Chrome, Opera, Silk, UI Battle.net, Steam, Spotify post WebKit, IE 2020</p>
 				</section>
 
 				<section>
@@ -182,27 +171,37 @@
 					</blockquote>
 					<p>Youtube + Chrome = pubs = 💰 💰 💰</p>
 					<p>MS a clairement indiqué ne pas vouloir forker Blink et veut réouvrir des API bloquées pour les adblockers (reddit AMA Juin 2019)</p>
+					<p>Mozilla un peu en tension avec Google : très peu probable qu'ils aillent vers Blink, ils ont déjà un moteur Servo next-gen</p>
 				</section>
 
+				<section>
+					<h2>✈️ Un moteur n'est pas un navigateur. Un navigateur se sert d'un moteur. ✈️</h2>
+					<p>Airbus et Boeing partagent des moteurs General Electric, Rolls Royce, Trent : ce n'est pas le même avion == pas le même <em>navigateur</em></p>
+					<p>Une compagnie peut changer l'intérieur de l'avion (Singapore, Qatar Airlines, Air France = Apple, Google, Samsung, Sony)</p>
+					<p>Des pilotes connaissant bien le moteur changent de boite : porosité des devs Apple/Google, Samsung/Sony/Nintendo</p>
+					<p>Le moteur de IE change pour Blink, ce n'est pas <em>tout</em> IE qui change</p>
+				</section>
+
+				<!--
 				<section>
 					<h2>Google bashing ?</h2>
 					<p>Chromium n'est pas Chrome. Ni YouTube</p>
-					<p>Leurs travaux demeurent remarquables (du point de vue DFO &amp; Analytics)</p>
-					<p>Top ingés Blink ouverts sur twitter (Ylia, Jake, Yoav, Tab) comme les top ingés Moz (Marcos, Lin)</p>
+					<p>Leurs travaux demeurent remarquables - du point de vue DFO &amp; Analytics</p>
+					<p>Top ingés Blink ouverts sur twitter (Ylia, Jake, Yoav, Tab) comme les top ingés Moz (Jen, Marcos, Lin)</p>
 					<p>Travaux publics sur Blink très documentés : "Life of a pixel", 2018, 55 slides, pas de Cult of Secret à la Apple/Safari</p>
 					<small>https://docs.google.com/presentation/d/1boPxbgNrTU0ddsc144rcXayGA_WF53k96imRH8Mp34Y/edit#slide=id.g291e5dcaed_0_0</small>
-				</section>
+				</section>-->
 
 				<section>
-					<h2>Blink, WebKit hors des navigateurs</h2>
+					<h2>Blink et WebKit hors des navigateurs</h2>
 					<p>Embarqués dans des logiciels assez connus</p>
 					<p>Players Spotify, Pandora, Mail.app/iWork/iTunes/App Stores</p>
 					<p>Steam, Battle.net, Kindle Amazon</p>
-					<p>Sony, Nintendo, Adobe</p>
+					<p>Sony, Nintendo, outils Adobe</p>
 					<p>... de récents commits de Sony, la PS5 se profile</p>
 					<p>Nintendo Switch hackée à cause d'un vieux WebKit</p>
 					<img src="mario.png" width="300px" alt="">
-					<p>embarqué dans automobile, smart TVs, kiosques (NetFront) ...</p>
+					<p>embarqué dans automobile, Smart TVs, kiosques (NetFront) ...</p>
 				</section>
 
 				<section>
@@ -228,43 +227,44 @@
 					</ul>
 				</section>
 
-					<section>
-						<h2>Les acteurs clé communiquent ouvertement sur l'avenir de leur moteur</h2>
-						<h3>oui, pour de vrai, les mentalités ont évolué</h3>
-						<ul>
-							<li>WebKit.org (OSS) : https://webkit.org/blog/ et https://webkit.org/status/</li>
-							<li>Blink : https://www.chromestatus.com/features</li>
-							
-							<li>Edge : https://developer.microsoft.com/en-us/microsoft-edge/platform/status/</li>
-							<li>Safari : https://developer.apple.com/safari/technology-preview/</li>
-							<li>nb : Apple ne commentent jamais en _détails_ sur qu'ils vont ajouter pour iOS, les curieux.ses peuvent lire les commits des devs @apple.com</li>
-							<small>
-							https://github.com/WebKit/webkit/commits/master<br/>
-							</small>
-						</ul>
-					</section>
+				<section>
+					<h2>Les acteurs clé communiquent ouvertement sur l'avenir de leur moteur</h2>
+					<h3>Les mentalités ont évolué</h3>
+					<ul>
+						<li>WebKit.org (OSS) : https://webkit.org/blog/ et https://webkit.org/status/</li>
+						<li>Blink : https://www.chromestatus.com/features</li>
+						<li>Edge : https://developer.microsoft.com/en-us/microsoft-edge/platform/status/</li>
+						<li>Safari : https://developer.apple.com/safari/technology-preview/</li>
+						<li>nb : Apple ne commentent jamais en _détails_ sur qu'ils vont ajouter pour iOS, les curieux.ses peuvent lire les commits des devs @apple.com</li>
+						<small>
+						https://github.com/WebKit/webkit/commits/master<br/>
+						</small>
+					</ul>
+				</section>
 
-					<section>
-						<h3>Contributeurs WebKit (principaux)</h3>
-						<pre><code class="bash">git shortlog -e -s -n</code> </pre>
-						<p>Apple, Google (avant Blink), webkit.org, Adobe, Igalia, Samsung, Sony, RIM, Nokia, Intel</p>
-						<p>Blink : Google, Opera, Adobe, Igalia, Samsung, Intel<,/p>
-						<p>Igalia ? GNOME/Linux, petite équipe de consultants experts et commiters WebKit/Blink/Qt/GTK, pour embarqué (voitures, panneaux pub, bornes, etc.)</p>
-						<p>ex: ont implémenté CSS Grid dans Webkit+Blink, financés par Bloomberg, qui aime bien les grilles</p>
-						<small>https://blogs.igalia.com/mrego/2017/03/16/css-grid-layout-is-here-to-stay/</small>
-						<small>Igalia recrute (La Corogne)</small>
-						<p>Yoav Weiss (&lt;img srcset&gt;)</p>
-					</section>
-
-					<section>
-						<h3>C'est</h3>
-						<h3>Open</h3>
-						<h3>Source</h3>
-						<p>Blink, WebKit, Gecko/Servo</p>
-						<p>Bientôt Huawei via un fork ? ;)</p>
-						<p>C'est pas /si/ difficile de contribuer (DevTools/Inspector est la porte d'entrée la plus simple)</p>
-					</section>
 				
+
+				<section>
+					<h3>Contributeurs WebKit (principaux)</h3>
+					<pre><code class="bash">git shortlog -e -s -n</code> </pre>
+					<p>Apple, Google (avant Blink), webkit.org, Adobe, Igalia, Samsung, Sony, RIM, Nokia, Intel</p>
+					<p>Blink : Google, Opera, Adobe, Igalia, Samsung, Intel<,/p>
+					<p>Igalia ? GNOME/Linux, petite équipe de consultants experts et commiters WebKit/Blink/Qt/GTK, pour embarqué (voitures, panneaux pub, bornes, etc.)</p>
+					<p>ex: ont implémenté CSS Grid dans Webkit+Blink, financés par Bloomberg, qui aime bien les grilles</p>
+					<small>https://blogs.igalia.com/mrego/2017/03/16/css-grid-layout-is-here-to-stay/</small>
+					<p>Yoav Weiss (&lt;img srcset&gt;)</p>
+				</section>
+
+			
+
+				<section>
+					<h3>C'est</h3>
+					<h3>Open</h3>
+					<h3>Source</h3>
+					<p>Blink, WebKit, Gecko/Servo</p>
+					<p>Bientôt Huawei via un fork ?</p>
+					<p>C'est pas /si/ difficile de contribuer (DevTools/Inspector est la porte d'entrée la plus simple)</p>
+				</section>
 
 				<section>
 					<h2>git clone webkit</h2>
@@ -278,7 +278,7 @@
 
 				<section>
 					<h2>🔌 Une base commune et des ports 🔌</h2>
-					<p>Pas un WebKit unique. Un port parle aux APIs natives plateforme (ex: API de rendu, de réseau, ...)</p>
+					<p>Pas un WebKit unique. Un port parle aux APIs natives plateforme (ex: API de dessin, de réseau, de hardware natif ...)</p>
 					<ul>
 						<li>OSX/iOS port (Safari/Mail/AppStore/iWork + CoreGraphics)
 						<li>Android port (Stock browsers/Chromium &lt; Blink + Skia)</li>
@@ -313,44 +313,37 @@
 					</section>
 
 				
-				<section>
-					<h2>🥄 Le fork Blink (Google) 🥄</h2>
-					<p>Mi 2013 Google décide de diverger de WebKit (plus précisemment de son WebCore)</p>
-					<p>Changements de fond liés aux perfs (ex: volonté de multithreading JS et décharge vers GPU), au refus des -prefix CSS, au refus originel du code MathML, à l'arrivée du moderne Servo chez Mozilla</p>
-					<p>... à la concurrence avec Apple (Google était co contributeur majeur de WebKit)</p>
-					<p>Le moteur de Chromium/Chrome, Opera, Silk, UI Battle.net, Steam, Spotify post WebKit</p>
-				</section>
+			
 
 				<section>
 						<h2>Retour à WebKit : WebCore (1)</h2>
 						<h3>Les étapes de rendu</h3>
 						<p>mise en 2 arbres du HTML et CSS (parsing)</p>
 						<p>calcul des styles depuis la cascade CSS (styling)</p>
-						<p>calcul de la mise en page x/y (layout)</p>
+						<p>calcul de la mise en page positions x/y (layout)</p>
 						<p>mise en calques de la mise en page et dessin (painting/compositing)</p>
 						<p>post-dessin, le JS peut altérer les 2 arbres (JavascriptCore)</p>
-						<img src="treec.jpg" width="400px" alt="">
+						<img src="treec.jpg" width="300px" alt="">
 				</section>
 
 				<section>
 						<h2>Retour à WebKit : WebCore (2)</h2>
 						<p>Pour réseau, HTML, CSS, SVG, MathML, Canvas</p>
-						<p>rappel : HTMLDocument != SVGDocument. HTML != MathML</p>
+						<p><small>rappel : HTMLDocument != SVGDocument. HTML != MathML</small></p>
 						<p>Fait le parsing aidé par un preload scanner, le styling le layout et le dessin (mais pas le café). </p>
 						<p>Le layout c'est le calcul de la position et taille d'un élément (une boite rectangulaire). Un parent doit layout() ses enfants pour connaître sa propre hauteur/largeur : récursivité</p>
-						<p>Un layout au final c'est juste des boites dans des boites, une mise en page</p>
-						<p>Les boites sont mises en calques puis dessinées et paintes</p>
+						<p>Un layout au final c'est des boites dans des boites, une mise en page</p>
+						<p>Les boites sont rangées en calques puis dessinées et paintes</p>
 						<p><b>Pour savoir comment placer les boites et les dessiner, le moteur ne fait que suivre les specs.</b></p>
 					</section>
 				
 <section>
 	<h2>📚 Specs ? 📚</h2>
-<p>Une spécification n'est qu'un document (HTML) avec des schémas (WebIDL) qui décrit comment faire les choses</p>
+<p>Une spécification n'est qu'un document HTML avec des schémas (WebIDL) qui décrit comment faire les choses</p>
 <p>Rédaction collaborative, elles sont sous github</p>
-<p>Outil simple open source de rédaction de specs : ReSpec outil du W3C : https://github.com/w3c/respec . C'est 'juste' un peu de JS et CSS dans une page HTML</p>
+<p>Outil simple open source de rédaction de specs : ReSpec, outil du W3C : https://github.com/w3c/respec . C'est un script JS et CSS dans une page HTML</p>
 <p>Outil méconnu mais excellent pour toute rédaction de document technique, pas seulement pour des specs web (vs Word/LaTeX)</p>
-<p>Fonctions natives de statut de document (draft, preview, final), auteurs, contributeurs, risques, privacy, vocabulaire clair (it MUST, it MAY, it SHOULD, ...) </p>
-<p>Les voir comme un super Wikipedia du web</p>
+<p>Voir les specs comme un super Wikipedia du web</p>
 </section>
 
 <section>
@@ -365,7 +358,9 @@
 	<p>Specs de base : le box model, les 3 flows, le visual formatting model</p>
 	<p>La peinture par specs existe aussi dans l'art/psycho : Klein, Paint by numbers (revoir Will Hunting)</p>
 	<img src="willh.jpeg" width="400px" alt="">
-	<p>Sans oublier le pixel / ASCII art</p>
+	<p>Box model, les flows et le VFM sont les fondations du Web</p>
+	<p>... le Web est né au CERN, pas dans une école d'art : une "rigueur" scientifique demeure - quand les specs sont assez claires</p>
+	<p>Une spec peu claire crée du doute, des interprétations, des bugs</p>
 </section>
 					<section>
 						<h3>Spec #1 : Le Box Model</h3>
@@ -387,12 +382,17 @@
 							<li>float: né dans le normal flow, puis sorti et flotte à left ou right</li>
 							<li>absolute: né en dehors du normal flow : pas d'impact sur ses siblings (!float), né au x,y du containing block (parent significatif)</li>
 						</ul>
-						<p>block element, inline element... et replaced element : un element dont le rendu est non spécifié par CSS (image, form control, iframe, applet, object ActiveX/Flash), il est inline par défaut</p>
+					</section>
+					<section>
+						<h3>Certains éléments peuvent ne pas être speccés per se</h3>
+						<p>block element, inline element oui ... mais pas replaced element : un element dont le rendu est non spécifié par CSS (image, form control, iframe, applet, object ActiveX/Flash), il est inline par défaut</p>
+						<p>Une simple position absolute ou fixed fait changer un inline en block</p>
 						<p><small>When an object is absolute/fixed positioned, it becomes block-level. Even if the CSS display type is set to inline (or inline-block/table), the effective display type becomes block-level once an object is positioned. </small></p>
+						<p>... parce que c'est plus simple pour le moteur de "penser" block</p>
 					</section>
 
 					<section>
-						<h3>Visual formatting model, en détails</h3>
+						<h3>Spec #3 : Visual formatting model, deep dive</h3>
 						<p>http://www.w3.org/TR/CSS2/visuren.html</p>
 						<p>http://www.w3.org/TR/CSS2/visudet.html</p>
 						<p>specs dures, doliprane et crayon requis</p>
@@ -439,7 +439,7 @@
 					<h2>Du HTML brut aux boites</h2>
 					<p>Tu tapes une URL et tu fais entrée : welcome to WebCore</p>
 					<p>Il faut d'abord charger le HTML (HTMLDocument) du cache ou du réseau</p>
-					<p>Caractère par caractère : le Parsing = mise en Tokens (commentaires, start/end balises, doctype, langue, cdata) </p>
+					<p>HTML lu caractère par caractère : le Parsing = mise en Tokens (le moteur découvre les commentaires, début et fin des balises, doctype, langue, cdata) </p>
 				</section>
 
 				<section>
@@ -471,8 +471,8 @@
 					<p>HTMLPreloadScanner et CSSPreloadScanner</p>
 					<p>Le chargement du HTML est bloquant sur chargement de script JS et CSS externe</p>
 					<p>Parce que le JS éxécuté peut modifier le DOM et son style CSSOM (appendChild, display:), ou avoir besoin de CSS chargée</p>
-					<p>Un preload scanner est un chargeur ressources réseau en parallèle, il permet de libérer le moteur pour faire autre chose (construire un arbre au lieu de télécharger une image, éxécuter du JS).</p>
-					<p>HTMLPreloadScanner : &lt;script&gt;, &lt;img&gt;, &lt;input type image&gt;, &lt;link rel ext&gt;, &lt;poster&gt;, &lt;picture&gt;, &lt;meta&gt;</p>
+					<p><small>Un preload scanner est un chargeur ressources réseau en parallèle, il permet de libérer le moteur pour faire autre chose (construire un arbre au lieu de télécharger une image, éxécuter du JS)</small>.</p>
+					<p>HTMLPreloadScanner : &lt;script&gt;, &lt;img&gt;, &lt;input type image&gt;, &lt;link rel&gt;, &lt;poster&gt;, &lt;picture&gt;, &lt;meta&gt;</p>
 					<p>CSSPreloadScanner : règle @import (oui, seulement)</p>
 					<p>HTMLPreloadScanner intelligent : ex: chargera la meilleure image responsive/retina selon MQ (ex: dark mode)</p>
 				</section>
@@ -481,23 +481,19 @@
 					<p>Le CSSPreloadScanner ne précharge que les CSS @import, pourquoi pas ses images/fonts ?</p>
 					<ul>
 					<li>background-image ? il faudrait pas charger une url() inutile via une MQ mais le scanner <strong>n'est pas un parseur CSS</strong></li>
-					<li>bg image responsive/retina ? scanner != parseur, impossible d'évaluer une MQ (width,dpx), alors &lt;img srcset&gt; a été créé (pour HTMLPreloadScanner)</li>
+					<li>bg image responsive/retina ? scanner != parseur, impossible d'évaluer une MQ (width,dpx), alors &lt;img srcset&gt; a été créé pour le HTMLPreloadScanner</li>
 					<li>fontes ? compliqué, il faudrait les charger que si elles seront utilisées dans le style, mais impossible de preloader : le style n'est pas encore connu</li>
 					</ul>
-					<p>donc : préférez &lt;img&gt;/&lt;picture&gt;/&lt;link rel preload&gt; à &lt;div + css img&gt; (+ semantic first !)</p>
-					<p>donc : utilisez GWF et avec un subset si possible</p>
-s						<p><small>Blink : multi-threaded PreloadScanner architecture pour pas utiliser la main thread de HTMLPreloadScanner (par ex pour évaluer MQ à part)</small></p>
-<small>DONE https://codereview.chromium.org/201813002/</small>
+					<p>donc pour aider les scanners : préférez &lt;img&gt;/&lt;picture&gt;/&lt;link rel preload&gt; à &lt;div + css background image&gt;</p>
+					<p>les balises ont aussi un sens sémantique</p>
 				</section>
 
 				<section>
-					<p>Pourquoi ne pas 'simplement' multithreader ? Les CPU mobiles ont plusieurs cores après tout</p>
+					<p>Pourquoi ne pas 'simplement' multithreader le parsing ? Les CPU mobiles ont plusieurs cores après tout</p>
 					<p>tl;dr : parce que c'est -vraiment- compliqué</p>
-					<p>un JS qui mine des bitcoins 'paralyse' le CPU qui a d'autres trucs à faire (styler, dessiner, peindre, animer)</p>
 					<p>un preload scanner est une réponse simple pour donner un peu plus de perfs</p>
 					<p>pour plus : des workers JS en tâche de fond, des envois directs au GPU pour libérer le CPU, une refonte totale du code de rendu</p>
 					<p>ça tombe bien c'est exactement ce sur quoi Blink (LayoutNG)/Servo (WebRender) bossent en ce moment</p>
-					<p>Apple A12 6xCPU+4xGPU, 7 miliards de transistors dans &lt; 1cm2. Respects</p>
 				</section>
 
 				<section>
@@ -505,10 +501,12 @@ s						<p><small>Blink : multi-threaded PreloadScanner architecture pour pas uti
 				</section>
 
 				<section>
-					<h2>Pour plus de performance réseau</h2>
+					<h2>Pour plus de performance Web</h2>
+					<p>Au delà des simples preload Scanners</p>
 					<p>Revoir le talk HTTP2 @ Sunnytech 2018</p>
-					<p>tl;dr : un seul tuyau réseau pour précharger toutes les ressources au lieu de petits tuyaux multiples</p>
-					<p>utile pour les mauvaises connexions réseau</p>
+					<p>un seul tuyau réseau pour précharger toutes les ressources au lieu de petits tuyaux multiples</p>
+					<p>utile pour les mauvaises connexions réseau, cellulaire ou non</p>
+					<p>+ talk WeLoveSpeed de Gilles Dubuc https://youtu.be/9PBeqHXk7zw</p>
 				</section>
 
 				<section>
@@ -584,7 +582,7 @@ s						<p><small>Blink : multi-threaded PreloadScanner architecture pour pas uti
 				<p>Le RenderStyle recalculé ne change pas toujours le layout : color non, position/display/height/width oui. </p>
 				<small>http://gent.ilcore.com/2011/03/how-not-to-trigger-layout-in-webkit.html</small>
 				<!-- <p>Si tu relayout au touchmove t'es mal : le JS est sur la même thread que la UI thread, !Compositor. Blink veut un Layout threadé</p> -->
-				<p>Savoir minimiser le layout = perfs ! (une des raisons du fork Blink : éxécuter le JS en // du layout)</p>
+				<p>Savoir minimiser le layout = perfs !</p>
 				<p>Savoir profiter du cache et du preload scanner = more perfs !</p>
 				<p>Savoir minimiser le dessin/peinture à venir = godlike, jedi</p>
 				<p>Mettre du translateZ/3D partout pour "accélérer le rendu" : sith lord. Savez-vous ce que ça fait vraiment ?</p>
@@ -614,7 +612,7 @@ s						<p><small>Blink : multi-threaded PreloadScanner architecture pour pas uti
 
 			<section>
 				<h3>Super, on a un Layout non dirty qui nous a donné des calques</h3>
-				<h4>On peut (enfin) dessiner / paint nos RenderLayers!</h4>
+				<p>On peut (enfin) dessiner / paint nos RenderLayers!</p>
 				<p>Pause : plus besoin de penser box model, containing block, les styles sont calculés (cascades appliquées), le layout (padding, margin, border, width, height) a été fait et mis en layers</p>
 				<p>Pour chaque layer, la spec CSS nous dit exactement quoi peindre dans quel ordre</p>
 				<p>La peinture suit les specs, comme le layout : 9 étapes</p>
@@ -701,12 +699,12 @@ s						<p><small>Blink : multi-threaded PreloadScanner architecture pour pas uti
 
 		</div>
 		<script src="js/reveal.js"></script>
-
 		<script>
 			// More info about config & dependencies:
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				history:true,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },

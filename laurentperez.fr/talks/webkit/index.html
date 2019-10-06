@@ -102,7 +102,7 @@
 					<p>... mais One moteur to rule them all ? Pas encore, tant mieux</p>
 					<img src="sauron.jpg" width="110px" alt="">
 					<p>Dualité d'Apple et de Google qui ont partagé un moteur commun jusqu'en 2013 : WebKit (né en 2001, issu du monde Linux)</p>
-					<p>Mozilla et Microsoft avec leurs propres moteurs : Gecko, Servo, Trident, EdgeHTML</p>
+					<p>Mozilla et Microsoft avec leurs propres moteurs : Gecko (ex Netscape réécrit), Servo, Trident, EdgeHTML</p>
 					<p>... mais IE va utiliser le moteur de Google : Blink, fork de WebKit</p>
 				</section>
 
@@ -135,7 +135,7 @@
 								</tr>
 								<tr>
 									<td>Gecko/Quantum/Servo</td>
-									<td>Firefox</td>
+									<td>Firefox, Fennec (mobile), Thunderbird</td>
 								</tr>
 								<tr>
 									<td>Trident/EdgeHTML</td>
@@ -180,7 +180,7 @@
 					<p>Airbus et Boeing partagent des moteurs General Electric, Rolls Royce, Trent : ce n'est pas le même avion == pas le même <em>navigateur</em></p>
 					<p>Une compagnie peut changer l'intérieur de l'avion (Singapore, Qatar Airlines, Air France = Apple, Google, Samsung, Sony)</p>
 					<p>Des mécanos connaissant bien le moteur changent de boite : porosité des devs Apple/Google/Mozilla, Samsung/Sony/Nintendo</p>
-					<p>Le moteur de IE change pour Blink, ce n'est pas <em>tout</em> IE qui change : pour le pilote (vous) peu change</p>
+					<p>Le moteur de IE change pour Blink, ce n'est pas <em>tout</em> IE qui change : pour les pilotes - nous - peu change</p>
 				</section>
 
 				<!--
@@ -207,14 +207,15 @@
 
 				<section>
 					<h2>⚙️ Le moteur WebKit & les autres ⚙️</h2>
-					<h3>Historique</h3>
+					<h3>Bref historique</h3>
 					<ul>
 						<li>1990 Naissance du Web au CERN et de WorldWideWeb - 1er navigateur</li>
-						<li>1994 Naissance de Netscape Navigator issu de Mosaic</li>
-						<li>1998 Naissance de KHTML et KJS issus de Konqueror (KDE, Linux)</li>
+						<li>1994 Naissance de Netscape Navigator issu de Mosaic - 2nd navigateur, supporte les images et forms</li>
+						<li>1998 Naissance de KHTML/KJS issus de Konqueror (KDE, Linux), Netscape open source et crée Mozilla (Mosaic killer)</li>
 						<li>2001 Apple forke KHTML/KJS en WebKit : WebCore + JavascriptCore. Préféré à Gecko/Netscape</li>
+						<li>2003 AOL crée la Fondation Mozilla, à but non lucratif</li>
 						<li>2005 Apple open source quelques modifications de code pour Konqueror</li>
-						<li>2007 l'iPhone sort avec Safari 3 sous WebKit</li>
+						<li>2007 L'iPhone sort avec Safari 3 sous WebKit</li>
 						<li>2008 Google lance Android et Chrome sous WebKit</li>
 						<li>2011 Apple demande à trademarker WebKit, RIM pas trop d'accord</li>
 						<li>2013 Mozilla crée Servo, Google forke WebKit en Blink, Opera abandonne Presto pour Blink, WebKit devient trademark Apple. Blink est un fork technique et business</li>
@@ -223,8 +224,9 @@
 				</section>
 				<section>
 					<ul>
-						<li>2016/19 CSS4, CSS Houdini, Offline WebApp, WebPayment, WebAssembly, Animations API, ... </li>
-						<li>2020 "Year of Privacy" pour tous les fabricants 🔒 (RGPD, ITP toussa)</li>
+						<li>2016/19 CSS4, CSS Houdini, Progressive WebApps, WebPayment, WebAssembly, Animations API, ... </li>
+						<li>2020 "Year of Privacy" pour tous les fabricants 🔒 (Intelligent Tracking Prevention)</li>
+						<li>Manifestes des fabricants pour restreindre les Cookies tiers et techniques de pistage</li>
 						<li>https://webkit.org/tracking-prevention-policy/</li>
 						<li>https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Privacy/Storage_access_policy</li>
 					</ul>
@@ -246,16 +248,14 @@
 				</section>
 
 				<section>
-					<h3>Contributeurs WebKit (principaux)</h3>
+					<h3>Contributeurs WebKit/Blink principaux</h3>
 					<pre><code class="bash">git shortlog -e -s -n</code> </pre>
-					<p>Apple, Google (avant Blink), webkit.org, Adobe, Igalia, Samsung, Sony, RIM, Nokia, Intel</p>
+					<p>Apple, Google avant Blink, webkit.org, Adobe, Igalia, Samsung, Sony, RIM, Nokia, Intel</p>
 					<p>Blink : Google, Opera, Adobe, Igalia, Samsung, Intel</p>
 					<p>Igalia ? GNOME/Linux, petite équipe de consultants experts et commiters WebKit/Blink/Qt/GTK, pour embarqué (voitures, panneaux pub, bornes, etc.)</p>
 					<p>ont implémenté CSS Grid dans Webkit+Blink, financés par Bloomberg, qui aime bien les grilles</p>
 					<p>Yoav Weiss (auteur de &lt;img srcset&gt;)</p>
 				</section>
-
-			
 
 				<section>
 					<h3>C'est</h3>
@@ -271,8 +271,8 @@
 					<h2>git clone webkit</h2>
 					<img src="logo.png" style="width:80px" style="border: none"/>
 					<p>https://www.webkit.org/building/checkout.html</p>
-					<p>8 GB. 35000 tests. Des 100MB de sources C++, 210000 commits. Projet XCode ou Visual Studio</p>
-					<p>70% des 8GB sont des tests ou ressources de tests (pages HTML, images, vidéos, fichiers JS/CSS)</p>
+					<p>8 GB. 35000 tests. Des 10MB de sources C++, 210000 commits. Projet XCode ou Visual Studio</p>
+					<p>~70% des 8GB sont des tests ou ressources de tests (pages HTML, images, vidéos, audio, fichiers JS/CSS)</p>
 					<p>25 minutes de compile sur un très bon CPU</p>
 					<p>dedans : WebCore, JavaScriptCore, WebInspectorUI, WTF, MiniBrowser, DumpRenderTree, ...</p>
 				</section>
@@ -302,41 +302,39 @@
 					<section>
 						<p>La base commune pour : parsing HTML/CSS/SVG/MathML &amp; styling/layout (WebCore), JS (JavaScriptCore), GraphicsContext (délègue le rendu à un port)</p>
 						<p>Les ports pour : spécifique OS (pile graphique ou réseau), image decoding, liens hardware (GPU, orientation, geoloc, battery, vibration, touch inputs, senseurs lumière/pression/paiement, ...). </p><p>Présence de flags lors du build : #if ENABLE(PLATFORM_IOS)(...)</p>
-						<p>C'est le même moteur dans des chassis et câbles différents.
+						<p>C'est le même moteur dans des chassis et câblages différents.
 						<br>C'est pour ça qu'il y a des différences de comportement ou bugs</p>
 					</section>
 
 					<section>
 						<h2>Graphics Context delegate</h2>
-						<p>WebCore délègue à un contexte graphique (GraphicsContext) pour dessiner : dessine moi un bouton</p>
+						<p>WebCore n'a pas de "look" en soi - un <em>navigateur</em> oui</p>
+						<p>Il délègue à un contexte graphique (GraphicsContext) pour dessiner : dessine moi un bouton</p>
 						<p><img src="mouton.jpeg"><img src="buttonios.png"></p>
 						<p><img src="buttongtk.png"><img src="buttonqt.jpeg"></p>
 					</section>
 
-				
-			
-
 				<section>
-						<h2>WebKit : son noyau WebCore (1/2)</h2>
-						<h3>Les étapes de rendu - tous moteurs</h3>
-						<p>mise en 2 arbres du HTML et CSS (parsing)</p>
-						<p>calcul des styles depuis la cascade CSS (styling)</p>
-						<p>calcul de la mise en page positions x/y (layout)</p>
-						<p>mise en calques de la mise en page et dessin (painting/compositing)</p>
-						<p>post-dessin, le JS peut altérer les 2 arbres (JavascriptCore)</p>
-						<img src="treec.jpg" width="300px" alt="">
+					<h2>WebKit : son noyau WebCore (1/2)</h2>
+					<h3>Les étapes de rendu - tous moteurs</h3>
+					<p>mise en 2 arbres du HTML et CSS (parsing)</p>
+					<p>calcul des styles depuis la cascade CSS (styling)</p>
+					<p>calcul de la mise en page positions x/y (layout)</p>
+					<p>mise en calques de la mise en page et dessin (painting/compositing)</p>
+					<p>post-dessin, le JS peut altérer les 2 arbres (JavascriptCore)</p>
+					<img src="treec.jpg" width="300px" alt="">
 				</section>
 
 				<section>
-						<h2>WebKit : WebCore (2/2)</h2>
-						<p>Pour réseau, HTML, CSS, SVG, MathML, Canvas</p>
-						<p><small>rappel : HTMLDocument != SVGDocument. HTML != MathML</small></p>
-						<p>Fait le parsing aidé par un preload scanner, le styling le layout et le dessin mais pas le café. </p>
-						<p>Le layout c'est le calcul de la position et taille d'un élément (une boite rectangulaire). Un parent doit layout() ses enfants pour connaître sa propre hauteur/largeur : récursivité</p>
-						<p>Un layout au final c'est des boites dans des boites, une mise en page</p>
-						<p>Les boites sont rangées en calques puis dessinées et paintes</p>
-						<p><b>Pour savoir comment placer les boites et les dessiner, le moteur ne fait que suivre les specs.</b></p>
-					</section>
+					<h2>WebKit : WebCore (2/2)</h2>
+					<p>Pour réseau, HTML, CSS, SVG, MathML, Canvas</p>
+					<p><small>rappel : HTMLDocument != SVGDocument. HTML != MathML</small></p>
+					<p>Fait le parsing aidé par un preload scanner, le styling le layout et le dessin mais pas le café. </p>
+					<p>Le layout c'est le calcul de la position et taille d'un élément : une boite rectangulaire. Un parent doit layout() ses enfants pour connaître sa propre hauteur/largeur : récursivité</p>
+					<p>Un layout au final c'est des boites dans des boites, une mise en page</p>
+					<p>Les boites sont rangées en calques puis dessinées et paintes</p>
+					<p><b>Pour savoir comment placer les boites et les dessiner, le moteur ne fait que suivre les specs.</b></p>
+				</section>
 				
 <section>
 	<h2>📚 Specs ? 📚</h2>
@@ -351,7 +349,7 @@
 	<h2>Spec exemple : Web Auth</h2>
 	<div>
 		<small>https://www.w3.org/TR/webauthn/</small>
-		<img src="spec.png" alt="90%">
+		<img src="spec.png" alt="80%">
 	</div>
 </section>
 				
@@ -386,9 +384,9 @@
 						</ul>
 					</section>
 					<section>
-						<h3>Certains éléments du flow peuvent ne pas être speccés <em>per se</em></h3>
+						<h3>Certains éléments du flow ne sont pas speccés <em>per se</em></h3>
 						<p>block element, inline element oui ... mais pas replaced element : un element dont le rendu est non spécifié par CSS (image, form control, iframe, applet, object ActiveX/Flash), il est inline par défaut</p>
-						<p>Une simple position absolute ou fixed fait changer un inline en block</p>
+						<p>Une simple position: absolute ou fixed fait changer un inline en block</p>
 						<p><small>When an object is absolute/fixed positioned, it becomes block-level. Even if the CSS display type is set to inline (or inline-block/table), the effective display type becomes block-level once an object is positioned. </small></p>
 						<p>... parce que c'est plus simple pour le moteur de "penser" block dans des coordonnées x/y, tu es en dehors du flow, mais quand même positionné quelque part avec précision</p>
 					</section>
@@ -397,11 +395,11 @@
 						<h3>Spec #3 : Visual formatting model, deep dive</h3>
 						<p>http://www.w3.org/TR/CSS2/visuren.html</p>
 						<p>http://www.w3.org/TR/CSS2/visudet.html</p>
-						<p>specs dures, doliprane et crayon requis</p>
+						<p>specs dures, doliprane et stylo requis</p>
 						<p>ce sont les racines du layout CSS</p>
 						<p>pour briller en soirée - "devine d'où vient le margin collapse ?"</p>
 						<p>pour postuler chez un fabricant de navigateur</p>
-						<p>pour des interviews front</p>
+						<p>pour des interviews front un peu poussées</p>
 					</section>
 
 				<section>
@@ -409,15 +407,15 @@
 					<p>Les specs sont publiques</p>
 					<p>Nimporte qui peut y contribuer, leurs auteurs répondent - en général</p>
 					<p>Les fabricants/OSS implémentent (ou non) les specs selon leur propre roadmap</p>
-					<p>Les specs sont une prédiction - non garantie - de ce qui va arriver dans les navigateurs et  WebViews pour app natives</p>
-					<p>Suivre twitter "Intent to ship" https://twitter.com/intenttoship pour savoir quand ça va arriver sous Firefox ou Chrome</p>
+					<p>Les specs sont une prédiction - non garantie - de ce qui va arriver dans les navigateurs et WebViews pour app natives</p>
+					<p>Suivre @twitter "Intent to ship" https://twitter.com/intenttoship pour savoir quand ça va arriver sous Firefox ou Chrome</p>
 					<p>Suivre les commits WebKit pour savoir quand ça va arriver sous Safari</p>
 				</section>
 
 				<section>
 					<h2>Quelques travaux en cours</h2>
 					<small>Très publics : https://docs.google.com/spreadsheets/d/1pvXEMD5pRioognaqEzglS-4ZBSQ_YmzL8Fiz7yt4Bb4/edit#gid=0</small>
-					<p>CSS Houdini (accès direct au moteur CSS)</p>
+					<p>CSS Houdini (accès poussé au moteur CSS via JS)</p>
 					<p>Web Share API (linkedin, insta,...)</p>
 					<p>Shape Detection API (code barre, visage, texte)</p>
 					<p>SMS Receiver API, Contact API (!)</p>
@@ -438,7 +436,7 @@
 				<section>
 					<h2>WebKit, du HTML brut aux boites</h2>
 					<p>Tu tapes une URL et tu fais entrée : welcome to WebCore</p>
-					<p>Il faut d'abord charger le HTML (HTMLDocument) du cache ou du réseau</p>
+					<p>Il faut d'abord charger le HTML (HTMLDocument.cpp) du cache ou du réseau</p>
 					<p>HTML lu caractère par caractère : le Parsing = mise en Tokens (le moteur découvre les commentaires, début et fin des balises, doctype, langue, cdata) </p>
 				</section>
 
@@ -462,7 +460,7 @@
 					<p>Une petite plongée dans le code de WebKit</p>
 					<p>Scanners Réseau, Parsing en Tokens (= caractères clef, ex = &lt;div&gt;, &lt;head&gt;, &lt;svg&gt;), Arbres HTML et CSS, Rectangles, Styles et Renderers</p>
 					<p>Création d'un arbre de renderers (= "afficheurs"), produisant des rectangles poupées russes, rangés en calques</p>
-					<p>Puis peinture de ces calques</p>
+					<p>Puis dessin et peinture de ces calques</p>
 				</section>
 
 				<section>
@@ -474,7 +472,7 @@
 					-->
 					<p>Un preload scanner est un chargeur ressources réseau en parallèle, il permet de libérer le moteur pour faire autre chose (construire un arbre au lieu de télécharger une image, éxécuter du JS).</p>
 					<p>HTMLPreloadScanner précharge : &lt;script&gt;, &lt;img&gt;, &lt;input type image&gt;, &lt;link rel&gt;, &lt;poster&gt;, &lt;picture&gt;, &lt;meta&gt;</p>
-					<p>CSSPreloadScanner précharge : règle @import (oui, seulement)</p>
+					<p>CSSPreloadScanner précharge : règle @import url() - oui, seulement</p>
 					<p>HTMLPreloadScanner intelligent : ex: chargera la meilleure image responsive/retina selon Media Query (ex: dpi, dark mode)</p>
 				</section>
 
@@ -486,12 +484,12 @@
 					<li>fontes utiles ? compliqué, il ne faudrait les charger que si elles seront utilisées dans le style, mais impossible de preloader : le style n'est pas encore connu, l'arbre CSS pas encore construit</li>
 					</ul>
 					<p>donc pour aider les scanners : préférez &lt;img&gt;/&lt;picture&gt;/&lt;link rel preload&gt; à &lt;div + css background image&gt;</p>
-					<p>les balises ont aussi un sens sémantique, préférez toujours le sens</p>
+					<p>les balises ont aussi un sens sémantique, préférez toujours le sens pour accessibilité, indexation</p>
 				</section>
 
 				<section>
 					<p>Pourquoi ne pas 'simplement' multithreader le parsing ? Les CPU ont plusieurs cores après tout</p>
-					<p>parce que c'est -vraiment- compliqué</p>
+					<p>parce que c'est vraiment compliqué</p>
 					<p>un preload scanner est une réponse bête et simple pour donner un peu plus de perfs</p>
 					<p>pour plus : du parsing en parallèle, des envois directs au GPU pour libérer le CPU, une refonte totale du code de rendu</p>
 					<p>... ça tombe bien c'est exactement ce sur quoi Blink (LayoutNG)/Servo (WebRender) bossent en ce moment</p>
@@ -519,10 +517,10 @@
 				<section>
 					<h2>Parsing (HTML/CSS) puis Layout (mise en rectangles)</h2>
 					<p>Le HTML tokenizé est mis en arbre (DOM Tree) d'HTMLElement, la CSS en Style Rules</p>
-					<small>Le moteur nettoie ce qu'il peut (ici tes balises mal fermées) et recoud le wrap (splitflow RenderInline.cpp).</small>
-					<p>Matrice <em>DOM Tree + Style Rules = RenderTree</em></p>	
-					<p>Ce tree est un arbre de Renderers (RenderObject)</p>
-					<p>Chaque <em>HTMLElement</em> a une méthode pour s'attacher un <em>Renderer</em> en fonction de son display : le renderer calcule un <em>RenderStyle</em> (Recalculate style) et est rangé dans un <em>RenderLayer</em> (clip,mask,overflow) rangé par z-index relatif</p> (c'est dans RenderElement.cpp)
+					<small>Le moteur nettoie ce qu'il peut (i.e tes balises mal fermées) et recoud le wrap (splitflow RenderInline.cpp).</small>
+					<p>Crée une Matrice <em>DOM Tree + Style Rules = RenderTree</em></p>	
+					<p>Ce tree est un arbre de Renderers (RenderObject.cpp)</p>
+					<p>Quasi tout <em>HTMLElement</em> a une méthode pour s'attacher un <em>Renderer</em> en fonction de son display : le renderer calcule un <em>RenderStyle</em> (Recalculate style) et est rangé dans un <em>RenderLayer</em> (clip,mask,overflow) rangé par z-index</p> (c'est RenderElement.cpp)
 					<p>ex de display: block, inline, table, column, flex, grid, ...</p>
 				</section>
 
@@ -542,14 +540,14 @@
 				</section>
 
 				<section>
-						<h3>Géométrie (layout propre/sale) et paint</h3>
-						<p>Le layout est le calcul du x/y de chaque rectangle</p>
-						<p>Tous les renderers ont une méthode layout() recursive : le renderer du parent significatif (le containing block) layout() ses enfants</p>
-						<p><em>Dirty bit</em> : si un nouveau renderer rentre dans l'arbre, s'il est dirty (<em>layoutIfNeeded</em>), il informe son parent significatif dit containing block (<b>un dirty va changer la position d'autres</b>).</p>
-						<!-- <p>Les Renderers positionnés sont optimisés (car dessinés après le parent)</p> -->
-						<p>Le containing block se nettoie (layout, recalcul x/y) jusqu'à ne plus avoir d'enfants dirties. Quand il est propre on peut le dessiner</p>
-						<p>Le containing block a aussi un containing block (parent a un parent). C'est un arbre</p>
-						<p>Le renderer peut déborder le rectangle du containing : c'est l'overflow</p>
+					<h3>Géométrie : layout propre/sale</h3>
+					<p>Le layout est le calcul du x/y de chaque rectangle</p>
+					<p>Tous les renderers ont une méthode layout() recursive : le renderer du parent significatif (le containing block) layout() ses enfants</p>
+					<p><em>Dirty bit</em> : si un nouveau renderer rentre dans l'arbre, s'il est dirty (<em>layoutIfNeeded</em>), il informe son parent significatif dit containing block (<b>un dirty va changer la position d'autres</b>).</p>
+					<!-- <p>Les Renderers positionnés sont optimisés (car dessinés après le parent)</p> -->
+					<p>Le containing block se nettoie (layout, recalcul x/y) jusqu'à ne plus avoir d'enfants dirties. Quand il est propre on peut le dessiner</p>
+					<p>Le containing block a aussi un containing block (parent a un parent). C'est un arbre</p>
+					<p>Le renderer peut déborder le rectangle du containing : c'est l'overflow</p>
 					<!--
 					<p>benfrain : le dirty est par layer. union de dirties. promotion du fiex en hdpi</p>
 					<p>http://aerotwist.com/blog/on-translate3d-and-layer-creation-hacks/</p>
@@ -559,9 +557,9 @@
 
 			<section>		
 				<h3>Déterminer le containing block</h3>
-				<p>C'est le block clé qui va layout() ses enfants : c'est le parent significatif</p>
+				<p>C'est ce block clé qui va layout() ses enfants : c'est le parent significatif</p>
 				<!--<p>http://www.w3.org/TR/CSS21/visuren.html#containing-block.</p>-->
-				<p>Par défaut c'est le root element (= RenderView : ce qu'on voit à l'écran, à x=0,y=0, le haut à gauche de l'écran)</p>
+				<p>Par défaut c'est le root element RenderView : ce qu'on voit à l'écran, à x=0,y=0, le haut à gauche de l'écran</p>
 				<p>C'est la position: du rectangle enfant qui permet de trouver son containingBlock</p>
 				<p>ex : relative ou static (= default) : containingBlock = l'ancêtre block <i>le plus proche</i></p>
 				<p>ex : fixed : containingBlock = RenderView = l'écran. RenderView réajuste les coordonnées du fixed selon le scroll</p>
@@ -580,52 +578,52 @@
 
 			<section>
 				<h3>On ne relayout pas tout. Seulement les containing blocks avec dirties (sales gosses)</h3>
-				<p>Le layout n'est pas figé : au 'hit testing' (où et sur quoi est le pointeur) un survol :hover, un focus, un touch JS peut relayouter.</p>
+				<p>Le layout n'est pas figé : au 'hit testing' (où et sur quoi est le pointeur) un survol :hover, un focus, un touch JS peut restyler.</p>
 				<p>Le RenderStyle recalculé ne change pas toujours le layout : color non, position/display/height/width oui. </p>
 				<small>https://csstriggers.com/</small>
 				<!-- <p>Si tu relayout au touchmove t'es mal : le JS est sur la même thread que la UI thread, !Compositor. Blink veut un Layout threadé</p> -->
 				<p>Savoir profiter du preload scanner = perfs !</p>
 				<p>Savoir minimiser le layout = more perfs !</p>
-				<p>Savoir minimiser la peinture à venir = jedi - parfois</p>
+				<p>Savoir minimiser la peinture à venir = godlike - parfois</p>
 				<p>... des questions HTML/CSS à poser en recrutement DFO, avant jQuery, Angular/React (nb : là je troll)</p>
 			</section>
 
 			<section>
 				<h3>Fini de layouter</h3>
-				<p>Le moteur a calculé les coordonnées x, y des rectangles : on a enfin une mise en page</p>
-				<p>En HTML on dessine des rectangles, qui peuvent être clippés ou croisés (mask, shape, overflow:hidden)</p>
+				<p>Le moteur a calculé les coordonnées x,y des rectangles : on a enfin une mise en page</p>
+				<p>En HTML on dessine des rectangles, qui peuvent être clippés ou tronqués (mask, shape, overflow:hidden)</p>
 				<p>En SVG on aurait dessiné des paths, circles, ...</p>
 				<p>En MathML on aurait dessiné des vecteurs, racines, fractions, ...</p>
 				<p>En Canvas/WebGL on aurait dessiné sur des surfaces 2D ou 3D avec sources de lumières et angles de caméra, ...</p>
-				<p>Le moteur envoie tout le calculé vers des calques (coucou Photoshop)</p>
+				<p>Le moteur envoie tout l'arbre calculé vers des calques (coucou Photoshop)</p>
 			</section>
 
 			<section>
 				<h3>Le RenderTree est LayoutRecté et ses rectangles rangés en RenderLayer (calques)</h3>
-				<p>utilitaires DumpRenderTree/DumpRenderLayer dans Safari</p>
-				<p>Le layer est ensuite Painté via le GraphicsContext (ex: CoreGraphics, rappel des boutons, ici look natif)</p>
-				<p>ex: un overflow:hidden (rectangle qui déborde du containing) c'est un layer coupé</p>
+				<p>utilitaires DumpRenderTree/DumpRenderLayer dans WebKit</p>
+				<p>Le layer est ensuite Painté via le GraphicsContext (ex: CoreGraphics, rappel du look natif)</p>
+				<p>ex: un overflow:hidden (rectangle qui déborde du containing) c'est un layer tronqué</p>
 				<p>ex: un transform3d c'est un layer devenu une texture GL, optimisable par GPU</p>
 				<p>ex: une shape/mask c'est un layer clippé, un filter c'est un layer mélangé (multiply,blur,...)</p>
-				<p>Un calque peut être backé par GPU pour optimiser (accélération carte graphique : ex : les ombres, opacités, flou, projections)</p>
+				<p>Un calque peut être backé par GPU pour optimiser (accélération carte graphique : les ombres, opacités, flou, projections)</p>
 			</section>
 
 			<section>
 				<h3>Super, on a un Layout non dirty qui nous a donné des calques</h3>
-				<p>On peut (enfin) dessiner / paint nos RenderLayers!</p>
-				<p>Pause : plus besoin de penser box model, containing block, les styles sont calculés (cascades appliquées), le layout (padding, margin, border, width, height) a été fait et mis en layers</p>
+				<p>On peut enfin dessiner / peindre nos RenderLayers!</p>
+				<p>Plus besoin de penser box model, containing block, les styles sont calculés (cascades appliquées), le layout (padding, margin, border, width, height) a été fait et mis en layers</p>
 				<p>Pour chaque layer, la spec CSS nous dit exactement quoi peindre dans quel ordre</p>
 				<p>La peinture suit les specs, comme le layout : 9 étapes</p>
-				<img src="kid.jpg" width="400px" alt="">
+				<img src="kid.jpg" width="300px" alt="">
 			</section>
 
 			<section>
 				<h2>🎨 9 Etapes de peinture 🎨</h2>
-				<p>Where the magic happens. With specs</p>
-				<p>On ne peint pas élément par élément au feeling, pour éviter bavures</p>
-				<p>On peint des CSS stacking contexts (piles), en suivant un ordre précis et pas celui du HTML (!=couches)</p>
-				<p>Les piles sont étanches entre elles (sinon ça coule, comme de la... peinture)</p>
-				<p>Un stacking context est formé par élément qui est: racine, positioné, region, flex, grid item, table, float</p>
+				<p>A wild pixel appears</p>
+				<p>On ne peint pas élément par élément au feeling, pour éviter les bavures</p>
+				<p>On peint des CSS stacking contexts (piles), en suivant un ordre précis et pas celui du HTML</p>
+				<p>Les piles sont étanches entre elles sinon ça coule, comme de la... peinture</p>
+				<p>Un stacking context est formé par élément qui est: racine, positioné, flex, grid item, table, float</p>
 				<p>Un stacking context peut avoir des enfants avec stacking contexts (un enfant position:absolute/relatif suffit à créer un nouveau sc)</p>
 				<p>Un stacking context n'est pas juste le z-index : le zi est relatif au context</p>
 			</section>
@@ -634,15 +632,15 @@
 				<h3>Oh non, encore des specs !</h3>
 				<small>On peint récursif par stacking context et pas par l'ordre du HTML</small>
 				<ol>
-					<li>on peint background (color/img/col/row/cell/region/grid-item), borders de l'element</li>
+					<li>on peint background (color/img/col/row/cell/grid-item), borders de l'element</li>
 					<li>on peint dans l'ordre du flow : enfants positionnés en zindex &lt; 0</li>
 					<li>on peint dans l'ordre du flow : les blocks non inline, non positionnés</li>
 					<li>on peint dans l'ordre du flow : les floats non positionnés<!-- (genere sc) --></li>
 					<li>on peint dans l'ordre du flow : les inlines non positionnés, tables et inline blocks<!-- (generent un sc) --></li>
 					<li>on peint le sc de l'enfant non positionné puis positionné à zindex: 0 (= fixed)<!-- (genere sc) --></li>
-					<li>on peint le sc de l'enfant opacity &lt; 1 (cf filtre photoshop)</li>
-					<li>on peint le sc de l'enfant avec CSS transform/filter (idem)</li>
-					<li>on peint le sc de l'enfant positionné zindex &gt; 0 (cf calque photoshop)</li>
+					<li>on peint le sc de l'enfant opacity &lt; 1 (cf filtres photoshop)</li>
+					<li>on peint le sc de l'enfant avec CSS transform/filter (cf calques photoshop)</li>
+					<li>on peint le sc de l'enfant positionné zindex &gt; 0 (idem)</li>
 					<!-- <li>on passe au sc suivant</li> -->
 				</ol>
 			</section>
@@ -675,7 +673,7 @@
 			to each compositing layer’s bitmap before compositing it.
 			Further, since painting of the layers is decoupled from compositing, invalidating one of these layers only results in repainting the contents of that layer alone and recompositing.
 				In contrast, with the software path, invalidating any layer requires repainting all layers (at least the overlapping portions of them) below and above it which unnecessarily taxes the CPU.</p> -->
-				<p>Oui ça booste le rendu grâce au GPU, mais ça fait beaucoup de textures pour peu de VRAM</p>
+				<p>Ca booste le rendu grâce au GPU, mais ça fait beaucoup de textures pour peu de VRAM</p>
 				<p>Envoyer du CPU au GPU a un coût, ça génère des clignotements</p>
 				<p>CSS : propriétés CSS will-change et will-animate pour les fous</p>
 			</section>
@@ -687,6 +685,11 @@
 				<p>Beaucoup plus rapide. CPU : 8/12 cores, GPU : des centaines</p>
 				<p>*Seules les fontes sont encore traitées par le CPU car un peu floues en GPU et ligatures fines difficiles (arabe, chinois, ...)</p>
 				<p>TODO lien article Lin</p>
+			</section>
+
+			<section>
+				<h1>Merci</h1>
+				<p></p>
 			</section>
 
 			<section>

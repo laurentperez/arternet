@@ -373,10 +373,10 @@
 					<section>
 						<h3>Spec #2 : les 3 flows : normal (block, inline, relative pos), float, absolute pos</h3>
 						<p>http://www.w3.org/TR/CSS2/visuren.html#positioning-scheme</p>
-						<p>Le HTML est un flux d'éléments (flow)</p>
+						<p>Le HTML est un flux d'éléments : flow</p>
 						<img src="flow.jpg" alt="" width="300px">
 						<ul>
-							<li>normal : les blocks s'empilent (p, div). Les inline sont sur une ligne, qui wrappe (a, span)</li>
+							<li>normal : les blocks s'empilent (p, div). Les inline sont sur une ligne, qui wrappe (a, span) LTR ou RTL</li>
 							<li>float: né dans le normal flow, puis sorti et flotte à left ou right d'un autre élément</li>
 							<li>absolute: né en dehors du normal flow : pas d'impact sur ses siblings (!float), né au x,y du containing block (le "parent significatif")</li>
 							<li>des éléments dans un bac d'eau, l'absolute une goutelette libre</li>
@@ -385,9 +385,9 @@
 					<section>
 						<h3>Certains éléments du flow ne sont pas speccés <em>per se</em></h3>
 						<p>block element, inline element oui ... mais pas replaced element : un element dont le rendu est non spécifié par CSS (image, form control, iframe, applet, object ActiveX/), il est inline par défaut</p>
-						<p>Une simple position: absolute ou fixed fait changer un inline en block</p>
+						<p>Une simple <em>position:</em> absolute ou fixed fait changer un inline en block</p>
 						<p><small>When an object is absolute/fixed positioned, it becomes block-level. Even if the CSS display type is set to inline (or inline-block/table), the effective display type becomes block-level once an object is positioned. </small></p>
-						<p>... parce que c'est plus simple pour le moteur de "penser" block dans des coordonnées x/y, tu es en dehors du flow, mais quand même positionné quelque part avec précision</p>
+						<p>... parce que c'est plus simple pour le moteur de penser block dans des coordonnées x/y, tu es en dehors du flow, mais quand même positionné quelque part avec précision</p>
 					</section>
 
 					<section>
@@ -531,18 +531,20 @@
 				<!-- TODO JS bindings DOM ?-->
 
 				<section>
-					<p>3 Renderers de base sous RenderFlow : <em>RenderBlock, RenderInline et RenderText</em></p>
+					<p>3 <em>Renderers</em> de base sous RenderFlow : <em>RenderBlock, RenderInline et RenderText</em></p>
 					<p><em>Puis RenderFlexibleBox, RenderGrid, RenderListItem, RenderSlider, RenderTable, ainsi de suite ...</em></p>
 					<p>Tous les élements ne sont pas rendus : head (meta, script, link), display:none n'ont aucun Renderer, rien à dessiner</p>
-					<p>Certains élements ont plusieurs renderers : select (boite, drop, bouton) : pas toujours une relation 1:1 entre élément et son renderer</p>
+					<p>Certains élements ont plusieurs renderers : select (boite, drop, bouton) : pas <em>toujours</em> une relation 1:1 entre élément et son renderer</p>
 					<p>Le <em>RenderStyle</em> est calculé ici avec parsing de selectors et cascades : optimisez vos CSS pour accélérer !</p>
-					<p>Puis au layout(), les renderers du tree produisent un rectangle (un <em>LayoutRect</em> suivant le Box Model) avec des coordonnées xy (c'est dans RenderBox::layout())</p>
-					<img src="bob.png" width="200px"/>
+					<p>Puis au layout(), les renderers du tree produisent un rectangle (un <em>LayoutRect</em> suivant le Box Model) avec des coordonnées xy (c'est dans RenderBox::layout()) i<img src="bob.png" width="200px"/></p>
 				</section>
 
 				<section>
 					<p>pause</p>
-					<img src="pipe.png"><img src="tree.png"><img src="gpu.png">
+					<p>termes anglais ?</p>
+					<p style="width: 70%;">
+						<img src="pipe.png"><img src="tree.png"><img src="gpu.png">
+					</p>
 				</section>
 
 				<section>

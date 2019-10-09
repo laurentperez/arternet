@@ -97,11 +97,11 @@
 
 				<section>
 					<h2>What's up, Web ?</h2>
-					<p>On a plusieurs navigateurs : Safari, Chrome, Firefox, IE, ...</p>
+					<p>On a plusieurs navigateurs : Safari, Chrome, Firefox, IE, Opera, ...</p>
 					<p>... mais One moteur to rule them all ? Pas encore, tant mieux</p>
 					<img src="sauron.jpg" width="110px" alt="">
 					<p>Dualité d'Apple et de Google qui ont partagé un moteur commun jusqu'en 2013 : WebKit (né en 2001, issu du monde Linux)</p>
-					<p>Mozilla et Microsoft avec leurs propres moteurs : Gecko (ex Netscape réécrit), Servo, Trident, EdgeHTML</p>
+					<p>Mozilla, Microsoft et Opera avec leurs propres moteurs : Gecko (ex Netscape réécrit), Servo, Trident, EdgeHTML, Presto</p>
 					<p>... mais IE va utiliser le moteur de Google : Blink, fork de WebKit</p>
 				</section>
 
@@ -197,7 +197,7 @@
 					<p>Embarqués dans des logiciels assez connus</p>
 					<p>Players Spotify, Pandora, Mail.app/iWork/iTunes/App Stores</p>
 					<p>Steam, Battle.net, Kindle Amazon</p>
-					<p>Sony, Nintendo, outils Adobe</p>
+					<p>consoles Sony, Nintendo, outils Adobe</p>
 					<p>... de récents commits de Sony, la PS5 se profile</p>
 					<p>Nintendo Switch hackée à cause d'un vieux WebKit</p>
 					<img src="mario.png" width="300px" alt="">
@@ -224,6 +224,7 @@
 				<section>
 					<ul>
 						<li>2016/19 CSS4, CSS Houdini, Progressive WebApps, WebPayment, WebAssembly, Animations API, ... </li>
+						<li>Juin 2019 Les groupes de standardisation HTML du W3C (Berners-Lee, non lucratif) et du WhatWG (fabricants, pognon) fusionnent</li>
 						<li>2020 "Year of Privacy" pour tous les fabricants 🔒 (Intelligent Tracking Prevention)</li>
 						<li>Manifestes des fabricants pour restreindre les Cookies tiers et techniques de pistage</li>
 						<li>https://webkit.org/tracking-prevention-policy/</li>
@@ -239,7 +240,7 @@
 						<li>Blink : https://www.chromestatus.com/features</li>
 						<li>Edge : https://developer.microsoft.com/en-us/microsoft-edge/platform/status/</li>
 						<li>Safari : https://developer.apple.com/safari/technology-preview/</li>
-						<li>nb : Apple ne commentent jamais en _détails_ sur qu'ils vont ajouter pour iOS, les curieux.ses peuvent lire les commits des devs @apple.com</li>
+						<li>nb : Apple par Culte du Secret ne commentent jamais en _détails_ sur qu'ils vont ajouter pour iOS/iPadOS, les curieux.ses peuvent lire les commits sign&eacute;s des devs @apple.com</li>
 						<small>
 						https://github.com/WebKit/webkit/commits/master<br/>
 						</small>
@@ -309,8 +310,9 @@
 						<h2>Graphics Context delegate</h2>
 						<p>WebCore n'a pas de look ni de Style en soi - un <em>navigateur</em> oui : à la fois son UI mais aussi ses styles CSS par défaut</p>
 						<p>Le moteur délègue à un tiers (<em>GraphicsContext</em>) pour dessiner : dessine moi un bouton</p>
-						<p><img width="100px" src="mouton.jpeg"><img src="buttonios.png"></p>
-						<p><img width="100px" src="buttongtk.png"><img src="buttonqt.jpeg"></p>
+						<p><img width="200px" src="mouton.jpeg"><img width="200px" src="buttonios.png">
+						<img width="200px" src="buttongtk.png"><img width="200px" src="buttonqt.jpeg"></p>
+						<p>Ce tiers utilise la pile graphique du <em>port</em></p>
 					</section>
 
 				<section>
@@ -364,7 +366,7 @@
 					<section>
 						<h3>Spec #1 : Le Box Model</h3>
 						<p><img src="css_box_model.gif"></p>
-						<p>probablement la spec la plus connue, le rectangle est visible dans un inspecteur, fourni par WebKit</p>
+						<p>probablement la spec la plus connue, le rectangle est visible dans un inspecteur, fourni par WebKit - son composant WebInspector</p>
 						<p>un langage devenu commun entre créas et devs</p>
 						<p>"tu as mis 1px de trop sur la marge gauche"</p>
 						<p>responsive Bootstrap = 12 boxes en flow float/flexbox</p>
@@ -384,7 +386,7 @@
 					</section>
 					<section>
 						<h3>Certains éléments du flow ne sont pas speccés <em>per se</em></h3>
-						<p>block element, inline element oui ... mais pas replaced element : un element dont le rendu est non spécifié par CSS (image, form control, iframe, applet, object ActiveX/), il est inline par défaut</p>
+						<p>block element, inline element oui ... mais pas replaced element : un element dont le rendu est non spécifié par CSS (image, form control, iframe, applet, object ActiveX/Flash), il est inline par défaut</p>
 						<p>Une simple <em>position:</em> absolute ou fixed fait changer un inline en block</p>
 						<p><small>When an object is absolute/fixed positioned, it becomes block-level. Even if the CSS display type is set to inline (or inline-block/table), the effective display type becomes block-level once an object is positioned. </small></p>
 						<p>... parce que c'est plus simple pour le moteur de penser block dans des coordonnées x/y, tu es en dehors du flow, mais quand même positionné quelque part avec précision</p>
@@ -405,7 +407,7 @@
 					<h2>Un cas industriel & créa particulier</h2>
 					<p>Les specs sont publiques</p>
 					<p>Nimporte qui peut y contribuer, leurs auteurs répondent - en général</p>
-					<p>Les fabricants/OSS implémentent (ou non) les specs selon leur propre roadmap</p>
+					<p>Les fabricants/OSS implémentent ou non les specs selon leur propre roadmap</p>
 					<p>Les specs sont une prédiction - non garantie - de ce qui va arriver dans les navigateurs et WebViews pour app natives</p>
 					<p>Suivre @twitter "Intent to ship" https://twitter.com/intenttoship pour savoir quand ça va arriver sous Firefox ou Chrome</p>
 					<p>Suivre les commits WebKit pour savoir quand ça va arriver sous Safari</p>
@@ -437,7 +439,7 @@
 					<p>Tu tapes une URL et tu fais entrée : welcome to WebCore</p>
 					<p>Il faut d'abord charger le HTML (HTMLDocument.cpp) du réseau ou du cache</p>
 					<p>HTML lu caractère par caractère : le Parsing = mise en Tokens (le moteur découvre les commentaires, début et fin des balises, doctype, langue, cdata) </p>
-					<p>Il n'y a pas de compilation ou de packaging à la iOS/Android : le HTML est directement donné au moteur</p>
+					<p>Il n'y a pas de compilation ou de packaging à la iOS/Android : le HTML est directement donné brut au moteur</p>
 				</section>
 
 				<section>
@@ -482,7 +484,7 @@
 				<section>
 					<p>Le CSSPreloadScanner ne précharge que les CSS @import, pourquoi pas ses images/fonts trouvées dans la CSS ?</p>
 					<ul>
-					<li>background-image ? il faudrait pas charger une url() inutile selon une Media Query mais le scanner <strong>n'est pas un parseur CSS : il ne lit pas 'dedans', il télécharge juste la ressource import()</strong></li>
+					<li>background-image ? il faudrait pas charger une url() inutile selon une Media Query mais le scanner <strong>n'est pas un parseur CSS : il ne lit pas 'dedans', il télécharge juste la ressource import() du réseau</strong></li>
 					<li>bg image responsive/retina ? scanner != parseur, impossible d'évaluer une MQ (width,dpx)... alors &lt;img srcset&gt; a été créé pour le HTMLPreloadScanner, qui lui peut évaluer une MQ pour ne pas charger une image inutile</li>
 					<li>fontes utiles ? compliqué, il ne faudrait les charger que si elles seront utilisées dans le style, mais impossible de preloader : le style n'est pas encore connu, l'arbre CSS pas encore construit</li>
 					</ul>
@@ -536,15 +538,13 @@
 					<p>Tous les élements ne sont pas rendus : head (meta, script, link), display:none n'ont aucun Renderer, rien à dessiner</p>
 					<p>Certains élements ont plusieurs renderers : select (boite, drop, bouton) : pas <em>toujours</em> une relation 1:1 entre élément et son renderer</p>
 					<p>Le <em>RenderStyle</em> est calculé ici avec parsing de selectors et cascades : optimisez vos CSS pour accélérer !</p>
-					<p>Puis au layout(), les renderers du tree produisent un rectangle (un <em>LayoutRect</em> suivant le Box Model) avec des coordonnées xy (c'est dans RenderBox::layout()) i<img src="bob.png" width="200px"/></p>
+					<p>Puis au layout(), les renderers du tree produisent un rectangle (un <em>LayoutRect</em> suivant le Box Model) avec des coordonnées xy (c'est dans RenderBox::layout())</p>
 				</section>
 
 				<section>
 					<p>pause</p>
-					<p>termes anglais ?</p>
-					<p style="width: 70%;">
-						<img src="pipe.png"><img src="tree.png"><img src="gpu.png">
-					</p>
+					<p>Le DOM et le CSSOM, et un rectangle calculé</p>
+						<img width="400px" src="pipe.png"><img width="300px" src="tree.png"><img width="300px" src="gpu.png"><img src="bob.png" width="200px"/>
 				</section>
 
 				<section>
@@ -567,7 +567,7 @@
 				<h3>Déterminer le containing block</h3>
 				<p>C'est ce block clé qui va layout() ses enfants : c'est le <em>parent significatif</em></p>
 				<!--<p>http://www.w3.org/TR/CSS21/visuren.html#containing-block.</p>-->
-				<p>Par défaut c'est le root element RenderView : ce qu'on voit à l'écran, à x=0,y=0, le haut à gauche de l'écran</p>
+				<p>Par défaut c'est le root element <em>RenderView</em> : ce qu'on voit à l'écran, à x=0,y=0, le haut à gauche de l'écran</p>
 				<p>C'est la <em>position:</em> du rectangle enfant qui permet de trouver son containingBlock</p>
 				<p>ex : relative ou static (= default) : containingBlock = l'ancêtre block <i>le plus proche</i></p>
 				<p>ex : fixed : containingBlock = RenderView = l'écran. RenderView réajuste les coordonnées du fixed selon le scroll</p>
@@ -586,7 +586,7 @@
 
 			<section>
 				<h3>On ne relayout pas tout. Seulement les containing blocks avec dirties (sales gosses)</h3>
-				<p>Le layout n'est pas figé : au "hit testing" - où et sur quoi est le pointeur - un scroll, survol :hover, un focus, un touch JS peut restyler.</p>
+				<p>Le layout n'est pas figé : au "hit testing" - sur quoi est le pointeur - un scroll, survol :hover, un focus, un touch JS peut restyler.</p>
 				<p>Le <em>RenderStyle</em> recalculé <em>ne change pas toujours</em> le layout : color non, position/display/height/width oui. </p>
 				<small>https://csstriggers.com/</small>
 				<!-- <p>Si tu relayout au touchmove t'es mal : le JS est sur la même thread que la UI thread, !Compositor. Blink veut un Layout threadé</p> -->
@@ -628,8 +628,8 @@
 			<section>
 				<h2>🎨 9 Etapes de peinture 🎨</h2>
 				<p>A wild pixel appears</p>
-				<p>On ne peint pas élément par élément au feeling, pour éviter les bavures</p>
-				<p>On peint des CSS stacking contexts (piles), en suivant un ordre précis et pas celui du HTML</p>
+				<p>On ne peint pas élément par élément au feeling, pour pas raturer</p>
+				<p>On peint des CSS stacking contexts (piles), en suivant un ordre précis et pas toujours celui du HTML</p>
 				<p>Les piles sont étanches entre elles sinon ça coule, comme de la... peinture</p>
 				<p>Un stacking context est formé par élément qui est: racine, positioné, flex, grid item, table, float</p>
 				<p>Un stacking context peut avoir des enfants avec stacking contexts (un enfant position:absolute/relatif suffit à créer un nouveau sc)</p>

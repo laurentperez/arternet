@@ -48,7 +48,6 @@
 
 		<div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
 					<h2>Comment fonctionne</h2>
@@ -60,7 +59,7 @@
 
 				<section>
 					<h2>Nos hôtes</h2>
-					
+					<p>TBD</p>					
 				</section>
 
 				<section>
@@ -308,10 +307,10 @@
 
 					<section>
 						<h2>Graphics Context delegate</h2>
-						<p>WebCore n'a pas de "look" en soi - un <em>navigateur</em> oui</p>
-						<p>Il délègue à un contexte graphique (GraphicsContext) pour dessiner : dessine moi un bouton</p>
-						<p><img src="mouton.jpeg"><img src="buttonios.png"></p>
-						<p><img src="buttongtk.png"><img src="buttonqt.jpeg"></p>
+						<p>WebCore n'a pas de look ni de Style en soi - un <em>navigateur</em> oui : à la fois son UI mais aussi ses styles CSS par défaut</p>
+						<p>Le moteur délègue à un tiers (<em>GraphicsContext</em>) pour dessiner : dessine moi un bouton</p>
+						<p><img width="100px" src="mouton.jpeg"><img src="buttonios.png"></p>
+						<p><img width="100px" src="buttongtk.png"><img src="buttonqt.jpeg"></p>
 					</section>
 
 				<section>
@@ -321,7 +320,7 @@
 					<p>calcul des styles depuis la cascade CSS (styling)</p>
 					<p>calcul de la mise en page positions x/y (layout)</p>
 					<p>mise en calques de la mise en page et dessin (painting/compositing)</p>
-					<p>post-dessin, le JS peut altérer les 2 arbres (JavascriptCore)</p>
+					<p>post-dessin, le JS peut altérer les 2 arbres via bindings (<em>JavascriptCore</em>)</p>
 					<img src="treec.jpg" width="300px" alt="">
 				</section>
 
@@ -385,7 +384,7 @@
 					</section>
 					<section>
 						<h3>Certains éléments du flow ne sont pas speccés <em>per se</em></h3>
-						<p>block element, inline element oui ... mais pas replaced element : un element dont le rendu est non spécifié par CSS (image, form control, iframe, applet, object ActiveX/Flash), il est inline par défaut</p>
+						<p>block element, inline element oui ... mais pas replaced element : un element dont le rendu est non spécifié par CSS (image, form control, iframe, applet, object ActiveX/), il est inline par défaut</p>
 						<p>Une simple position: absolute ou fixed fait changer un inline en block</p>
 						<p><small>When an object is absolute/fixed positioned, it becomes block-level. Even if the CSS display type is set to inline (or inline-block/table), the effective display type becomes block-level once an object is positioned. </small></p>
 						<p>... parce que c'est plus simple pour le moteur de "penser" block dans des coordonnées x/y, tu es en dehors du flow, mais quand même positionné quelque part avec précision</p>
@@ -436,14 +435,18 @@
 				<section>
 					<h2>WebKit, du HTML brut aux boites</h2>
 					<p>Tu tapes une URL et tu fais entrée : welcome to WebCore</p>
-					<p>Il faut d'abord charger le HTML (HTMLDocument.cpp) du cache ou du réseau</p>
+					<p>Il faut d'abord charger le HTML (HTMLDocument.cpp) du réseau ou du cache</p>
 					<p>HTML lu caractère par caractère : le Parsing = mise en Tokens (le moteur découvre les commentaires, début et fin des balises, doctype, langue, cdata) </p>
+					<p>Il n'y a pas de compilation ou de packaging à la iOS/Android : le HTML est directement donné au moteur</p>
 				</section>
 
 				<section>
 					<h2>Tokens</h2>
-					<p>Pour découvrir les éléments</p>
-					<p><img src="tok.png" width="600px" alt=""></p>
+					<p>Le moteur découvre les éléments</p>
+					<p><img src="tok.png" width="400px" alt=""></p>
+					<p>caractères clef, ex = &lt;div&gt;, &lt;span&gt;, &lt;head&gt;... &lt;svg&gt;, &lt;math&gt;</p>
+					<p>Le HTML n'est pas du SVG, ni du MathML</p>
+					<small>credit Mozilla</small>
 				</section>
 
 				<section>
@@ -458,8 +461,8 @@
 				<section>
 					<h2>Ami(e)s créas restez avec nous</h2>
 					<p>Une petite plongée dans le code de WebKit</p>
-					<p>Scanners Réseau, Parsing en Tokens (= caractères clef, ex = &lt;div&gt;, &lt;head&gt;, &lt;svg&gt;), Arbres HTML et CSS, Rectangles, Styles et Renderers</p>
-					<p>Création d'un arbre de renderers (= "afficheurs"), produisant des rectangles poupées russes, rangés en calques</p>
+					<p>Scanners, Parsing en Tokens , Arbres HTML et CSS, Rectangles, Styles et Renderers</p>
+					<p>Création d'un arbre de renderers "afficheurs", produisant des rectangles poupées russes, rangés en calques</p>
 					<p>Puis dessin et peinture de ces calques</p>
 				</section>
 
@@ -488,7 +491,7 @@
 				</section>
 
 				<section>
-					<p>Pourquoi ne pas 'simplement' multithreader le parsing ? Les CPU ont plusieurs cores après tout</p>
+					<p>Pourquoi ne pas "simplement" multithreader le parsing ? Les CPU ont plusieurs cores après tout</p>
 					<p>parce que c'est vraiment compliqué</p>
 					<p>un preload scanner est une réponse bête et simple pour donner un peu plus de perfs</p>
 					<p>pour plus : du parsing en parallèle, des envois directs au GPU pour libérer le CPU, une refonte totale du code de rendu</p>
@@ -505,24 +508,27 @@
 					<p>Revoir le talk HTTP2 @ Sunnytech 2018</p>
 					<p>un seul tuyau réseau pour précharger toutes les ressources au lieu de petits tuyaux multiples</p>
 					<p>utile pour les mauvaises connexions réseau, cellulaire ou non</p>
-					<p>+ talk WeLoveSpeed de Gilles Dubuc https://youtu.be/9PBeqHXk7zw</p>
+					<p>+ talk <a href="https://youtu.be/9PBeqHXk7zw" target="_blank">WeLoveSpeed</a> de Gilles Dubuc, pour des KPIs riches</p>
 				</section>
 
 				<section>
 					<p>pause chocolatine</p>
 					<p>puis quelques morceaux de code WebKit</p>
 					<p>les noms en anglais sont les fichiers .cpp dans WebKit</p>
+					<p></p>
 				</section>
 
-				<section>
-					<h2>Parsing (HTML/CSS) puis Layout (mise en rectangles)</h2>
+				<section data-background="wtree.png">
+					<h2>Parsing HTML/CSS puis Layout (mise en rectangles)</h2>
 					<p>Le HTML tokenizé est mis en arbre (DOM Tree) d'HTMLElement, la CSS en Style Rules</p>
 					<small>Le moteur nettoie ce qu'il peut (i.e tes balises mal fermées) et recoud le wrap (splitflow RenderInline.cpp).</small>
-					<p>Crée une Matrice <em>DOM Tree + Style Rules = RenderTree</em></p>	
-					<p>Ce tree est un arbre de Renderers (RenderObject.cpp)</p>
+					<p>Fusionne <em>DOM Tree + Style Rules =&gt; RenderTree</em></p>	
+					<p>Ce tree est un arbre de Renderers <em>(RenderObject.cpp)</em></p>
 					<p>Quasi tout <em>HTMLElement</em> a une méthode pour s'attacher un <em>Renderer</em> en fonction de son display : le renderer calcule un <em>RenderStyle</em> (Recalculate style) et est rangé dans un <em>RenderLayer</em> (clip,mask,overflow) rangé par z-index</p> (c'est RenderElement.cpp)
 					<p>ex de display: block, inline, table, column, flex, grid, ...</p>
 				</section>
+
+				<!-- TODO JS bindings DOM ?-->
 
 				<section>
 					<p>3 Renderers de base sous RenderFlow : <em>RenderBlock, RenderInline et RenderText</em></p>
@@ -557,35 +563,35 @@
 
 			<section>		
 				<h3>Déterminer le containing block</h3>
-				<p>C'est ce block clé qui va layout() ses enfants : c'est le parent significatif</p>
+				<p>C'est ce block clé qui va layout() ses enfants : c'est le <em>parent significatif</em></p>
 				<!--<p>http://www.w3.org/TR/CSS21/visuren.html#containing-block.</p>-->
 				<p>Par défaut c'est le root element RenderView : ce qu'on voit à l'écran, à x=0,y=0, le haut à gauche de l'écran</p>
-				<p>C'est la position: du rectangle enfant qui permet de trouver son containingBlock</p>
+				<p>C'est la <em>position:</em> du rectangle enfant qui permet de trouver son containingBlock</p>
 				<p>ex : relative ou static (= default) : containingBlock = l'ancêtre block <i>le plus proche</i></p>
 				<p>ex : fixed : containingBlock = RenderView = l'écran. RenderView réajuste les coordonnées du fixed selon le scroll</p>
 				<p>ex : absolute : containingBlock = ancêtre le plus proche avec position absolute/relative/fixed ou transform, si aucun, alors RenderView (donc x=0,y=0)</p>	
 			</section>
 
 			<section>
-				<h3>Ce qui coûte le plus cher au moteur</h3>
+				<h3>🐌 Ce qui coûte le plus cher au moteur 🕘</h3>
 				<p>Recalculer les styles et le layout x/y : "pense aux arbres"</p>
 				<p>Lutter avec un HTML surchargé de balises inutiles et styles CSS YOLO</p>
 				<p>Le JS qui déclenche des recalculs de layout (ex: worst case, au touch scroll, 60 fois/seconde)</p>
 				<p>Exercice très formateur pour aider le rendu : faire un site avec le moins de balises possibles et le moins de JS possible, less is more</p>
 				<p>Exercice UI/DFO avancé : repérer tous les recalculs de layout inutiles et les enlever</p>
-				<p>N'optimisez que ce que vous pouvez mesurer : utilisez la Timeline de DevTools pour voir le réseau, le layout et le dessin</p>
+				<p>N'optimisez <em>que ce que vous pouvez mesurer</em> : utilisez la Timeline de l'inspecteur pour voir réseau, layout et dessin</p>
 			</section>
 
 			<section>
 				<h3>On ne relayout pas tout. Seulement les containing blocks avec dirties (sales gosses)</h3>
-				<p>Le layout n'est pas figé : au 'hit testing' (où et sur quoi est le pointeur) un survol :hover, un focus, un touch JS peut restyler.</p>
-				<p>Le RenderStyle recalculé ne change pas toujours le layout : color non, position/display/height/width oui. </p>
+				<p>Le layout n'est pas figé : au "hit testing" - où et sur quoi est le pointeur - un scroll, survol :hover, un focus, un touch JS peut restyler.</p>
+				<p>Le <em>RenderStyle</em> recalculé <em>ne change pas toujours</em> le layout : color non, position/display/height/width oui. </p>
 				<small>https://csstriggers.com/</small>
 				<!-- <p>Si tu relayout au touchmove t'es mal : le JS est sur la même thread que la UI thread, !Compositor. Blink veut un Layout threadé</p> -->
 				<p>Savoir profiter du preload scanner = perfs !</p>
 				<p>Savoir minimiser le layout = more perfs !</p>
 				<p>Savoir minimiser la peinture à venir = godlike - parfois</p>
-				<p>... des questions HTML/CSS à poser en recrutement DFO, avant jQuery, Angular/React (nb : là je troll)</p>
+				<p>... des questions HTML/CSS à poser en recrutement DFO, avant jQuery, Angular/React - nb : là je troll</p>
 			</section>
 
 			<section>
@@ -595,7 +601,7 @@
 				<p>En SVG on aurait dessiné des paths, circles, ...</p>
 				<p>En MathML on aurait dessiné des vecteurs, racines, fractions, ...</p>
 				<p>En Canvas/WebGL on aurait dessiné sur des surfaces 2D ou 3D avec sources de lumières et angles de caméra, ...</p>
-				<p>Le moteur envoie tout l'arbre calculé vers des calques (coucou Photoshop)</p>
+				<p>Le moteur envoie tout l'arbre calculé vers des calques - hello Photoshop/XPress</p>
 			</section>
 
 			<section>
@@ -610,7 +616,7 @@
 
 			<section>
 				<h3>Super, on a un Layout non dirty qui nous a donné des calques</h3>
-				<p>On peut enfin dessiner / peindre nos RenderLayers!</p>
+				<p>On peut enfin dessiner / peindre nos <em>RenderLayer</em>s !</p>
 				<p>Plus besoin de penser box model, containing block, les styles sont calculés (cascades appliquées), le layout (padding, margin, border, width, height) a été fait et mis en layers</p>
 				<p>Pour chaque layer, la spec CSS nous dit exactement quoi peindre dans quel ordre</p>
 				<p>La peinture suit les specs, comme le layout : 9 étapes</p>
@@ -630,7 +636,7 @@
 
 			<section>
 				<h3>Oh non, encore des specs !</h3>
-				<small>On peint récursif par stacking context et pas par l'ordre du HTML</small>
+				<small>On peint récursif par stacking context et pas toujours par l'ordre du HTML</small>
 				<ol>
 					<li>on peint background (color/img/col/row/cell/grid-item), borders de l'element</li>
 					<li>on peint dans l'ordre du flow : enfants positionnés en zindex &lt; 0</li>

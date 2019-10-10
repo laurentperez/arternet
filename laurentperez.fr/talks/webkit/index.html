@@ -100,23 +100,25 @@
 					<p>On a plusieurs navigateurs : Safari, Chrome, Firefox, IE, Opera, ...</p>
 					<p>... mais One moteur to rule them all ? Pas encore, tant mieux</p>
 					<img src="sauron.jpg" width="110px" alt="">
-					<p>Dualité d'Apple et de Google qui ont partagé un moteur commun jusqu'en 2013 : WebKit (né en 2001, issu du monde Linux)</p>
+					<p>Dualité d'Apple et de Google qui ont partagé un moteur commun jusqu'en 2013 : WebKit, né en 2001, issu du monde Linux</p>
 					<p>Mozilla, Microsoft et Opera avec leurs propres moteurs : Gecko (ex Netscape réécrit), Servo, Trident, EdgeHTML, Presto</p>
 					<p>... mais IE va utiliser le moteur de Google : Blink, fork de WebKit</p>
 				</section>
 
 				<section>
 					<h2>🌐 One Web. Desktop et mobile 🌐</h2>
-					<p>Mozilla et Microsoft ont complètement raté le virage mobile</p>
-					<p>Apple interdit tout autre moteur que le sien dans les apps iOS, Chrome et Firefox iOS sont des coquilles autour de WebKit</p>
+					<p>Mozilla et Microsoft ont raté le virage mobile</p>
+					<p>Apple interdit tout autre moteur que le sien dans les apps iOS, Chrome et Firefox iOS ne sont que des coquilles autour de WebKit</p>
 					<p>Interrogations autour de Huawei qui pourrait forker WebKit ou Blink</p>
-					<p>Samsung, Sony, Nokia, HTC &amp; all utilisent le moteur de Google <em>per</em> Android</p>
-					<p>KaiOS (Asie, Afrique, Brésil) utilise un dérivé du moteur de Firefox Mobile + Opera Mini</p>
+					<p>Samsung, Sony, Nokia, HTC &amp; all utilisent le moteur de Google <em>per</em> Android
+					... mais Firefox utilise <a href="https://hacks.mozilla.org/2019/06/geckoview-in-2019/">GeckoView</a> alternative à WebView sur Android pour toute PWA</p>
+					<p>KaiOS (Asie, Afrique, Brésil) utilise un dérivé du moteur de Firefox Mobile</p>
+					<p>Opera Mini présent sur certains terminaux Kai, et Nokia 3310 2017</p>
 				</section>
 				
 				<section>
 						<h2>6 moteurs sur le marché</h2>
-						<table>
+						<table style="font-size:0.8em">
 							<thead>
 								<tr>
 									<th>Moteur</th>
@@ -140,6 +142,10 @@
 									<td>Trident/EdgeHTML</td>
 									<td>XBOX, IE &lt; 2020</td>
 								</tr>
+								<tr>
+									<td>Fork Firefox/Opera Mini</td>
+									<td>smart feature phones KaiOS % &gt; iOS en Inde</td>
+								</tr>
 							</tbody>
 						</table>
 					
@@ -147,7 +153,7 @@
 				<section>
 					<h2>Parts de marché des moteurs</h2>
 					<p>
-						Sur mobile domination à 95% du duo WebKit/Blink. Trident (Windows Phone) est mort. Firefox/Opera Mobile pour pays émergeants.
+						Sur mobile domination Europe/USA à 95% du duo WebKit/Blink. Trident (Windows Phone) est mort. Firefox/Opera Mobile pour pays émergeants.
 					</p>
 					<p>Sur desktop le % est un peu différent : Firefox + IE ont ~20% du marché</p>
 					<p>Sur l'embarqué Consoles, Smart TV, Kiosques : WebKit devant Blink </p>
@@ -159,7 +165,7 @@
 					<h2>🥄 Aparté sur le fork Blink (Google) 🥄</h2>
 					<p>Mi 2013 Google décide de diverger de WebKit commun à Safari et Chrome - plus précisemment de son WebCore - et crée Blink</p>
 					<p>Changements de fond liés aux perfs (ex: volonté de multithreading JS et décharge vers GPU), au refus des -prefix CSS, au refus originel du code MathML, à l'arrivée du moderne Servo chez Mozilla</p>
-					<p>... à la concurrence avec Apple : Google était co contributeur majeur de WebKit</p>
+					<p>... à la concurrence avec Apple : Google était co contributeur majeur de WebKit, devenu copyright Apple</p>
 					<p>Blink est moteur de Chromium/Chrome, Opera, Silk, UI Battle.net, Steam, Spotify post WebKit, IE 2020</p>
 				</section>
 
@@ -171,7 +177,7 @@
 					</blockquote>
 					<p>Youtube + Chrome = pubs = 💰 💰 💰</p>
 					<p>MS a clairement indiqué ne pas vouloir forker Blink et veut réouvrir des API bloquées pour les adblockers (reddit AMA Juin 2019)</p>
-					<p>Mozilla un peu en tension avec Google : très peu probable qu'ils aillent vers Blink, ils ont déjà un moteur Servo next-gen</p>
+					<p>Mozilla en tension avec Google : très peu probable qu'ils aillent vers Blink, ils ont déjà un moteur Servo next-gen</p>
 				</section>
 
 				<section>
@@ -254,7 +260,7 @@
 					<p>Blink : Google, Opera, Adobe, Igalia, Samsung, Intel</p>
 					<p>Igalia ? GNOME/Linux, petite équipe de consultants experts et commiters WebKit/Blink/Qt/GTK, pour embarqué (voitures, panneaux pub, bornes, etc.)</p>
 					<p>ont implémenté CSS Grid dans Webkit+Blink, financés par Bloomberg, qui aime bien les grilles</p>
-					<p>Yoav Weiss (auteur de &lt;img srcset&gt;)</p>
+					<p>Yoav Weiss (auteur français de &lt;img srcset&gt;)</p>
 				</section>
 
 				<section>
@@ -359,14 +365,14 @@
 	<p>La peinture par specs existe aussi dans l'art/psycho : Klein, Paint by numbers (revoir Will Hunting)</p>
 	<img src="willh.jpeg" width="400px" alt="">
 	<p>Box model, les flows et le VFM sont les fondations du Web visuel</p>
-	<p>... le Web est né au CERN, pas dans une école d'art : une documentation scientifique demeure - quand les specs sont assez claires (!)</p>
+	<p>... le Web est né au CERN, pas dans une école d'art : une documentation scientifique demeure - quand les specs sont assez claires !</p>
 	<p>Une spec peu claire crée du doute, des interprétations, des bugs</p>
 	<p>Ou des préfixes et des mues : -ms-grid, -webkit-grid</p>
 </section>
 					<section>
 						<h3>Spec #1 : Le Box Model</h3>
 						<p><img src="css_box_model.gif"></p>
-						<p>probablement la spec la plus connue, le rectangle est visible dans un inspecteur, fourni par WebKit - son composant WebInspector</p>
+						<p>probablement la spec la plus connue, le rectangle est visible dans un inspecteur, fourni par WebKit - son composant WebInspectorUI</p>
 						<p>un langage devenu commun entre créas et devs</p>
 						<p>"tu as mis 1px de trop sur la marge gauche"</p>
 						<p>responsive Bootstrap = 12 boxes en flow float/flexbox</p>

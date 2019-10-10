@@ -609,12 +609,20 @@
 
 			<section>
 				<h3>Le <em>RenderTree</em> est LayoutRecté et ses rectangles rangés en <em>RenderLayer</em> (calques)</h3>
-				<p>comopsants utilitaires DumpRenderTree/DumpRenderLayer</p>
+				<p>composants utilitaires DumpRenderTree/DumpRenderLayer</p>
 				<p>Le calque sera ensuite peint via le <em>GraphicsContext</em> (ex: CoreGraphics, rappel du look natif)</p>
 				<p>ex: un overflow:hidden (rectangle qui déborde du containing) c'est un layer tronqué</p>
-				<p>ex: un transform3d c'est un layer devenu une texture GL, optimisable par GPU</p>
-				<p>ex: une shape/mask c'est un layer clippé, un filter c'est un layer mélangé (multiply,blur,...)</p>
+				<p>ex: un translate c'est un layer déplacé/animé</p>
+				<p>ex: un shape/mask c'est un layer clippé, un filter c'est un layer mélangé (multiply,blur,...)</p>
 				<p>Un calque peut être backé par GPU pour optimiser (accélération carte graphique : les ombres, opacités, flou, projections)</p>
+			</section>
+
+			<section>
+				<h3>Etape du Compositing</h3>
+				<p>Intermédiaire entre le layout et la peinture</p>
+				<p>Le moteur compose les calques dans la <em>Main</em> Thread mais les peint séparément dans une autre <em>Compositor</em> Thread</p>
+				<p>Car la Main thread peut ralentir : ex : miner du bitcoin en JS, avoir du HTML qui layout() trop souvent</p>
+				<p>On ne veut pas ralentir le compositing, la Compositor Thread bénéficie aussi d'optmisations (ex: cache, GPU)</p>
 			</section>
 
 			<section>

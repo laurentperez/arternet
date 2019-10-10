@@ -75,8 +75,8 @@
 						<ul>
 							<li>un composant pour charger des ressources réseau de manière intelligente</li>
 							<li>un composant de règles CSS (ex: matrice de calcul de styles en cascade)</li>
-							<li>un composant de dessin qui utilise une libraire graphique (ex: CoreGraphics pour Apple, Cairo GTK pour Linux/Win, Skia pour Android ...)</li>
-							<li>un composant pour éxécuter du JS (ex: JavaScriptCore/Nitro sous WebKit, V8 sous Blink)</li>
+							<li>un composant de dessin qui utilise une libraire graphique (ex: CoreGraphics pour Apple, Cairo GTK pour Linux/Win, Skia pour Android, HarfBuzz pour les glyphes ...)</li>
+							<li>un composant pour éxécuter du JS (ex: JavaScriptCore sous WebKit, V8 sous Blink/Node, SpiderMonkey sous Firefox, Chakra sous IE/Edge)</li>
 							<li>etc...</li>
 							<li>oulala le 1er slide est déjà technique</li>
 							<li>... prenons du recul</li>
@@ -99,6 +99,7 @@
 					<h2>What's up, Web ?</h2>
 					<p>On a plusieurs navigateurs : Safari, Chrome, Firefox, IE, Opera, ...</p>
 					<p>... mais One moteur to rule them all ? Pas encore, tant mieux</p>
+					<img src="logos.png" alt="" width="200px">
 					<img src="sauron.jpg" width="110px" alt="">
 					<p>Dualité d'Apple et de Google qui ont partagé un moteur commun jusqu'en 2013 : WebKit (né en 2001, issu du monde Linux)</p>
 					<p>Mozilla, Microsoft et Opera avec leurs propres moteurs : Gecko (ex Netscape réécrit), Servo, Trident, EdgeHTML, Presto</p>
@@ -159,7 +160,7 @@
 					<h2>🥄 Aparté sur le fork Blink (Google) 🥄</h2>
 					<p>Mi 2013 Google décide de diverger de WebKit commun à Safari et Chrome - plus précisemment de son WebCore - et crée Blink</p>
 					<p>Changements de fond liés aux perfs (ex: volonté de multithreading JS et décharge vers GPU), au refus des -prefix CSS, au refus originel du code MathML, à l'arrivée du moderne Servo chez Mozilla</p>
-					<p>... à la concurrence avec Apple : Google était co contributeur majeur de WebKit</p>
+					<p>... à la concurrence avec Apple : Google était co contributeur majeur de WebKit, du code y est (c) Apple</p>
 					<p>Blink est moteur de Chromium/Chrome, Opera, Silk, UI Battle.net, Steam, Spotify post WebKit, IE 2020</p>
 				</section>
 
@@ -496,8 +497,8 @@
 					<p>Pourquoi ne pas "simplement" multithreader le parsing ? Les CPU ont plusieurs cores après tout</p>
 					<p>parce que c'est vraiment compliqué</p>
 					<p>un preload scanner est une réponse bête et simple pour donner un peu plus de perfs</p>
-					<p>pour plus : du parsing en parallèle, des envois directs au GPU pour libérer le CPU, une refonte totale du code de rendu</p>
-					<p>... ça tombe bien c'est exactement ce sur quoi Blink (LayoutNG)/Servo (WebRender) bossent en ce moment</p>
+					<p>pour plus : du parsing ou layout en parallèle, des envois directs au GPU pour libérer le CPU, une refonte totale du code de rendu</p>
+					<p>... ça tombe bien c'est exactement ce sur quoi Blink (LayoutNG) et Servo (WebRender) bossent en ce moment</p>
 				</section>
 
 				<section>
@@ -506,8 +507,8 @@
 
 				<section>
 					<h2>Pour plus de performance Web</h2>
-					<p>Au delà des simples preload Scanners</p>
-					<p>Revoir le talk HTTP2 @ Sunnytech 2018</p>
+					<p>Au delà des simples Preload Scanners</p>
+					<p>Revoir le talk <a href="https://www.youtube.com/watch?v=E606Nxnxg14" target="_blank">HTTP2 en pratique</a> @BreizhCamp/Sunnytech 2018 (Alexis Hassler)</p>
 					<p>un seul tuyau réseau pour précharger toutes les ressources au lieu de petits tuyaux multiples</p>
 					<p>utile pour les mauvaises connexions réseau, cellulaire ou non</p>
 					<p>+ talk <a href="https://youtu.be/9PBeqHXk7zw" target="_blank">WeLoveSpeed</a> de Gilles Dubuc, pour des KPIs riches</p>
@@ -523,7 +524,7 @@
 				<section data-background="wtree.png">
 					<h2>Parsing HTML/CSS puis Layout (mise en rectangles)</h2>
 					<p>Le HTML tokenizé est mis en arbre (DOM Tree) d'HTMLElement, la CSS en Style Rules</p>
-					<small>Le moteur nettoie ce qu'il peut (i.e tes balises mal fermées) et recoud le wrap (splitflow RenderInline.cpp).</small>
+					<small>Le moteur nettoie ce qu'il peut (i.e tes balises mal fermées), recoud le wrap (splitflow RenderInline.cpp)</small>
 					<p>Fusionne <em>DOM Tree + Style Rules =&gt; RenderTree</em></p>	
 					<p>Ce tree est un arbre de Renderers <em>(RenderObject.cpp)</em></p>
 					<p>Quasi tout <em>HTMLElement</em> a une méthode pour s'attacher un <em>Renderer</em> en fonction de son display : le renderer calcule un <em>RenderStyle</em> (Recalculate style) et est rangé dans un <em>RenderLayer</em> (clip,mask,overflow) rangé par z-index</p> (c'est RenderElement.cpp)
@@ -533,12 +534,12 @@
 				<!-- TODO JS bindings DOM ?-->
 
 				<section>
-					<p>3 <em>Renderers</em> de base sous RenderFlow : <em>RenderBlock, RenderInline et RenderText</em></p>
+					<p>3 <em>Renderers</em> de base sous RenderFlow : <em>RenderBlock, RenderInline</em> et <em>RenderText</em></p>
 					<p><em>Puis RenderFlexibleBox, RenderGrid, RenderListItem, RenderSlider, RenderTable, ainsi de suite ...</em></p>
 					<p>Tous les élements ne sont pas rendus : head (meta, script, link), display:none n'ont aucun Renderer, rien à dessiner</p>
 					<p>Certains élements ont plusieurs renderers : select (boite, drop, bouton) : pas <em>toujours</em> une relation 1:1 entre élément et son renderer</p>
 					<p>Le <em>RenderStyle</em> est calculé ici avec parsing de selectors et cascades : optimisez vos CSS pour accélérer !</p>
-					<p>Puis au layout(), les renderers du tree produisent un rectangle (un <em>LayoutRect</em> suivant le Box Model) avec des coordonnées xy (c'est dans RenderBox::layout())</p>
+					<p>Puis au layout(), les renderers du tree produisent un rectangle : <em>LayoutRect</em> suivant le Box Model, avec des coordonnées xy (c'est RenderBox::layout())</p>
 				</section>
 
 				<section>
@@ -585,10 +586,10 @@
 			</section>
 
 			<section>
-				<h3>On ne relayout pas tout. Seulement les containing blocks avec dirties (sales gosses)</h3>
+				<h3>🖼️  On ne relayout pas tout. Seulement les containing blocks avec dirties (sales gosses) 🖼️ </h3>
 				<p>Le layout n'est pas figé : au "hit testing" - sur quoi est le pointeur - un scroll, survol :hover, un focus, un touch JS peut restyler.</p>
-				<p>Le <em>RenderStyle</em> recalculé <em>ne change pas toujours</em> le layout : color non, position/display/height/width oui. </p>
-				<small>https://csstriggers.com/</small>
+				<p>Le <em>RenderStyle</em> recalculé <em>ne change pas toujours</em> le layout : color NON, position/display/height/width OUI. </p>
+				<small><a href="https://csstriggers.com/">https://csstriggers.com/</a></small>
 				<!-- <p>Si tu relayout au touchmove t'es mal : le JS est sur la même thread que la UI thread, !Compositor. Blink veut un Layout threadé</p> -->
 				<p>Savoir profiter du preload scanner = perfs !</p>
 				<p>Savoir minimiser le layout = more perfs !</p>
@@ -597,7 +598,7 @@
 			</section>
 
 			<section>
-				<h3>Fini de layouter</h3>
+				<h3>Fini de layouter !</h3>
 				<p>Le moteur a calculé les coordonnées x,y des rectangles : on a enfin une mise en page</p>
 				<p>En HTML on dessine des rectangles, qui peuvent être clippés ou tronqués (mask, shape, overflow:hidden)</p>
 				<p>En SVG on aurait dessiné des paths, circles, ...</p>
@@ -607,9 +608,9 @@
 			</section>
 
 			<section>
-				<h3>Le RenderTree est LayoutRecté et ses rectangles rangés en RenderLayer (calques)</h3>
-				<p>utilitaires DumpRenderTree/DumpRenderLayer dans WebKit</p>
-				<p>Le layer est ensuite Painté via le GraphicsContext (ex: CoreGraphics, rappel du look natif)</p>
+				<h3>Le <em>RenderTree</em> est LayoutRecté et ses rectangles rangés en <em>RenderLayer</em> (calques)</h3>
+				<p>comopsants utilitaires DumpRenderTree/DumpRenderLayer</p>
+				<p>Le calque sera ensuite peint via le <em>GraphicsContext</em> (ex: CoreGraphics, rappel du look natif)</p>
 				<p>ex: un overflow:hidden (rectangle qui déborde du containing) c'est un layer tronqué</p>
 				<p>ex: un transform3d c'est un layer devenu une texture GL, optimisable par GPU</p>
 				<p>ex: une shape/mask c'est un layer clippé, un filter c'est un layer mélangé (multiply,blur,...)</p>
@@ -638,7 +639,7 @@
 
 			<section>
 				<h3>Oh non, encore des specs !</h3>
-				<small>On peint récursif par stacking context et pas toujours par l'ordre du HTML</small>
+				<small>On peint récursif par piles de stacking context et pas toujours par l'ordre du HTML - ex: z-index</small>
 				<ol>
 					<li>on peint background (color/img/col/row/cell/grid-item), borders de l'element</li>
 					<li>on peint dans l'ordre du flow : enfants positionnés en zindex &lt; 0</li>
@@ -692,7 +693,7 @@
 				<p>WR convertit les rectangles en matrice de triangles et balance TOUT* vers le GPU</p>
 				<p>Beaucoup plus rapide. CPU : 8/12 cores, GPU : des centaines</p>
 				<p>*Seules les fontes sont encore traitées par le CPU car un peu floues en GPU et ligatures fines difficiles (arabe, chinois, ...)</p>
-				<p>TODO lien article Lin</p>
+				<p><a href="https://hacks.mozilla.org/2017/10/the-whole-web-at-maximum-fps-how-webrender-gets-rid-of-jank/">travaux de Lin Clark, WebRender / Quantum</a></p>
 			</section>
 
 			<section>

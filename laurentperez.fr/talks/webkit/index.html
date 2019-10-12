@@ -51,9 +51,9 @@
 			<div class="slides">
 				<section>
 					<h2>Comment fonctionne</h2>
-					<h2>un moteur de rendu web</h2>
+					<h2>un moteur de rendu</h2>
 					<h3>"du HTML aux pixels"</h3>
-					<p>Meetup Web front #2</p>
+					<p>TBD / Meetup Web front #2</p>
 					<img src="mth.jpg" width="100px"/>
 				</section>
 
@@ -74,13 +74,15 @@
 					<p>
 						<ul>
 							<li>un composant pour charger des ressources réseau de manière intelligente</li>
-							<li>un composant de règles CSS (ex: matrice de calcul de styles en cascade)</li>
+							<li>un composant de règles CSS (ex: Media Queries, calcul de styles en cascade)</li>
 							<li>un composant de dessin qui utilise une libraire graphique (ex: CoreGraphics pour Apple, Cairo GTK pour Linux/Win, Skia pour Android, HarfBuzz pour les glyphes ...)</li>
 							<li>un composant pour éxécuter du JS (ex: JavaScriptCore sous WebKit, V8 sous Blink/Node, SpiderMonkey sous Firefox, Chakra sous IE/Edge)</li>
+							<li>un composant pour inspecter et développer (ex: WebInspector, DevTools)</li>
 							<li>etc...</li>
-							<li>oulala le 1er slide est déjà technique</li>
-							<li>... prenons du recul</li>
+							
 						</ul>
+						<p>oulala le 1er slide est déjà technique<br>
+							... prenons du recul</p>
 					</p>
 				</section>
 
@@ -112,8 +114,8 @@
 					<p>Apple interdit tout autre moteur que le sien dans les apps iOS, Chrome et Firefox iOS ne sont que des coquilles autour de WebKit</p>
 					<p>Interrogations autour de Huawei qui pourrait forker WebKit ou Blink</p>
 					<p>Samsung, Sony, Nokia, HTC &amp; all utilisent le moteur de Google <em>per</em> Android
-					... mais Firefox utilise <a href="https://hacks.mozilla.org/2019/06/geckoview-in-2019/">GeckoView</a> alternative à WebView sur Android pour toute PWA</p>
-					<p>KaiOS (Asie, Afrique, Brésil) utilise un dérivé du moteur de Firefox Mobile</p>
+					... mais Firefox utilise <a href="https://hacks.mozilla.org/2019/06/geckoview-in-2019/">GeckoView</a> <em>alternative</em> à WebView sur Android pour toute PWA</p>
+					<p>KaiOS (Inde, Brésil) utilise un dérivé du moteur de Firefox Mobile</p>
 					<p>Opera Mini présent sur certains terminaux Kai, et Nokia 3310 2017</p>
 				</section>
 				
@@ -178,12 +180,12 @@
 					</blockquote>
 					<p>Youtube + Chrome = pubs = 💰 💰 💰</p>
 					<p>MS a clairement indiqué ne pas vouloir forker Blink et veut réouvrir des API bloquées pour les adblockers (reddit AMA Juin 2019)</p>
-					<p>Mozilla en tension avec Google : très peu probable qu'ils aillent vers Blink, ils ont déjà un moteur Servo next-gen</p>
+					<p>Mozilla en tension avec Google : ils n'iront pas vers Blink, ils ont déjà un moteur Servo next-gen</p>
 				</section>
 
 				<section>
 					<h2>✈️ Un moteur n'est pas un navigateur. Un navigateur se sert d'un moteur. ✈️</h2>
-					<p>Airbus et Boeing partagent des moteurs General Electric, Rolls Royce, Trent : ce n'est pas le même avion == pas le même <em>navigateur</em></p>
+					<p>Airbus et Boeing <em>partagent</em> des moteurs General Electric, Rolls Royce, Trent : ce n'est pas le même avion == pas le même <em>navigateur</em></p>
 					<p>Une compagnie peut changer l'intérieur de l'avion (Singapore, Qatar Airlines, Air France = Apple, Google, Samsung, Sony)</p>
 					<p>Des mécanos connaissant bien le moteur changent de boite : porosité des devs Apple/Google/Mozilla, Samsung/Sony/Nintendo</p>
 					<p>Le moteur de IE change pour Blink, ce n'est pas <em>tout</em> IE qui change : pour les pilotes - nous - peu change</p>
@@ -217,7 +219,7 @@
 					<ul>
 						<li>1990 Naissance du Web au CERN et de WorldWideWeb - 1er navigateur</li>
 						<li>1994 Naissance de Netscape Navigator issu de Mosaic - 2nd navigateur, supporte les images et forms</li>
-						<li>1998 Naissance de KHTML/KJS issus de Konqueror (KDE, Linux), Netscape open source et crée Mozilla (Mosaic killer)</li>
+						<li>1998 Naissance de KHTML/KJS issus de Konqueror (KDE, Linux), Netscape s'open source et crée Mozilla (Mosaic killer)</li>
 						<li>2001 Apple forke KHTML/KJS en WebKit : WebCore + JavascriptCore. Préféré à Gecko/Netscape</li>
 						<li>2003 AOL crée la Fondation Mozilla, à but non lucratif</li>
 						<li>2005 Apple open source quelques modifications de code pour Konqueror</li>
@@ -230,12 +232,14 @@
 				</section>
 				<section>
 					<ul>
-						<li>2016/19 CSS4, CSS Houdini, Progressive WebApps, WebPayment, WebAssembly, Animations API, ... </li>
-						<li>Juin 2019 Les groupes de standardisation HTML du W3C (Berners-Lee, non lucratif) et du WhatWG (fabricants, pognon) fusionnent</li>
+						<li>2016/19 CSS4, CSS Houdini, Progressive WebApps, WebPayment, WebAssembly, Animations API, WebVR, ... </li>
+						<li>Juin 2019 Les groupes de standardisation HTML du W3C (Berners-Lee, lents, non lucratif) et du WhatWG (fabricants, rapides, pognon) fusionnent</li>
 						<li>2020 "Year of Privacy" pour tous les fabricants 🔒 (Intelligent Tracking Prevention)</li>
 						<li>Manifestes des fabricants pour restreindre les Cookies tiers et techniques de pistage</li>
-						<li>https://webkit.org/tracking-prevention-policy/</li>
-						<li>https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Privacy/Storage_access_policy</li>
+						<li>Retombées des affaires Snowden, Cambridge Analytica, abus privacy divers ... RGPD </li>
+						<li><a href="https://webkit.org/tracking-prevention-policy/">https://webkit.org/tracking-prevention-policy/</a></li>
+						<li><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Privacy/Storage_access_policy">https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Privacy/Storage_access_policy</li></a>
+						<li>Mozilla toujours en pointe sur les respects des usages - ils ont sû diversifier leurs revenus de la search bar entre Google, Yahoo, Yandex, Baidu</li>
 					</ul>
 				</section>
 
@@ -243,13 +247,13 @@
 					<h2>Les acteurs clé communiquent ouvertement sur l'avenir de leur moteur</h2>
 					<h3>Les mentalités ont évolué</h3>
 					<ul>
-						<li>WebKit.org (OSS) : https://webkit.org/blog/ et https://webkit.org/status/</li>
-						<li>Blink : https://www.chromestatus.com/features</li>
-						<li>Edge : https://developer.microsoft.com/en-us/microsoft-edge/platform/status/</li>
-						<li>Safari : https://developer.apple.com/safari/technology-preview/</li>
+						<li>WebKit.org (OSS) : <a href="https://webkit.org/status/">https://webkit.org/status</a></li>
+						<li>Blink : <a href="https://www.chromestatus.com/features">https://www.chromestatus.com/features</a></li>
+						<li>Edge : <a href="https://developer.microsoft.com/en-us/microsoft-edge/platform/status/">https://developer.microsoft.com/en-us/microsoft-edge/platform/status</a></li>
+						<li>Safari : <a href="https://developer.apple.com/safari/technology-preview/">https://developer.apple.com/safari/technology-preview</a></li>
 						<li>nb : Apple par Culte du Secret ne commentent jamais en _détails_ sur qu'ils vont ajouter pour iOS/iPadOS, les curieux.ses peuvent lire les commits sign&eacute;s des devs @apple.com</li>
-						<small>
-						https://github.com/WebKit/webkit/commits/master<br/>
+						<small><a href="https://github.com/WebKit/webkit/commits/master">
+						https://github.com/WebKit/webkit/commits/master</a><br/>
 						</small>
 					</ul>
 				</section>
@@ -260,7 +264,7 @@
 					<p>Apple, Google avant Blink, webkit.org, Adobe, Igalia, Samsung, Sony, RIM, Nokia, Intel</p>
 					<p>Blink : Google, Opera, Adobe, Igalia, Samsung, Intel</p>
 					<p>Igalia ? GNOME/Linux, petite équipe de consultants experts et commiters WebKit/Blink/Qt/GTK, pour embarqué (voitures, panneaux pub, bornes, etc.)</p>
-					<p>ont implémenté CSS Grid dans Webkit+Blink, financés par Bloomberg, qui aime bien les grilles</p>
+					<p>ont implémenté CSS Grid dans Webkit+Blink, financés par Bloomberg, qui aime bien les grilles avec chiffres dedans</p>
 					<p>Yoav Weiss (auteur français de &lt;img srcset&gt;)</p>
 				</section>
 
@@ -276,8 +280,8 @@
 
 				<section>
 					<h2>git clone webkit</h2>
-					<img src="logo.png" style="width:80px" style="border: none"/>
-					<p>https://www.webkit.org/building/checkout.html</p>
+					<img src="logo.png" style="width:120px" style="border: none"/>
+					<p><a href="https://www.webkit.org/building/checkout.html">https://www.webkit.org/building/checkout.html</a></p>
 					<p>8 GB. 35000 tests. Des 10MB de sources C++, 210000 commits. Projet XCode ou Visual Studio</p>
 					<p>~70% des 8GB sont des tests ou ressources de tests (pages HTML, images, vidéos, audio, fichiers JS/CSS)</p>
 					<p>25 minutes de compile sur un très bon CPU</p>
@@ -307,8 +311,8 @@
 					</section>
 
 					<section>
-						<p>La base commune pour : parsing HTML/CSS/SVG/MathML &amp; styling/layout (WebCore), JS (JavaScriptCore), GraphicsContext (délègue le rendu à un port)</p>
-						<p>Les ports pour : spécifique OS (pile graphique ou réseau), image decoding, liens hardware (GPU, orientation, geoloc, battery, vibration, touch inputs, senseurs lumière/pression/paiement, ...). </p><p>Présence de flags lors du build : #if ENABLE(PLATFORM_IOS)(...)</p>
+						<p>Une base <em>commune</em> pour : parsing HTML/CSS/SVG/MathML &amp; styling/layout (WebCore), JS (JavaScriptCore), GraphicsContext (délègue le rendu à un port)</p>
+						<p>Des ports pour : spécifique OS (pile graphique ou réseau), image decoding, liens hardware (GPU, orientation, geoloc, battery, vibration, touch inputs, senseurs lumière/pression/paiement, ...). </p><p>Présence de <em>flags</em> lors du build : #if ENABLE(PLATFORM_IOS)(...)</p>
 						<p>C'est le même moteur dans des chassis et câblages différents.
 						<br>C'est pour ça qu'il y a des différences de comportement ou bugs</p>
 					</section>
@@ -319,7 +323,7 @@
 						<p>Le moteur délègue à un tiers (<em>GraphicsContext</em>) pour dessiner : dessine moi un bouton</p>
 						<p><img width="200px" src="mouton.jpeg"><img width="200px" src="buttonios.png">
 						<img width="200px" src="buttongtk.png"><img width="200px" src="buttonqt.jpeg"></p>
-						<p>Ce tiers utilise la pile graphique du <em>port</em></p>
+						<p>Ce tiers utilise la pile graphique du <em>port</em> : look Apple, Android, Windows, Sony, Nintendo, ...</p>
 					</section>
 
 				<section>
@@ -348,7 +352,7 @@
 	<h2>📚 Specs ? 📚</h2>
 <p>Une spécification n'est qu'un document HTML avec des schémas (WebIDL) qui décrit comment faire les choses</p>
 <p>En rédaction collaborative, elles sont toutes sous github</p>
-<p>Outil simple open source de rédaction de specs : ReSpec, outil du W3C : https://github.com/w3c/respec . C'est un script JS et CSS dans une page HTML</p>
+<p>Outil simple open source de rédaction de specs : <em>ReSpec</em>, outil du W3C : <a href="https://github.com/w3c/respec">https://github.com/w3c/respec</a> . C'est un script JS et CSS dans une page HTML</p>
 <p>Outil méconnu mais excellent pour toute rédaction de document technique, pas seulement pour des specs web (vs Word/LaTeX)</p>
 <p>Voir les specs comme un super Wikipedia du web</p>
 </section>
@@ -416,13 +420,13 @@
 					<p>Nimporte qui peut y contribuer, leurs auteurs répondent - en général</p>
 					<p>Les fabricants/OSS implémentent ou non les specs selon leur propre roadmap</p>
 					<p>Les specs sont une prédiction - non garantie - de ce qui va arriver dans les navigateurs et WebViews pour app natives</p>
-					<p>Suivre @twitter "Intent to ship" https://twitter.com/intenttoship pour savoir quand ça va arriver sous Firefox ou Chrome</p>
+					<p>Suivre @twitter "Intent to ship" <a href="https://twitter.com/intenttoship">https://twitter.com/intenttoship</a> pour savoir quand ça va arriver sous Firefox ou Chrome</p>
 					<p>Suivre les commits WebKit pour savoir quand ça va arriver sous Safari</p>
 				</section>
 
 				<section>
 					<h2>Quelques travaux en cours</h2>
-					<small>Très publics : https://docs.google.com/spreadsheets/d/1pvXEMD5pRioognaqEzglS-4ZBSQ_YmzL8Fiz7yt4Bb4/edit#gid=0</small>
+					<small>Très publics : <a href="https://docs.google.com/spreadsheets/d/1pvXEMD5pRioognaqEzglS-4ZBSQ_YmzL8Fiz7yt4Bb4/edit#gid=0">https://docs.google.com/spreadsheets/d/1pvXEMD5pRioognaqEzglS-4ZBSQ_YmzL8Fiz7yt4Bb4/edit#gid=0</a></small>
 					<p>CSS Houdini (accès poussé au moteur CSS via JS)</p>
 					<p>Web Share API (linkedin, insta,...)</p>
 					<p>Shape Detection API (code barre, visage, texte)</p>

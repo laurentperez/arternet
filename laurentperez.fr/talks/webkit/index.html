@@ -78,7 +78,7 @@
 							<li>un composant de dessin qui utilise une libraire graphique (ex: CoreGraphics pour Apple, Cairo GTK pour Linux/Win, Skia pour Android, HarfBuzz pour les glyphes ...)</li>
 							<li>un composant pour éxécuter du JS (ex: JavaScriptCore sous WebKit, V8 sous Blink/Node, SpiderMonkey sous Firefox, Chakra sous IE/Edge)</li>
 							<li>un composant pour inspecter et développer (ex: WebInspector, DevTools)</li>
-							<li>etc...</li>
+							<li>un pilote pour jouer des tests auto, des conteneurs de cookies ou bdd, des masses de tests, etc...</li>
 							
 						</ul>
 						<p>oulala le 1er slide est déjà technique<br>
@@ -147,7 +147,7 @@
 								</tr>
 								<tr>
 									<td>Fork Firefox/Opera Mini</td>
-									<td>smart feature phones KaiOS % &gt; iOS en Inde</td>
+									<td>smart feature phones KaiOS % &gt; iOS en Inde, O Mini est un moteur cloud</td>
 								</tr>
 							</tbody>
 						</table>
@@ -215,15 +215,15 @@
 
 				<section>
 					<h2>⚙️ Le moteur WebKit & les autres ⚙️</h2>
-					<h3>Bref historique</h3>
+					<p>Bref historique</p>
 					<ul>
 						<li>1990 Naissance du Web au CERN et de WorldWideWeb - 1er navigateur</li>
-						<li>1994 Naissance de Netscape Navigator issu de Mosaic - 2nd navigateur, supporte les images et forms</li>
+						<li>1994 Naissance de Netscape Navigator issu de Mosaic - 2nd navigateur</li>
 						<li>1998 Naissance de KHTML/KJS issus de Konqueror (KDE, Linux), Netscape s'open source et crée Mozilla (Mosaic killer)</li>
 						<li>2001 Apple forke KHTML/KJS en WebKit : WebCore + JavascriptCore. Préféré à Gecko/Netscape</li>
 						<li>2003 Naissance de Safari sous WebKit, AOL crée la Fondation Mozilla, à but non lucratif</li>
 						<li>2005 Apple Open Source tout WebKit - pas seulement WebCore et JavascriptCore</li>
-						<li>2007 L'iPhone sort avec Safari 3, vision de Jobs : les Apps seront des pages HTML sous Safari</li>
+						<li>2007 L'iPhone sort avec Safari 3, vision de Jobs : les Apps seront des pages HTML</li>
 						<li>2008 Google lance Android et Chrome sous WebKit, Apple lance le 1er SDK iOS... il n'y aura pas d'Apps HTML</li>
 						<li>2009 Proche divorce "on reste amis" entre Apple et KDE, code d'Apple était difficile à backporter en Open Source</li>
 						<li>2011 Apple demande à trademarker WebKit, RIM pas trop d'accord</li>
@@ -240,13 +240,14 @@
 						<li>Retombées des affaires Snowden, Cambridge Analytica, abus privacy divers ... RGPD </li>
 						<li><a href="https://webkit.org/tracking-prevention-policy/">https://webkit.org/tracking-prevention-policy/</a></li>
 						<li><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Privacy/Storage_access_policy">https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Privacy/Storage_access_policy</li></a>
-						<li>Mozilla toujours en pointe sur les respects des usages - ils ont sû diversifier leurs revenus de la search bar entre Google, Yahoo, Yandex, Baidu</li>
 					</ul>
+					<p>Mozilla toujours en pointe sur les respects des usages - ils ont sû diversifier leurs revenus de la search bar entre Google, Yahoo, Yandex, Baidu pour ne pas dépendre que de Google</p>
+
 				</section>
 
 				<section>
 					<h2>Les acteurs clé communiquent ouvertement sur l'avenir de leur moteur</h2>
-					<h3>Les mentalités ont évolué</h3>
+					<p>Les mentalités ont évolué</p>
 					<ul>
 						<li>WebKit.org (OSS) : <a href="https://webkit.org/status/">https://webkit.org/status</a></li>
 						<li>Blink : <a href="https://www.chromestatus.com/features">https://www.chromestatus.com/features</a></li>
@@ -285,7 +286,7 @@
 					<p>8 GB. 35000 tests. Des 10MB de sources C++, 210000 commits. Projet XCode ou Visual Studio</p>
 					<p>~70% des 8GB sont des tests ou ressources de tests (pages HTML, images, vidéos, audio, fichiers JS/CSS)</p>
 					<p>25 minutes de compile sur un très bon CPU</p>
-					<p>dedans : WebCore, JavaScriptCore, WebInspectorUI, WTF, MiniBrowser, DumpRenderTree, ...</p>
+					<p>dedans : WebCore, JavaScriptCore, WebInspectorUI, WPE, WTF, MiniBrowser, DumpRenderTree, ...</p>
 				</section>
 
 				<section>
@@ -296,12 +297,13 @@
 						<li>Android port (Stock Internet browsers/Chromium &lt; Blink + Skia)</li>
 						<li>GTK port (Linux Gnome Epiphany browser + Cairo)</li>
 						<li>Qt port (Spotify Player &lt; Blink, wkhtml2pdf)</li>
+						<li>WPE port (micro moteur pour embarqué, IoT, TVs, Kiosques, Automobile)</li>
 						<li>EFL port par Samsung (Freebox, TizenOS)</li>
 						<li>EA : moteur de l'UI de Sim City 2K</li>
 						<li>Amazon : le lecteur d'ebook Kindle</li>
 						<li>Sony : browser de la PS3/4, PS Store et UI console en WebGL</li>
 						<li>Nintendo : browsers Wii U et Switch, Nintendo Store</li>
-						<li>QNX port (BlackBerry) : Audi, BMW, Ford, Honda, Hyundai, Porsche, Toyota, Volkswagen</li>
+						<li>QNX port (BlackBerry) : Audi, BMW, Ford, Honda, Porsche, Toyota, Volkswagen</li>
 					</ul>
 					</section>
 
@@ -320,7 +322,7 @@
 					<section>
 						<h2>Graphics Context delegate</h2>
 						<p>WebCore n'a pas de look ni de Style en soi - un <em>navigateur</em> oui : à la fois son UI mais aussi ses styles CSS par défaut</p>
-						<p>Le moteur délègue à un tiers (<em>GraphicsContext</em>) pour dessiner : dessine moi un bouton</p>
+						<p>Le moteur délègue à un tiers (<em>GraphicsContext</em>) pour afficher les pixels : dessine moi un bouton</p>
 						<p><img width="200px" src="mouton.jpeg"><img width="200px" src="buttonios.png">
 						<img width="200px" src="buttongtk.png"><img width="200px" src="buttonqt.jpeg"></p>
 						<p>Ce tiers utilise la pile graphique du <em>port</em> : look Apple, Android, Windows, Sony, Nintendo, ...</p>
@@ -352,9 +354,9 @@
 	<h2>📚 Specs ? 📚</h2>
 <p>Une spécification n'est qu'un document HTML avec des schémas (WebIDL) qui décrit comment faire les choses</p>
 <p>En rédaction collaborative, elles sont toutes sous github</p>
-<p>Outil simple open source de rédaction de specs : <em>ReSpec</em>, outil du W3C : <a href="https://github.com/w3c/respec">https://github.com/w3c/respec</a> . C'est un script JS et CSS dans une page HTML</p>
+<p>Outil open source de rédaction de specs : <em>ReSpec</em>, outil du W3C : <a href="https://github.com/w3c/respec">https://github.com/w3c/respec</a> . C'est un script JS et CSS dans une page HTML</p>
 <p>Outil méconnu mais excellent pour toute rédaction de document technique, pas seulement pour des specs web (vs Word/LaTeX)</p>
-<p>Voir les specs comme un super Wikipedia du web</p>
+<p>Voir les specs comme un super Wikipedia du web - très dense</p>
 </section>
 
 <section>

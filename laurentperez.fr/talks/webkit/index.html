@@ -208,7 +208,7 @@
 					<p>Steam, Battle.net, Kindle Amazon</p>
 					<p>consoles Sony, Nintendo, outils Adobe (AEM Forms, Acrobat)</p>
 					<p>... de récents commits de Sony, la PS5 se profile</p>
-					<p>Nintendo Switch hackée à cause d'un vieux WebKit</p>
+					<p>Nintendo Switch hackée à cause d'un vieux WebKit - 6 mois de delta</p>
 					<img src="mario.png" width="300px" alt="">
 					<p>embarqué dans automobile, Smart TVs, kiosques (NetFront) ...</p>
 				</section>
@@ -283,8 +283,8 @@
 					<h2>git clone webkit</h2>
 					<img src="logo.png" style="width:120px" style="border: none"/>
 					<p><a href="https://www.webkit.org/building/checkout.html">https://www.webkit.org/building/checkout.html</a></p>
-					<p>8 GB. 35000 tests. Des 10MB de sources C++, 210000 commits. Projet XCode ou Visual Studio</p>
-					<p>~70% des 8GB sont des tests ou ressources de tests (pages HTML, images, vidéos, audio, fichiers JS/CSS)</p>
+					<p>3 GB. 35000 tests. Des 10MB de sources C++, 210000 commits. Projet XCode ou Visual Studio</p>
+					<p>~70% des 3GB sont des tests ou ressources de tests (pages HTML, images, vidéos, audio, fichiers JS/CSS)</p>
 					<p>25 minutes de compile sur un très bon CPU</p>
 					<p>dedans : WebCore, JavaScriptCore, WebInspectorUI, WPE, WTF, MiniBrowser, DumpRenderTree, ...</p>
 				</section>
@@ -297,14 +297,28 @@
 						<li>Android port (Stock Internet browsers/Chromium &lt; Blink + Skia)</li>
 						<li>GTK port (Linux Gnome Epiphany browser + Cairo)</li>
 						<li>Qt port (Spotify Player &lt; Blink, wkhtml2pdf)</li>
-						<li>WPE port (micro moteur pour embarqué, IoT, TVs, Kiosques, Automobile)</li>
-						<li>EFL port par Samsung (Freebox, TizenOS)</li>
-						<li>EA : moteur de l'UI de Sim City 2K</li>
-						<li>Amazon : le lecteur d'ebook Kindle</li>
+						<li>WPE port (micro moteur pour embarqué IoT, Smart TVs, Kiosques, Automobile)</li>
+						<li>EFL port par Samsung (TizenOS, Watch/Smart TVs)</li>
+						<li>EA : moteur de l'UI de Sim City 2K, devenu fork EAWebKit (FIFA, NHL, Apex)</li>
+						<li>Amazon : le lecteur d'ebook Kindle &lt; Blink, Silk</li>
 						<li>Sony : browser de la PS3/4, PS Store et UI console en WebGL</li>
 						<li>Nintendo : browsers Wii U et Switch, Nintendo Store</li>
 						<li>QNX port (BlackBerry) : Audi, BMW, Ford, Honda, Porsche, Toyota, Volkswagen</li>
 					</ul>
+					</section>
+
+					<section>
+						<h2>Sony, EA</h2>
+						<p>Contribuent en commit retour ou publient les sources de leurs changements</p>
+						<blockquote cite="https://trac.webkit.org/wiki/SonyWebKitWork2016">Q @ Sony : Why did you choose WebKit?<br>
+							Started before the Blink branch.<br>
+							(...)<br>
+							Chrome is the "Google Show", not good opportunities to contribute due to their army of engineers banging on it.<br>
+							WebKit's strategy is focused on performance and small footprint. This is critical for PS4 and devices.<br>
+							Blink is more about feature-feature-feature
+						</blockquote>
+						<p>EAWebKit : <a href="https://gpl.ea.com/eawebkit.html">https://gpl.ea.com/eawebkit.html</a> : sources du fork pour PC/XBox One/PS4</p>
+						<p>Pas de signaux de contribution de Nintendo, peut-être frileux suite à leurs hacks WebKit</p>
 					</section>
 
 					<section>

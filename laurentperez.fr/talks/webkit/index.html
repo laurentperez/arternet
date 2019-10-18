@@ -170,6 +170,7 @@
 					<p>Changements de fond liés aux perfs (ex: volonté de multithreading JS et décharge vers GPU), au refus des -prefix CSS, au refus originel du code MathML, à l'arrivée du moderne Servo chez Mozilla</p>
 					<p>... à la concurrence avec Apple : Google était co contributeur majeur de WebKit, devenu copyright Apple</p>
 					<p>Blink est moteur de Chromium/Chrome, Opera, Silk, UI Battle.net, Steam, Spotify post WebKit, IE 2020</p>
+					<p>c'est aussi un "Google Show"</p>
 				</section>
 
 				<section>
@@ -241,17 +242,19 @@
 						<li><a href="https://webkit.org/tracking-prevention-policy/">https://webkit.org/tracking-prevention-policy/</a></li>
 						<li><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Privacy/Storage_access_policy">https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Privacy/Storage_access_policy</li></a>
 					</ul>
-					<p>Mozilla toujours en pointe sur les respects des usages - ils ont sû diversifier leurs revenus de la search bar entre Google, Yahoo, Yandex, Baidu pour ne pas dépendre que de Google</p>
+					<p>Mozilla toujours en pointe sur les respects des usages - ils ont sû diversifier leurs revenus de la search bar entre Google, Yahoo, Yandex, Baidu, Amazon pour ne pas dépendre que de Google</p>
+					<p>Si la <em>Fondation</em> Mozilla est non lucratif, Mozilla <em>corporate</em> est un business mais particulier : pas d'actionnaires, pas de dividendes, pas de stock options</p>
 
 				</section>
 
 				<section>
-					<h2>Les acteurs clé communiquent ouvertement sur l'avenir de leur moteur</h2>
+					<h2>Les acteurs communiquent ouvertement sur l'avenir de leur moteur</h2>
 					<p>Les mentalités ont évolué</p>
 					<ul>
 						<li>WebKit.org (OSS) : <a href="https://webkit.org/status/">https://webkit.org/status</a></li>
 						<li>Blink : <a href="https://www.chromestatus.com/features">https://www.chromestatus.com/features</a></li>
 						<li>Edge : <a href="https://developer.microsoft.com/en-us/microsoft-edge/platform/status/">https://developer.microsoft.com/en-us/microsoft-edge/platform/status</a></li>
+						<li>Gecko : <a href="https://blog.nightly.mozilla.org">https://blog.nightly.mozilla.org</a></li>
 						<li>Safari : <a href="https://developer.apple.com/safari/technology-preview/">https://developer.apple.com/safari/technology-preview</a></li>
 						<li>nb : Apple par <em>Culte du Secret</em> ne commentent jamais en _détails_ sur qu'ils vont ajouter pour iOS/iPadOS, les curieux.ses peuvent lire les commits sign&eacute;s des devs @apple.com</li>
 						<small><a href="https://github.com/WebKit/webkit/commits/master">
@@ -275,7 +278,8 @@
 					<p>Si des fabricants qui font des revenus sont derrière Blink, WebKit, Gecko/Servo, le code reste libre</p>
 					<p>Bientôt Huawei via un fork ?</p>
 					<p>Les fabricants partagent une suite de tests du W3C : <a href="http://github.com/w3c/web-platform-tests">WPT Web Platform Tests</a></p>
-					<p>C'est pas /si/ difficile de contribuer (DevTools/WebInspector est la porte d'entrée la plus simple)</p>
+					<p>C'est pas /si/ difficile de contribuer (DevTools/WebInspector est la porte d'entrée la plus aisée, avec les traductions)</p>
+					<p>Igalia recrute - La Corogne : tout ne se crée pas que dans la Valley</p>
 					<p>... petite plongée dans WebKit</p>
 				</section>
 
@@ -300,7 +304,7 @@
 						<li>WPE port (micro moteur pour embarqué IoT, Smart TVs, Kiosques, Automobile)</li>
 						<li>EFL port par Samsung (TizenOS, Watch/Smart TVs)</li>
 						<li>EA : moteur de l'UI de Sim City 2K, devenu fork EAWebKit (FIFA, NHL, Apex)</li>
-						<li>Amazon : le lecteur d'ebook Kindle &lt; Blink, Silk</li>
+						<li>Amazon : le lecteur d'ebook Kindle &lt; Blink, Silk dans le cloud AWS</li>
 						<li>Sony : browser de la PS3/4, PS Store et UI console en WebGL</li>
 						<li>Nintendo : browsers Wii U et Switch, Nintendo Store</li>
 						<li>QNX port (BlackBerry) : Audi, BMW, Ford, Honda, Porsche, Toyota, Volkswagen</li>
@@ -310,15 +314,15 @@
 					<section>
 						<h2>Sony, EA</h2>
 						<p>Contribuent en commit retour ou publient les sources de leurs changements</p>
-						<blockquote cite="https://trac.webkit.org/wiki/SonyWebKitWork2016">Q @ Sony : Why did you choose WebKit?<br>
+						<blockquote cite="https://trac.webkit.org/wiki/SonyWebKitWork2016">Q @ Sony : &ldquo;Why did you choose WebKit?<br>
 							Started before the Blink branch.<br>
 							(...)<br>
 							Chrome is the "Google Show", not good opportunities to contribute due to their army of engineers banging on it.<br>
 							WebKit's strategy is focused on performance and small footprint. This is critical for PS4 and devices.<br>
-							Blink is more about feature-feature-feature
+							Blink is more about feature-feature-feature&rdquo;
 						</blockquote>
-						<p>EAWebKit : <a href="https://gpl.ea.com/eawebkit.html">https://gpl.ea.com/eawebkit.html</a> : sources du fork pour PC/XBox One/PS4</p>
-						<p>Pas de signaux de contribution de Nintendo, peut-être frileux suite à leurs hacks WebKit</p>
+						<p>EAWebKit : <a href="https://gpl.ea.com/eawebkit.html">https://gpl.ea.com/eawebkit.html</a> : sources du fork pour PC/XBox/PS4, publiées en .zip à chaque sortie de jeu</p>
+						<p>Pas de signaux de contribution de Nintendo, peut-être frileux suite à leurs hacks WebKit, ou Culte du Secret... à la Apple</p>
 					</section>
 
 					<section>
@@ -336,11 +340,11 @@
 
 					<section>
 						<h2>Graphics Context delegate</h2>
-						<p>WebCore n'a pas de look ni de Style en soi - un <em>navigateur</em> oui : à la fois son UI mais aussi ses styles CSS par défaut</p>
+						<p>WebCore n'a pas de look - un <em>navigateur</em> oui : à la fois son UI mais aussi ses styles CSS par défaut</p>
 						<p>Le moteur délègue à un tiers (<em>GraphicsContext</em>) pour afficher les pixels : dessine moi un bouton</p>
 						<p><img width="200px" src="mouton.jpeg"><img width="200px" src="buttonios.png">
 						<img width="200px" src="buttongtk.png"><img width="200px" src="buttonqt.jpeg"></p>
-						<p>Ce tiers utilise la pile graphique du <em>port</em> : look Apple, Android, Windows, Sony, Nintendo, ...</p>
+						<p>Ce tiers utilise la pile graphique du <em>port</em> : look Apple, Android, Windows, Linux, Sony, Nintendo, ...</p>
 					</section>
 
 				<section>
@@ -359,8 +363,8 @@
 					<p>Pour réseau, HTML, CSS, SVG, MathML, Canvas</p>
 					<p><small>rappel : HTMLDocument != SVGDocument. HTML != MathML</small></p>
 					<p>Fait le parsing aidé par un preload scanner, le styling le layout et le dessin mais pas le café. </p>
-					<p>Le layout c'est le calcul de la position et taille d'un élément : une boite rectangulaire. Un parent doit layout() ses enfants pour connaître sa propre hauteur/largeur : récursivité</p>
-					<p>Un layout au final c'est des boites dans des boites, une mise en page</p>
+					<p>Le layout c'est le calcul de la position et taille d'un élément : <em>une boite rectangulaire</em>. Un parent doit layout() ses enfants pour connaître sa propre hauteur/largeur : récursivité</p>
+					<p>Un layout fini c'est des boites dans des boites, une mise en page</p>
 					<p>Les boites sont rangées en calques puis dessinées et paintes</p>
 					<p><b>Pour savoir comment placer les boites et les dessiner, le moteur ne fait que suivre les specs.</b></p>
 				</section>
@@ -389,7 +393,7 @@
 	<p>Box model, les flows et le VFM sont les fondations du Web visuel</p>
 	<p>... le Web est né au CERN, pas dans une école d'art : une documentation scientifique demeure - quand les specs sont assez claires !</p>
 	<p>Une spec peu claire crée du doute, des interprétations, des bugs</p>
-	<p>Ou des préfixes et des mues : -ms-grid, -webkit-grid</p>
+	<p>Et des préfixes et des mues : -ms-grid, -webkit-grid</p>
 </section>
 					<section>
 						<h3>Spec #1 : Le Box Model</h3>
@@ -566,7 +570,7 @@
 					<p>Tous les élements ne sont pas rendus : head (meta, script, link), display:none n'ont aucun Renderer, rien à dessiner</p>
 					<p>Certains élements ont plusieurs renderers : select (boite, drop, bouton) : pas <em>toujours</em> une relation 1:1 entre élément et son renderer</p>
 					<p>Le <em>RenderStyle</em> est calculé ici avec parsing de selectors et cascades : optimisez vos CSS pour accélérer !</p>
-					<p>Puis au layout(), les renderers du tree produisent un rectangle : <em>LayoutRect</em> suivant le Box Model, avec des coordonnées xy (c'est RenderBox::layout())</p>
+					<p>Puis au layout(), les renderers produisent un rectangle : <em>LayoutRect</em> suivant le Box Model, avec des coordonnées xy (c'est RenderBox::layout())</p>
 				</section>
 
 				<section>
@@ -577,7 +581,7 @@
 
 				<section>
 					<h3>Géométrie : layout propre/sale</h3>
-					<p>Le layout est le calcul du x/y de chaque rectangle</p>
+					<p>Le layout est le calcul du x/y/size de chaque rectangle</p>
 					<p>Tous les renderers ont une méthode layout() recursive : le renderer du parent significatif (le containing block) layout() ses enfants</p>
 					<p><em>Dirty bit</em> : si un nouveau renderer rentre dans l'arbre, s'il est dirty (<em>layoutIfNeeded</em>), il informe son parent significatif dit containing block (<b>un dirty va changer la position d'autres</b>).</p>
 					<!-- <p>Les Renderers positionnés sont optimisés (car dessinés après le parent)</p> -->
@@ -665,10 +669,10 @@
 				<h2>🎨 9 Etapes de peinture 🎨</h2>
 				<p>A wild pixel appears</p>
 				<p>On ne peint pas élément par élément au feeling, pour pas raturer</p>
-				<p>On peint des CSS stacking contexts (piles), en suivant un ordre précis et pas toujours celui du HTML</p>
+				<p>On peint des CSS stacking contexts (piles), en suivant un ordre récursif précis et pas toujours celui du HTML</p>
 				<p>Les piles sont étanches entre elles sinon ça coule, comme de la... peinture</p>
-				<p>Un stacking context est formé par élément qui est: racine, positioné, flex, grid item, table, float</p>
-				<p>Un stacking context peut avoir des enfants avec stacking contexts (un enfant position:absolute/relatif suffit à créer un nouveau sc)</p>
+				<p>Un stacking context est formé par élément qui est: racine, positioné, flex, grid item, table, float, column, transform</p>
+				<p>Un stacking context a des enfants avec stacking contexts (un enfant position:absolute/relatif suffit à créer un nouveau sc)</p>
 				<p>Un stacking context n'est pas juste le z-index : le zi est relatif au context</p>
 			</section>
 
@@ -735,7 +739,11 @@
 
 			<section>
 				<h1>Merci</h1>
-				<p></p>
+				<small>&ldquo;A la fin c'est toujours l'Open Web standard qui gagne - ça prend juste du temps &rdquo; (c) Yann</small>
+				<small><br>Apple, Microsoft, Amazon, Google et Facebook ont une valeur boursière de 3700 milliards de dollars, l’équivalent du PIB de l’Allemagne en 2017.</small>
+				<small><br>Cambridge Analytica a collecté les données de ~90 millions d'internautes via Facebook pour les "partager" à des think tanks liés aux élections US et au Brexit, malgré les démentis</small>
+				<small><br>En 2019 Facebook écope de 5 milliards de dollars d'amende de la FTC. Un mois de net revenue. Google de 50 milions d'euros de la CNIL - et font appel</small>
+				<p>They don't give a fuck. Naviguez couverts</p>
 			</section>
 
 			<section>

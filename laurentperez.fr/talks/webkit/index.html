@@ -88,7 +88,7 @@
 
 				<section>
 					<h2>Un exemple simple</h2>
-					<p>Présentation du moteur Mercedes AMG F1 W0x</p>
+					<p>Points commun avec le moteur Mercedes AMG F1 W0x</p>
 					<p>Slide 1 sur 12</p>
 					<p>
 						<img src="f1.jpg" width="400px" style="border: none">
@@ -100,7 +100,7 @@
 				<section>
 					<h2>What's up, Web ?</h2>
 					<p>On a plusieurs navigateurs : Safari, Chrome, Firefox, IE, Opera, ...</p>
-					<p>... mais One moteur to rule them all ? Pas encore, tant mieux</p>
+					<p>... mais <em>One moteur to rule them all</em> ? Pas encore, et tant mieux</p>
 					<img src="logos.png" alt="" width="200px">
 					<img src="sauron.jpg" width="110px" alt="">
 					<p>Dualité d'Apple et de Google qui ont partagé un moteur commun jusqu'en 2013 : WebKit, né en 2001, issu du monde Linux</p>
@@ -146,8 +146,8 @@
 									<td>XBOX, IE &lt; 2020</td>
 								</tr>
 								<tr>
-									<td>Fork Firefox/Opera Mini</td>
-									<td>smart feature phones KaiOS % &gt; iOS en Inde, O Mini est un moteur cloud</td>
+									<td>Dérivé Firefox/Opera Mini</td>
+									<td>smart feature phones KaiOS % &gt; iOS en Inde, Opera Mini est un moteur cloud</td>
 								</tr>
 							</tbody>
 						</table>
@@ -166,9 +166,9 @@
 
 				<section>
 					<h2>🥄 Aparté sur le fork Blink (Google) 🥄</h2>
-					<p>Mi 2013 Google décide de diverger de WebKit commun à Safari et Chrome - plus précisemment de son WebCore - et crée Blink</p>
-					<p>Changements de fond liés aux perfs (ex: volonté de multithreading JS et décharge vers GPU), au refus des -prefix CSS, au refus originel du code MathML, à l'arrivée du moderne Servo chez Mozilla</p>
-					<p>... à la concurrence avec Apple : Google était co contributeur majeur de WebKit, devenu copyright Apple</p>
+					<p>Mi 2013 Google décide de diverger de WebKit commun à Safari et Chrome et le forke en Blink</p>
+					<p>Changements de fond liés aux roadmaps divergeantes, au refus des -prefix CSS, au refus originel du code MathML, à l'arrivée du moderne Servo chez Mozilla</p>
+					<p>... à la concurrence avec Apple : Google était co contributeur à ~50% de WebKit, devenu copyright Apple</p>
 					<p>Blink est moteur de Chromium/Chrome, Opera, Silk, UI Battle.net, Steam, Spotify post WebKit, IE 2020</p>
 					<p>c'est aussi un "Google Show"</p>
 				</section>
@@ -179,7 +179,7 @@
 						&ldquo;MS : I very recently worked on the Edge team, and one of the reasons we decided to end EdgeHTML was because Google kept making changes to its sites that broke other browsers, and we couldn't keep up.<br> For example, they recently added a hidden empty div over YouTube videos that causes our hardware acceleration fast-path to bail (should now be fixed in Win10 Oct update)<br>
 					Moz : YouTube page load is 5x slower in Firefox and Edge than in Chrome because YouTube's Polymer redesign relies on the deprecated Shadow DOM v0 API only implemented in Chrome&rdquo;
 					</blockquote>
-					<p>Youtube + Chrome = pubs = 💰 💰 💰</p>
+					<p>Youtube + Chrome = pubs = max 💰 💰 💰 pour Google</p>
 					<p>MS a clairement indiqué ne pas vouloir forker Blink et veut réouvrir des API bloquées pour les adblockers (reddit AMA Juin 2019)</p>
 					<p>Mozilla en tension avec Google : ils n'iront pas vers Blink, ils ont déjà un moteur Servo next-gen</p>
 				</section>
@@ -207,7 +207,7 @@
 					<p>Embarqués dans des logiciels assez connus</p>
 					<p>Players Spotify, Pandora, Mail.app/iWork/iTunes/App Stores</p>
 					<p>Steam, Battle.net, Kindle Amazon</p>
-					<p>consoles Sony, Nintendo, outils Adobe (AEM Forms, Acrobat)</p>
+					<p>consoles Sony, Nintendo, outils Adobe (AEM Forms)</p>
 					<p>... de récents commits de Sony, la PS5 se profile</p>
 					<p>Nintendo Switch hackée à cause d'un vieux WebKit - 6 mois de delta</p>
 					<img src="mario.png" width="300px" alt="">
@@ -266,7 +266,7 @@
 				<section>
 					<h3>Contributeurs WebKit/Blink principaux</h3>
 					<pre><code class="bash">git shortlog -e -s -n</code> </pre>
-					<p>Apple, Google avant Blink, webkit.org, Adobe, Igalia, Samsung, Sony, RIM, Nokia, Intel</p>
+					<p>Apple, Google avant Blink, webkit.org, Adobe, Igalia, Samsung, Sony, BlackBerry, Nokia, Intel</p>
 					<p>Blink : Google, Opera, Adobe, Igalia, Samsung, Intel</p>
 					<p>Igalia ? GNOME/Linux, petite équipe de consultants experts et commiters WebKit/Blink/Qt/GTK, pour embarqué (voitures, panneaux pub, bornes, etc.)</p>
 					<p>ont implémenté CSS Grid dans Webkit+Blink, financés par Bloomberg, qui aime bien les grilles avec chiffres dedans</p>
@@ -277,7 +277,7 @@
 					<h3>C'est open source</h3>
 					<p>Si des fabricants qui font des revenus sont derrière Blink, WebKit, Gecko/Servo, le code reste libre</p>
 					<p>Bientôt Huawei via un fork ?</p>
-					<p>Les fabricants partagent une suite de tests du W3C : <a href="http://github.com/w3c/web-platform-tests">WPT Web Platform Tests</a></p>
+					<p>Les fabricants partagent une suite de tests de non reg du W3C : <a href="http://github.com/w3c/web-platform-tests">WPT Web Platform Tests</a></p>
 					<p>C'est pas /si/ difficile de contribuer (DevTools/WebInspector est la porte d'entrée la plus aisée, avec les traductions)</p>
 					<p>Igalia recrute - La Corogne : tout ne se crée pas que dans la Valley</p>
 					<p>... petite plongée dans WebKit</p>
@@ -312,7 +312,7 @@
 					</section>
 
 					<section>
-						<h2>Sony, EA</h2>
+						<h2>Ports de Sony et EA</h2>
 						<p>Contribuent en commit retour ou publient les sources de leurs changements</p>
 						<blockquote cite="https://trac.webkit.org/wiki/SonyWebKitWork2016">Q @ Sony : &ldquo;Why did you choose WebKit?<br>
 							Started before the Blink branch.<br>
@@ -334,7 +334,7 @@
 					<section>
 						<p>Une base <em>commune</em> pour : parsing HTML/CSS/SVG/MathML &amp; styling/layout (WebCore), JS (JavaScriptCore), GraphicsContext (délègue le rendu à un port)</p>
 						<p>Des ports pour : spécifique OS (pile graphique ou réseau), image decoding, liens hardware (GPU, orientation, geoloc, battery, vibration, touch inputs, senseurs lumière/pression/paiement, ...). </p><p>Présence de <em>flags</em> lors du build : #if ENABLE(PLATFORM_IOS)(...)</p>
-						<p>C'est le même moteur dans des chassis et câblages différents.
+						<p>C'est le même moteur dans des chassis et câblages - très - différents.
 						<br>C'est pour ça qu'il y a des différences de comportement ou bugs</p>
 					</section>
 

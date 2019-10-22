@@ -507,26 +507,26 @@
 					<p>Le chargement du HTML est bloquant sur chargement de script JS et CSS externe</p>
 					<p>Parce que le JS éxécuté peut modifier le DOM et son style CSSOM (appendChild, display:), ou avoir besoin de CSS chargée</p>
 					-->
-					<p>Un preload scanner est un chargeur ressources réseau en parallèle, il permet de libérer le moteur pour faire autre chose (construire un arbre au lieu de télécharger une image, éxécuter du JS).</p>
+					<p>Un preload scanner est un chargeur ressources réseau en parallèle, il permet de libérer le moteur pour faire autre chose : construire un arbre au lieu de télécharger une image, éxécuter du JS...</p>
 					<p>HTMLPreloadScanner précharge : &lt;script&gt;, &lt;img&gt;, &lt;input type image&gt;, &lt;link rel&gt;, &lt;poster&gt;, &lt;picture&gt;, &lt;meta&gt;</p>
 					<p>CSSPreloadScanner précharge : règle @import url() - oui, seulement</p>
-					<p>HTMLPreloadScanner intelligent : ex: chargera la meilleure image responsive/retina selon Media Query (ex: dpi, dark mode)</p>
+					<p>HTMLPreloadScanner intelligent : ex: chargera la meilleure image responsive/retina selon Media Query (dpi, dark mode, portrait)</p>
 				</section>
 
 				<section>
 					<p>Le CSSPreloadScanner ne précharge que les CSS @import, pourquoi pas ses images/fonts trouvées dans la CSS ?</p>
 					<ul>
-					<li>background-image ? il faudrait pas charger une url() inutile selon une Media Query mais le scanner <strong>n'est pas un parseur CSS : il ne lit pas 'dedans', il télécharge juste la ressource import() du réseau</strong></li>
-					<li>bg image responsive/retina ? scanner != parseur, impossible d'évaluer une MQ (width,dpx)... alors &lt;img srcset&gt; a été créé pour le HTMLPreloadScanner, qui lui peut évaluer une MQ pour ne pas charger une image inutile</li>
+					<li>background-image ? il faudrait pas charger une url() inutile selon une Media Query mais le scanner <strong>n'est pas un parseur CSS : il ne lit pas dedans, il télécharge juste la ressource import() du réseau</strong></li>
+					<li>image responsive/retina ? scanner != parseur, impossible d'évaluer une MQ (width,dpx)... alors &lt;img srcset&gt; a été créé pour le HTMLPreloadScanner, qui lui peut évaluer une MQ pour ne pas charger une image inutile</li>
 					<li>fontes utiles ? compliqué, il ne faudrait les charger que si elles seront utilisées dans le style, mais impossible de preloader : le style n'est pas encore connu, l'arbre CSS pas encore construit</li>
 					</ul>
 					<p>donc pour aider les scanners : préférez &lt;img&gt;/&lt;picture&gt;/&lt;link rel preload&gt; à &lt;div + css background image&gt;</p>
-					<p>les balises ont aussi un sens sémantique, préférez toujours le sens pour accessibilité, indexation</p>
+					<p>les balises ont aussi un sens sémantique, préférez toujours le sens pour l'accessibilité, l'indexation, une &lt;img&gt; n'est pas un &lt;div&gt;</p>
 				</section>
 
 				<section>
 					<p>Pourquoi ne pas "simplement" multithreader le parsing ? Les CPU ont plusieurs cores après tout</p>
-					<p>parce que c'est vraiment compliqué</p>
+					<p>parce que c'est compliqué</p>
 					<p>un preload scanner est une réponse bête et simple pour donner un peu plus de perfs</p>
 					<p>pour plus : du parsing ou layout en parallèle, des envois directs au GPU pour libérer le CPU, une refonte totale du code de rendu</p>
 					<p>... ça tombe bien c'est exactement ce sur quoi Blink (LayoutNG) et Servo (WebRender) bossent en ce moment</p>
@@ -619,12 +619,12 @@
 			<section>
 				<h3>🖼️ On ne relayout pas tout. Seulement les containing blocks avec dirties (sales gosses) </h3>
 				<p>Le layout n'est pas figé : au "hit testing" - sur quoi est le pointeur - un scroll, survol :hover, un focus, un touch JS peut restyler.</p>
-				<p>Le <em>RenderStyle</em> recalculé <em>ne change pas toujours</em> le layout : color NON, position/display/height/width OUI. </p>
+				<p>Le <em>RenderStyle</em> recalculé <em>ne change pas toujours</em> le layout : color NON, position/display/height/width OUI. Le fond ne change pas la forme.</p>
 				<small><a href="https://csstriggers.com/">https://csstriggers.com/</a></small>
 				<!-- <p>Si tu relayout au touchmove t'es mal : le JS est sur la même thread que la UI thread, !Compositor. Blink veut un Layout threadé</p> -->
 				<p>Savoir profiter du preload scanner = perfs !</p>
 				<p>Savoir minimiser le layout = more perfs !</p>
-				<p>Savoir minimiser la peinture à venir = godlike - parfois</p>
+				<p>Savoir minimiser la peinture à venir = alpha frontend</p>
 				<p>... des questions HTML/CSS à poser en recrutement DFO, avant jQuery, Angular/React - nb : là je troll</p>
 			</section>
 
@@ -654,6 +654,7 @@
 				<p>Le moteur compose et range les calques dans la <em>Main</em> Thread mais les peint séparément dans une autre <em>Compositor</em> Thread</p>
 				<p>... car la <em>Main</em> thread peut ralentir : ex : miner du bitcoin en JS, avoir du HTML qui layout() trop souvent au scroll</p>
 				<p>On ne veut pas ralentir le compositing, la Compositor Thread bénéficie d'optimisations dédiées dessin et animation (ex: cache, effets GPU, projections spatiales, interpolations)</p>
+				<p>Video, Canvas et Flash naissent ici</p>
 			</section>
 
 			<section>
@@ -661,47 +662,47 @@
 				<p>On peut enfin dessiner / peindre nos <em>RenderLayer</em>s !</p>
 				<p>Plus besoin de penser box model, containing block, les styles sont calculés (cascades appliquées), le layout (padding, margin, border, width, height) a été fait et mis en layers</p>
 				<p>Pour chaque layer, la spec CSS nous dit exactement quoi peindre dans quel ordre</p>
-				<p>La peinture suit les specs, comme le layout : 9 étapes</p>
-				<img src="kid.jpg" width="300px" alt="">
+				<p>On suit 9 étapes. Créées par CSS2, ont peu bougé en CSS3</p>
+				<img src="kid.jpg" width="260px" alt="">
 			</section>
 
 			<section>
 				<h2>🎨 9 Etapes de peinture 🎨</h2>
 				<p>A wild pixel appears</p>
 				<p>On ne peint pas élément par élément au feeling, pour pas raturer</p>
-				<p>On peint des CSS stacking contexts (piles), en suivant un ordre récursif précis et pas toujours celui du HTML</p>
+				<p>On peint des <em>CSS stacking contexts (piles)</em>, en suivant un ordre récursif précis et pas <em>toujours</em> celui du HTML</p>
 				<p>Les piles sont étanches entre elles sinon ça coule, comme de la... peinture</p>
-				<p>Un stacking context est formé par élément qui est: racine, positioné, flex, grid item, table, float, column, transform</p>
-				<p>Un stacking context a des enfants avec stacking contexts (un enfant position:absolute/relatif suffit à créer un nouveau sc)</p>
-				<p>Un stacking context n'est pas juste le z-index : le zi est relatif au context</p>
+				<p>Un stacking context est formé par élément qui est: <em>racine, positioné, flex, grid item, table, float, column, transform</em></p>
+				<p>Un stacking context a des enfants avec stacking contexts (un enfant positionné suffit à créer un nouveau sc)</p>
+				<p>Un stacking context n'est pas juste le z-index ! <em>Le Z est par pile</em></p>
 			</section>
 
 			<section>
 				<h3>Oh non, encore des specs !</h3>
-				<small>On peint récursif par piles (stacking context) et pas <em>toujours</em> par l'ordre du flow HTML - ex: z-index</small>
+				<small>On peint récursif par piles (stacking context) et pas <em>toujours</em> par l'ordre du flow HTML - hello z-index</small>
 				<ol>
-					<li>on peint background (color/img/col/row/cell/grid-item), borders de l'element</li>
-					<li>on peint dans l'ordre du flow : enfants positionnés en zindex &lt; 0</li>
+					<li>on peint background (color/img/col/row/cell/grid-item), borders de l'enfant</li>
+					<li>on peint le sc des enfants positionnés en zindex &lt; 0</li>
 					<li>on peint dans l'ordre du flow : les blocks non inline, non positionnés</li>
 					<li>on peint dans l'ordre du flow : les floats non positionnés<!-- (genere sc) --></li>
 					<li>on peint dans l'ordre du flow : les inlines non positionnés, tables et inline blocks<!-- (generent un sc) --></li>
-					<li>(pivot vers positionnés) on peint le sc de l'enfant positionné à zindex: 0<!-- (genere sc) --></li>
+					<li>(pivot vers positionnés) on peint le sc des enfants positionnés à zindex: 0<!-- (genere sc) --></li>
 					<li>on peint le sc de l'enfant opacity &lt; 1 (transparence)</li>
 					<li>on peint le sc de l'enfant avec CSS transform/filter (effets)</li>
 					<li>on peint le sc de l'enfant positionné zindex &gt; 0 (au dessus)</li>
 					<!-- <li>on passe au sc suivant</li> -->
 				</ol>
 				<p>9 étapes, suite austère mais logique et optimisée : CSS 2 a créé ces specs, les positions, le z-index - avant, on utilisait des images vides</p>
-				<small>pour chaque pile : fonds et bordures, enfants au fond possiblement masqués, les blocks in flow, les floats in flow, les inlines in flow car un float les pousse, on bascule vers les positionnés, les 0, les transparents/transformés, les &gt; 0</small>
+				<small>pour chaque pile : fonds et bordures, enfants au fond possiblement masqués, les blocks in flow, les floats in flow, les inlines in flow car un float les pousse, on bascule vers les positionnés à 0, les transparents/transformés, les &gt; 0</small>
 			</section>
 
 			<section>
 				<h3>This painting order is applied recursively to each stacking context.</h3>
-				<p>Les enfants positionnés forment un stacking context enfant du stacking context parent</p>
-				<p>Le z-index n'est pas un onion global, il est relatif aux éléments du même stacking context.</p>
-				<p>c'est pour ça que opacity &lt; 1 affecte le rendu z-index : elle est peinte avant le &gt;0</p>
+				<p>C'est une pile de piles, poupées russes</p>
+				<p>Le z-index n'est pas un onion global, il est relatif aux éléments de sa pile</p>
+				<p>... c'est pour ça que opacity &lt; 1 affecte le rendu z-index : elle est peinte avant le &gt;0</p>
 				<p>donc : touchez au z-index avec précaution, même si la réponse est dans la spec</p>
-				<p>Aspirine ? et j'ai même pas parlé de flexbox, region, grid ou column</p>
+				<p>Aspirine ? Et j'ai même pas parlé de flex ou column</p>
 			</section>
 
 			<section>
@@ -733,7 +734,7 @@
 				<p>WebRender : nouveau moteur de dessin de Servo (= moteur expérimental de Firefox, moderne, Rust - hello meetup)</p>
 				<p>WR convertit les rectangles en matrice de triangles et balance TOUT* vers le GPU</p>
 				<p>Beaucoup plus rapide. CPU : 8/12 cores, GPU : des centaines</p>
-				<p>*Seules les fontes sont encore traitées par le CPU car un peu floues en GPU et ligatures fines difficiles (arabe, chinois, ...)</p>
+				<p>*Seules les fontes sont encore traitées par le CPU car un peu floues en GPU et ligatures fines difficiles (Arabe, Hébreu, ...)</p>
 				<p><a href="https://hacks.mozilla.org/2017/10/the-whole-web-at-maximum-fps-how-webrender-gets-rid-of-jank/">travaux de Lin Clark, WebRender / Quantum</a></p>
 			</section>
 

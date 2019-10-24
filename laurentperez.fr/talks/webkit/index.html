@@ -508,7 +508,7 @@
 					<p>Parce que le JS éxécuté peut modifier le DOM et son style CSSOM (appendChild, display:), ou avoir besoin de CSS chargée</p>
 					-->
 					<p>Un preload scanner est un chargeur ressources réseau en parallèle, il permet de libérer le moteur pour faire autre chose : construire un arbre au lieu de télécharger une image, éxécuter du JS...</p>
-					<p>HTMLPreloadScanner précharge : &lt;script&gt;, &lt;img&gt;, &lt;input type image&gt;, &lt;link rel&gt;, &lt;poster&gt;, &lt;picture&gt;, &lt;meta&gt;</p>
+					<p>HTMLPreloadScanner précharge : &lt;script&gt;, &lt;img&gt;, &lt;input type image&gt;, &lt;video poster&gt;, &lt;link rel&gt;, &lt;picture&gt;, &lt;meta&gt;</p>
 					<p>CSSPreloadScanner précharge : règle @import url() - oui, seulement</p>
 					<p>HTMLPreloadScanner intelligent : ex: chargera la meilleure image responsive/retina selon Media Query (dpi, dark mode, portrait)</p>
 				</section>
@@ -516,9 +516,7 @@
 				<section>
 					<p>Le CSSPreloadScanner ne précharge que les CSS @import, pourquoi pas ses images/fonts trouvées dans la CSS ?</p>
 					<ul>
-					<li>background-image ? il faudrait pas charger une url() inutile selon une Media Query mais le scanner <strong>n'est pas un parseur CSS : il ne lit pas dedans, il télécharge juste la ressource import() du réseau</strong></li>
-					<li>image responsive/retina ? scanner != parseur, impossible d'évaluer une MQ (width,dpx)... alors &lt;img srcset&gt; a été créé pour le HTMLPreloadScanner, qui lui peut évaluer une MQ pour ne pas charger une image inutile</li>
-					<li>fontes utiles ? compliqué, il ne faudrait les charger que si elles seront utilisées dans le style, mais impossible de preloader : le style n'est pas encore connu, l'arbre CSS pas encore construit</li>
+					<li>impossible de savoir si la page va les utiliser ou pas sans construire le DOM/CSSOM, à ce moment il n'est pas encore connu</li>
 					</ul>
 					<p>donc pour aider les scanners : préférez &lt;img&gt;/&lt;picture&gt;/&lt;link rel preload&gt; à &lt;div + css background image&gt;</p>
 					<p>les balises ont aussi un sens sémantique, préférez toujours le sens pour l'accessibilité, l'indexation, une &lt;img&gt; n'est pas un &lt;div&gt;</p>

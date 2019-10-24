@@ -50,10 +50,11 @@
 
 			<div class="slides">
 				<section>
-					<h2>Comment fonctionne</h2>
-					<h2>un moteur de rendu</h2>
-					<h3>"du HTML aux pixels"</h3>
-					<p>TBD / Meetup Web front #2</p>
+					<h2>"Du HTML aux pixels"</h2>
+					<h3>Une brève histoire des moteurs du Web</h3>
+					<h3>Comment fonctionne un moteur de rendu ?</h3>
+					<h3>Talk 1/2</h3>
+					<p>Hôte TBD / Meetup Web front #2</p>
 					<img src="mth.jpg" width="100px"/>
 				</section>
 
@@ -243,7 +244,7 @@
 						<li><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Privacy/Storage_access_policy">https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Privacy/Storage_access_policy</li></a>
 					</ul>
 					<p>Mozilla toujours en pointe sur les respects des usages - ils ont sû diversifier leurs revenus de la search bar entre Google, Yahoo, Yandex, Baidu, Amazon pour ne pas dépendre que de Google</p>
-					<p>Si la <em>Fondation</em> Mozilla est non lucratif, Mozilla <em>corporate</em> est un business mais particulier : pas d'actionnaires, pas de dividendes, pas de stock options</p>
+					<p>Si la <em>Fondation</em> Mozilla est non lucratif, Mozilla <em>Corporate</em> est un business mais particulier : pas d'actionnaires, pas de dividendes, pas de stock options</p>
 
 				</section>
 
@@ -266,20 +267,28 @@
 				<section>
 					<h3>Contributeurs WebKit/Blink principaux</h3>
 					<pre><code class="bash">git shortlog -e -s -n</code> </pre>
-					<p>Apple, Google avant Blink, webkit.org, Adobe, Igalia, Samsung, Sony, BlackBerry, Nokia, Intel</p>
+					<p>Apple, Google avant Blink, webkit.org (OSS), Adobe, Igalia, Samsung, Sony, BlackBerry, Nokia, Intel</p>
 					<p>Blink : Google, Opera, Adobe, Igalia, Samsung, Intel</p>
-					<p>Igalia ? GNOME/Linux, petite équipe de consultants experts et commiters WebKit/Blink/Qt/GTK, pour embarqué (voitures, panneaux pub, bornes, etc.)</p>
-					<p>ont implémenté CSS Grid dans Webkit+Blink, financés par Bloomberg, qui aime bien les grilles avec chiffres dedans</p>
 					<p>Yoav Weiss (auteur français de &lt;img srcset&gt;)</p>
+					<p>... Igalia kezako ?</p>
+				</section>
+
+				<section>
+					<h3>Igalia</h3>
+					<p>Ex ou courant de GNOME/Linux, petite équipe de consultants experts et commiters WebKit/Blink/Qt/GTK, pour embarqué (voitures, panneaux pub, bornes, IoT...)</p>
+					<p>ont entre autres implémenté CSS Grid dans Webkit+Blink, financés par Bloomberg, qui aime bien les grilles avec chiffres dedans</p>
+					<p><img src="bloom.png" width="300px" alt=""></p>
+					<p>Ils font un "pont" entre WebKit et Blink</p>
+					<p>La Corogne - tout ne se crée pas dans la Valley</p>
 				</section>
 
 				<section>
 					<h3>C'est open source</h3>
 					<p>Si des fabricants qui font des revenus sont derrière Blink, WebKit, Gecko/Servo, le code reste libre</p>
 					<p>Bientôt Huawei via un fork ?</p>
-					<p>Les fabricants partagent une suite de tests de non reg du W3C : <a href="http://github.com/w3c/web-platform-tests">WPT Web Platform Tests</a></p>
+					<p>Les fabricants partagent une suite de tests de non reg du W3C : <a href="http://github.com/w3c/web-platform-tests">WPT Web Platform Tests</a>.</p>
+					<p>Le fameux ACID test <a href="http://web-platform-tests.live/acid/acid3/test.html">est là</a> (Ian Hickson, co rédacteur de CSS2, mainteneur de la spec HTML5... ou Ken Kesey, LSD toussa)</p>
 					<p>C'est pas /si/ difficile de contribuer (DevTools/WebInspector est la porte d'entrée la plus aisée, avec les traductions)</p>
-					<p>Igalia recrute - La Corogne : tout ne se crée pas que dans la Valley</p>
 					<p>... petite plongée dans WebKit</p>
 				</section>
 
@@ -464,6 +473,16 @@
 					<div>
 						<img src="safaride.png" width="70%"/>
 					</div>
+				</section>
+
+				<section>
+					<h2>Du HTML aux pixels</h2>
+					<p>Comment marche un moteur ?</p>
+					<p>Comment à partir de texte HTML brut, de CSS et de JS il parvient à dessiner le Web ?</p>
+					<p>Il faudra venir au talk dédié rendu, talk 2/2</p>
+					<p>🖼️ Où on va descendre dans les Preload Scanners, DOM et CSSOM, le Layout, la Peinture, le Compositing 🎨</p>
+					<p>... grâce aux sources de WebKit</p>
+					<p>MERCI</p>
 				</section>
 
 				<section>

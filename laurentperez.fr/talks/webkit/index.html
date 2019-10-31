@@ -51,11 +51,12 @@
 			<div class="slides">
 				<section>
 					<h2>"Du HTML aux pixels"</h2>
-					<h3>Une brève histoire des moteurs du Web</h3>
+					<h3>A la découverte des moteurs de Chrome Safari et Firefox... mais pas que</h3>
 					<h3>Talk 1/2</h3>
 					<h3>Comment fonctionne un moteur de rendu ?</h3>
 					<h3>Talk 2/2</h3>
 					<p>Hôte TBD / Meetup Web Front #2</p>
+					<p>@laurentperez - Slack Comm MPL</p>
 					<img src="mth.jpg" width="100px"/>
 				</section>
 
@@ -160,7 +161,7 @@
 					<p>
 						Sur mobile domination Europe/USA à 95% du duo WebKit/Blink. Trident (Windows Phone) est mort. Firefox/Opera Mobile pour pays émergeants.
 					</p>
-					<p>Sur desktop le % est un peu différent : Firefox + IE ont ~20% du marché</p>
+					<p>Sur desktop le % est un peu différent : Firefox + IE ont ~15% du marché</p>
 					<p>Sur l'embarqué Consoles, Smart TV, Kiosques : WebKit devant Blink </p>
 					<p>Corée du Nord : fork de Gecko, 'Naenara' (Mon Pays) pour visiter des sites réservés <br>
 					<br><img src="kim.jpg" width="120px" style="border: none" alt="fdp"></p>
@@ -187,6 +188,14 @@
 				</section>
 
 				<section>
+					<h2>Microsoft et le mobile (bis)</h2>
+					<p>... proposition récente de spec pas anodine : <a href="https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/Foldables/explainer.md">Web Segments API</a></p>
+					<blockquote>We propose a new concept of Window Segments that represent the regions (and their dimensions) of the window <em>that reside on separate (adjacent) displays</em>. Window Segment dimensions are expressed in CSS pixels and will be exposed via a JavaScript API that allows developers to enumerate segments, including about regions that are occluded.</blockquote>
+					<p><img src="map-search.png" width="400px"/></p>
+					<p>C'est pour les Foldables : évolution pour donner le multi écrans à CSS et JS (Surface Duo)</p>
+				</section>
+
+				<section>
 					<h2>✈️ Un moteur n'est pas un navigateur. Un navigateur se sert d'un moteur. ✈️</h2>
 					<p>Airbus et Boeing <em>partagent</em> des moteurs General Electric, Rolls Royce, Trent : ce n'est pas le même avion == pas le même <em>navigateur</em></p>
 					<p>Une compagnie peut changer l'intérieur de l'avion (Singapore, Qatar Airlines, Air France = Apple, Google, Samsung, Sony)</p>
@@ -207,8 +216,8 @@
 				<section>
 					<h2>Blink et WebKit hors des navigateurs</h2>
 					<p>Embarqués dans des logiciels assez connus</p>
-					<p>Players Spotify, Pandora, Mail.app/iWork/iTunes/App Stores</p>
-					<p>Steam, Battle.net, Kindle Amazon</p>
+					<p>Players Spotify, Sirius, Mail.app/iWork/iTunes/App Stores</p>
+					<p>UI Steam, Battle.net, Kindle Amazon</p>
 					<p>consoles Sony, Nintendo, outils Adobe (AEM Forms)</p>
 					<p>... de récents commits de Sony, la PS5 se profile</p>
 					<p>Nintendo Switch hackée à cause d'un vieux WebKit - 6 mois de delta</p>
@@ -270,23 +279,23 @@
 					<pre><code class="bash">git shortlog -e -s -n</code> </pre>
 					<p>Apple, Google avant Blink, webkit.org (OSS), Adobe, Igalia, Samsung, Sony, BlackBerry, Nokia, Intel</p>
 					<p>Blink : Google, Opera, Adobe, Igalia, Samsung, Intel</p>
-					<p>Yoav Weiss (auteur français de &lt;img srcset&gt;)</p>
+					<p>Yoav Weiss (auteur français de &lt;img srcset&gt; &lt;picture&gt;)</p>
 					<p>... Igalia kezako ?</p>
 				</section>
 
 				<section>
 					<h3>Igalia</h3>
-					<p>Ex ou courant de GNOME/Linux, petite équipe de consultants experts et commiters WebKit/Blink/Qt/GTK, pour embarqué (voitures, panneaux pub, bornes, IoT...)</p>
-					<p>ont entre autres implémenté CSS Grid dans Webkit+Blink, financés par Bloomberg, qui aime bien les grilles avec chiffres dedans</p>
+					<p>Ex ou courant de GNOME/Linux, team de consultants experts et commiters WebKit/Blink/Qt/GTK, pour embarqué (voitures, panneaux pub, bornes, IoT...)</p>
+					<p>ont entre autres implémenté CSS Grid dans Webkit+Blink, financés par Bloomberg, qui aime bien les grilles avec des chiffres dedans</p>
 					<p><img src="bloom.png" width="300px" alt=""></p>
-					<p>Ils font un "pont" entre WebKit et Blink</p>
-					<p>La Corogne - tout ne se crée pas dans la Valley</p>
+					<p>Ils forment un "pont" entre WebKit et Blink car travaillent sur les 2</p>
+					<p>🇪🇸 La Corogne - tout ne se crée pas dans la Valley</p>
 				</section>
 
 				<section>
 					<h3>C'est open source</h3>
-					<p>Si des fabricants qui font des revenus sont derrière Blink, WebKit, Gecko/Servo, le code reste libre</p>
-					<p>Bientôt Huawei via un fork ?</p>
+					<p>Si des fabricants qui font des revenus sont derrière Blink, WebKit, Gecko/Servo, le code lui reste libre</p>
+					<p>Bientôt un fork de Huawei ?</p>
 					<p>Les fabricants partagent une suite de tests de non reg du W3C : <a href="http://github.com/w3c/web-platform-tests">WPT Web Platform Tests</a>.</p>
 					<p>Le fameux ACID test <a href="http://web-platform-tests.live/acid/acid3/test.html">est là</a> (Ian Hickson, co rédacteur de CSS2, mainteneur de la spec HTML5... ou Ken Kesey, LSD toussa)</p>
 					<p>C'est pas /si/ difficile de contribuer (DevTools/WebInspector est la porte d'entrée la plus aisée, avec les traductions)</p>
@@ -478,6 +487,7 @@
 
 				<section>
 					<h2>Du HTML aux pixels</h2>
+					<h2>END OF TALK 1/2</h2>
 					<p>Comment marche un moteur ?</p>
 					<p>Comment à partir de texte HTML brut, de CSS et de JS il parvient à dessiner le Web ?</p>
 					<p>Il faudra venir au talk dédié rendu, talk 2/2</p>

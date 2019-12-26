@@ -123,16 +123,17 @@
 
 				<section>
 					<h2>What's up, Web ?</h2>
-					<p>Tim Berners-Lee, Frystyk Nielsen, Bert Bos/Håkon Wium Lie (CSS/Opera), Robert Cailliau (W3C)</p>
+					<p>Tim Berners-Lee, Frystyk Nielsen, Bert Bos/Håkon Wium Lie (CSS/Opera), Robert Cailliau (W3C), Ian Hickson (HTML5)</p>
 					<p><small>Nielsen n'est pas que le co-auteur de HTTP/1.1, il a aussi co écrit SOAP, nobody's perfect</small></p>
-					<p>1991 : le <a href="http://line-mode.cern.ch/www/hypertext/WWW/TheProject.html"> Line Mode Browser</a></p>
-					<p>1993 : donation de sa 1ère base de code en domaine publique (pas GPL) pour fabriquer des navigateurs : libwww, qui sera supplée par libcurl</p>
-					<p>Car le 1er browser WorldWideWeb, ne tournait que sur des systèmes NeXT propriétaires - et chers</p>
+					<p>1991 : le <a href="http://line-mode.cern.ch/www/hypertext/WWW/TheProject.html"> Line Mode Browser</a> (Nicola Pellow)</p>
+					<p>1993 : donation de sa 1ère base de code en domaine publique pour fabriquer des navigateurs : libwww, qui sera supplée par libcurl</p>
+					<p>Car le 1er browser WorldWideWeb, ne tournait que sur des systèmes NeXT propriétaires. La donation donnera les ports MSDOS, Unix, Mac</p>
 					<img width="180px" src="https://upload.wikimedia.org/wikipedia/en/1/1d/NeXTSTEP_desktop.png" alt="">
 				</section>
 
 				<section>
 					<p><a href="https://worldwideweb.cern.ch/browser">WorldWideWeb</a></p>
+					<p>La vision originelle était la consultation mais aussi <em>l'édition</em>. Il faudra attendre WebDAV puis les wiki/blogs</p>
 					<p>Le 1er "design system" UX sur 4 pages A4 : <a href="https://www.w3.org/History/19921103-hypertext/hypertext/WWW/MarkUp/Tags.html">15 balises HTML</a></p>
 					<p>... avance rapide en <a href="https://www.reddit.com/r/funny/comments/ebzhdi/browsing_in_2019/">2020</a></p>
 				</section>
@@ -154,7 +155,7 @@
 						<figcaption>un des GAFA</figcaption>
 					</figure>
 					
-					<p>Dualité d'Apple et de Google qui ont partagé un moteur commun jusqu'en 2013 : WebKit, né en 2001, issu du monde Linux</p>
+					<p>Dualité d'Apple et Google qui ont partagé un moteur commun jusqu'en 2013 : WebKit, né en 2001, issu du monde Linux</p>
 					<p>Mozilla, Microsoft et Opera avec leurs propres moteurs : Gecko (ex Netscape réécrit), Servo, Trident, EdgeHTML, Presto</p>
 					<p>... mais IE va utiliser le moteur de Google : Blink, fork de WebKit</p>
 				</section>
@@ -276,8 +277,8 @@
 					<p>Interrogations autour de Huawei qui pourrait forker WebKit ou Blink</p>
 					<p>Samsung, Sony, Nokia, HTC &amp; all utilisent le moteur de Google <em>per</em> Android
 					... mais Firefox utilise <a href="https://hacks.mozilla.org/2019/06/geckoview-in-2019/">GeckoView</a> <em>alternative</em> à WebView sur Android pour toute PWA</p>
-					<p>KaiOS (Inde, Brésil) utilise un dérivé du moteur de Firefox Mobile</p>
-					<p>Opera Mini présent sur certains terminaux Kai, et Nokia 3310 2017</p>
+					<p>KaiOS (Inde, Brésil) utilise un fork du moteur de Firefox Mobile B2G</p>
+					<p>Opera Mini présent sur certains terminaux Kai et reboots Nokia 3310/8810</p>
 				</section>
 				
 				<section>
@@ -319,9 +320,9 @@
 					<p>
 						Sur mobile domination Europe/USA à 95% du duo WebKit/Blink. Trident (Windows Phone) est mort. Firefox/Opera Mobile pour pays émergeants.
 					</p>
-					<p>Sur desktop le % est un peu différent : Firefox + IE ont ~15% du marché</p>
+					<p>Sur desktop le % est un peu différent : Firefox + IE ont ~10% du marché</p>
 					<p>Sur l'embarqué Consoles, Smart TV, Kiosques : WebKit devant Blink </p>
-					<p>Corée du Nord : fork de Gecko, 'Naenara' (Mon Pays) pour visiter des sites réservés. USA/Chine : pas pire cf FISA 702/Tencent <br>
+					<p>Corée du Nord : fork de Gecko, 'Naenara' (Mon Pays) pour visiter des sites réservés. USA/Chine : pas anges, cf FISA 702/Tencent <br>
 					<br><img src="kim.jpg" width="120px" style="border: none" alt="fdp"><img src="nsa.png" width="180px" style="border: none" alt="fdp"></p>
 				</section>
 
@@ -331,7 +332,7 @@
 					<p>Changements de fond liés aux roadmaps divergeantes, au refus des -prefix CSS, au refus originel du code MathML, à l'arrivée du moderne Servo chez Mozilla</p>
 					<p>... à la concurrence avec Apple : Google était co contributeur à ~50% de WebKit, devenu copyright Apple</p>
 					<p>Blink est moteur de Chromium/Chrome, Opera, Silk, UI Battle.net, Steam, Spotify post WebKit, IE 2020</p>
-					<p>c'est aussi un "Google Show"</p>
+					<p>c'est aussi un "Google Show" (cit. Sony)</p>
 				</section>
 
 				<section>
@@ -406,7 +407,6 @@
 						<li>2007 L'iPhone sort avec Safari 3, vision de Jobs : les Apps seront des pages HTML</li>
 						<li>2008 Google lance Android et Chrome sous WebKit, Apple lance le 1er SDK iOS... il n'y aura pas d'Apps HTML</li>
 						<li>2009 Proche divorce "on reste amis" entre Apple et KDE, code d'Apple était difficile à backporter en Open Source</li>
-						<li>2011 Apple demande à trademarker WebKit, RIM pas trop d'accord</li>
 						<li>2013 Mozilla crée Servo, Google forke WebKit en Blink, Opera abandonne Presto pour Blink, WebKit devient trademark Apple. Blink est un fork technique et business</li>
 						<li>2014/5 Microsoft remplace Trident par EdgeHTML</li>
 					</ul>
@@ -581,7 +581,7 @@
 	<p>Box model, les flows et le VFM sont les fondations du Web visuel</p>
 	<p>... le Web est né au CERN, pas dans une école d'art : une documentation scientifique demeure - quand les specs sont assez claires !</p>
 	<p>Une spec peu claire crée du doute, des interprétations, des bugs</p>
-	<p>Et des préfixes et des mues : -ms-grid, -webkit-grid</p>
+	<p>ou des préfixes et des mues : -ms-grid, -webkit-grid ...</p>
 </section>
 					<section>
 						<h3>Spec #1 : Le Box Model</h3>
@@ -629,7 +629,7 @@
 					<p>Nimporte qui peut y contribuer, leurs auteurs répondent - en général</p>
 					<p>Les fabricants/OSS implémentent ou non les specs selon leur propre roadmap</p>
 					<p>Les specs sont une prédiction - non garantie - de ce qui va arriver dans les navigateurs et WebViews pour app natives</p>
-					<p>Suivre @twitter "Intent to ship" <a href="https://twitter.com/intenttoship">https://twitter.com/intenttoship</a> pour savoir quand ça va arriver sous Firefox ou Chrome</p>
+					<p>Suivre <a href="https://twitter.com/intenttoship">@intenttoship</a> pour savoir quand ça va arriver sous Firefox ou Chrome</p>
 					<p>Suivre les commits WebKit pour savoir quand ça va arriver sous Safari</p>
 				</section>
 
@@ -642,7 +642,7 @@
 					<p>SMS Receiver API, Contact API (!)</p>
 					<p>Payment API (GooglePay, ApplePay dans le browser)</p>
 					<p>Mise en valeur des sites PWA acceptées dans les App Stores</p>
-					<p>SVG dans les favicon (!)</p>
+					<p>SVG dans les favicon (! shipped CR80)</p>
 					<p>remplacement de &lt;iframe&gt; par &lt;portal&gt; (Google I/O 2019)</p>
 				</section>
 

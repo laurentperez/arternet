@@ -117,7 +117,7 @@
 					<p>Points communs avec le moteur Mercedes AMG F1 W0x</p>
 					<p>Slide 1 sur 80</p>
 					<p>
-						<img src="f1.jpg" width="400px" style="border: none">
+						<img src="f1.jpg" width="600px" style="border: none">
 					</p>
 					<p>Chapitre 1 : architecture des composants PU, MGU-H et MGU-K/KERS dans les homologations FIA</p>
 					<p>... ou on va plutôt parler du Web</p>
@@ -277,7 +277,7 @@
 					<p>Apple interdit tout autre moteur que le sien dans les apps, Chrome et Firefox iOS ne sont que des coquilles autour de WebKit</p>
 	<small>2.5.6 Apps that browse the web must use the appropriate WebKit framework and WebKit Javascript.</small>
 					<p>Samsung, Sony, HTC &amp; all utilisent le moteur de Google <em>per</em> Android
-					... mais Firefox propose <a href="https://hacks.mozilla.org/2019/06/geckoview-in-2019/">GeckoView</a> <em>alternative non mouvante</em> à WebView pour toute PWA</p>
+					... mais Firefox propose <a href="https://hacks.mozilla.org/2019/06/geckoview-in-2019/">GeckoView</a> <em>alternative non mouvante</em> à WebView pour toute PWA / webapp avancée</p>
 					<p>Huawei qui pourrait forker WebKit ou Blink</p>
 					<p>KaiOS (Inde, Brésil) utilise un fork du moteur de Firefox Mobile B2G</p>
 					<p>Opera Mini présent sur certains terminaux Kai et reboots Nokia 3310/8810</p>
@@ -324,15 +324,15 @@
 					</p>
 					<p>Sur desktop le % est un peu différent : Firefox + IE ont ~10% du marché</p>
 					<p>Sur l'embarqué Consoles, Smart TV, Kiosques : WebKit devant Blink </p>
-					<p>Corée du Nord : fork de Gecko, 'Naenara' (Mon Pays) pour visiter des sites réservés. USA/Chine : pas anges, cf FISA 702/Tencent <br>
-					<br><img src="kim.jpg" width="120px" style="border: none" alt="fdp"><img src="nsa.png" width="180px" style="border: none" alt="fdp"></p>
+					<p>Corée du Nord : fork de Gecko, 'Naenara' (Mon Pays) pour visiter des sites réservés<br>
+					<br><img src="kim.jpg" width="120px" style="border: none" alt="fdp"></p>
 				</section>
 
 				<section>
 					<h2>🥄 Aparté sur le fork Blink (Google) 🥄</h2>
-					<p>Mi 2013 Google décide de diverger de WebKit commun à Safari et Chrome et le forke en Blink</p>
-					<p>Changements de fond liés aux roadmaps divergeantes, au refus des -prefix CSS, au refus originel du code MathML, à l'arrivée du moderne Servo chez Mozilla</p>
-					<p>... à la concurrence avec Apple : Google était co contributeur à ~50% de WebKit, devenu copyright Apple</p>
+					<p>Mi 2013 Google décide de diverger de WebKit commun à Safari et Chromium et le forke en Blink</p>
+					<p>Raisons de fond liées aux roadmaps divergeantes, au refus des -prefix CSS, au refus originel du code MathML, au refactoring core</p>
+					<p>... à la concurrence avec Apple : Google était co contributeur à ~50% de WebKit, tensions de gouvernance</p>
 					<p>Blink est moteur de Chromium/Chrome, Opera, Silk, UI Battle.net, Steam, Spotify post WebKit, IE 2020</p>
 					<p>c'est aussi un "Google Show" (cit. Sony)</p>
 				</section>
@@ -358,8 +358,8 @@
 					<p>... proposition récente de spec pas anodine : <a href="https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/Foldables/explainer.md">Web Segments API</a></p>
 					<blockquote>We propose a new concept of Window Segments that represent the regions (and their dimensions) of the window <em>that reside on separate (adjacent) displays</em>. Window Segment dimensions are expressed in CSS pixels and will be exposed via a JavaScript API that allows developers to enumerate segments, including about regions that are occluded.</blockquote>
 					<p><img src="map-search.png" width="400px"/></p>
-					<p>C'est pour les Foldables : évolution pour donner le multi écrans à CSS et JS (Surface Duo)</p>
-					<small>@media (spanning: single-fold-vertical) {	
+					<p>C'est pour les Foldables : évolution pour donner le multi écrans à CSS et JS (Surface Duo) : @media (spanning: single-fold-vertical)</p>
+					<small style="font-size: 12px;">@media (spanning: single-fold-vertical) {	
 							body {
 								flex-direction: row;
 							}
@@ -395,7 +395,7 @@
 					<p>consoles Sony, Nintendo, outils Adobe (AEM Forms)</p>
 					<p>Nintendo Switch hackée à cause d'un <a href="https://www.youtube.com/watch?v=xkdPjbaLngE">vieux WebKit</a> - 6 mois de delta</p>
 					<img src="mario.png" width="300px" alt="">
-					<p>automobile, Smart TVs, kiosques (NetFront) ...</p>
+					<p>automobile, Smart TVs, kiosques (<a href="https://www.access-company.com/en/products/browser/netfront-browser-be/">Access NetFront</a>) ...</p>
 				</section>
 <!--
 				<section>
@@ -421,7 +421,7 @@
 						<li>2007 L'iPhone sort avec Safari 3, vision de Jobs : les Apps seront des pages HTML</li>
 						<li>2008 Google lance Android et Chrome sous WebKit, Apple lance le 1er SDK iOS... il n'y aura pas d'Apps HTML... avant les PWAs</li>
 						<li>2009 Proche divorce "on reste amis" entre Apple et KDE, code d'Apple était difficile à backporter en Open Source</li>
-						<li>2013 Mozilla crée Servo, Google forke WebKit en Blink, Opera abandonne Presto pour Blink, WebKit devient trademark Apple. Blink est un fork technique et business</li>
+						<li>2013 Mozilla crée Servo, Google forke WebKit en Blink, Opera abandonne Presto pour Blink, WebKit devient trademark Apple. </li>
 						<li>2014/5 Microsoft remplace Trident par EdgeHTML</li>
 					</ul>
 				</section>
@@ -442,8 +442,18 @@
 				</section>
 
 				<section>
+					<h2>Sources d'innovation ?</h2>
+					<p>💰 Problème du poids de Apple, Google, Microsoft 💰</p>
+					<small>Les compagnies les plus riches du monde <a href="https://www.forbes.com/powerful-brands/list/#tab:rank">Forbes 2019</a></small>
+					<p>Les revenus de Moz proviennent de moteurs de recherche : par effet de bord, de la publicité (Ads, Bing, Baidu)</p>
+					<p><a href="https://brave.com/fr/">Brave</a> browser qui propose une rémunération des ads en cycle court via cryptomonnaie - Eich, ex CEO Moz, inventeur du JS</p>
+					<p>... le modèle économique des 3/4 des fabricants reste empreint d'ad-tech et de consumérisme physique ou digital</p>
+					
+				</section>
+
+				<section>
 					<h2>Les acteurs communiquent ouvertement sur l'avenir de leur moteur</h2>
-					<p>Les mentalités ont évolué. Possible privacy wars au lieu browser wars</p>
+					<p>Les mentalités ont évolué. Possible privacy wars au lieu de browser wars</p>
 					<ul>
 						<li>WebKit.org (OSS) : <a href="https://webkit.org/status/">https://webkit.org/status</a></li>
 						<li>Blink : <a href="https://www.chromestatus.com/features">https://www.chromestatus.com/features</a></li>
@@ -471,14 +481,14 @@
 					<p>Ex ou courant de GNOME/Linux, team de consultants experts et commiters WebKit/Blink/Qt/GTK, pour embarqué (voitures, panneaux pub, bornes, IoT...)</p>
 					<p>ont entre autres implémenté CSS Grid dans Webkit+Blink, financés par Bloomberg, qui aime bien les grilles avec des chiffres dedans</p>
 					<p><img src="bloom.png" width="300px" alt=""></p>
-					<p>Ils forment un "pont" entre WebKit et Blink car travaillent sur les 2</p>
+					<p>Ils forment un pont entre WebKit et Blink car travaillent sur les 2</p>
 					<p>🇪🇸 La Corogne - tout ne se crée pas dans la Valley</p>
 				</section>
 
 				<section>
 					<h3>C'est open source</h3>
 					<p>Si des fabricants qui font des revenus sont derrière Blink, WebKit, Gecko/Servo, le code lui reste libre</p>
-					<p>Les fabricants partagent une suite de tests de non reg : <a href="http://github.com/w3c/web-platform-tests">WPT Web Platform Tests</a>.</p>
+					<p>Les fabricants <em>partagent</em> une suite de tests de non reg : <a href="http://github.com/w3c/web-platform-tests">WPT Web Platform Tests</a>.</p>
 					<p>Le fameux ACID test <a href="http://w3c-test.org/acid/acid3/test.html">est là</a> (Ian Hickson, co rédacteur de CSS2, mainteneur de la spec HTML5... ou Ken Kesey, LSD toussa)</p>
 					<p>C'est pas /si/ difficile de contribuer : DevTools/WebInspector est la porte d'entrée la plus aisée, avec les traductions</p>
 					<p>... petite plongée dans WebKit</p>
@@ -491,7 +501,7 @@
 					<p>4 GB. 35000 tests. 900MB de sources C++, 2/17MLoC, 215000 commits. Projet XCode ou Visual Studio</p>
 					<p>Fun fact : ~70% des 4GB sont des tests et ressources de tests (pages HTML, images, vidéos, audio, fichiers JS/CSS)</p>
 					<p>25 minutes de compile sur un très bon CPU</p>
-					<p>dedans : WebCore, JavaScriptCore, WebInspectorUI, WPE, WTF, MiniBrowser, DumpRenderTree, ...</p>
+					<p>dedans : WebCore, JavaScriptCore, WebInspectorUI, WPE, WTF, WK2, MiniBrowser, DumpRenderTree, ...</p>
 				</section>
 
 				<section>
@@ -499,7 +509,7 @@
 					<p>Pas un WebKit unique. Un port parle aux APIs natives plateforme (ex: API de dessin, de réseau, de hardware dédié ...)</p>
 					<ul>
 						<li>OSX/iOS port (Safari/Mail/AppStore/iWork + CoreGraphics)
-						<li>Android port (Stock Internet browsers/Chromium &lt; Blink + Skia)</li>
+						<li>old Android port (Stock Internet browsers/Chromium &lt; Blink + Skia)</li>
 						<li>GTK port (Linux Gnome Epiphany browser + Cairo)</li>
 						<li>Qt port (Spotify Player &lt; Blink, wkhtml2pdf)</li>
 						<li>WPE port (micro moteur pour embarqué IoT, Smart TVs, Kiosques, Automobile)</li>
@@ -507,14 +517,14 @@
 						<li>EA : moteur de l'UI de Sim City 2K, devenu fork EAWebKit (FIFA, NHL, Apex)</li>
 						<li>Amazon : le lecteur d'ebook Kindle &lt; Blink, Silk dans le cloud AWS</li>
 						<li>Sony : UI de la PS4 en WebGL, PSN Store, browser in-game</li>
-						<li>Nintendo : browsers Wii U et Switch, Nintendo Store</li>
+						<li>Nintendo : browser Nintendo Store WiiU et Switch</li>
 						<li>QNX port (BlackBerry) : Audi, BMW, Ford, Honda, Porsche, Toyota, Volkswagen</li>
 					</ul>
 					</section>
 
 					<section>
 						<h2>Ports de Sony et EA</h2>
-						<p>Contribuent en commit retour ou publient les sources de leurs changements</p>
+						<p>Commits ou publient les sources partielles de leurs changements</p>
 						<blockquote cite="https://trac.webkit.org/wiki/SonyWebKitWork2016">Q @ SONY : &ldquo;Why did you choose WebKit?&rdquo;<br>
 							Started before the Blink branch.<br>
 							(...)<br>
@@ -523,7 +533,7 @@
 							Blink is more about feature-feature-feature&rdquo;
 						</blockquote>
 						<p>EAWebKit : <a href="https://gpl.ea.com/eawebkit.html">https://gpl.ea.com/eawebkit.html</a> : sources du fork pour PC/XBox/PS4, publiées en .zip à chaque sortie de jeu</p>
-						<small style="display: block;">UI de <a href="http://twvideo01.ubm-us.net/o1/vault/gdc2015/presentations/Chin_YeeCheng_HowToImplement.pdf">SimCity</a> : How to Implement AAA Game UI in 100% 
+						<small style="display: block;">UI de <a href="http://twvideo01.ubm-us.net/o1/vault/gdc2015/presentations/Chin_YeeCheng_HowToImplement.pdf">SimCity2K</a> : How to Implement AAA Game UI in 100% 
 							HTML and JavaScript (GDC 2015)</small>
 						<p>Pas de signaux de contribution de Nintendo, hackés + Culte du Secret... à la Apple</p>
 					</section>
@@ -538,7 +548,8 @@
 						<p>Une base <em>commune</em> pour : parsing HTML/CSS/SVG/MathML &amp; styling/layout (WebCore), JS (JavaScriptCore), GraphicsContext (délègue le rendu à un port)</p>
 						<p>Des ports pour : spécifique OS (pile graphique ou réseau), image decoding, liens hardware (GPU, orientation, geoloc, battery, vibration, touch inputs, senseurs lumière/pression/paiement, ...). </p><p>Présence de <em>flags</em> lors du build : #if ENABLE(PLATFORM_IOS)(...)</p>
 						<p>C'est le même moteur dans des chassis et câblages - très - différents.
-						<br>C'est pour ça qu'il y a des différences de comportement ou bugs</p>
+						<br>C'est pour ça qu'il y a des différences de comportement ou bugs
+						<br>Pas de notion de ports sous Blink</p>
 					</section>
 
 					<section>
@@ -650,11 +661,11 @@
 
 				<section>
 					<h2>Quelques travaux en cours</h2>
-					<small>Très publics : <a href="https://docs.google.com/spreadsheets/d/1pvXEMD5pRioognaqEzglS-4ZBSQ_YmzL8Fiz7yt4Bb4/edit#gid=0">https://docs.google.com/spreadsheets/d/1pvXEMD5pRioognaqEzglS-4ZBSQ_YmzL8Fiz7yt4Bb4/edit#gid=0</a></small>
+					<small>Très publics : <a href="https://bit.ly/blinkintents">https://bit.ly/blinkintents</a></small>
 					<p>CSS Houdini (accès poussé au moteur CSS via JS)</p>
 					<p>Web Share API (linkedin, insta,...)</p>
 					<p>Shape Detection API (code barre, visage, texte)</p>
-					<p>SMS Receiver API, Contact API (!)</p>
+					<p>SMS Receiver API, Contact API (ship !)</p>
 					<p>Payment API (GooglePay, ApplePay dans le browser)</p>
 					<p>Mise en valeur des sites PWA acceptées dans les App Stores</p>
 					<p>SVG dans les favicon (! shipped CR80)</p>

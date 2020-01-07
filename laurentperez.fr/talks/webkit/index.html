@@ -70,7 +70,6 @@
 <section>
 	<img src="mth.jpg" width="100px"/>
 	<img src="sponso.png"/>
-	<p>merci aux sponsors</p>
 </section>
 				<section>
 					<h2>Nos hôtes</h2>
@@ -136,6 +135,8 @@
 				<section>
 					<p>Le 1er "design system" - composants textuels - sur 4 pages A4 : <a href="https://www.w3.org/History/19921103-hypertext/hypertext/WWW/MarkUp/Tags.html">15 balises HTML</a></p>
 					<p>assez peu de nouvelles balises ont été ajoutées</p>
+					<p>Fin 2019 : 1er groupe de standardisation de design tokens - <a href="https://www.w3.org/community/design-tokens/">W3C DTCG</a></p>
+					<small>tl;dr : utilisateurs et auteurs d'outils UX dans un groupe de travail du W3 = <a href="https://github.com/design-tokens/community-group/issues/1">open Design Token format</a></small>
 					<p>... avance rapide en <a href="https://www.reddit.com/r/funny/comments/ebzhdi/browsing_in_2019/">2020</a></p>
 				</section>
 
@@ -299,10 +300,10 @@
 								</tr>
 								<tr>
 									<td>Blink</td>
-									<td>Chromium/e, Opera, Vivaldi</td>
+									<td>Chromium/e, Opera, Vivaldi, Brave</td>
 								</tr>
 								<tr>
-									<td>Gecko/Quantum/Servo</td>
+									<td>Gecko/Servo</td>
 									<td>Firefox, Fennec/Fenix (mobile), Reality (VR), Thunderbird</td>
 								</tr>
 								<tr>
@@ -311,7 +312,7 @@
 								</tr>
 								<tr>
 									<td>Dérivé FirefoxOS/Opera Mini</td>
-									<td>smart feature phones KaiOS % &gt; iOS en Inde, Opera Mini est un moteur cloud</td>
+									<td>smart feature phones KaiOS % ~iOS en Inde, Opera Mini est un moteur cloud</td>
 								</tr>
 							</tbody>
 						</table>
@@ -324,7 +325,7 @@
 					</p>
 					<p>Sur desktop le % est un peu différent : Firefox + IE ont ~10% du marché</p>
 					<p>Sur l'embarqué Consoles, Smart TV, Kiosques : WebKit devant Blink </p>
-					<p>Corée du Nord : fork de Gecko, 'Naenara' (Mon Pays) pour visiter des sites réservés<br>
+					<p>Corée du Nord : fork de Gecko, 'Naenara' (Mon Pays) pour visiter des sites réservés et watermarker<br>
 					<br><img src="kim.jpg" width="120px" style="border: none" alt="fdp"></p>
 				</section>
 
@@ -358,15 +359,17 @@
 					<p>... proposition récente de spec pas anodine : <a href="https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/Foldables/explainer.md">Web Segments API</a></p>
 					<blockquote>We propose a new concept of Window Segments that represent the regions (and their dimensions) of the window <em>that reside on separate (adjacent) displays</em>. Window Segment dimensions are expressed in CSS pixels and will be exposed via a JavaScript API that allows developers to enumerate segments, including about regions that are occluded.</blockquote>
 					<p><img src="map-search.png" width="400px"/></p>
-					<p>C'est pour les Foldables : évolution pour donner le multi écrans à CSS et JS (Surface Duo) : @media (spanning: single-fold-vertical)</p>
-					<small style="font-size: 12px;">@media (spanning: single-fold-vertical) {	
-							body {
-								flex-direction: row;
-							}
-							.adjacent {
-								flex: 1 1 env(fold-left)
-							}
-						}</small>
+					<p style="font-size: 12px;">C'est pour les Foldables : évolution pour donner le multi écrans à CSS et JS (Surface Duo) : @media (spanning: single-fold-vertical)	.adjacent {
+							flex: 1 1 env(fold-left)
+						}</p>
+				</section>
+
+				<section>
+					<h2>Gecko ?</h2>
+					<p>Echec de percée dans le mobile - travaux repris par KaiOS</p>
+					<p>Pas d'embarqué !</p>
+					<p>Le moteur Servo déverse dans Gecko ses meilleurs morceaux : WebRender, Pathfinder</p>
+					<p>Firefox, Firefox Preview/Fenix, Firefox Reality</p>
 				</section>
 
 				<section>
@@ -446,9 +449,8 @@
 					<p>💰 Problème du poids de Apple, Google, Microsoft 💰</p>
 					<small>Les compagnies les plus riches du monde <a href="https://www.forbes.com/powerful-brands/list/#tab:rank">Forbes 2019</a></small>
 					<p>Les revenus de Moz proviennent de moteurs de recherche : par effet de bord, de la publicité (Ads, Bing, Baidu)</p>
-					<p><a href="https://brave.com/fr/">Brave</a> browser qui propose une rémunération des ads en cycle court via cryptomonnaie - Eich, ex CEO Moz, inventeur du JS</p>
+					<p><a href="https://brave.com/fr/">Brave</a> browser qui propose une rémunération des ads en cycle fermé via cryptomonnaie - Eich, ex CEO Moz, inventeur du JS</p>
 					<p>... le modèle économique des 3/4 des fabricants reste empreint d'ad-tech et de consumérisme physique ou digital</p>
-					
 				</section>
 
 				<section>

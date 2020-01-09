@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>laurentperez.fr::talks::webkit</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+			.reveal section p {
+			font-size: 0.8em !important;
+			}
+			.reveal section h2 {
+			font-size: 1.2em !important;
+			}
+			.reveal section h3 {
+			font-size: 1em !important;
+			}
+			.reveal section img {
+			margin:0 !important;
+			border: none !important;
+			}
+			.reveal section blockquote {
+			font-size: 0.5em !important;
+			}
+			.reveal section ul li {
+			font-size: 0.6em !important;
+			}
+			.reveal section ol li {
+			font-size: 0.6em !important;
+			}
+			.reveal figure {
+				display: inline-block;
+			}
+			.reveal figcaption {
+				margin-top: -5px;
+				font-size: 20px;
+			}
+			</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<h2>"Du HTML aux pixels"</h2>
+					<h3>A la découverte des moteurs de Chrome, Safari, IE et Firefox... mais pas que</h3>
+				
+                    <img src="mth.jpg" width="100px"/>
+                    <br>
+                    <small>@laurentperez</small>
+                    <br>
+                    <small>❤️ le Web</small>
+				</section>
+
+			
+
+<!--
+				<section>
+					<h2>About your speaker</h2>
+					<p>@laurentperez - Slack Communauté MPL</p>
+					<p>SFR, Voyages SNCF, Credit Agricole, Banque Populaire, Canal+, Air France, Intersport...</p>
+					<p>Back et front</p>
+					<p>❤️ le web</p>
+				</section>
+				-->
+
+				<section>
+					<h2>About you</h2>
+					<p>Ratio iOS/Android/autres dans la salle ?</p>
+					<p>Qui s'est servi d'un navigateur web ce jour ?</p>
+					<p>WebKit, Blink, Servo, Gecko, Trident, Spartan, Presto ... ?</p>
+				</section>
+
+				<section>
+					<h2>Un moteur n'est <em>pas un navigateur</em> ⛵</h2>
+					<h4>Mais une suite de composants pour afficher et interagir avec une page web</h4>
+					<p>
+						<ul>
+							<li>un composant pour charger des ressources réseau de manière intelligente</li>
+							<li>un composant de règles CSS (ex: Media Queries, calcul de styles en cascade)</li>
+							<li>un composant de dessin qui utilise une libraire graphique (ex: CoreGraphics pour Apple, Cairo GTK pour Linux/Win, Skia pour Android, HarfBuzz pour les glyphes ...)</li>
+							<li>un composant pour éxécuter du JS (ex: JavaScriptCore sous WebKit, V8 sous Blink/Node, SpiderMonkey sous Firefox, Chakra sous IE/Edge)</li>
+							<li>un composant pour inspecter et développer (ex: WebInspector, DevTools)</li>
+							<li>un pilote pour jouer des tests auto, des conteneurs de cookies ou bdd, des masses de tests, une API pour extensions, etc...</li>
+							
+						</ul>
+						<p>oulala le 1er slide est déjà technique<br>
+							... prenons du recul</p>
+					</p>
+				</section>
+
+				<section>
+					<h2>Une analogie simple</h2>
+					<p>Points communs avec le moteur Mercedes AMG F1 W0x</p>
+					<p>Slide 1 sur 80</p>
+					<p>
+						<img src="f1.jpg" width="600px" style="border: none">
+					</p>
+					<p>Chapitre 1 : architecture des composants PU, MGU-H et MGU-K/KERS dans les homologations FIA</p>
+					<p>... ou on va plutôt parler du Web</p>
+				</section>
+
+				<section>
+					<h2>What's up, Web ?</h2>
+					<p>Tim Berners-Lee, Frystyk Nielsen, Bert Bos/Håkon Wium Lie (CSS/Opera), Robert Cailliau (W3C), Ian Hickson (HTML5)</p>
+					<p><small>Nielsen n'est pas que le co-auteur de HTTP/1.1, il a aussi co écrit SOAP - nobody's perfect</small></p>
+					<p>1991 : le <a href="http://line-mode.cern.ch/www/hypertext/WWW/TheProject.html">Line Mode Browser</a> en C (Nicola Pellow 👩)</p>
+					<p>1993 : donation de sa 1ère base de code en domaine publique pour fabriquer des navigateurs : libwww, qui sera supplée par libcurl</p>
+					<p>Car le 1er browser <a href="https://worldwideweb.cern.ch/browser">WorldWideWeb</a> ne tournait que sur des systèmes NeXT propriétaires/ObjC. La donation donnera les ports MSDOS, Unix, Mac</p>
+					<img width="180px" src="https://upload.wikimedia.org/wikipedia/en/1/1d/NeXTSTEP_desktop.png" alt="">
+				</section>
+
+				<section>
+					<p>Le 1er "design system" - composants textuels - sur 4 pages A4 : <a href="https://www.w3.org/History/19921103-hypertext/hypertext/WWW/MarkUp/Tags.html">15 balises HTML</a></p>
+					<p>assez peu de nouvelles balises ont été ajoutées</p>
+					<p>Fin 2019 : 1er groupe de standardisation de design tokens - <a href="https://www.w3.org/community/design-tokens/">W3C DTCG</a></p>
+					<small>tl;dr : utilisateurs et auteurs d'outils UX dans un groupe de travail du W3 = <a href="https://github.com/design-tokens/community-group/issues/1">open Design Token format</a></small>
+					<p>... avance rapide en <a href="https://www.reddit.com/r/funny/comments/ebzhdi/browsing_in_2019/">2020</a></p>
+				</section>
+
+				<section>
+					<h2>What's up, Web ?</h2>
+					<p>On a plusieurs navigateurs : Safari, Chrome, Firefox, IE, Opera, ...</p>
+					<p>... mais <em>One moteur to rule them all</em> ? Pas encore, et tant mieux</p>
+					<figure>
+					<img src="all-logos.png" alt="" width="300px">
+					<figcaption>navigateurs</figcaption>
+					</figure>
+					<figure>
+					<img src="logos.png" alt="" width="200px">
+					<figcaption>moteurs</figcaption>
+					</figure>
+					<figure>
+						<img src="sauron.jpg" width="110px" alt="">
+						<figcaption>...</figcaption>
+					</figure>
+					
+					<p>Dualité d'Apple et Google qui ont partagé un moteur commun jusqu'en 2013 : WebKit, né en 2001, issu du monde Linux</p>
+					<p>Mozilla, Microsoft et Opera avec leurs propres moteurs : Gecko (ex Netscape réécrit), Servo, Trident, EdgeHTML, Presto</p>
+					<p>... mais IE2020 utilise le moteur de Google : Blink, fork de WebKit</p>
+				</section>
+
+				<section>
+					<h2>Il y a un peu plus que 5 navigateurs</h2>
+					<p>Versions beta, alpha, embarqué, mobile, Linux, Mac, Windows, ...</p>
+					<p>Mais peu de moteurs différents : 5 majeurs</p>
+						<img style="width:48px;" src='wall/360-secure_64x64.png'>
+						<img style="width:48px;" src='wall/amigo_64x64.png'>
+						<img style="width:48px;" src='wall/android-webview-beta_64x64.png'>
+						<img style="width:48px;" src='wall/android_64x64.png'>
+						<img style="width:48px;" src='wall/aol-explorer_64x64.png'>
+						<img style="width:48px;" src='wall/arora_64x64.png'>
+						<img style="width:48px;" src='wall/avant_64x64.png'>
+						<img style="width:48px;" src='wall/axis_64x64.png'>
+						<img style="width:48px;" src='wall/basilisk_64x64.png'>
+						<img style="width:48px;" src='wall/beaker_64x64.png'>
+						<img style="width:48px;" src='wall/bezillabrowser_64x64.png'>
+						<img style="width:48px;" src='wall/brave_64x64.png'>
+						<img style="width:48px;" src='wall/browsh_64x64.png'>
+						<img style="width:48px;" src='wall/camino_64x64.png'>
+						<img style="width:48px;" src='wall/chrome-canary_64x64.png'>
+						<img style="width:48px;" src='wall/chrome-dev_64x64.png'>
+						<img style="width:48px;" src='wall/chrome_64x64.png'>
+						<img style="width:48px;" src='wall/chromium_64x64.png'>
+						<img style="width:48px;" src='wall/coast_64x64.png'>
+						<img style="width:48px;" src='wall/cruz_64x64.png'>
+						<img style="width:48px;" src='wall/cờ-rôm+_64x64.png'>
+						<img style="width:48px;" src='wall/cốc-cốc_64x64.png'>
+						<img style="width:48px;" src='wall/dolphin_64x64.png'>
+						<img style="width:48px;" src='wall/edge_64x64.png'>
+						<img style="width:48px;" src='wall/electron_64x64.png'>
+						<img style="width:48px;" src='wall/epic_64x64.png'>
+						<img style="width:48px;" src='wall/epiphany_64x64.png'>
+						<img style="width:48px;" src='wall/fake_64x64.png'>
+						<img style="width:48px;" src='wall/falkon_64x64.png'>
+						<img style="width:48px;" src='wall/fennec_64x64.png'>
+						<img style="width:48px;" src='wall/firefox-beta_64x64.png'>
+						<img style="width:48px;" src='wall/firefox-developer-edition_64x64.png'>
+						<img style="width:48px;" src='wall/firefox-focus_64x64.png'>
+						<img style="width:48px;" src='wall/firefox-lite_64x64.png'>
+						<img style="width:48px;" src='wall/firefox-nightly_64x64.png'>
+						<img style="width:48px;" src='wall/firefox-preview_64x64.png'>
+						<img style="width:48px;" src='wall/firefox_64x64.png'>
+						<img style="width:48px;" src='wall/flock_64x64.png'>
+						<img style="width:48px;" src='wall/geckoview_64x64.png'>
+						<img style="width:48px;" src='wall/hermes_64x64.png'>
+						<img style="width:48px;" src='wall/iceape_64x64.png'>
+						<img style="width:48px;" src='wall/icecat_64x64.png'>
+						<img style="width:48px;" src='wall/iceweasel_64x64.png'>
+						<img style="width:48px;" src='wall/internet-explorer-tile_10-11_64x64.png'>
+						<img style="width:48px;" src='wall/internet-explorer_6_64x64.png'>
+						<img style="width:48px;" src='wall/internet-explorer_7-8_64x64.png'>
+						<img style="width:48px;" src='wall/internet-explorer_9-11_64x64.png'>
+						<img style="width:48px;" src='wall/jsdom_64x64.png'>
+						<img style="width:48px;" src='wall/k-meleon_64x64.png'>
+						<img style="width:48px;" src='wall/konqueror_4_64x64.png'>
+						<img style="width:48px;" src='wall/links_64x64.png'>
+						<img style="width:48px;" src='wall/maxthon_64x64.png'>
+						<img style="width:48px;" src='wall/midori_64x64.png'>
+						<img style="width:48px;" src='wall/netsurf_64x64.png'>
+						<img style="width:48px;" src='wall/nw.js_64x64.png'>
+						<img style="width:48px;" src='wall/omniweb_6_64x64.png'>
+						<img style="width:48px;" src='wall/opera-developer_64x64.png'>
+						<img style="width:48px;" src='wall/opera-mini_64x64.png'>
+						<img style="width:48px;" src='wall/opera-neon_64x64.png'>
+						<img style="width:48px;" src='wall/opera-touch_64x64.png'>
+						<img style="width:48px;" src='wall/opera_64x64.png'>
+						<img style="width:48px;" src='wall/orca_64x64.png'>
+						<img style="width:48px;" src='wall/otter_64x64.png'>
+						<img style="width:48px;" src='wall/pale-moon_64x64.png'>
+						<img style="width:48px;" src='wall/phantomjs_64x64.png'>
+						<img style="width:48px;" src='wall/phoenix-firebird_64x64.png'>
+						<img style="width:48px;" src='wall/puffin_64x64.png'>
+						<img style="width:48px;" src='wall/qupzilla_64x64.png'>
+						<img style="width:48px;" src='wall/qutebrowser_64x64.png'>
+						<img style="width:48px;" src='wall/rekonq_64x64.png'>
+						<img style="width:48px;" src='wall/rockmelt-ios_64x64.png'>
+						<img style="width:48px;" src='wall/rockmelt_64x64.png'>
+						<img style="width:48px;" src='wall/safari-ios_64x64.png'>
+						<img style="width:48px;" src='wall/safari-technology-preview_64x64.png'>
+						<img style="width:48px;" src='wall/safari_64x64.png'>
+						<img style="width:48px;" src='wall/samsung-internet-beta_64x64.png'>
+						<img style="width:48px;" src='wall/samsung-internet-gear-vr_64x64.png'>
+						<img style="width:48px;" src='wall/samsung-internet_64x64.png'>
+						<img style="width:48px;" src='wall/seamonkey_64x64.png'>
+						<img style="width:48px;" src='wall/servo_64x64.png'>
+						<img style="width:48px;" src='wall/shiira_64x64.png'>
+						<img style="width:48px;" src='wall/silk_64x64.png'>
+						<img style="width:48px;" src='wall/skyfire-android_64x64.png'>
+						<img style="width:48px;" src='wall/skyfire-ios_64x64.png'>
+						<img style="width:48px;" src='wall/sogou-mobile_64x64.png'>
+						<img style="width:48px;" src='wall/srware-iron_64x64.png'>
+						<img style="width:48px;" src='wall/surf_64x64.png'>
+						<img style="width:48px;" src='wall/tor-alpha_64x64.png'>
+						<img style="width:48px;" src='wall/tor-nightly_64x64.png'>
+						<img style="width:48px;" src='wall/tor_64x64.png'>
+						<img style="width:48px;" src='wall/uc-mini_64x64.png'>
+						<img style="width:48px;" src='wall/uc_64x64.png'>
+						<img style="width:48px;" src='wall/v8_64x64.png'>
+						<img style="width:48px;" src='wall/vivaldi-snapshot_64x64.png'>
+						<img style="width:48px;" src='wall/vivaldi_64x64.png'>
+						<img style="width:48px;" src='wall/web_64x64.png'>
+						<img style="width:48px;" src='wall/webkit_64x64.png'>
+						<img style="width:48px;" src='wall/webpositive_64x64.png'>
+						<img style="width:48px;" src='wall/wyzo_64x64.png'>
+						<img style="width:48px;" src='wall/xpress_64x64.png'>
+						<img style="width:48px;" src='wall/yandex-alpha_64x64.png'>
+						<img style="width:48px;" src='wall/yandex-beta_64x64.png'>
+						<img style="width:48px;" src='wall/yandex-lite_64x64.png'>
+						<img style="width:48px;" src='wall/yandex_64x64.png'>
+						
+				</section>
+				<section>
+					<h2>🌐 One Web. Desktop et mobile 🌐</h2>
+					<p>Sauf que le mobile demeure cloisonné - donc hétérogène</p>
+					<p>Apple interdit tout autre moteur que le sien dans les apps, Chrome et Firefox iOS ne sont que des coquilles autour de WebKit</p>
+	<small>2.5.6 Apps that browse the web must use the appropriate WebKit framework and WebKit Javascript.</small>
+					<p>Samsung, Sony, HTC &amp; all utilisent le moteur de Google <em>per</em> Android
+					... mais Firefox propose <a href="https://hacks.mozilla.org/2019/06/geckoview-in-2019/">GeckoView</a> <em>alternative non mouvante</em> à WebView pour toute PWA / webapp avancée</p>
+					<p>Huawei qui pourrait forker WebKit ou Blink</p>
+					<p>KaiOS (Inde, Brésil) utilise un fork du moteur de Firefox Mobile B2G</p>
+					<p>Opera Mini présent sur certains terminaux Kai et reboots Nokia 3310/8810</p>
+				</section>
+				
+				<section>
+						<h2>5 moteurs sur le marché</h2>
+						<table style="font-size:0.8em">
+							<thead>
+								<tr>
+									<th>Moteur</th>
+									<th>Dans / chez</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>WebKit</td>
+									<td>Safari/Mail.app, Epiphany (Linux), Samsung, Sony, Nintendo</td>
+								</tr>
+								<tr>
+									<td>Blink</td>
+									<td>Chromium/e, Opera, Vivaldi, Brave</td>
+								</tr>
+								<tr>
+									<td>Gecko/Servo</td>
+									<td>Firefox, Fennec/Fenix (mobile), Reality (VR), Thunderbird</td>
+								</tr>
+								<tr>
+									<td>Trident/Spartan/EdgeHTML</td>
+									<td>XBOX, IE &lt; 2020</td>
+								</tr>
+								<tr>
+									<td>Dérivé FirefoxOS/Opera Mini</td>
+									<td>smart feature phones KaiOS % ~iOS en Inde, Opera Mini est un moteur cloud</td>
+								</tr>
+							</tbody>
+						</table>
+					
+				</section>
+				<section>
+					<h2>Parts de marché des moteurs</h2>
+					<p>
+						Sur mobile domination à 95% du duo WebKit/Blink. Trident (Windows Phone) est mort. Firefox/Opera Mobile pour pays émergeants.
+					</p>
+					<p>Sur desktop le % est un peu différent : Firefox + IE ont ~10% du marché</p>
+					<p>Sur l'embarqué Consoles, Smart TV, Kiosques : WebKit devant Blink </p>
+					<p>Corée du Nord : fork de Gecko, 'Naenara' (Mon Pays) pour visiter des sites réservés et watermarker<br>
+					<br><img src="kim.jpg" width="120px" style="border: none" alt="fdp"></p>
+				</section>
+
+				<section>
+					<h2>🥄 Aparté sur le fork Blink (Google) 🥄</h2>
+					<p>Mi 2013 Google décide de diverger de WebKit commun à Safari et Chromium et le forke en Blink</p>
+					<p>Raisons de fond liées aux roadmaps divergeantes, au refus des -prefix CSS, au refus originel du code MathML, au refactoring core</p>
+					<p>... à la concurrence avec Apple : Google était co contributeur à ~50% de WebKit, tensions de gouvernance</p>
+					<p>Blink est moteur de Chromium/Chrome, Opera, Silk, UI Battle.net, Steam, Spotify post WebKit, IE 2020</p>
+					<p>c'est aussi un "Google Show" (cit. Sony)</p>
+				</section>
+
+				<section>
+					<h2>Microsoft qui lâche EdgeHTML pour Blink</h2>
+					<blockquote cite="https://www.developer-tech.com/news/2019/apr/17/mozilla-google-firefox-boost-chrome/">
+						&ldquo;MS : I very recently worked on the Edge team, and one of the reasons we decided to end EdgeHTML was because Google kept making changes to its sites that broke other browsers, and we couldn't keep up.<br> For example, they recently added a hidden empty div over YouTube videos that causes our hardware acceleration fast-path to bail (should now be fixed in Win10 Oct update)<br>
+					Moz : YouTube page load is 5x slower in Firefox and Edge than in Chrome because YouTube's Polymer redesign relies on the deprecated Shadow DOM v0 API only implemented in Chrome&rdquo;
+					</blockquote>
+					<p>Youtube + Chrome = pubs = max 💰 💰 💰 pour Google</p>
+					<p>MS a indiqué ne pas vouloir forker Blink et veut réouvrir des API bloquées pour les adblockers (reddit AMA Juin 2019)</p>
+					<p>Mozilla en tension avec Google : ils n'iront pas vers Blink, ils ont déjà un moteur Servo next-gen</p>
+				</section>
+
+				<section>
+					<p><img src="edge.png" width="400px" alt=""></p>
+					<p><img src="etp.png" alt=""></p>
+				</section>
+
+				<section>
+					<h2>Microsoft et le mobile (pliable)</h2>
+					<p>... proposition récente de spec pas anodine : <a href="https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/master/Foldables/explainer.md">Web Segments API</a></p>
+					<blockquote>We propose a new concept of Window Segments that represent the regions (and their dimensions) of the window <em>that reside on separate (adjacent) displays</em>. Window Segment dimensions are expressed in CSS pixels and will be exposed via a JavaScript API that allows developers to enumerate segments, including about regions that are occluded.</blockquote>
+					<p><img src="map-search.png" width="400px"/></p>
+					<p style="font-size: 12px;">C'est pour les Foldables : évolution pour donner le multi écrans à CSS et JS (Surface Duo) : @media (spanning: single-fold-vertical)	.adjacent {
+							flex: 1 1 env(fold-left)
+						}</p>
+				</section>
+
+				<section>
+					<h2>Gecko ?</h2>
+					<p>Echec de percée dans le mobile - travaux repris par KaiOS</p>
+					<p>Pas d'embarqué !</p>
+					<p>Le moteur Servo déverse dans Gecko ses meilleurs morceaux : WebRender, Pathfinder</p>
+					<p>Firefox, Firefox Preview/Fenix, Firefox Reality</p>
+				</section>
+
+				<section>
+					<h2>✈️ Un moteur n'est pas un navigateur. Un navigateur se sert d'un moteur. ✈️</h2>
+					<p>Airbus et Boeing <em>partagent</em> des moteurs General Electric, Rolls Royce, Trent : ce n'est pas le même avion == pas le même <em>navigateur</em></p>
+					<p>Une compagnie peut changer l'intérieur de l'avion (Singapore, Qatar Airlines, Air France = Apple, Google, Samsung, Sony)</p>
+					<p>Des mécanos connaissant bien le moteur changent de boite : porosité des devs Apple/Google/Mozilla, Samsung/Sony/Nintendo</p>
+					<p>Le moteur de IE change pour Blink, ce n'est pas <em>tout</em> IE qui change : pour les pilotes - nous - peu change</p>
+				</section>
+
+				<!--
+				<section>
+					<h2>Google bashing ?</h2>
+					<p>Chromium n'est pas Chrome. Ni YouTube</p>
+					<p>Leurs travaux demeurent remarquables - du point de vue DFO &amp; Analytics</p>
+					<p>Top ingés Blink ouverts sur twitter (Ylia, Jake, Yoav, Tab) comme les top ingés Moz (Jen, Marcos, Lin)</p>
+					<p>Travaux publics sur Blink très documentés : "Life of a pixel", 2018, 55 slides, pas de Cult of Secret à la Apple/Safari</p>
+					<small>https://docs.google.com/presentation/d/1boPxbgNrTU0ddsc144rcXayGA_WF53k96imRH8Mp34Y/edit#slide=id.g291e5dcaed_0_0</small>
+				</section>-->
+
+				<section>
+					<h2>Blink et WebKit hors des navigateurs</h2>
+					<p>Embarqués dans des logiciels assez connus</p>
+					<p>Players Spotify, Sirius, Mail.app/iWork/iTunes/App Stores</p>
+					<p>UI Steam, Battle.net, Kindle Amazon</p>
+					<p>consoles Sony, Nintendo, outils Adobe (AEM Forms)</p>
+					<p>Nintendo Switch hackée à cause d'un <a href="https://www.youtube.com/watch?v=xkdPjbaLngE">vieux WebKit</a> - 6 mois de delta</p>
+					<img src="mario.png" width="300px" alt="">
+					<p>automobile, Smart TVs, kiosques (<a href="https://www.access-company.com/en/products/browser/netfront-browser-be/">Access NetFront</a>) ...</p>
+				</section>
+<!--
+				<section>
+					<p>Abstract<br>
+					En 1990 le Web naissait au CERN avec son 1er navigateur, WorldWideWeb
+					Aujourd'hui Firefox, Chrome, Safari, IE, Opera... sont des noms de navigateurs connus de toutes et tous, technophiles averti(e)s ou non.
+					Mais les noms de WebKit, Gecko, Servo ou encore Blink sont eux moins connus : ce sont pourtant les moteurs Open Source qui se cachent derrière ces navigateurs que l'on utilise tous les jours 
+					Du desktop au mobile en passant par les consoles de jeux, l'IoT, les Smart TVs ou encore les kiosques ou l'automobile, les moteurs sont partout et sous des formes aussi diverses que leurs contenants
+					Ce talk vous emmène explorer l'histoire parfois mouvementée des moteurs, leur passé leur présent mais également leur devenir.
+					</p>
+				</secction>-->
+
+				<section>
+					<h2>⚙️ Le moteur WebKit & les autres ⚙️</h2>
+					<p>Bref historique</p>
+					<ul>
+						<li>1990 Naissance du Web au CERN et de WorldWideWeb - 1er navigateur</li>
+						<li>1994 Naissance de Netscape Navigator issu de Mosaic - 2nd navigateur</li>
+						<li>1998 Naissance de KHTML/KJS issus de Konqueror (KDE, Linux), Netscape s'open source et crée Mozilla (Mosaic killer)</li>
+						<li>2001 Apple forke KHTML/KJS en WebKit : WebCore + JavascriptCore. Préféré à Gecko/Netscape</li>
+						<li>2003 Naissance de Safari sous WebKit, AOL crée la Fondation Mozilla, à but non lucratif</li>
+						<li>2005 Apple Open Source tout WebKit - pas seulement WebCore et JavascriptCore</li>
+						<li>2007 L'iPhone sort avec Safari 3, vision de Jobs : les Apps seront des pages HTML</li>
+						<li>2008 Google lance Android et Chrome sous WebKit, Apple lance le 1er SDK iOS... il n'y aura pas d'Apps HTML... avant les PWAs</li>
+						<li>2009 Proche divorce "on reste amis" entre Apple et KDE, code d'Apple était difficile à backporter en Open Source</li>
+						<li>2013 Mozilla crée Servo, Google forke WebKit en Blink, Opera abandonne Presto pour Blink, WebKit devient trademark Apple. </li>
+						<li>2014/5 Microsoft remplace Trident par EdgeHTML</li>
+					</ul>
+				</section>
+				<section>
+					<ul>
+						<li>2016/19 CSS4, CSS Houdini, Progressive WebApps, WebPayment, WebAssembly, Animations API, WebXR, ... </li>
+						<li>Juin 2019 Les groupes de standardisation HTML du W3C (Berners-Lee, 🐢, non lucratif) et du WhatWG (fabricants, 🐇, pognon) fusionnent</li>
+						<li>2020 "Year of Privacy" pour tous les fabricants 🔒 (Intelligent Tracking Prevention)</li>
+						<li>Manifestes des fabricants pour restreindre les Cookies tiers et techniques de pistage</li>
+						<li><a href="https://webkit.org/tracking-prevention-policy/">https://webkit.org/tracking-prevention-policy/</a></li>
+						<li><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Privacy/Storage_access_policy">https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Privacy/Storage_access_policy</li></a>
+						<li>... mais il existe des parades </li>
+
+					</ul>
+					<p>Mozilla reste en pointe sur les respects des usages - ils ont sû diversifier leurs revenus de la search bar entre Google, Yahoo, Yandex, Baidu, Amazon pour ne pas dépendre que de Google</p>
+					<p>Si la <em>Fondation</em> Mozilla est non lucratif, Mozilla <em>Corporate</em> est un business mais particulier : pas d'actionnaires, pas de dividendes, pas de stock options</p>
+					<p><a href="https://donate.mozilla.org/fr">donate.mozilla.org</a></p>
+				</section>
+
+				<section>
+					<h2>Sources d'innovation ?</h2>
+					<p>💰 Problème du poids de Apple, Google, Microsoft 💰</p>
+					<small>Les compagnies les plus riches du monde <a href="https://www.forbes.com/powerful-brands/list/#tab:rank">Forbes 2019</a></small>
+					<p>Les revenus de Moz proviennent de moteurs de recherche : par effet de bord, de la publicité (Ads, Bing, Baidu)</p>
+					<p><a href="https://brave.com/fr/">Brave</a> browser qui propose une rémunération des ads en cycle fermé via cryptomonnaie - Eich, ex CEO Moz, inventeur du JS</p>
+					<p>... le modèle économique des 3/4 des fabricants reste empreint d'ad-tech et de consumérisme physique ou digital</p>
+				</section>
+
+				<section>
+					<h2>Les acteurs communiquent ouvertement sur l'avenir de leur moteur</h2>
+					<p>Les mentalités ont évolué. Possible privacy wars au lieu de browser wars</p>
+					<ul>
+						<li>WebKit.org (OSS) : <a href="https://webkit.org/status/">https://webkit.org/status</a></li>
+						<li>Blink : <a href="https://www.chromestatus.com/features">https://www.chromestatus.com/features</a></li>
+						<li>Edge : <a href="https://developer.microsoft.com/en-us/microsoft-edge/platform/status/">https://developer.microsoft.com/en-us/microsoft-edge/platform/status</a></li>
+						<li>Gecko : <a href="https://blog.nightly.mozilla.org">https://blog.nightly.mozilla.org</a></li>
+						<li>Safari : <a href="https://developer.apple.com/safari/technology-preview/">https://developer.apple.com/safari/technology-preview</a></li>
+						<li>nb : Apple par <em>Culte du Secret</em> ne commentent jamais en _détails_ sur qu'ils vont ajouter pour iOS/iPadOS, les curieux.ses peuvent lire les commits sign&eacute;s des devs @apple.com</li>
+						<small><a href="https://github.com/WebKit/webkit/commits/master">
+						https://github.com/WebKit/webkit/commits/master</a><br/>
+						</small>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Contributeurs WebKit/Blink principaux</h3>
+					<pre><code class="bash">git shortlog -e -s -n</code> </pre>
+					<p>Apple, Google avant Blink, webkit.org (OSS), Adobe, Igalia, Samsung, Sony, BlackBerry, Nokia, Intel</p>
+					<p>Blink : Google, Opera, Adobe, Igalia, Samsung, Intel</p>
+					<p>Yoav Weiss (auteur français de &lt;img srcset&gt; &lt;picture&gt;)</p>
+					<p>... Igalia kezako ?</p>
+				</section>
+
+				<section>
+					<h3>Igalia</h3>
+					<p>Ex ou courant de GNOME/Linux, team de consultants experts et commiters WebKit/Blink/Qt/GTK, pour embarqué (voitures, panneaux pub, bornes, IoT...)</p>
+					<p>ont entre autres implémenté CSS Grid dans Webkit+Blink, financés par Bloomberg, qui aime bien les grilles avec des chiffres dedans</p>
+					<p><img src="bloom.png" width="300px" alt=""></p>
+					<p>Ils forment un pont entre WebKit et Blink car travaillent sur les 2</p>
+					<p>🇪🇸 La Corogne - tout ne se crée pas dans la Valley</p>
+				</section>
+
+				<section>
+					<h3>C'est open source</h3>
+					<p>Si des fabricants qui font des revenus sont derrière Blink, WebKit, Gecko/Servo, le code lui reste libre</p>
+					<p>Les fabricants <em>partagent</em> une suite de tests de non reg : <a href="http://github.com/w3c/web-platform-tests">WPT Web Platform Tests</a>.</p>
+					<p>Le fameux ACID test <a href="http://w3c-test.org/acid/acid3/test.html">est là</a> (Ian Hickson, co rédacteur de CSS2, mainteneur de la spec HTML5... ou Ken Kesey, LSD toussa)</p>
+					<p>C'est pas /si/ difficile de contribuer : DevTools/WebInspector est la porte d'entrée la plus aisée, avec les traductions</p>
+					<p>... petite plongée dans WebKit</p>
+				</section>
+
+				<section>
+					<h2>git clone webkit</h2>
+					<img src="logo.png" style="width:120px" style="border: none"/>
+					<p><a href="https://www.webkit.org/building/checkout.html">https://www.webkit.org/building/checkout.html</a></p>
+					<p>4 GB. 35000 tests. 900MB de sources C++, 2/17MLoC, 215000 commits. Projet XCode ou Visual Studio</p>
+					<p>Fun fact : ~70% des 4GB sont des tests et ressources de tests (pages HTML, images, vidéos, audio, fichiers JS/CSS)</p>
+					<p>25 minutes de compile sur un très bon CPU</p>
+					<p>dedans : WebCore, JavaScriptCore, WebInspectorUI, WPE, WTF, WK2, MiniBrowser, DumpRenderTree, ...</p>
+				</section>
+
+				<section>
+					<h2>🔌 Une base commune et des ports 🔌</h2>
+					<p>Pas un WebKit unique. Un port parle aux APIs natives plateforme (ex: API de dessin, de réseau, de hardware dédié ...)</p>
+					<ul>
+						<li>OSX/iOS port (Safari/Mail/AppStore/iWork + CoreGraphics)
+						<li>old Android port (Stock Internet browsers/Chromium &lt; Blink + Skia)</li>
+						<li>GTK port (Linux Gnome Epiphany browser + Cairo)</li>
+						<li>Qt port (Spotify Player &lt; Blink, wkhtml2pdf)</li>
+						<li>WPE port (micro moteur pour embarqué IoT, Smart TVs, Kiosques, Automobile)</li>
+						<li>EFL port par Samsung (TizenOS, Watch/Smart TVs)</li>
+						<li>EA : moteur de l'UI de Sim City 2K, devenu fork EAWebKit (FIFA, NHL, Apex)</li>
+						<li>Amazon : le lecteur d'ebook Kindle &lt; Blink, Silk dans le cloud AWS</li>
+						<li>Sony : UI de la PS4 en WebGL, PSN Store, browser in-game</li>
+						<li>Nintendo : browser Nintendo Store WiiU et Switch</li>
+						<li>QNX port (BlackBerry) : Audi, BMW, Ford, Honda, Porsche, Toyota, Volkswagen</li>
+					</ul>
+					</section>
+
+					<section>
+						<h2>Ports de Sony et EA</h2>
+						<p>Commits ou publient les sources partielles de leurs changements</p>
+						<blockquote cite="https://trac.webkit.org/wiki/SonyWebKitWork2016">Q @ SONY : &ldquo;Why did you choose WebKit?&rdquo;<br>
+							Started before the Blink branch.<br>
+							(...)<br>
+							Chrome is the "Google Show", not good opportunities to contribute due to their army of engineers banging on it.<br>
+							WebKit's strategy is focused on performance and small footprint. This is critical for PS4 and devices.<br>
+							Blink is more about feature-feature-feature&rdquo;
+						</blockquote>
+						<p>EAWebKit : <a href="https://gpl.ea.com/eawebkit.html">https://gpl.ea.com/eawebkit.html</a> : sources du fork pour PC/XBox/PS4, publiées en .zip à chaque sortie de jeu</p>
+						<small style="display: block;">UI de <a href="http://twvideo01.ubm-us.net/o1/vault/gdc2015/presentations/Chin_YeeCheng_HowToImplement.pdf">SimCity2K</a> : How to Implement AAA Game UI in 100% 
+							HTML and JavaScript (GDC 2015)</small>
+						<p>Pas de signaux de contribution de Nintendo, hackés + Culte du Secret... à la Apple</p>
+					</section>
+
+					<section>
+<img width="400px" src="graphicscontext.png"/>
+<img width="500px" src="gcports.png"/>
+<p>Exemple de ports pour le rendu graphique : <a href="https://trac.webkit.org/browser/webkit/trunk/Source/WebCore/platform/graphics?order=date&desc=1/">https://trac.webkit.org/browser/webkit/trunk/Source/WebCore/platform/graphics?order=date&desc=1/</a></p>
+					</section>
+
+					<section>
+						<p>Une base <em>commune</em> pour : parsing HTML/CSS/SVG/MathML &amp; styling/layout (WebCore), JS (JavaScriptCore), GraphicsContext (délègue le rendu à un port)</p>
+						<p>Des ports pour : spécifique OS (pile graphique ou réseau), image decoding, liens hardware (GPU, orientation, geoloc, battery, vibration, touch inputs, senseurs lumière/pression/paiement, ...). </p><p>Présence de <em>flags</em> lors du build : #if ENABLE(PLATFORM_IOS)(...)</p>
+						<p>C'est le même moteur dans des chassis et câblages - très - différents.
+						<br>C'est pour ça qu'il y a des différences de comportement ou bugs
+						<br>Pas de notion de ports sous Blink</p>
+					</section>
+
+					<section>
+						<h2>Graphics Context delegate</h2>
+						<p>WebCore n'a pas de look - un <em>navigateur</em> oui : à la fois son UI mais aussi ses styles CSS par défaut</p>
+						<p>Le moteur délègue à un tiers (<em>GraphicsContext</em>) pour afficher les pixels : dessine moi un bouton</p>
+						<p><img width="200px" src="mouton.jpeg"><img width="200px" src="buttonios.png">
+						<img width="200px" src="buttongtk.png"><img width="200px" src="buttonqt.jpeg"></p>
+						<p>Ce tiers utilise la pile graphique du <em>port</em> : look Apple, Android, Windows, Linux, Sony, Nintendo, ...</p>
+					</section>
+
+				<section>
+					<h2>WebKit : son noyau WebCore (1/2)</h2>
+					<h3>Les étapes de rendu - tous moteurs</h3>
+					<p>mise en 2 arbres du HTML et CSS (parsing)</p>
+					<p>calcul des styles depuis la cascade CSS (styling)</p>
+					<p>calcul de la mise en page positions x/y (layout)</p>
+					<p>mise en calques de la mise en page et dessin (painting/compositing)</p>
+					<p>post-dessin, le JS peut altérer les 2 arbres via bindings (<em>JavascriptCore</em>)</p>
+					<img src="treec.jpg" width="300px" alt="">
+				</section>
+
+				<section>
+					<h2>WebKit : WebCore (2/2)</h2>
+					<p>Pour réseau, HTML, CSS, SVG, MathML, Canvas</p>
+					<p><small>rappel : HTMLDocument != SVGDocument. HTML != MathML</small></p>
+					<p>Fait le parsing aidé par un preload scanner, le styling le layout et le dessin mais pas le café. </p>
+					<p>Le layout c'est le calcul de la position et taille d'un élément : <em>une boite rectangulaire</em>. Un parent doit layout() ses enfants pour connaître sa propre hauteur/largeur : récursivité</p>
+					<p>Un layout fini c'est des boites dans des boites, une mise en page</p>
+					<p>Les boites sont rangées en calques puis dessinées et paintes</p>
+					<p><b>Pour savoir comment placer les boites et les dessiner, le moteur ne fait que suivre les specs.</b></p>
+				</section>
+				
+<section>
+	<h2>📚 Specs ? 📚</h2>
+<p>Une spécification n'est qu'un document HTML avec des schémas (WebIDL) qui décrit comment faire les choses</p>
+<p>En rédaction collaborative, elles sont toutes sous github</p>
+<p>Outil open source de rédaction de specs : <em>ReSpec</em>, outil du W3C : <a href="https://github.com/w3c/respec">https://github.com/w3c/respec</a> . C'est un script JS et CSS dans une page HTML</p>
+<p>Méconnu mais excellent pour toute rédaction de document technique, pas seulement pour des specs web (vs Word/LaTeX)</p>
+<p>Voir les specs comme un super Wikipedia du web - très dense</p>
+</section>
+
+<section>
+	<h2>Spec exemple : Web Auth</h2>
+	<div>
+		<small>https://www.w3.org/TR/webauthn/</small>
+		<img src="spec.png" alt="80%">
+	</div>
+</section>
+				
+<section>
+	<p>Specs de base : le box model, les 3 flows, le visual formatting model</p>
+	<p>La peinture par specs existe aussi dans l'art/psycho : Klein, Paint by numbers (revoir Will Hunting)</p>
+	<img src="willh.jpeg" width="400px" alt="">
+	<p>Box model, les flows et le VFM sont les fondations du Web visuel</p>
+	<p>... le Web est né au CERN, pas dans une école d'art : une documentation scientifique demeure - quand les specs sont assez claires !</p>
+	<p>Une spec peu claire crée du doute, des interprétations, des bugs</p>
+	<p>ou des préfixes et des mues : -ms-grid, -webkit-grid ...</p>
+</section>
+					<section>
+						<h3>Spec #1 : Le Box Model</h3>
+						<p><img src="css_box_model.gif"></p>
+						<p>probablement la spec la plus connue, le rectangle est visible dans un inspecteur, fourni par WebKit - son composant WebInspectorUI</p>
+						<p>un langage devenu commun entre créas et devs</p>
+						<p>"tu as mis 1px de trop sur la marge gauche"</p>
+						<p>responsive Bootstrap = 12 boxes en flow float/flexbox</p>
+					</section>
+
+					<section>
+						<h3>Spec #2 : les 3 flows : normal (block, inline, relative pos), float, absolute pos</h3>
+						<p>http://www.w3.org/TR/CSS2/visuren.html#positioning-scheme</p>
+						<p>Le HTML est un flux d'éléments : flow</p>
+						<img src="flow.jpg" alt="" width="300px">
+						<ul>
+							<li>normal : les blocks s'empilent (p, div). Les inline sont sur une ligne, qui wrappe (a, span) LTR ou RTL</li>
+							<li>float: né dans le normal flow, puis sorti et flotte à left ou right d'un autre élément</li>
+							<li>absolute: né en dehors du normal flow : pas d'impact sur ses siblings (!float), né au x,y du containing block (le "parent significatif")</li>
+							<li>des éléments dans un bac d'eau, l'absolute une goutelette libre</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Certains éléments du flow ne sont pas speccés <em>per se</em></h3>
+						<p>block element, inline element oui ... mais pas replaced element : un element dont le rendu est non spécifié par CSS (image, form control, iframe, applet, object ActiveX/Flash), il est inline par défaut</p>
+						<p>Une simple <em>position:</em> absolute ou fixed fait changer un inline en block</p>
+						<p><small>When an object is absolute/fixed positioned, it becomes block-level. Even if the CSS display type is set to inline (or inline-block/table), the effective display type becomes block-level once an object is positioned. </small></p>
+						<p>... parce que c'est plus simple pour le moteur de penser block dans des coordonnées x/y, tu es en dehors du flow, mais quand même positionné quelque part avec précision</p>
+					</section>
+
+					<section>
+						<h3>Spec #3 : Visual formatting model, deep dive</h3>
+						<p>http://www.w3.org/TR/CSS2/visuren.html</p>
+						<p>http://www.w3.org/TR/CSS2/visudet.html</p>
+						<p>specs dures, doliprane et stylo requis</p>
+						<p>ce sont les racines du layout CSS</p>
+						<p>pour briller en soirée - "devine d'où vient le margin collapse ?"</p>
+						<p>pour postuler chez un fabricant de navigateur</p>
+						<p>pour des interviews front un peu poussées</p>
+					</section>
+
+				<section>
+					<h2>Un cas industriel & créa particulier</h2>
+					<p>Les specs sont publiques ! (ex: <a href="https://github.com/w3c/ServiceWorker/issues">https://github.com/w3c/ServiceWorker/issues</a>)</p>
+					<p>Nimporte qui peut y contribuer, leurs auteurs répondent - en général</p>
+					<p>Les fabricants/OSS implémentent ou non les specs selon leur propre roadmap</p>
+					<p>Les specs sont une prédiction - non garantie - de ce qui va arriver dans les navigateurs et WebViews pour app natives</p>
+					<p>Suivre <a href="https://twitter.com/intenttoship">@intenttoship</a> pour savoir quand ça va arriver sous Firefox ou Chrome</p>
+					<p>Suivre les commits WebKit pour savoir quand ça va arriver sous Safari</p>
+				</section>
+
+				<section>
+					<h2>Quelques travaux en cours</h2>
+					<small>Très publics : <a href="https://bit.ly/blinkintents">https://bit.ly/blinkintents</a></small>
+					<p>CSS Houdini (accès poussé au moteur CSS via JS)</p>
+					<p>Web Share API (linkedin, insta,...)</p>
+					<p>Shape Detection API (code barre, visage, texte)</p>
+					<p>SMS Receiver API, Contact API (ship !)</p>
+					<p>Payment API (GooglePay, ApplePay dans le browser)</p>
+					<p>Mise en valeur des sites PWA acceptées dans les App Stores</p>
+					<p>SVG dans les favicon (! shipped CR80)</p>
+					<p>remplacement de &lt;iframe&gt; par &lt;portal&gt; (Google I/O 2019)</p>
+				</section>
+
+				<section>
+					<h2>Voir les travaux</h2>
+					<p>Activer les 'expermimentals features' sous Chrome Canary ou Safari Technology Preview</p>
+					<div>
+						<img src="safaride.png" width="70%"/>
+					</div>
+				</section>
+
+			
+
+			<section>
+					<p>MERCI</p>
+
+				<h1>Q &amp; A</h1>
+			</section>
+
+			</div>
+
+		</div>
+		<script src="js/reveal.js"></script>
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				history:true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+
+</body>
+</html>

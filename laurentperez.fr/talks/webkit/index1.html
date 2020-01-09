@@ -594,56 +594,7 @@
 		<img src="spec.png" alt="80%">
 	</div>
 </section>
-				
-<section>
-	<p>Specs de base : le box model, les 3 flows, le visual formatting model</p>
-	<p>La peinture par specs existe aussi dans l'art/psycho : Klein, Paint by numbers (revoir Will Hunting)</p>
-	<img src="willh.jpeg" width="400px" alt="">
-	<p>Box model, les flows et le VFM sont les fondations du Web visuel</p>
-	<p>... le Web est né au CERN, pas dans une école d'art : une documentation scientifique demeure - quand les specs sont assez claires !</p>
-	<p>Une spec peu claire crée du doute, des interprétations, des bugs</p>
-	<p>ou des préfixes et des mues : -ms-grid, -webkit-grid ...</p>
-</section>
-					<section>
-						<h3>Spec #1 : Le Box Model</h3>
-						<p><img src="css_box_model.gif"></p>
-						<p>probablement la spec la plus connue, le rectangle est visible dans un inspecteur, fourni par WebKit - son composant WebInspectorUI</p>
-						<p>un langage devenu commun entre créas et devs</p>
-						<p>"tu as mis 1px de trop sur la marge gauche"</p>
-						<p>responsive Bootstrap = 12 boxes en flow float/flexbox</p>
-					</section>
-
-					<section>
-						<h3>Spec #2 : les 3 flows : normal (block, inline, relative pos), float, absolute pos</h3>
-						<p>http://www.w3.org/TR/CSS2/visuren.html#positioning-scheme</p>
-						<p>Le HTML est un flux d'éléments : flow</p>
-						<img src="flow.jpg" alt="" width="300px">
-						<ul>
-							<li>normal : les blocks s'empilent (p, div). Les inline sont sur une ligne, qui wrappe (a, span) LTR ou RTL</li>
-							<li>float: né dans le normal flow, puis sorti et flotte à left ou right d'un autre élément</li>
-							<li>absolute: né en dehors du normal flow : pas d'impact sur ses siblings (!float), né au x,y du containing block (le "parent significatif")</li>
-							<li>des éléments dans un bac d'eau, l'absolute une goutelette libre</li>
-						</ul>
-					</section>
-					<section>
-						<h3>Certains éléments du flow ne sont pas speccés <em>per se</em></h3>
-						<p>block element, inline element oui ... mais pas replaced element : un element dont le rendu est non spécifié par CSS (image, form control, iframe, applet, object ActiveX/Flash), il est inline par défaut</p>
-						<p>Une simple <em>position:</em> absolute ou fixed fait changer un inline en block</p>
-						<p><small>When an object is absolute/fixed positioned, it becomes block-level. Even if the CSS display type is set to inline (or inline-block/table), the effective display type becomes block-level once an object is positioned. </small></p>
-						<p>... parce que c'est plus simple pour le moteur de penser block dans des coordonnées x/y, tu es en dehors du flow, mais quand même positionné quelque part avec précision</p>
-					</section>
-
-					<section>
-						<h3>Spec #3 : Visual formatting model, deep dive</h3>
-						<p>http://www.w3.org/TR/CSS2/visuren.html</p>
-						<p>http://www.w3.org/TR/CSS2/visudet.html</p>
-						<p>specs dures, doliprane et stylo requis</p>
-						<p>ce sont les racines du layout CSS</p>
-						<p>pour briller en soirée - "devine d'où vient le margin collapse ?"</p>
-						<p>pour postuler chez un fabricant de navigateur</p>
-						<p>pour des interviews front un peu poussées</p>
-					</section>
-
+		
 				<section>
 					<h2>Un cas industriel & créa particulier</h2>
 					<p>Les specs sont publiques ! (ex: <a href="https://github.com/w3c/ServiceWorker/issues">https://github.com/w3c/ServiceWorker/issues</a>)</p>

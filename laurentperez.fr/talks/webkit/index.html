@@ -92,6 +92,7 @@
 
 				<section>
 					<h2>About you</h2>
+					<p>Créas, devs, UI UX ?</p>
 				</section>
 
 				<section>
@@ -213,7 +214,7 @@ TODO that escalated
 				</section>
 
 				<section>
-					<p>logo safari ps4 nintendo</p>
+					<p>TODO logo safari gnome ps4 nintendo</p>
 				</section>
 
 
@@ -382,26 +383,25 @@ TODO that escalated
 			
 
 				<section>
-					<h2>WebKit, du HTML brut aux boites</h2>
+					<h2>Du HTML brut</h2>
 					<p>Tu tapes une URL et tu fais entrée : welcome to WebCore</p>
 					<p>Il faut d'abord charger le HTML (HTMLDocument.cpp) du réseau ou du cache</p>
-					<p>HTML lu caractère par caractère : le Parsing = mise en Tokens (le moteur découvre les commentaires, début et fin des balises, doctype, langue, cdata) </p>
+					<p>Lu caractère par caractère : le Parsing = mise en Tokens (le moteur découvre les commentaires, début fin des balises, doctype, langue, cdata) </p>
 					<p>Il n'y a pas de compilation ou de packaging à la iOS/Android ! le HTML est directement donné brut au moteur</p>
 				</section>
 
 				<section>
-					<h2>Tokens</h2>
+					<h2>Mise en Tokens</h2>
 					<p>Le moteur découvre les éléments</p>
-					<p>TODO EGYPT</p>
 					<p><img src="tok.png" width="400px" alt=""></p>
 					<p>caractères clef, ex = &lt;div&gt;, &lt;span&gt;, &lt;head&gt;... &lt;svg&gt;, &lt;math&gt;</p>
-					<p>Le HTML n'est pas du SVG, ni du MathML</p>
+					<p>Le HTML n'est pas du SVG &lt;svg&gt;, ni du MathML &lt;math&gt;</p>
 					<small>credit Mozilla</small>
 				</section>
 
 				<section>
 					<h2>🎒 Les ressources de la page 🛍️</h2>
-					<p>En général dans une page on a besoin de ressources images, scripts, CSS pour le style, vidéo, sinon c'est un peu fade</p>
+					<p>Dans une page on a besoin de ressources images, scripts, CSS pour le style, vidéo, sinon c'est un peu fade</p>
 					<p>On charge toutes les ressources en queue une par une ?</p>
 					<p>Non, on les précharge en parallèle (20% à 30% + rapide)</p>
 					<p>avec des Preload Scanners</p>
@@ -417,8 +417,8 @@ TODO that escalated
 				</section>
 
 				<section>
-					<h2>Les 2 Preload Scanners (... IE8 !)</h2>
-					<p>HTMLPreloadScanner et CSSPreloadScanner TODO radar icon</p>
+					<h2>📡 Les 2 Preload Scanners (...IE8 !) 📡</h2>
+					<p>HTMLPreloadScanner et CSSPreloadScanner</p>
 					<!--
 					<p>Le chargement du HTML est bloquant sur chargement de script JS et CSS externe</p>
 					<p>Parce que le JS éxécuté peut modifier le DOM et son style CSSOM (appendChild, display:), ou avoir besoin de CSS chargée</p>
@@ -426,11 +426,11 @@ TODO that escalated
 					<p>Un preload scanner est un chargeur ressources réseau en parallèle, il permet de libérer le moteur pour faire autre chose : construire un arbre au lieu de télécharger une image, éxécuter du JS...</p>
 					<p>HTMLPreloadScanner précharge : &lt;script&gt;, &lt;img&gt;, &lt;input type image&gt;, &lt;video poster&gt;, &lt;link rel&gt;, &lt;picture&gt;, &lt;meta&gt;</p>
 					<p>CSSPreloadScanner précharge : règle @import url() - oui, seulement</p>
-					<p>HTMLPreloadScanner intelligent : ex: chargera la meilleure image responsive/retina selon Media Query (dpi, dark mode, portrait)</p>
+					<p>HTMLPreloadScanner intelligent : chargera la meilleure image responsive/retina si Media Query (dpi, dark mode, portrait, HDR)</p>
 				</section>
 
 				<section>
-					<p>Le CSSPreloadScanner ne précharge que les CSS @import, pourquoi pas ses images/fonts trouvées dans la CSS ?</p>
+					<p>Le CSSPreloadScanner ne précharge que les @import CSS, pourquoi pas les images/fonts trouvées dans la CSS ?</p>
 					<ul>
 					<li>impossible de savoir si la page va les utiliser ou pas sans construire le DOM/CSSOM, à ce moment il n'est pas encore connu</li>
 					</ul>
@@ -453,10 +453,10 @@ TODO that escalated
 				<section>
 					<h2>Pour plus de performance Web</h2>
 					<p>Au delà des simples Preload Scanners</p>
-					<p>Revoir le talk <a href="https://www.youtube.com/watch?v=E606Nxnxg14" target="_blank">HTTP2 en pratique</a> @BreizhCamp/Sunnytech 2018 (Alexis Hassler)</p>
+					<p>Revoir le talk <a href="https://www.youtube.com/watch?v=E606Nxnxg14" target="_blank">HTTP2 en pratique</a> @ Sunnytech 2018 (Alexis Hassler)</p>
 					<p>un seul tuyau réseau pour précharger toutes les ressources au lieu de petits tuyaux multiples</p>
 					<p>utile pour les mauvaises connexions réseau, cellulaire ou non</p>
-					<p>+ talk <a href="https://youtu.be/9PBeqHXk7zw" target="_blank">WeLoveSpeed</a> de Gilles Dubuc, pour des KPIs riches</p>
+					<p>talk <a href="https://youtu.be/9PBeqHXk7zw" target="_blank">WeLoveSpeed</a> de Gilles Dubuc, pour des KPIs riches</p>
 				</section>
 
 				<section>
@@ -470,7 +470,7 @@ TODO that escalated
 					<p>Le HTML tokenizé est mis en arbre (DOM Tree) d'HTMLElement, la CSS en Style Rules</p>
 					<small>Le moteur nettoie ce qu'il peut : tes balises mal fermées, et recoud le wrap (splitflow RenderInline.cpp)</small>
 					<p>Il fusionne <em>DOM Tree + Style Rules =&gt; RenderTree</em></p>	
-					<p>Ce tree est un arbre de Renderers <em>(RenderObject.cpp)</em></p>
+					<p>Ce tree est un arbre de Renderers <em>RenderObject.cpp</em></p>
 					<p>Quasi tout <em>HTMLElement</em> a une méthode pour s'attacher un <em>Renderer</em> en fonction de son display : le renderer calcule un <em>RenderStyle</em> (Recalculate style) et est rangé dans un <em>RenderLayer</em> (clip,mask,overflow) rangé par z-index</p> (c'est RenderElement.cpp)
 					<p>ex de display: block, inline, table, column, flex, grid, ...</p>
 				</section>
@@ -479,9 +479,9 @@ TODO that escalated
 
 				<section>
 					<p>3 <em>Renderers</em> de base sous RenderFlow : <em>RenderBlock, RenderInline</em> et <em>RenderText</em></p>
-					<p><em>Puis RenderFlexibleBox, RenderGrid, RenderListItem, RenderSlider, RenderTable, ainsi de suite ...</em></p>
+					<p><em>Puis RenderFlexibleBox, RenderGrid, RenderListItem, RenderSlider, RenderTable, etc ...</em></p>
 					<p>Tous les élements ne sont pas rendus : head (meta, script, link), display:none n'ont aucun Renderer, rien à dessiner</p>
-					<p>Certains élements ont plusieurs renderers : select (boite, drop, bouton) : pas <em>toujours</em> une relation 1:1 entre élément et son renderer</p>
+					<p>Certains élements ont plusieurs renderers : select (menu, bouton) : pas <em>toujours</em> une relation 1:1 entre élément et son renderer</p>
 					<p>Le <em>RenderStyle</em> est calculé ici avec parsing de selectors et cascades : optimisez vos CSS pour accélérer !</p>
 					<p>Puis au layout(), les renderers produisent un rectangle : <em>LayoutRect</em> suivant le Box Model, avec des coordonnées xy (c'est RenderBox::layout())</p>
 				</section>
@@ -495,12 +495,12 @@ TODO that escalated
 				<section>
 					<h3>🖼️ Géométrie : layout propre/sale 💩</h3>
 					<p>Le layout est le calcul du x/y/size de chaque rectangle</p>
-					<p>Tous les renderers ont une méthode layout() recursive : le renderer du parent significatif (le containing block) layout() ses enfants</p>
-					<p><em>Dirty bit</em> : si un nouveau renderer rentre dans l'arbre, s'il est dirty (<em>layoutIfNeeded</em>), il informe son parent significatif dit containing block (<b>un dirty va changer la position d'autres</b>).</p>
+					<p>Tous les renderers ont une méthode layout() <em>recursive</em> : le renderer du parent significatif -le containing block- layout() ses enfants</p>
+					<p><em>Dirty bit</em> : si un nouveau renderer rentre dans l'arbre, s'il est dirty (<em>layoutIfNeeded</em>), il informe son parent significatif = containing block, <b>un dirty va changer la position d'autres</b>.</p>
 					<!-- <p>Les Renderers positionnés sont optimisés (car dessinés après le parent)</p> -->
 					<p>Le containing block se nettoie (layout, recalcul x/y) jusqu'à ne plus avoir d'enfants dirties. Quand il est propre on peut le dessiner</p>
-					<p>Le containing block a aussi un containing block (parent a un parent). C'est un arbre</p>
-					<p>Le renderer peut déborder le rectangle du containing : c'est l'overflow</p>
+					<p>Le containing block a aussi un containing block, parent a un parent. C'est un arbre</p>
+					<p>Le renderer peut déborder le dessin du containing : c'est l'overflow</p>
 					<!--
 					<p>benfrain : le dirty est par layer. union de dirties. promotion du fiex en hdpi</p>
 					<p>http://aerotwist.com/blog/on-translate3d-and-layer-creation-hacks/</p>
@@ -509,14 +509,14 @@ TODO that escalated
 			</section>
 
 			<section>		
-				<h3>🔲 Déterminer le containing block 🔲</h3>
+				<h3>🔲 Déterminer le containing block (CSS2) 🔲</h3>
 				<p>C'est ce block clé qui va layout() ses enfants : c'est le <em>parent significatif</em></p>
 				<!--<p>http://www.w3.org/TR/CSS21/visuren.html#containing-block.</p>-->
-				<p>Par défaut c'est le root element <em>RenderView</em> : ce qu'on voit à l'écran, à x=0,y=0, le haut à gauche de l'écran</p>
+				<p>Par défaut c'est le root element <em>RenderView</em> : ce qu'on voit à à x=0,y=0, le haut à gauche de l'écran</p>
 				<p>C'est la <em>position:</em> du rectangle enfant qui permet de trouver son containingBlock</p>
-				<p>ex : relative ou static (= default) : containingBlock = l'ancêtre block <i>le plus proche</i></p>
-				<p>ex : fixed : containingBlock = RenderView = l'écran. RenderView réajuste les coordonnées du fixed selon le scroll</p>
-				<p>ex : absolute : containingBlock = ancêtre le plus proche avec position absolute/relative/fixed ou transform, si aucun, alors RenderView (donc x=0,y=0)</p>	
+				<p>relative ou static (= default) : containingBlock = l'ancêtre block <i>le plus proche</i></p>
+				<p>fixed : containingBlock = RenderView = l'écran. RenderView réajuste les coordonnées du fixed selon le scroll</p>
+				<p>absolute : containingBlock = ancêtre le plus proche avec position absolute/relative/fixed/transform, si aucun, alors RenderView donc x=0,y=0</p>	
 			</section>
 
 			<section>
@@ -524,7 +524,7 @@ TODO that escalated
 				<p>Recalculer les styles et le layout x/y : "pense aux arbres"</p>
 				<p>Lutter avec un HTML surchargé de balises inutiles et styles CSS YOLO</p>
 				<p>Le JS qui déclenche des recalculs de layout (ex: worst case, au touch scroll, 60 fois/seconde)</p>
-				<p>Exercice très formateur pour aider le rendu : faire un site avec le moins de balises possibles et le moins de JS possible, less is more</p>
+				<p>Exercice formateur pour aider le rendu : faire un site avec le moins de balises possibles et le moins de JS possible, less is more</p>
 				<p>Exercice UI/DFO avancé : repérer tous les recalculs de layout inutiles et les enlever</p>
 				<p>N'optimisez <em>que ce que vous pouvez mesurer</em> : utilisez la Timeline de l'inspecteur pour voir réseau, layout et dessin</p>
 			</section>
@@ -532,7 +532,7 @@ TODO that escalated
 			<section>
 				<h3>🖼️ On ne relayout pas tout. Seulement les containing blocks avec dirties (sales gosses) </h3>
 				<p>Le layout n'est pas figé : au "hit testing" - sur quoi est le pointeur - un scroll, survol :hover, un focus, un touch JS peut restyler.</p>
-				<p>Le <em>RenderStyle</em> recalculé <em>ne change pas toujours</em> le layout : color NON, position/display/height/width OUI. Le fond ne change pas la forme.</p>
+				<p>Le <em>RenderStyle</em> recalculé <em>ne change pas toujours</em> le layout : color NON, position/display/height/width OUI. Le <em>fond ne change pas la forme</em></p>
 				<small><a href="https://csstriggers.com/">https://csstriggers.com/</a></small>
 				<!-- <p>Si tu relayout au touchmove t'es mal : le JS est sur la même thread que la UI thread, !Compositor. Blink veut un Layout threadé</p> -->
 				<p>Savoir profiter du preload scanner = perfs !</p>
@@ -544,7 +544,7 @@ TODO that escalated
 			<section>
 				<h3>Fini de layouter !</h3>
 				<p>Le moteur a calculé les coordonnées x,y des rectangles : on a enfin une mise en page</p>
-				<p>En HTML on dessine des rectangles, qui peuvent être clippés ou tronqués (mask, shape, overflow:hidden)</p>
+				<p>En HTML on dessine des rectangles, qui peuvent être tronqués (mask, shape, overflow:hidden)</p>
 				<p>En SVG on aurait dessiné des paths, circles, ...</p>
 				<p>En MathML on aurait dessiné des vecteurs, racines, fractions, ...</p>
 				<p>En Canvas/WebGL on aurait dessiné sur des surfaces 2D ou 3D avec sources de lumières et angles de caméra, ...</p>
@@ -552,7 +552,9 @@ TODO that escalated
 			</section>
 
 			<section>
-				<p>TODO canson et arbre</p>
+				<p>Mise en calques</p>
+				<p><img src="canson.png" alt=""></p>
+				<p><img src="player.png" alt=""></p>
 			</section>
 
 			<section>
@@ -575,7 +577,7 @@ TODO that escalated
 			</section>
 
 			<section>
-				<h3>Super, on a un Layout non dirty qui nous a donné des calques</h3>
+				<h3>Super, on a un Layout qui nous a donné des calques</h3>
 				<p>On peut enfin dessiner / peindre nos <em>RenderLayer</em>s !</p>
 				<p>Plus besoin de penser box model, containing block, les styles sont calculés (cascades appliquées), le layout (padding, margin, border, width, height) a été fait et mis en layers</p>
 				<p>Pour chaque layer, la spec CSS nous dit exactement quoi peindre dans quel ordre</p>
@@ -589,7 +591,7 @@ TODO that escalated
 				<p>On ne peint pas élément par élément au feeling, pour pas raturer</p>
 				<p>On peint des <em>CSS stacking contexts (piles)</em>, en suivant un ordre récursif précis et pas <em>toujours</em> celui du HTML</p>
 				<p>Les piles sont étanches entre elles sinon ça coule, comme de la... peinture</p>
-				<p>Un stacking context est formé par élément qui est: <em>racine, positioné, flex, grid item, table, float, column, transform</em></p>
+				<p>Un stacking context est formé par élément qui est: <em>racine, positioné, flex, grid, table, float, column, transform</em></p>
 				<p>Un stacking context a des enfants avec stacking contexts (un enfant positionné suffit à créer un nouveau sc)</p>
 				<p>Un stacking context n'est pas juste le z-index ! <em>Le Z est par pile</em></p>
 			</section>
@@ -609,7 +611,7 @@ TODO that escalated
 					<li>on peint le sc de l'enfant positionné zindex &gt; 0 (au dessus)</li>
 					<!-- <li>on passe au sc suivant</li> -->
 				</ol>
-				<p>9 étapes, suite austère mais logique et optimisée : CSS 2 a créé ces specs, les positions, le z-index - avant, on utilisait des images vides</p>
+				<p>9 étapes, austère mais logique et optimisé : CSS 2 a créé ces specs, les positions, le z-index - avant, on utilisait des images vides</p>
 				<small>pour chaque pile : fonds et bordures, enfants au fond possiblement masqués, les blocks in flow, les floats in flow, les inlines in flow car un float les pousse, on bascule vers les positionnés à 0, les transparents/transformés, les &gt; 0</small>
 			</section>
 
@@ -623,7 +625,7 @@ TODO that escalated
 			</section>
 
 			<section>
-				<p>Most elements on a page are in a single, root stacking context, but absolutely or relatively positioned elements with non-auto z-index values form their own stacking contexts (that is, all of their children will be z-ordered within the parent and not be interleaved with content from outside the parent</p>
+				<p>Most elements on a page are in a single, root stacking context, but absolutely or relatively positioned elements with non-auto z-index values form their own stacking contexts (that is, all of their children will be z-ordered within the parent and not be interleaved with content from outside the parent)</p>
 <!--
 				<p>With region chains, an element may be split across multiple boxes and these boxes may overlap (for example if they are absolutely positioned). So fragments of the same element can overlap each other. Since each element has a single z-index, it would be required to find another mechanism to decide in which order the fragments are rendered. Since each CSS Region creates a new stacking context, it is clear that each fragment is rendered separately and their rendering order follows the regular CSS rendering model.
 				</p>
@@ -634,7 +636,7 @@ TODO that escalated
 
 			<section>
 				<h2>Ce que translate3d(0,0,0) et translateZ(0) font vraiment</h2>
-				<p>Forcent le Compositing d'un RenderLayer (en texture) et lui donnent un "backing context"</p>
+				<p>Forcent le Compositing d'un RenderLayer en texture et lui donnent un "backing context"</p>
 				<p>en français : forcent un chemin hardware vers la puce graphique au lieu d'un chemin logiciel optimal</p>
 				<p>Pas seuls à faire ça : CSS transform 3d, filter, opacity ou perspective, video, canvas, flash ... créent aussi un backing context - non forcé</p>
 		<!-- 	<p>For instance, the compositor is responsible for applying the necessary transformations (as specified by the layer's CSS transform properties)
@@ -642,13 +644,12 @@ TODO that escalated
 			Further, since painting of the layers is decoupled from compositing, invalidating one of these layers only results in repainting the contents of that layer alone and recompositing.
 				In contrast, with the software path, invalidating any layer requires repainting all layers (at least the overlapping portions of them) below and above it which unnecessarily taxes the CPU.</p> -->
 				<p>Ca booste le rendu grâce au GPU, mais ça fait beaucoup de textures pour peu de VRAM</p>
-				<p>Envoyer du CPU au GPU a un coût, ça génère des clignotements</p>
-				<p>CSS : propriétés CSS will-change et will-animate pour les fous</p>
+				<p>Jongler du CPU au GPU a un coût, ça génère des clignotements</p>
 			</section>
 
 			<section>
 				<h2>GPU : gros travaux chez Mozilla</h2>
-				<p>WebRender : nouveau moteur de dessin de Servo (= moteur expérimental de Firefox, moderne, Rust - hello meetup)</p>
+				<p>WebRender : nouveau moteur de dessin de Servo, moteur expérimental de Firefox, moderne, Rust</p>
 				<p>WR convertit les rectangles en matrice de triangles et balance TOUT* vers le GPU</p>
 				<p>Beaucoup plus rapide. CPU : 8/12 cores, GPU : des centaines</p>
 				<p>*Seules les fontes sont encore traitées par le CPU car un peu floues en GPU et ligatures fines difficiles (Arabe, Hébreu, ...)</p>

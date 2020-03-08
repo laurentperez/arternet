@@ -1,9 +1,9 @@
-" execute pathogen#infect()
-call plug#begin('~/.local/share/nvim/plugged')
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-fugitive'
-call plug#end()
+execute pathogen#infect()
+" call plug#begin('~/.local/share/nvim/plugged')
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'tpope/vim-fugitive'
+" call plug#end()
 syntax on
 filetype plugin indent on
 set laststatus=2
@@ -29,4 +29,6 @@ let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
+nnoremap H gT
+nnoremap L gt
 

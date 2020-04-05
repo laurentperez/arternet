@@ -1,5 +1,7 @@
 package com.example.backfront;
 
+import com.example.backfront.db.User;
+import com.example.backfront.repositories.UserRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

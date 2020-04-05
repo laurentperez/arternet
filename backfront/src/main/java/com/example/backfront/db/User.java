@@ -1,4 +1,4 @@
-package com.example.backfront;
+package com.example.backfront.db;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,5 +1,8 @@
 package com.example.backfront;
 
+import com.example.backfront.db.DbService;
+import com.example.backfront.db.User;
+import com.example.backfront.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,7 +28,7 @@ public class BackfrontApplication {
 
     @Bean
     CommandLineRunner init(UserRepository userRepository) {
-		System.out.println("dbService = " + dbService.doHib());
+		// System.out.println("dbService = " + dbService.doHib());
 
 		// var users = null;
         return args -> {

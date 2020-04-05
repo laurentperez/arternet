@@ -1,4 +1,4 @@
-package com.example.backfront;
+package com.example.backfront.db;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

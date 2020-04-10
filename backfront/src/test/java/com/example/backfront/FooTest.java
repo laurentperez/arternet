@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 public class FooTest {
 
     @Test
-    public void foo(){
-
+    public void sorting(){
+        // binary k in arr
+        // 
     }
 }

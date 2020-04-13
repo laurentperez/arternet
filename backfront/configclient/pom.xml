@@ -11,7 +11,8 @@
 
     <artifactId>configclient</artifactId>
     <name>configclient</name>
-
+    <build>
+    </build>
 
     <dependencies>
         <dependency>
@@ -31,7 +32,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <version>2.2.2.RELEASE</version>
         </dependency>
-
     </dependencies>
 
 

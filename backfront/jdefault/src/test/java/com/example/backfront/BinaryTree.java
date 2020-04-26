@@ -44,11 +44,10 @@ public class BinaryTree {
             System.out.printf("null");
             return;
         }
-        System.out.printf("L:");
+        System.out.printf("Le:");
         inOrder(node.left);
         System.out.printf("D:%s ", node.data);
-        System.out.printf("R:");
-
+        System.out.printf("Ri:");
         inOrder(node.right);
     }
 

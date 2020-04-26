@@ -2,12 +2,15 @@ package com.example.backfront;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class FooTest {
 
     @Test
-    public void array(){
+    public void search(){
 
-        int[] arr = {-1, 1, 5, 8};
+        int[] nums = {-1, 2, 5, 8, 8, 9, 12};
         // linear : for()
         // bsearch : Arrays/binarySearch()
         // arrays.asList().contains()
@@ -18,9 +21,33 @@ public class FooTest {
     }
 
     @Test
-    public void bsearch() {
+    public void bsearchraw() {
         // binary k in arr
-        // 
+        int[] nums = {1,2,3,4,3,4,5,6};
+
+    }
+
+    @Test
+    public void firstdupe() {
+        // dupe k in arr
+        int[] nums = {1,2,3,4,3,4,5,6};
+        // linear
+        Set<Integer> s = new HashSet<>();
+        for (int i : nums) {
+            if(s.contains(i)) {
+                System.out.println(" dupe = " + i); // return
+            } else {
+                s.add(i);
+            }
+        }
+        // return -1
+        // negative marker
+        // hare
+    }
+
+    @Test
+    public void firstnondupe() {
+
     }
 
     @Test
@@ -36,6 +63,9 @@ public class FooTest {
 
     @Test
     public void piarc() {
+        // ratio nb points dans cercle/nb points dans carré ~= area circle / area square
+        // racine de (x pow 2 + y pow 2) : si < 1 = in area
+        // pi = 4 x le nb de points dans area divise par nb de points total
     }
 
 }

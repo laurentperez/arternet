@@ -1,0 +1,379 @@
+##################
+## MEDRIA HOSTS ##
+##################
+
+
+#### medria pf-test
+
+Host test-sim1
+	Hostname sim1.test.medria.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-test-bdd-router test-router
+	Hostname router.test.medria.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-test-bdd-bdd1 tbbd1
+	Hostname bdd1.test.medria.fr
+        Port 35411
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-test-bdd-bdd2 tbdd2
+	Hostname bdd2.test.medria.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-test-rabbitmq test-lora1
+        Hostname lora1.test.medria.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-test-ingestion-meuhdria brocaar-test-live
+        Hostname brocaar-test-live.meuhdria.ovh
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-test-sched
+        Hostname 51.75.14.69
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+
+Host medria-test-nginx
+        Hostname test.farmlife.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-test-notifsender
+        Hostname notification-sender-test.azure.itkweb.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-test-tools-copyexploit
+        Hostname bdd-transfert-test.elevage.itkweb.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+        
+#### medria pf-test azure
+
+Host medria-test-ingestion-loraserver brocaar-test
+	Hostname brocaar-test.azure.itkweb.fr
+	Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-test-brocaar-us brocaar-us-test
+	Hostname brocaar-us-test.azure.itkweb.fr
+	Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-test-brocaar-qualif brocaar-qualif
+        Hostname brocaar-qualif.azure.itkweb.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+        
+Host medria-test-wrappers wrappers-test
+        Hostname wrappers-test.azure.itkweb.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+        
+Host medria-test-ingestion-azure-ulmeasurements ingestion-stack-test
+        Hostname ingestion-stack-test.azure.itkweb.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-test-brokers-azure-rabbitmq-mqtt messages-brokers-test
+        Hostname messages-brokers-test.azure.itkweb.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-test-api-azure-provisioning-farmwarehouse-simlauncher-xmlimport api-test
+        Hostname api-test.azure.itkweb.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-test-monitoring monitoring-stack-test monitoring-stack-test
+        Hostname monitoring-stack-test.azure.itkweb.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-test-farmlife farmlife-test
+        Hostname farmlife-test.azure.itkweb.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+
+#### medria pf-preprod bdd
+
+Host a1  medria-preprod-bdd-admin1
+	Hostname admin1.gprs.medria.fr
+	Port 35411
+	User itk
+	IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host tbdd1  medria-preprod-bdd-1
+        Hostname x3.gprs.medria.fr
+        Port 35422
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+        
+#### medria pf-prod bdd
+
+Host medria-prod-bdd-r1
+	    Hostname ns373581.ip-176-31-232.eu
+        Port 35411
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-bdd-r2
+	    Hostname r2.gprs.medria.fr
+        Port 35411
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-bdd-m1 m1.gprs.medria.fr
+	    Hostname ns373581.ip-176-31-232.eu
+        Port 35411
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+
+Host medria-prod-bdd-farms1 farms1.gprs.medria.fr
+	    Hostname farms1.gprs.medria.fr
+        Port 35411
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-bdd-farms2 farms2.gprs.medria.fr
+	    Hostname farms2.gprs.medria.fr
+        Port 35411
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-bdd-farms3 farms3.gprs.medria.fr
+	    Hostname farms3.gprs.medria.fr
+        Port 35411
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-bdd-farms4 farms4.gprs.medria.fr
+	    Hostname farms4.gprs.medria.fr
+        Port 35411
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-bdd-farms5 farms5.gprs.medria.fr
+	    Hostname farms5.gprs.medria.fr
+        Port 35411
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-bdd-farms6 farms6.gprs.medria.fr
+	    Hostname farms6.gprs.medria.fr
+        Port 35411
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-bdd-farms7 farms7.gprs.medria.fr
+	    Hostname farms7.gprs.medria.fr
+        Port 35411
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-bdd-farms8 farms8.gprs.medria.fr
+	    Hostname farms8.gprs.medria.fr
+        Port 35411
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-bdd-farms9 farms9.gprs.medria.fr
+	    Hostname farms9.gprs.medria.fr
+        Port 35411
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+Host medria-prod-bdd-farms10 farms10.gprs.medria.fr
+	    Hostname farms10.gprs.medria.fr
+        Port 35411
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+Host medria-prod-bdd-farms11 farms11.gprs.medria.fr
+	    Hostname farms11.gprs.medria.fr
+        Port 35411
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+Host medria-prod-bdd-farms12 farms12.gprs.medria.fr
+	    Hostname farms12.gprs.medria.fr
+        Port 35411
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+Host medria-prod-bdd-farms13 farms13.gprs.medria.fr
+	    Hostname farms13.gprs.medria.fr
+        Port 35411
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+#### medria pf-prod ingestion
+
+Host medria-prod-ingestion-loraserver
+	Hostname loraserver.lan.itkweb.fr
+        Port 22
+        User itk
+	IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-ingestion-loraserverus
+	    Hostname 142.44.160.173
+        Port 22
+        User root
+        # password on teampass
+
+Host medria-prod-ingestion-mqtt-redis-pg loraserver-bdd
+	Hostname loraserver-bdd.lan.itkweb.fr
+	Port 22
+	User itk
+	IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-ingestion-rabbitmq-wrappers-ul-back2future
+	Hostname x10.gprs.medria.fr
+        Port 35425
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-ingestion-ulmeasurements
+	Hostname ingestion-stack.farmlife.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-ingestion-m2ieu5-alertabsent-aerospike
+	    Hostname ns3008374.ip-178-33-227.eu
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+
+#### medria pf-prod processing
+
+Host medria-prod-processing-sched-farms1
+	    Hostname sched-farms1.gprs.medria.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-processing-sched-farms2
+	    Hostname sched-farms2.gprs.medria.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-processing-sched-farms3
+	    Hostname sched-farms3.gprs.medria.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-processing-simlauncher
+	    Hostname api.farmlife.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-processing-maasweb
+	    Hostname maas.lan.itkweb.fr
+        Port 22
+        User itk
+        # password on teampass
+
+Host medria-prod-processing-maasnodes3
+	    Hostname nodes4.lan.itkweb.fr
+        Port 22
+        User itk
+        # password on teampass
+
+Host medria-prod-processing-maasnodes4
+	    Hostname maas-nodes4.lan.itkweb.fr
+        Port 22
+        User itk
+        # password on teampass
+
+#### medria pf-prod alerting
+
+Host medria-prod-alerting-alerte2-alertsender-alertcomposer-statuscontroller
+	    Hostname x2.gprs.medria.fr
+        Port 35423
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-alerting-notificationsender
+	    Hostname 51.75.15.101
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+
+#### medria pf-prod app
+
+Host medria-prod-app-farmlife
+	    Hostname farmlife.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+
+Host medria-prod-app-provisioning-farmwarehouse-simlauncher
+	    Hostname api.farmlife.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-app-exportxml
+	    Hostname x1.gprs.medria.fr
+        Port 35432
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-app-importxml
+	    Hostname x4.gprs.medria.fr
+        Port 35429
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+
+#### medria pf-prod monitoring
+
+Host medria-prod-monitoring-wrappers
+        Hostname loraserver-processing.lan.itkweb.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-tools
+	    Hostname tools.gprs.medria.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa
+
+Host medria-prod-backups newbackup1
+        Hostname new-backup1.gprs.medria.fr
+        Port 22
+        User itk
+        IdentityFile ~/.ssh/medria/medria-maintenance-id_rsa

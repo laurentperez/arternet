@@ -2,32 +2,38 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/lperez/.oh-my-zsh
+export ZSH="/home/lperez/.oh-my-zsh"
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -48,25 +54,26 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git git-flow gitignore jira git-extras mvn osx sublime sudo jira
-)
+plugins=(git git-flow gitignore jira git-extras mvn gradle sudo)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-
+source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 HISTFILE=~/.histfile
 HISTSIZE=100000
@@ -80,17 +87,13 @@ bindkey ^f  history-incremental-search-backward
   ;;
   esac
 
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
 zstyle :compinstall filename '/Users/lperez/.zshrc'
 
 autoload -Uz compinit
 compinit
 autoload promptinit
 promptinit
-#prompt adam1
 prompt clint
-#prompt phil
 setopt correctall
 setopt autocd
 setopt auto_cd
@@ -98,28 +101,30 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushd_silent
 
-#export JAVA_HOME=~/.sdkman/candidates/java/current
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home
-export GROOVY_HOME=/Users/lperez/Desktop/work/groovy-2.4.11
+# export MANPATH="/usr/local/man:$MANPATH"
+export ANDROID_SDK_ROOT="/home/lperez/Android/Sdk"
+export ANDROID_HOME="/home/lperez/Android/Sdk"
+export PATH="${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
 export JDK_HOME=$JAVA_HOME
-export M2_REPO=/Users/lperez/.m2/repository
-export M2_HOME=/Users/lperez/Desktop/work/apache-maven-3.2.5
-export M2_HOME=/Users/lperez/Desktop/work/apache-maven-3.5.4
-alias ssvn='~/SVN'
-alias ggit='~/Desktop/work/git'
-alias wk='~/Desktop/work'
+export M2_HOME='/home/lperez/Bureau/work/apache-maven-3.6.3'
+export PATH=$PATH:$M2_HOME/bin
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+alias wk='~/Bureau/work'
+alias plz='sudo'
+alias fl='~/Bureau/work/farmlife'
+alias tsp='/home/lperez/Téléchargements/TeamSpeak3-Client-linux_amd64/ts3client_runscript.sh'
+alias ggit='~/Bureau/work/farmlife'
 alias grostas='sudo du -a /data | sort -n -r | head -n 10'
-alias apa7='sudo /Applications/XAMPP/bin/httpd -X'
-alias apa5='sudo /Applications/XAMPP5538/bin/httpd -X'
-git config --global user.name "lperez"
-git config --global user.email "laurent.perez@sequoiasoft.com"
 git config --global rebase.autosquash true
 git config --global rerere.enabled true
-git config --global pull.rebase preserve
+git config --global pull.rebase merges
 git config --global remote.origin.prune true
 git config --global alias.dog "log --all --decorate --oneline --graph"
 git config --global alias.merge "merge -Xignore-all-space"
-git config --global alias.tidy "rebase -i @{upstream}" 
+git config --global alias.tidy "rebase -i @{upstream}"
 git config --global alias.st status
 git config --global alias.com commit
 git config --global alias.ci commit
@@ -127,12 +132,11 @@ git config --global alias.br branch
 git config --global alias.co checkout
 git config --global alias.cl checkout
 git config --global alias.superlog "log -p -M --follow --stat --"
-alias atom='atom --disable-gpu'
 alias glog='git lg1'
 alias gk='gitk'
 alias pull='git pull'
-alias dev='git checkout develop'
-alias lop='git checkout develop'
+alias dev='git checkout dev'
+alias lop='git checkout dev'
 alias gwl='git worktree list'
 alias gba='git branch -avv'
 alias gco='git checkout'
@@ -148,19 +152,15 @@ alias itg='git co integration'
 alias master='git co master'
 alias ms='git checkout master'
 alias mcc='mvn clean compile'
+alias grc='gradle clean compile'
+alias grct='gradle clean test'
+alias grt='gradle test'
 alias mcp='mvn clean package'
 alias mci='mvn clean install'
 alias mcu='mvn clean install -U'
 alias mcd='mvn clean install deploy -U'
-alias mi='mvn install'
-alias mc='mvn compile'
-alias mp='mvn package'
-alias md='mvn deploy'
-alias mt='mvn test'
-alias mct='mvn clean test'
 alias CLEARREPO='rm -fr ~/.m2/repository'
 alias repoclear='rm -fr ~/.m2/repository'
-alias sup='svn up'
 alias ll='ls -la'
 alias grep='egrep --exclude-dir=\.svn --color=auto'
 alias s='cd ..'
@@ -175,23 +175,14 @@ alias -g .....='../../../..'
 alias svndiff='svn diff --diff-cmd ~/.diffwrap.sh'
 alias sd='svn diff --diff-cmd=colordiff'
 alias ant='ant -logger org.apache.tools.ant.listener.AnsiColorLogger'
-alias eclipse='/Users/admin/work/eclipse/eclipse'
+alias dps='docker ps'
+alias db='docker exec -it container /bin/bash'
+alias ddown='docker-compose down -v'
+alias dstop='docker-compose stop'
 # servers
 alias tbbweb1='ssh tbbweb1'
 alias bbweb1='ssh bbweb1'
-export REPO_GIT="/Users/lperez/Desktop/work/git"
-PATH=/opt/local/bin:$PATH:$REPO_GIT # Add RVM to PATH for scripting
 
-export NVM_DIR="/Users/admin/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-export PATH=/opt/local/bin:$PATH:$M2_HOME/bin:$GROOVY_HOME/bin
-
-export PATH=$PATH:/usr/local/Cellar/php@7.2/7.2.21/bin
-
-alias php="/usr/local/Cellar/php@7.2/7.2.21/bin/php"
-
-# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -206,9 +197,6 @@ alias php="/usr/local/Cellar/php@7.2/7.2.21/bin/php"
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -217,10 +205,3 @@ alias php="/usr/local/Cellar/php@7.2/7.2.21/bin/php"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-
-
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/lperez/.sdkman"
-[[ -s "/Users/lperez/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/lperez/.sdkman/bin/sdkman-init.sh"

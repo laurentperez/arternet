@@ -1,30 +1,38 @@
 [user]
-	name = lperez
-	email = laurent.perez@sequoiasoft.com
-
+	email = laurent.perez@itk.fr
+	name = Laurent Perez
 [merge]
 	log = 100
 	conflictstyle = diff3
 	# ff = false
-
+[rebase]
+	autosquash = true
+[rerere]
+	enabled = true
+[pull]
+	rebase = merges
+[remote "origin"]
+	prune = true
 [alias]
-	lt = !"git describe --tags $(git rev-list --tags --max-count=1)"
-	ltl = !"git describe --tags --abbrev=0"
+	dog = log --all --decorate --oneline --graph
 	st = status
+	com = commit
 	br = branch
 	co = checkout
 	cl = checkout
+	lt = !"git describe --tags $(git rev-list --tags --max-count=1)"
+	ltl = !"git describe --tags --abbrev=0"
 	ci = commit
 	mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
 	dry = merge --no-commit --no-ff $BRANCH
- # To examine the staged changes:git diff --cached
-	pr = !git pull --rebase --preserve-merges
+   # To examine the staged changes:git diff --cached
+	pr = !git pull --rebase --rebase-merges
 	grh = !git reset --hard HEAD^
-	# git rebase -i HEAD~X
-	reb = --rebase --preserve-merges
+	  # git rebase -i HEAD~X
+	reb = --rebase --rebase-merges
 	rebc = rebase --continue
 	rebs = rebase --skip
-	rebi = rebase --preserve-merges --interactive @{upstream}
+	rebi = rebase --rebase-merges --interactive @{upstream}
 	hist = log --pretty=oneline --abbrev-commit --graph --decorate
 	in = !git fetch && git log --name-status --pretty=oneline --abbrev-commit --graph --decorate HEAD..origin
 	addm = !git-ls-files -m -z | xargs -0 git-add && git status
@@ -35,14 +43,12 @@
 	lo = log --oneline
 	lg = log --graph
 	gld = !"git log --oneline --all --graph --decorate --simplify-by-decoration"
-	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(black)%s%C(reset) %C(red)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(black)%s%C(reset) %C(red)- %an%C(reset)' --all
+	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(black)%s%C(reset) %C(red)- %an%C(reset)%C(bold yellow)%d%C(    reset)' --all
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''              %C(black)%s%C(reset) %C(red)- %an%C(reset)' --all
 	lg = !"git lg1"
 	gl1 = !"git lg1"
 	gl2 = !"git lg2"
 	adog = log --all --decorate --oneline --graph
-	dog = log --decorate --oneline --graph
-	com = commit
 	merge = merge -Xignore-all-space
 	tidy = rebase -i @{upstream}
 	superlog = log -p -M --follow --stat --
@@ -63,30 +69,10 @@
 	wulk = !"git worktree unlock"
 	please = push --force-with-lease
 [core]
-	autocrlf = input
+	 #autocrlf = input
 	excludesfile = /Users/lperez/.gitignore_global
-	whitespace = cr-at-eol
-	editor = atom --wait
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[commit]
-	template = /Users/lperez/.stCommitMsg
-[rebase]
-	autosquash = true
-[rerere]
-	enabled = true
-[pull]
-	rebase = preserve
-[remote "origin"]
-	prune = true
+	 #whitespace = cr-at-eol
+	 editor = atom --wait
 [branch "master"]
-	mergeoptions = --no-ff
-[branch "develop"]
-	mergeoptions = --no-ff
-[branch "version_2017"]
-	mergeoptions = --no-ff
+	  #mergeoptions = --no-ff
 
